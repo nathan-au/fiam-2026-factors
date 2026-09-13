@@ -1,0 +1,85 @@
+{
+  "oos_r2": -8.638063116439554e-05,
+  "n_predictor_columns": 147,
+  "oos_prediction_rows": 268733,
+  "unfiltered": {
+    "n_months": 68,
+    "avg_monthly_return": 0.05973276995053761,
+    "annualized_return_arith": 0.7167932394064513,
+    "annualized_return_geo_cagr": 0.8260978143305262,
+    "cumulative_return": 29.336784120225364,
+    "hit_rate_active": 0.7647058823529411,
+    "information_ratio": 1.6904290104719735,
+    "sharpe_ratio": 1.790337160379291,
+    "alpha_monthly": 0.059339530219528445,
+    "alpha_annualized": 0.7120743626343413,
+    "alpha_tstat": 4.117992546320426,
+    "alpha_se_monthly": 0.014409819724552547,
+    "beta": 0.04474734998014308,
+    "beta_se": 0.3275104448927734,
+    "beta_tstat": 0.1366287722359307,
+    "corr_with_sp500": 0.02002876285483826,
+    "avg_gross_exposure": 1.9999999999999996,
+    "max_gross_exposure": 1.9999999999999996,
+    "avg_net_exposure": 0.0,
+    "min_net_exposure": 0.0,
+    "max_net_exposure": 0.0,
+    "avg_n_positions": 200.0,
+    "best_month": {
+      "date": "2025-12-31",
+      "ret": 0.22030635000000004
+    },
+    "worst_month": {
+      "date": "2021-01-31",
+      "ret": -0.5709393
+    },
+    "calendar_year_returns": {
+      "2021": -0.15811331530716344,
+      "2022": 2.1676271818135664,
+      "2023": 1.3804957013889565,
+      "2024": 0.68727871322914,
+      "2025": 0.6271136353628199,
+      "2026": 0.7406430713161527
+    }
+  },
+  "investable": {
+    "n_months": 68,
+    "avg_monthly_return": 0.030657882669388486,
+    "annualized_return_arith": 0.36789459203266184,
+    "annualized_return_geo_cagr": 0.3532108721024887,
+    "cumulative_return": 4.5514237300049825,
+    "hit_rate_active": 0.6323529411764706,
+    "information_ratio": 0.978426118514824,
+    "sharpe_ratio": 1.0977847346419676,
+    "alpha_monthly": 0.03388452686794374,
+    "alpha_annualized": 0.4066143224153249,
+    "alpha_tstat": 2.8478436576037085,
+    "alpha_se_monthly": 0.0118983100696109,
+    "beta": -0.3671647746366493,
+    "beta_se": 0.2704281454493655,
+    "beta_tstat": -1.357716572091778,
+    "corr_with_sp500": -0.16634970240531388,
+    "avg_gross_exposure": 1.9999999999999996,
+    "max_gross_exposure": 1.9999999999999996,
+    "avg_net_exposure": 0.0,
+    "min_net_exposure": 0.0,
+    "max_net_exposure": 0.0,
+    "avg_n_positions": 200.0,
+    "best_month": {
+      "date": "2026-07-31",
+      "ret": 0.21191752428019944
+    },
+    "worst_month": {
+      "date": "2021-01-31",
+      "ret": -0.42855886
+    },
+    "calendar_year_returns": {
+      "2021": 0.066685472195394,
+      "2022": 0.9868633259865021,
+      "2023": 0.21289467295997166,
+      "2024": 0.12429926075934428,
+      "2025": 0.4679879502481312,
+      "2026": 0.3084963009496078
+    }
+  }
+}
