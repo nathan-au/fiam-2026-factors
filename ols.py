@@ -16,8 +16,9 @@ Pipeline:
 Run: .venv/bin/python ols.py
 cache/ holds only downloaded external data (TB3MS.csv, SP500.csv).
 Outputs (all in output/): oos_predictions.csv,
-    portfolio_holdings_{unfiltered,investable}.csv,
-    portfolio_returns_{unfiltered,investable}.csv, ols_results.json
+    portfolio_holdings_{unfiltered,investable,beta_neutral}.csv,
+    portfolio_returns_{unfiltered,investable,beta_neutral}.csv,
+    ols_results.json
 """
 
 import json
@@ -27,6 +28,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
+from scipy.optimize import linprog
 from sklearn.linear_model import LinearRegression
 
 warnings.filterwarnings("ignore")
@@ -68,12 +70,14 @@ def load_model_table() -> pd.DataFrame:
     df = pd.read_parquet(CHARS_FILE, columns=keep_cols)
     df["eom"] = pd.to_datetime(df["eom"])
 
-    # `prc` and `dolvol_126d` are themselves predictor columns and get
-    # overwritten by the rank transform below -- snapshot the raw values now
-    # so the portfolio-construction stage can screen for investability.
+    # `prc`, `dolvol_126d` and `beta_60m` are themselves predictor columns and
+    # get overwritten by the rank transform below -- snapshot the raw values
+    # now so the portfolio-construction stage can screen for investability
+    # and constrain for beta neutrality.
     df["raw_prc"] = df["prc"]
     df["raw_dolvol_126d"] = df["dolvol_126d"]
     df["raw_me"] = df["me"]
+    df["raw_beta_60m"] = df["beta_60m"]
 
     # Target-month key: characteristics at eom (month t) predict returns
     # realized in month t+1. Assign every row to that t+1 month for splitting.
@@ -155,6 +159,7 @@ def run_walk_forward(df: pd.DataFrame, stock_vars: list[str]) -> pd.DataFrame:
                 "raw_prc",
                 "raw_dolvol_126d",
                 "raw_me",
+                "raw_beta_60m",
             ]
         ].copy()
         fold["pred"] = y_pred
@@ -216,17 +221,105 @@ def build_portfolio(preds: pd.DataFrame, screen: bool) -> tuple[pd.DataFrame, pd
         )
 
         port_ret = (both["weight"] * both[TARGET_COL]).sum()
+        long_ret = (longs["weight"] * longs[TARGET_COL]).sum()
+        short_ret = (shorts["weight"] * shorts[TARGET_COL]).sum()
         gross = both["weight"].abs().sum()
         net = both["weight"].sum()
         monthly_stats.append(
             {
                 "target_month": month,
                 "port_excess_ret": port_ret,
+                "long_leg_ret": long_ret,
+                "short_leg_ret": short_ret,
                 "gross_exposure": gross,
                 "net_exposure": net,
                 "n_long": n_leg,
                 "n_short": n_leg,
                 "n_positions": 2 * n_leg,
+            }
+        )
+
+    holdings_df = pd.concat(holdings, ignore_index=True)
+    stats_df = pd.DataFrame(monthly_stats).sort_values("target_month").reset_index(drop=True)
+    return holdings_df, stats_df
+
+
+MAX_WEIGHT = 0.01  # per-name cap: forces diversification across >=200 names
+
+
+def build_beta_neutral_portfolio(preds: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Investability-screened, dollar-neutral, and beta-neutral by explicit
+    construction: each month, solve a small linear program that maximizes
+    expected (predicted) return subject to
+        sum(w) = 0                      (dollar/net neutral)
+        sum(w_i * beta_60m_i) = 0       (beta neutral, per docs/FIAM.md's
+                                          "beta-weighted long exposure =
+                                          beta-weighted short exposure")
+        sum(|w_i|) = 2.0                (gross = 200%)
+        |w_i| <= MAX_WEIGHT             (per-name cap, forces >=200 names)
+    Variables are split w_i = w_i^+ - w_i^- (both >=0) so every constraint is
+    linear; scipy.optimize.linprog (HiGHS) solves it directly. Stocks with a
+    missing beta_60m cannot enter the beta constraint and are excluded from
+    the eligible universe for this construction (see docs/OLS.md).
+    """
+    holdings = []
+    monthly_stats = []
+
+    for month, grp in preds.groupby("target_month"):
+        grp = grp[grp["raw_dolvol_126d"] >= MIN_DOLLAR_VOLUME]
+        grp = grp.dropna(subset=["raw_beta_60m"]).reset_index(drop=True)
+        n = len(grp)
+        if n < 2 * int(1.0 / MAX_WEIGHT):
+            continue  # not enough names to reach 200% gross under the cap
+
+        pred = grp["pred"].values
+        beta = grp["raw_beta_60m"].values
+
+        # x = [w+_1..w+_n, w-_1..w-_n], all >= 0
+        c = np.concatenate([-pred, pred])  # minimize -sum(pred*(w+ - w-))
+        A_eq = np.array(
+            [
+                np.concatenate([np.ones(n), -np.ones(n)]),  # net = 0
+                np.concatenate([beta, -beta]),  # beta-weighted exposure = 0
+                np.concatenate([np.ones(n), np.ones(n)]),  # gross = 2.0
+            ]
+        )
+        b_eq = [0.0, 0.0, 2.0]
+        bounds = [(0.0, MAX_WEIGHT)] * (2 * n)
+
+        res = linprog(c, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method="highs")
+        if not res.success:
+            print(f"  [warn] LP infeasible for {month.date()}, skipping month")
+            continue
+
+        w = res.x[:n] - res.x[n:]
+        keep = np.abs(w) > 1e-8
+        both = grp.loc[keep].copy()
+        both["weight"] = w[keep]
+        both["target_month"] = month
+        holdings.append(
+            both[["target_month", "permno", "ticker", "company_name", "weight", TARGET_COL, "pred", "raw_beta_60m"]]
+        )
+
+        port_ret = (both["weight"] * both[TARGET_COL]).sum()
+        long_mask = both["weight"] > 0
+        long_ret = (both.loc[long_mask, "weight"] * both.loc[long_mask, TARGET_COL]).sum()
+        short_ret = (both.loc[~long_mask, "weight"] * both.loc[~long_mask, TARGET_COL]).sum()
+        gross = both["weight"].abs().sum()
+        net = both["weight"].sum()
+        beta_exposure = (both["weight"] * both["raw_beta_60m"]).sum()
+        monthly_stats.append(
+            {
+                "target_month": month,
+                "port_excess_ret": port_ret,
+                "long_leg_ret": long_ret,
+                "short_leg_ret": short_ret,
+                "gross_exposure": gross,
+                "net_exposure": net,
+                "beta_exposure": beta_exposure,
+                "n_long": int((both["weight"] > 0).sum()),
+                "n_short": int((both["weight"] < 0).sum()),
+                "n_positions": int(keep.sum()),
             }
         )
 
@@ -251,6 +344,57 @@ def load_fred_series() -> tuple[pd.DataFrame, pd.DataFrame]:
     sp_monthly["sp500_ret"] = sp_monthly["close"].pct_change()
 
     return tb3ms[["month", "tb3ms_annual_pct", "rf_monthly"]], sp_monthly[["month", "sp500_ret"]]
+
+
+def compute_turnover_and_concentration(holdings_df: pd.DataFrame) -> dict:
+    """Average monthly one-way turnover (share of gross book replaced) and
+    position-concentration stats, both required by docs/FIAM.md's reporting
+    list but independent of the benchmark/FRED join above."""
+    piv = holdings_df.pivot_table(
+        index="target_month", columns="permno", values="weight", fill_value=0.0
+    ).sort_index()
+    # one-way turnover = half the L1 change in weights, as a share of gross (2.0)
+    # min_count=1 avoids pandas silently treating an all-NaN first-diff row as 0
+    diffs = piv.diff().abs().sum(axis=1, min_count=1) / 2.0
+    turnover = (diffs.iloc[1:] / 2.0).rename("turnover")  # first month has no prior book
+
+    abs_w = holdings_df["weight"].abs()
+    top10_share_by_month = holdings_df.groupby("target_month")["weight"].apply(
+        lambda w: w.abs().nlargest(10).sum() / 2.0  # share of 200% gross book
+    )
+
+    return {
+        "avg_monthly_turnover": float(turnover.mean()),
+        "min_monthly_turnover": float(turnover.min()),
+        "max_monthly_turnover": float(turnover.max()),
+        "avg_position_weight_abs": float(abs_w.mean()),
+        "max_position_weight_abs": float(abs_w.max()),
+        "avg_top10_share_of_gross": float(top10_share_by_month.mean()),
+    }
+
+
+def compute_short_book_characteristics(holdings_df: pd.DataFrame) -> dict:
+    """Average/median market cap, average dollar volume, and small-cap share
+    of the short leg, as required by docs/FIAM.md's reporting list. No direct
+    borrow-cost/hard-to-borrow data is provided in this dataset, so small
+    market cap is used as the stated proxy for "plausibly hard to borrow"."""
+    chars = pd.read_parquet(CHARS_FILE, columns=["permno", "eom", "me", "dolvol_126d"])
+    chars["eom"] = pd.to_datetime(chars["eom"])
+
+    h = holdings_df.copy()
+    h["target_month"] = pd.to_datetime(h["target_month"])
+    h["char_month"] = (h["target_month"] - pd.offsets.MonthBegin(1)).values.astype("datetime64[M]")
+    h["char_month"] = pd.to_datetime(h["char_month"]) + pd.offsets.MonthEnd(0)
+    m = h.merge(chars, left_on=["permno", "char_month"], right_on=["permno", "eom"], how="left")
+    short = m[m["weight"] < 0]
+
+    return {
+        "short_book_avg_market_cap_musd": float(short["me"].mean()),
+        "short_book_median_market_cap_musd": float(short["me"].median()),
+        "short_book_avg_dollar_volume_usd": float(short["dolvol_126d"].mean()),
+        "short_book_share_below_2000m_cap": float((short["me"] < 2000).mean()),
+        "short_book_share_below_1000m_cap": float((short["me"] < 1000).mean()),
+    }
 
 
 def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
@@ -291,12 +435,20 @@ def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
     best_month = perf.loc[perf["port_excess_ret"].idxmax()]
     worst_month = perf.loc[perf["port_excess_ret"].idxmin()]
 
-    calendar_year = (
-        perf.assign(year=perf["target_month"].dt.year)
-        .groupby("year")
-        .apply(lambda g: (1 + g["port_excess_ret"]).prod() - 1, include_groups=False)
-        .to_dict()
-    )
+    def calendar_year_of(col: str) -> dict:
+        d = perf.dropna(subset=[col]).assign(year=lambda x: x["target_month"].dt.year)
+        return (
+            d.groupby("year")
+            .apply(lambda g: (1 + g[col]).prod() - 1, include_groups=False)
+            .to_dict()
+        )
+
+    calendar_year = calendar_year_of("port_excess_ret")
+    calendar_year_benchmark = calendar_year_of("benchmark_monthly")
+    calendar_year_sp500 = calendar_year_of("sp500_ret")
+
+    long_leg_cagr = (1 + perf["long_leg_ret"]).prod() ** (12 / n_months) - 1
+    short_leg_cagr = (1 + perf["short_leg_ret"]).prod() ** (12 / n_months) - 1
 
     results = {
         "n_months": int(n_months),
@@ -321,9 +473,17 @@ def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
         "min_net_exposure": float(stats_df["net_exposure"].min()),
         "max_net_exposure": float(stats_df["net_exposure"].max()),
         "avg_n_positions": float(stats_df["n_positions"].mean()),
+        "avg_n_long": float(stats_df["n_long"].mean()),
+        "avg_n_short": float(stats_df["n_short"].mean()),
         "best_month": {"date": str(best_month["target_month"].date()), "ret": float(best_month["port_excess_ret"])},
         "worst_month": {"date": str(worst_month["target_month"].date()), "ret": float(worst_month["port_excess_ret"])},
         "calendar_year_returns": {int(k): float(v) for k, v in calendar_year.items()},
+        "calendar_year_returns_benchmark": {int(k): float(v) for k, v in calendar_year_benchmark.items()},
+        "calendar_year_returns_sp500": {int(k): float(v) for k, v in calendar_year_sp500.items()},
+        "long_leg_avg_monthly_ret": float(perf["long_leg_ret"].mean()),
+        "long_leg_cagr": float(long_leg_cagr),
+        "short_leg_avg_monthly_ret": float(perf["short_leg_ret"].mean()),
+        "short_leg_cagr": float(short_leg_cagr),
     }
     perf.to_csv(OUTPUT / f"portfolio_returns_{tag}.csv", index=False)
     return results
@@ -357,7 +517,7 @@ if __name__ == "__main__":
 
     for screen, tag, label in [
         (False, "unfiltered", "Unfiltered (raw top/bottom-100)"),
-        (True, "investable", "Investability-screened (dolvol_126d>=$10M/day)"),
+        (True, "investable", "Investability-screened (dolvol_126d>=$10M/day), equal-weight top/bottom-100"),
     ]:
         print(f"\nBuilding portfolio: {label}...")
         holdings, stats = build_portfolio(preds, screen=screen)
@@ -365,12 +525,32 @@ if __name__ == "__main__":
 
         print("Computing performance vs T-bill+4% and S&P 500...")
         perf_results = compute_performance(stats, tag=tag)
+        if tag == "investable":  # skip for the diagnostic-only unfiltered variant
+            perf_results.update(compute_turnover_and_concentration(holdings))
+            perf_results.update(compute_short_book_characteristics(holdings))
         all_results[tag] = perf_results
 
         print(f"\n=== Summary: {label} ===")
         for k, v in perf_results.items():
             if not isinstance(v, dict):
                 print(f"  {k}: {v}")
+
+    print("\nBuilding portfolio: Beta-neutral (investability-screened + LP beta constraint)...")
+    bn_holdings, bn_stats = build_beta_neutral_portfolio(preds)
+    bn_holdings.to_csv(OUTPUT / "portfolio_holdings_beta_neutral.csv", index=False)
+
+    print("Computing performance vs T-bill+4% and S&P 500...")
+    bn_results = compute_performance(bn_stats, tag="beta_neutral")
+    bn_results["avg_beta_exposure_at_formation"] = float(bn_stats["beta_exposure"].mean())
+    bn_results["max_abs_beta_exposure_at_formation"] = float(bn_stats["beta_exposure"].abs().max())
+    bn_results.update(compute_turnover_and_concentration(bn_holdings))
+    bn_results.update(compute_short_book_characteristics(bn_holdings))
+    all_results["beta_neutral"] = bn_results
+
+    print("\n=== Summary: Beta-neutral ===")
+    for k, v in bn_results.items():
+        if not isinstance(v, dict):
+            print(f"  {k}: {v}")
 
     with open(OUTPUT / "ols_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
