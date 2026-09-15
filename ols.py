@@ -9,15 +9,17 @@ Pipeline:
      (unused for plain OLS, which has no hyperparameters -- kept for schedule
      parity with the penalized-linear models), one calendar year of test.
      Refit annually, predict monthly. Splits are assigned by TARGET month.
-  4. Score every stock each out-of-sample month, form a dollar-neutral
-     top-100 / bottom-100 equal-weight portfolio, and evaluate it against the
-     T-bill + 4% benchmark and the S&P 500.
+  4. Score every stock each out-of-sample month, screen for investability,
+     form a dollar- and beta-neutral portfolio via a per-month LP, and
+     evaluate it against the T-bill + 4% benchmark and the S&P 500 (including
+     max drawdown, recovery, and Calmar ratio; monthly `drawdown`/
+     `sp500_drawdown` series are written to portfolio_returns_beta_neutral.csv
+     for the underwater chart).
 
 Run: .venv/bin/python ols.py
 cache/ holds only downloaded external data (TB3MS.csv, SP500.csv).
 Outputs (all in output/): oos_predictions.csv,
-    portfolio_holdings_{unfiltered,investable,beta_neutral}.csv,
-    portfolio_returns_{unfiltered,investable,beta_neutral}.csv,
+    portfolio_holdings_beta_neutral.csv, portfolio_returns_beta_neutral.csv,
     ols_results.json
 """
 
@@ -44,7 +46,6 @@ CHARS_FILE = FIAM_DIR / "chars_final_with_names.parquet"
 FACTOR_LIST = FIAM_DIR / "factor_char_list.csv"
 
 TARGET_COL = "ret_exc_lead1m"
-N_LEGS = 100  # top/bottom N stocks per leg -> 2*N_LEGS positions
 
 # Out-of-sample evaluation window (competition spec)
 OOS_START = pd.Timestamp("2021-01-01")
@@ -194,55 +195,6 @@ def oos_r2(actual: np.ndarray, predicted: np.ndarray) -> float:
 # never during model training. Single threshold: 6-month average daily
 # dollar volume, the most direct measure of whether a position is tradable.
 MIN_DOLLAR_VOLUME = 10_000_000.0  # $10M average daily dollar volume
-
-
-def build_portfolio(preds: pd.DataFrame, screen: bool) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Top-N / bottom-N equal-weight, dollar-neutral, monthly rebalance."""
-    holdings = []
-    monthly_stats = []
-
-    for month, grp in preds.groupby("target_month"):
-        if screen:
-            grp = grp[grp["raw_dolvol_126d"] >= MIN_DOLLAR_VOLUME]
-        grp = grp.sort_values("pred", ascending=False)
-        n = len(grp)
-        n_leg = min(N_LEGS, n // 2)
-        if n_leg < 1:
-            continue
-        longs = grp.head(n_leg).copy()
-        shorts = grp.tail(n_leg).copy()
-        longs["weight"] = 1.0 / n_leg
-        shorts["weight"] = -1.0 / n_leg
-
-        both = pd.concat([longs, shorts])
-        both["target_month"] = month
-        holdings.append(
-            both[["target_month", "permno", "ticker", "company_name", "weight", TARGET_COL, "pred"]]
-        )
-
-        port_ret = (both["weight"] * both[TARGET_COL]).sum()
-        long_ret = (longs["weight"] * longs[TARGET_COL]).sum()
-        short_ret = (shorts["weight"] * shorts[TARGET_COL]).sum()
-        gross = both["weight"].abs().sum()
-        net = both["weight"].sum()
-        monthly_stats.append(
-            {
-                "target_month": month,
-                "port_excess_ret": port_ret,
-                "long_leg_ret": long_ret,
-                "short_leg_ret": short_ret,
-                "gross_exposure": gross,
-                "net_exposure": net,
-                "n_long": n_leg,
-                "n_short": n_leg,
-                "n_positions": 2 * n_leg,
-            }
-        )
-
-    holdings_df = pd.concat(holdings, ignore_index=True)
-    stats_df = pd.DataFrame(monthly_stats).sort_values("target_month").reset_index(drop=True)
-    return holdings_df, stats_df
-
 
 MAX_WEIGHT = 0.01  # per-name cap: forces diversification across >=200 names
 
@@ -397,6 +349,64 @@ def compute_short_book_characteristics(holdings_df: pd.DataFrame) -> dict:
     }
 
 
+def drawdown_series(rets: pd.Series) -> pd.Series:
+    """Drawdown from running peak of compounded wealth, W_t / max(W_0..W_t) - 1.
+    Wealth starts at W_0 = 1 before the first month, so a loss in month one
+    counts as a drawdown -- unlike fiam/portfolio_analysis_hackathon.py, whose
+    cummax over cumulative log returns omits the starting capital (and reports
+    log rather than simple drawdown)."""
+    wealth = (1 + rets).cumprod()
+    peak = wealth.cummax().clip(lower=1.0)
+    return wealth / peak - 1
+
+
+def compute_drawdown_stats(rets: pd.Series, dates: pd.Series, cagr: float) -> dict:
+    """Max drawdown with its peak/trough/recovery dates and durations (in
+    months), longest underwater spell, current drawdown, and Calmar ratio.
+    `rets` and `dates` must be aligned and sorted by date."""
+    rets = rets.reset_index(drop=True)
+    dates = pd.Series(pd.to_datetime(dates)).reset_index(drop=True)
+    dd = drawdown_series(rets)
+
+    trough_i = int(dd.idxmin())
+    max_dd = float(dd.iloc[trough_i])
+
+    if max_dd < 0:
+        # peak = last month at or before the trough where wealth set a new high;
+        # -1 means the peak is the starting capital, before the first month
+        at_high = dd.iloc[: trough_i + 1] >= 0
+        peak_i = int(at_high[at_high].index.max()) if at_high.any() else -1
+        recovered = dd.iloc[trough_i + 1 :] >= 0
+        recovery_i = int(recovered[recovered].index.min()) if recovered.any() else None
+    else:
+        peak_i, recovery_i = trough_i, trough_i
+
+    def date_at(i):
+        if i is None:
+            return None
+        if i < 0:  # starting capital, dated one month before the first return
+            return str((dates.iloc[0] - pd.offsets.MonthEnd(1)).date())
+        return str(dates.iloc[i].date())
+
+    # longest run of consecutive months below the prior peak
+    underwater = (dd < 0).astype(int)
+    runs = underwater.groupby((underwater == 0).cumsum()).sum()
+    longest_underwater = int(runs.max()) if len(runs) else 0
+
+    return {
+        "max_drawdown": max_dd,
+        "max_drawdown_peak_date": date_at(peak_i),
+        "max_drawdown_trough_date": date_at(trough_i),
+        "max_drawdown_recovery_date": date_at(recovery_i),
+        "max_drawdown_peak_to_trough_months": int(trough_i - peak_i),
+        "max_drawdown_recovery_months": None if recovery_i is None else int(recovery_i - trough_i),
+        "longest_underwater_months": longest_underwater,
+        "current_drawdown": float(dd.iloc[-1]),
+        "avg_drawdown_when_underwater": float(dd[dd < 0].mean()) if (dd < 0).any() else 0.0,
+        "calmar_ratio": float(cagr / abs(max_dd)) if max_dd < 0 else None,
+    }
+
+
 def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
     tb3ms, sp500 = load_fred_series()
     perf = stats_df.merge(tb3ms, left_on="target_month", right_on="month", how="left")
@@ -450,6 +460,15 @@ def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
     long_leg_cagr = (1 + perf["long_leg_ret"]).prod() ** (12 / n_months) - 1
     short_leg_cagr = (1 + perf["short_leg_ret"]).prod() ** (12 / n_months) - 1
 
+    # Drawdown series for the underwater chart (strategy with S&P 500 overlaid)
+    perf["drawdown"] = drawdown_series(perf["port_excess_ret"])
+    perf["sp500_drawdown"] = drawdown_series(perf["sp500_ret"].fillna(0.0))
+    sp500_cagr = (1 + perf["sp500_ret"].fillna(0.0)).prod() ** (12 / n_months) - 1
+    dd_stats = compute_drawdown_stats(perf["port_excess_ret"], perf["target_month"], ann_ret_geo)
+    sp500_dd_stats = compute_drawdown_stats(
+        perf["sp500_ret"].fillna(0.0), perf["target_month"], sp500_cagr
+    )
+
     results = {
         "n_months": int(n_months),
         "avg_monthly_return": float(perf["port_excess_ret"].mean()),
@@ -484,6 +503,8 @@ def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
         "long_leg_cagr": float(long_leg_cagr),
         "short_leg_avg_monthly_ret": float(perf["short_leg_ret"].mean()),
         "short_leg_cagr": float(short_leg_cagr),
+        **dd_stats,
+        "sp500_drawdown": sp500_dd_stats,
     }
     perf.to_csv(OUTPUT / f"portfolio_returns_{tag}.csv", index=False)
     return results
@@ -514,26 +535,6 @@ if __name__ == "__main__":
         "n_predictor_columns": len(stock_vars),
         "oos_prediction_rows": int(len(preds)),
     }
-
-    for screen, tag, label in [
-        (False, "unfiltered", "Unfiltered (raw top/bottom-100)"),
-        (True, "investable", "Investability-screened (dolvol_126d>=$10M/day), equal-weight top/bottom-100"),
-    ]:
-        print(f"\nBuilding portfolio: {label}...")
-        holdings, stats = build_portfolio(preds, screen=screen)
-        holdings.to_csv(OUTPUT / f"portfolio_holdings_{tag}.csv", index=False)
-
-        print("Computing performance vs T-bill+4% and S&P 500...")
-        perf_results = compute_performance(stats, tag=tag)
-        if tag == "investable":  # skip for the diagnostic-only unfiltered variant
-            perf_results.update(compute_turnover_and_concentration(holdings))
-            perf_results.update(compute_short_book_characteristics(holdings))
-        all_results[tag] = perf_results
-
-        print(f"\n=== Summary: {label} ===")
-        for k, v in perf_results.items():
-            if not isinstance(v, dict):
-                print(f"  {k}: {v}")
 
     print("\nBuilding portfolio: Beta-neutral (investability-screened + LP beta constraint)...")
     bn_holdings, bn_stats = build_beta_neutral_portfolio(preds)
