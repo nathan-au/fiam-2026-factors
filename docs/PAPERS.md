@@ -3,10 +3,8 @@
 Reading list assembled while scoping what to build on top of the plain-OLS
 floor in `ols.py` / `docs/OLS.md`. Scope: methods that operate on the 147
 numeric characteristics in `fiam/chars_final_with_names.parquet` — prediction
-models and portfolio-construction methods. Deliberately **excludes**
-LLM/text/agentic approaches (already scoped separately in `docs/LLM.md`,
-owned by a teammate) and excludes the OLS baseline itself (that's the floor,
-not a candidate).
+models and portfolio-construction methods only. Excludes the OLS baseline
+itself (that's the floor, not a candidate).
 
 Each entry: what it does, and which documented weakness in `docs/OLS.md` it
 would address.
@@ -130,8 +128,7 @@ approach used in `ols.py`.
 
 ## Suggested starting point
 
-Given the team split (teammate owns text/LLM/agentic per `docs/LLM.md`), a
-high-leverage pair to start with:
+A high-leverage pair to start with:
 1. **Kozak-Nagel-Santosh shrinkage** or **Freyberger-Neuhierl-Weber** for the
    prediction step — cheap to implement, directly targets the documented
    multicollinearity problem in the 147 characteristics, easy to defend to
