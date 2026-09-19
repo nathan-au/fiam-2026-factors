@@ -16,3 +16,4 @@ statsmodels==0.15.0
 threadpoolctl==3.6.0
 typing_extensions==4.16.0
 wrapt==2.4.1
+xgboost==3.4.1
