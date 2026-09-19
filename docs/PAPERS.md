@@ -126,13 +126,126 @@ approach used in `ols.py`.
 
 ---
 
+## 4. Very recent additions (web search, Sept 2026 — papers from roughly Jun–Sep 2026)
+
+Found while updating this list after `ols.py` (floor, `docs/OLS.md`) and
+`xgb.py` (nonlinear model, `docs/XGB.md`) were both built — XGBoost did *not*
+beat the OLS floor (§4 of `docs/XGB.md`), so these were sourced specifically
+to find methods addressing *why*, not just "another model to try." Same
+scope as the rest of this document: numeric characteristics / factors only,
+LLM/text/agentic papers excluded even where they turned up in search results
+(e.g. *FactorEngine* and several 2026 "agentic factor mining" papers were
+found and dropped for this reason).
+
+### Wang, Gao, Harvey, Liu & Tao (2026), *Machine Learning Meets Markowitz*, NBER WP 34861
+Argues the standard two-stage pipeline — forecast returns, then plug into an
+optimizer — is "deeply problematic" because it treats prediction error as
+equally costly for every stock, when the optimizer only cares about error in
+the stocks that end up mattering to the final portfolio. Proposes fitting
+the return model and the portfolio weights jointly instead. **Directly
+describes the architecture both `ols.py` and `xgb.py` currently use**
+(predict, then separately solve an LP) — worth citing in the deck's
+methodology section as the documented limitation of that two-stage design,
+whether or not it's rebuilt jointly before the deadline.
+- Posted 2026-02-24 (not summer, but recent enough and directly on-point to
+  include).
+- [NBER working paper (free PDF)](https://www.nber.org/system/files/working_papers/w34861/w34861.pdf)
+- [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6290354)
+
+### *Quantity, Risk, and Return* (Sep 2026)
+Proposes the **Beta-Times-Quantity (BTQ) model**: factor premiums are
+conditioned on trading-flow "quantity" information, not just risk exposure
+(beta) — the unconditional risk-return relationship is flat, but becomes
+predictive once quantity is added, and the quantity-conditioning also
+attacks the factor-zoo problem by selecting a small subset of factors.
+Numeric-only, no text/LLM component. Notable here specifically because the
+panel already has quantity-adjacent liquidity variables
+(`turnover_126d`, `turnover_var_126d`, `dolvol_126d`, `dolvol_var_126d` —
+`docs/FACTORS.md` §16) that could proxy the paper's quantity signal without
+sourcing new data.
+- Posted 2026-09 (this month).
+- [arXiv](https://arxiv.org/abs/2609.05162)
+
+### *The Virtue of Sparsity in Complexity* (Apr 2026)
+A third data point in the Kelly-Malamud-Zhou vs. Nagel debate already in §1
+of this document: shows a sparse estimator continues to select a
+parsimonious pricing kernel as model complexity rises and **eventually
+overtakes dense ridge/random-feature methods in Sharpe ratio**. If the
+Kelly-Malamud-Zhou overparameterized-ridge route is pursued, this is the
+paper to cite alongside Nagel's rebuttal — both push toward sparsity/shrinkage
+over raw dimensional expansion, from different angles.
+- Posted 2026-04 (not summer, but a direct update to an already-cited debate).
+- [arXiv PDF](https://arxiv.org/pdf/2604.17166)
+
+### *Quant Convergence: Bridging Classical Value Investing and Modern Factor Models for Systematic Equity Selection* (Jun 2026)
+Empirical horse race of XGBoost, AutoGluon, and Random Forest across three
+feature sets (classical Graham value rules, modern factors, and a hybrid) on
+20 years of S&P 500 data. Finding: **plain Random Forest on the simplest
+feature set had the best risk-adjusted result** (highest return, best Calmar
+ratio), while the more complex AutoGluon ensemble had a larger drawdown for
+similar return. A second independent data point — after this project's own
+XGBoost result (`docs/XGB.md` §4) — that added model complexity doesn't
+reliably buy better risk-adjusted performance on this style of tabular
+factor data, and a concrete reason to try plain Random Forest as a cheap
+bagging-based alternative to boosting before reaching for anything heavier.
+- Posted 2026-06.
+- [arXiv PDF](https://arxiv.org/pdf/2606.24575)
+
+### *RankGLU: Residual Gated Score Formation for Cross-Sectional Stock Prediction* (Jun 2026)
+A prediction-head architecture built specifically to solve the "how do I
+turn a model's score into a stable ranking/weight" problem — a bounded,
+gated nonlinear branch alongside a direct linear scoring path, designed so
+the model doesn't overfit unstable return magnitudes while still capturing
+some nonlinear interaction. Directly relevant to the calibration concern
+`docs/NEXT.md` §3 already flags for tree-model conviction weighting ("z-score
+or rank-transform the predictions first, rather than plugging the raw
+predicted value directly into the weight") — this is a more structured,
+learned version of that same fix. Only validated on Chinese equity indices
+(CSI300/CSI800) in the paper; transfer to this panel is unverified.
+- Posted 2026-06.
+- [arXiv PDF](https://arxiv.org/pdf/2606.08930)
+
+### *Quantum Kernels and the Cross-Section of Stock Returns: Anatomy of a Vanishing Advantage* (Jul 2026)
+A controlled horse race (quantum fidelity kernel vs. projected quantum
+kernel vs. a classical RBF kernel control, identical training data/solver/
+tuning budget) finds the quantum kernels' apparent edge vanishes under fair
+comparison. Not something to implement (no practical quantum hardware
+access, and the result is negative), but useful as a citable example of due
+diligence — the same "considered and ruled out" framing `docs/PAPERS.md`
+already uses for Nagel's rebuttal of Kelly-Malamud-Zhou.
+- Posted 2026-07.
+- [arXiv abstract](https://arxiv.org/abs/2607.20168)
+
+### Bernstein, Goldberg, Gunther, Kercheval, Lan, Lin & Yao, *Principal component error in high-dimensional factor models* (Sep 2026)
+Decomposes PCA-based factor-estimation error into an "out-of-subspace"
+component (distance from the estimated to the true factor subspace) and an
+"in-subspace" component (finite-sample noise), with asymptotic bounds for
+both as the number of characteristics grows relative to sample size. Not a
+prediction method itself — a diagnostic tool. Relevant only if the
+Kozak-Nagel-Santosh PCA-shrinkage route (§1) is pursued: this gives a way to
+check whether the estimated principal components of the 147 characteristics
+are themselves reliable before trusting a shrinkage-based model built on
+top of them.
+- Posted 2026-09 (this month).
+- [arXiv](https://arxiv.org/abs/2609.20550)
+
+---
+
 ## Suggested starting point
 
-A high-leverage pair to start with:
+`ols.py` (floor) and `xgb.py` (nonlinear model, underperformed the floor —
+see `docs/XGB.md` §4) are both already built. A high-leverage pair for the
+next model:
 1. **Kozak-Nagel-Santosh shrinkage** or **Freyberger-Neuhierl-Weber** for the
    prediction step — cheap to implement, directly targets the documented
    multicollinearity problem in the 147 characteristics, easy to defend to
-   judges.
+   judges. The *Virtue of Sparsity* paper above is a live 2026 argument for
+   this general direction over the dense-ridge alternative.
 2. **Bryzgalova-Pelger-Zhu asset-pricing trees** for portfolio construction —
    interpretable by design, satisfies both the neutrality-reporting and
    explainability asks in `docs/FIAM.md` without extra tooling.
+3. **Plain Random Forest**, per *Quant Convergence* above, is now the
+   cheapest thing worth trying before either of the above — it's a small
+   change from `xgb.py` (bagging instead of boosting) and has an independent
+   2026 result suggesting it may handle this kind of weak-signal tabular data
+   better than a tuned boosted-tree model did here.
