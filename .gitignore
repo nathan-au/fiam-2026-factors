@@ -1,3 +1,4 @@
 .DS_Store
 .venv/
 malek/
+__pycache__/
