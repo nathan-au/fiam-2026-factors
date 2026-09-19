@@ -1,0 +1,1185 @@
+{
+  "oos_window": [
+    "2021-01-01",
+    "2026-08-31"
+  ],
+  "n_characteristics": 147,
+  "results": [
+    {
+      "variable": "mispricing_mgmt",
+      "ic_mean": 0.02767517503081984,
+      "ic_std": 0.04969591314098943,
+      "ic_tstat": 4.592235564151859,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00040732998884629446
+    },
+    {
+      "variable": "eqnpo_12m",
+      "ic_mean": 0.058736686610365026,
+      "ic_std": 0.10999373524540328,
+      "ic_tstat": 4.403479206393408,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -1.3135376862427606e-05
+    },
+    {
+      "variable": "cop_at",
+      "ic_mean": 0.03402785230339593,
+      "ic_std": 0.06429922833042188,
+      "ic_tstat": 4.363984853405723,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00029843120783934474
+    },
+    {
+      "variable": "ocf_me",
+      "ic_mean": 0.06132073786443276,
+      "ic_std": 0.12049095768857485,
+      "ic_tstat": 4.196694658355139,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00012021612312707042
+    },
+    {
+      "variable": "op_at",
+      "ic_mean": 0.05249859119496403,
+      "ic_std": 0.10322612073715759,
+      "ic_tstat": 4.193846192169098,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -5.6090420611942804e-05
+    },
+    {
+      "variable": "ebitda_mev",
+      "ic_mean": 0.06215747013150225,
+      "ic_std": 0.1227418992357223,
+      "ic_tstat": 4.1759467039234375,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -8.119560589636698e-05
+    },
+    {
+      "variable": "ocf_at",
+      "ic_mean": 0.055306415019556736,
+      "ic_std": 0.11063601517687927,
+      "ic_tstat": 4.122241578121011,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0001291498531650337
+    },
+    {
+      "variable": "cop_atl1",
+      "ic_mean": 0.030960326064103143,
+      "ic_std": 0.06238979199446418,
+      "ic_tstat": 4.092101944407423,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00035421230975951623
+    },
+    {
+      "variable": "op_atl1",
+      "ic_mean": 0.047999233978210126,
+      "ic_std": 0.09793691330965312,
+      "ic_tstat": 4.041497836779179,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00012071361968502003
+    },
+    {
+      "variable": "age",
+      "ic_mean": 0.04090201522955249,
+      "ic_std": 0.0837217334656749,
+      "ic_tstat": 4.028663098840619,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0003849844421608406
+    },
+    {
+      "variable": "fcf_me",
+      "ic_mean": 0.056123998443357546,
+      "ic_std": 0.11527201781338645,
+      "ic_tstat": 4.014940973594919,
+      "ic_n_months": 68,
+      "oos_r2_univariate": 9.515308985197368e-05
+    },
+    {
+      "variable": "eqnpo_me",
+      "ic_mean": 0.0547979338551058,
+      "ic_std": 0.11266515108141126,
+      "ic_tstat": 4.0107818110845965,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -8.079924206350064e-05
+    },
+    {
+      "variable": "ret_9_1",
+      "ic_mean": 0.0447164319766017,
+      "ic_std": 0.09368906897030753,
+      "ic_tstat": 3.9357968707898614,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00011707351519896214
+    },
+    {
+      "variable": "niq_at",
+      "ic_mean": 0.05216502748006815,
+      "ic_std": 0.11300006330370632,
+      "ic_tstat": 3.806757482701592,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -2.1515456013920797e-05
+    },
+    {
+      "variable": "mispricing_perf",
+      "ic_mean": 0.05201551548077432,
+      "ic_std": 0.11399936488789049,
+      "ic_tstat": 3.762572970631779,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -1.9746790615338128e-05
+    },
+    {
+      "variable": "niq_be",
+      "ic_mean": 0.04638809982601928,
+      "ic_std": 0.10687343769846036,
+      "ic_tstat": 3.5792436263539242,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00010757742385969493
+    },
+    {
+      "variable": "ope_be",
+      "ic_mean": 0.04662909831726497,
+      "ic_std": 0.10813866549466152,
+      "ic_tstat": 3.555743853689138,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00024638833900958446
+    },
+    {
+      "variable": "corr_1260d",
+      "ic_mean": 0.03518248663256868,
+      "ic_std": 0.08162316364468075,
+      "ic_tstat": 3.5544103433539345,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00038709976841500016
+    },
+    {
+      "variable": "ret_12_1",
+      "ic_mean": 0.04037364070552654,
+      "ic_std": 0.09475243805108272,
+      "ic_tstat": 3.5136781394454157,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0002813524319920102
+    },
+    {
+      "variable": "ebit_bev",
+      "ic_mean": 0.047009472274934926,
+      "ic_std": 0.11066741144358715,
+      "ic_tstat": 3.502838226100629,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00020460503849251133
+    },
+    {
+      "variable": "qmj_prof",
+      "ic_mean": 0.04443641990830757,
+      "ic_std": 0.10531052701618315,
+      "ic_tstat": 3.4795391894315864,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00020520544617297354
+    },
+    {
+      "variable": "f_score",
+      "ic_mean": 0.03151566315430653,
+      "ic_std": 0.0747962484172647,
+      "ic_tstat": 3.4745702036199657,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005947138816879693
+    },
+    {
+      "variable": "prc_highprc_252d",
+      "ic_mean": 0.055238348583190364,
+      "ic_std": 0.1326812303894012,
+      "ic_tstat": 3.4330936655434403,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -4.713347055096406e-05
+    },
+    {
+      "variable": "ret_6_1",
+      "ic_mean": 0.03582592285858333,
+      "ic_std": 0.08618557530010942,
+      "ic_tstat": 3.4278140760054017,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00032678747676273545
+    },
+    {
+      "variable": "ebit_sale",
+      "ic_mean": 0.04741556982363846,
+      "ic_std": 0.11569276020327456,
+      "ic_tstat": 3.379630710482043,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00020654411638121317
+    },
+    {
+      "variable": "resff3_12_1",
+      "ic_mean": 0.016665784395414152,
+      "ic_std": 0.04101865126214058,
+      "ic_tstat": 3.3504168119484476,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005856371243668779
+    },
+    {
+      "variable": "ope_bel1",
+      "ic_mean": 0.040954488562109224,
+      "ic_std": 0.1011437046190509,
+      "ic_tstat": 3.3390052860081054,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0003766454971210198
+    },
+    {
+      "variable": "ni_be",
+      "ic_mean": 0.04512307941999106,
+      "ic_std": 0.11304639977879667,
+      "ic_tstat": 3.291519640887373,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00022997021602533252
+    },
+    {
+      "variable": "ni_me",
+      "ic_mean": 0.04948093011699863,
+      "ic_std": 0.12509768270522814,
+      "ic_tstat": 3.261692733460443,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0001883641290438831
+    },
+    {
+      "variable": "zero_trades_126d",
+      "ic_mean": 0.04296483348969554,
+      "ic_std": 0.10984079983811883,
+      "ic_tstat": 3.225550923266541,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0003493846563544789
+    },
+    {
+      "variable": "ni_inc8q",
+      "ic_mean": 0.017232354879239246,
+      "ic_std": 0.04453931710771091,
+      "ic_tstat": 3.1904763682571384,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006716775011916809
+    },
+    {
+      "variable": "ret_12_7",
+      "ic_mean": 0.029849677248723724,
+      "ic_std": 0.07721141526068082,
+      "ic_tstat": 3.1879579404564606,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000553631965476642
+    },
+    {
+      "variable": "div12m_me",
+      "ic_mean": 0.033433018052489626,
+      "ic_std": 0.0869179901233755,
+      "ic_tstat": 3.1719064055192487,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00038946744561396685
+    },
+    {
+      "variable": "zero_trades_252d",
+      "ic_mean": 0.04233317797739862,
+      "ic_std": 0.11052261748519178,
+      "ic_tstat": 3.158523897468714,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0002930559187110937
+    },
+    {
+      "variable": "sale_me",
+      "ic_mean": 0.03511489821596687,
+      "ic_std": 0.09185950675659911,
+      "ic_tstat": 3.1522580403327387,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006333537934803957
+    },
+    {
+      "variable": "zero_trades_21d",
+      "ic_mean": 0.038398120810686436,
+      "ic_std": 0.10222539979041843,
+      "ic_tstat": 3.097459305657361,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004796436975698093
+    },
+    {
+      "variable": "market_equity",
+      "ic_mean": 0.03592418052503411,
+      "ic_std": 0.09754672880916325,
+      "ic_tstat": 3.036886887478254,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004642849820764017
+    },
+    {
+      "variable": "eqpo_me",
+      "ic_mean": 0.033937087640915284,
+      "ic_std": 0.09451898661563403,
+      "ic_tstat": 2.9608061190574113,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004363376494627147
+    },
+    {
+      "variable": "qmj_safety",
+      "ic_mean": 0.032021606964699224,
+      "ic_std": 0.09001772357509374,
+      "ic_tstat": 2.933388283415754,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004738056358588594
+    },
+    {
+      "variable": "tax_gr1a",
+      "ic_mean": 0.014949999444666991,
+      "ic_std": 0.04248155184964013,
+      "ic_tstat": 2.901985644566774,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006180055086801861
+    },
+    {
+      "variable": "seas_1_1na",
+      "ic_mean": 0.02972018409233055,
+      "ic_std": 0.08456264777545609,
+      "ic_tstat": 2.898193503847383,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004468459161324212
+    },
+    {
+      "variable": "intrinsic_value",
+      "ic_mean": 0.01857177278519706,
+      "ic_std": 0.05332482747084425,
+      "ic_tstat": 2.871959816099022,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005668642319220929
+    },
+    {
+      "variable": "prc",
+      "ic_mean": 0.03819331436185366,
+      "ic_std": 0.10986947246540837,
+      "ic_tstat": 2.86658460758374,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0003857975075680642
+    },
+    {
+      "variable": "aliq_mat",
+      "ic_mean": 0.01487730754556971,
+      "ic_std": 0.04354611084816862,
+      "ic_tstat": 2.8172761810604863,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006043328798808201
+    },
+    {
+      "variable": "niq_su",
+      "ic_mean": 0.010666457509979424,
+      "ic_std": 0.03156774620358247,
+      "ic_tstat": 2.7863206122594177,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005380997017241373
+    },
+    {
+      "variable": "sale_bev",
+      "ic_mean": 0.012852246035358127,
+      "ic_std": 0.038159867332644676,
+      "ic_tstat": 2.7773245367063915,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005084687422487466
+    },
+    {
+      "variable": "oaccruals_at",
+      "ic_mean": 0.019708553198396213,
+      "ic_std": 0.05949743341537363,
+      "ic_tstat": 2.731561410314394,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005655707803318144
+    },
+    {
+      "variable": "at_me",
+      "ic_mean": 0.028642921411509287,
+      "ic_std": 0.08814139267983698,
+      "ic_tstat": 2.679735066925809,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005407248042574864
+    },
+    {
+      "variable": "taccruals_at",
+      "ic_mean": 0.015573628588405589,
+      "ic_std": 0.04804617862166975,
+      "ic_tstat": 2.672916660022339,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000600830751355419
+    },
+    {
+      "variable": "at_turnover",
+      "ic_mean": 0.020289631612511325,
+      "ic_std": 0.06513457742420053,
+      "ic_tstat": 2.568721485622878,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005276750533014241
+    },
+    {
+      "variable": "bev_mev",
+      "ic_mean": 0.023484336321125614,
+      "ic_std": 0.07597476943547841,
+      "ic_tstat": 2.548961975640129,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006418001056824885
+    },
+    {
+      "variable": "pi_nix",
+      "ic_mean": 0.006222297775200089,
+      "ic_std": 0.02020623286290301,
+      "ic_tstat": 2.539334386103861,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006011872093918402
+    },
+    {
+      "variable": "gp_at",
+      "ic_mean": 0.021148362287716566,
+      "ic_std": 0.06876650430076667,
+      "ic_tstat": 2.536029202232181,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000449476176315855
+    },
+    {
+      "variable": "qmj",
+      "ic_mean": 0.022899917123903456,
+      "ic_std": 0.07599175063313675,
+      "ic_tstat": 2.48497439085375,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005251487513036057
+    },
+    {
+      "variable": "be_me",
+      "ic_mean": 0.018809449585008686,
+      "ic_std": 0.06782991019861058,
+      "ic_tstat": 2.2867005771241513,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004855214150263354
+    },
+    {
+      "variable": "ret_3_1",
+      "ic_mean": 0.02199222067428447,
+      "ic_std": 0.08000038889063722,
+      "ic_tstat": 2.2668951998701976,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004821770434240147
+    },
+    {
+      "variable": "dsale_dsga",
+      "ic_mean": 0.008782396107729958,
+      "ic_std": 0.03331936637081095,
+      "ic_tstat": 2.1735555469569827,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000627377393761952
+    },
+    {
+      "variable": "debt_me",
+      "ic_mean": 0.021071224081370212,
+      "ic_std": 0.08156351646267232,
+      "ic_tstat": 2.1303368544270183,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0007190709840614318
+    },
+    {
+      "variable": "at_be",
+      "ic_mean": 0.018298826710398664,
+      "ic_std": 0.07252906396587946,
+      "ic_tstat": 2.080489978123561,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000615168094444396
+    },
+    {
+      "variable": "ret_60_12",
+      "ic_mean": 0.01729339054094975,
+      "ic_std": 0.06925125985738873,
+      "ic_tstat": 2.05923981663954,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006254574695128134
+    },
+    {
+      "variable": "niq_be_chg1",
+      "ic_mean": 0.008013145794236036,
+      "ic_std": 0.033217472715447484,
+      "ic_tstat": 1.9892570868430088,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005735708520175908
+    },
+    {
+      "variable": "z_score",
+      "ic_mean": 0.018951987427400098,
+      "ic_std": 0.07861962184379663,
+      "ic_tstat": 1.987825536322244,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000626616099564048
+    },
+    {
+      "variable": "noa_at",
+      "ic_mean": 0.016198468266889823,
+      "ic_std": 0.0678214987102398,
+      "ic_tstat": 1.969522847701943,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006262693710679113
+    },
+    {
+      "variable": "niq_at_chg1",
+      "ic_mean": 0.0074116655268721965,
+      "ic_std": 0.03207573020893063,
+      "ic_tstat": 1.9054331502348698,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005761573556586352
+    },
+    {
+      "variable": "resff3_6_1",
+      "ic_mean": 0.009252024849437946,
+      "ic_std": 0.040206887623538724,
+      "ic_tstat": 1.8975393500858375,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000577001140627198
+    },
+    {
+      "variable": "gp_atl1",
+      "ic_mean": 0.013925791951101264,
+      "ic_std": 0.06548324566472612,
+      "ic_tstat": 1.753655016696763,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005259513946951344
+    },
+    {
+      "variable": "nfna_gr1a",
+      "ic_mean": 0.005096602233422058,
+      "ic_std": 0.024621697847455822,
+      "ic_tstat": 1.706935847426086,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006059360226404742
+    },
+    {
+      "variable": "lti_gr1a",
+      "ic_mean": 0.0050951961137804804,
+      "ic_std": 0.026433110871187993,
+      "ic_tstat": 1.58952397716095,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005125847875002698
+    },
+    {
+      "variable": "dgp_dsale",
+      "ic_mean": 0.005956468670354525,
+      "ic_std": 0.03227962127246495,
+      "ic_tstat": 1.5216504107192517,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000575704319028203
+    },
+    {
+      "variable": "seas_1_1an",
+      "ic_mean": 0.010064135234582368,
+      "ic_std": 0.05511008854768757,
+      "ic_tstat": 1.5059127537701853,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006176029721505216
+    },
+    {
+      "variable": "ret_1_0",
+      "ic_mean": 0.011831325841821777,
+      "ic_std": 0.07248448429314969,
+      "ic_tstat": 1.3459930525170671,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005980011854174183
+    },
+    {
+      "variable": "saleq_su",
+      "ic_mean": 0.0052260305011126865,
+      "ic_std": 0.03419690490303768,
+      "ic_tstat": 1.260200349703178,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005943354105943932
+    },
+    {
+      "variable": "netdebt_me",
+      "ic_mean": 0.01140524294782252,
+      "ic_std": 0.07566680092822001,
+      "ic_tstat": 1.242949900956237,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0007721889127043635
+    },
+    {
+      "variable": "qmj_growth",
+      "ic_mean": 0.0037787956515745393,
+      "ic_std": 0.02772201101966415,
+      "ic_tstat": 1.124043533350799,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006094557982998516
+    },
+    {
+      "variable": "ncol_gr1a",
+      "ic_mean": 0.0027679040344336246,
+      "ic_std": 0.02732971872755493,
+      "ic_tstat": 0.835161225719948,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006239435215045219
+    },
+    {
+      "variable": "dolvol_126d",
+      "ic_mean": 0.0059670397172011235,
+      "ic_std": 0.0638516014280737,
+      "ic_tstat": 0.7706223329101612,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006046351986987997
+    },
+    {
+      "variable": "dsale_dinv",
+      "ic_mean": 0.0020606488317486057,
+      "ic_std": 0.027592788353495233,
+      "ic_tstat": 0.615832853262827,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005930672825180672
+    },
+    {
+      "variable": "seas_2_5an",
+      "ic_mean": 0.002736532330930411,
+      "ic_std": 0.04076146659558806,
+      "ic_tstat": 0.5536116725282421,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005784048348225213
+    },
+    {
+      "variable": "cowc_gr1a",
+      "ic_mean": 0.0016523745803114318,
+      "ic_std": 0.02655034837688749,
+      "ic_tstat": 0.5132071964555041,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006058628843346181
+    },
+    {
+      "variable": "saleq_gr1",
+      "ic_mean": 0.0027943470904401146,
+      "ic_std": 0.04779315552128504,
+      "ic_tstat": 0.48213548918697535,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000661209233101312
+    },
+    {
+      "variable": "tangibility",
+      "ic_mean": 0.002940532274330959,
+      "ic_std": 0.060475990627633265,
+      "ic_tstat": 0.40095664533238423,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006059713256434396
+    },
+    {
+      "variable": "ocf_at_chg1",
+      "ic_mean": 0.00163280722165777,
+      "ic_std": 0.03944499317316901,
+      "ic_tstat": 0.3413480951364772,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006068117791826477
+    },
+    {
+      "variable": "seas_2_5na",
+      "ic_mean": -6.762521710875428e-05,
+      "ic_std": 0.04402555100106634,
+      "ic_tstat": -0.012666549617424073,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0007123263109249933
+    },
+    {
+      "variable": "rmax5_rvol_21d",
+      "ic_mean": -0.00021345207851862003,
+      "ic_std": 0.047692678525798796,
+      "ic_tstat": -0.03690652288542917,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006325686009562848
+    },
+    {
+      "variable": "coa_gr1a",
+      "ic_mean": -0.0009586047626033126,
+      "ic_std": 0.039753256594236216,
+      "ic_tstat": -0.19884804557152475,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006182372868732688
+    },
+    {
+      "variable": "sale_emp_gr1",
+      "ic_mean": -0.0008197237401756272,
+      "ic_std": 0.027456016640055675,
+      "ic_tstat": -0.24619795426840366,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000623022539050444
+    },
+    {
+      "variable": "capex_abn",
+      "ic_mean": -0.0008995526747596757,
+      "ic_std": 0.026026362677516887,
+      "ic_tstat": -0.28501490890581066,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005909794765281973
+    },
+    {
+      "variable": "inv_gr1a",
+      "ic_mean": -0.0014962757201130233,
+      "ic_std": 0.03519286132048054,
+      "ic_tstat": -0.35059967320604807,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005837707375795365
+    },
+    {
+      "variable": "capx_gr1",
+      "ic_mean": -0.0033668898827114197,
+      "ic_std": 0.03722023110524523,
+      "ic_tstat": -0.7459406996689134,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005927847853195445
+    },
+    {
+      "variable": "coskew_21d",
+      "ic_mean": -0.005771217408764791,
+      "ic_std": 0.05764380618025422,
+      "ic_tstat": -0.8255991594424498,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006344288274093834
+    },
+    {
+      "variable": "beta_60m",
+      "ic_mean": -0.007098352905428304,
+      "ic_std": 0.07026159262060751,
+      "ic_tstat": -0.8330940903951816,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006238031971055324
+    },
+    {
+      "variable": "sti_gr1a",
+      "ic_mean": -0.0027724128185003583,
+      "ic_std": 0.025198921774473537,
+      "ic_tstat": -0.9072571430475153,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005854660954671687
+    },
+    {
+      "variable": "sale_gr1",
+      "ic_mean": -0.005727633139483059,
+      "ic_std": 0.04751328422618847,
+      "ic_tstat": -0.9940645780853107,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006545942022717632
+    },
+    {
+      "variable": "betadown_252d",
+      "ic_mean": -0.012210143875760825,
+      "ic_std": 0.10005952600304843,
+      "ic_tstat": -1.0062752626315,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005915932390552214
+    },
+    {
+      "variable": "ppeinv_gr1a",
+      "ic_mean": -0.004294948818573676,
+      "ic_std": 0.034400299326612545,
+      "ic_tstat": -1.0295566016718631,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005805689355171673
+    },
+    {
+      "variable": "betabab_1260d",
+      "ic_mean": -0.010616197087771046,
+      "ic_std": 0.08463400440734667,
+      "ic_tstat": -1.0343762472724265,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005872827705304395
+    },
+    {
+      "variable": "col_gr1a",
+      "ic_mean": -0.004704750161619137,
+      "ic_std": 0.03548375842648942,
+      "ic_tstat": -1.0933555360931713,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006031956239478387
+    },
+    {
+      "variable": "be_gr1a",
+      "ic_mean": -0.009856480223455987,
+      "ic_std": 0.0604765001952318,
+      "ic_tstat": -1.343970267026952,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006023786857858315
+    },
+    {
+      "variable": "inv_gr1",
+      "ic_mean": -0.0052558186811069,
+      "ic_std": 0.03151902819448711,
+      "ic_tstat": -1.3750611495749434,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000618940351226227
+    },
+    {
+      "variable": "aliq_at",
+      "ic_mean": -0.012363389949803103,
+      "ic_std": 0.07049698825933658,
+      "ic_tstat": -1.446177032874503,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006675716929611664
+    },
+    {
+      "variable": "sale_gr3",
+      "ic_mean": -0.006757509769810392,
+      "ic_std": 0.03834098976005687,
+      "ic_tstat": -1.453375446040139,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005971797934771761
+    },
+    {
+      "variable": "ni_ar1",
+      "ic_mean": -0.003382120006411887,
+      "ic_std": 0.018930106339363654,
+      "ic_tstat": -1.4732973787847885,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000586272970385604
+    },
+    {
+      "variable": "debt_gr3",
+      "ic_mean": -0.005752442448911591,
+      "ic_std": 0.031780873857063345,
+      "ic_tstat": -1.4925912942999753,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006008116766420546
+    },
+    {
+      "variable": "ncoa_gr1a",
+      "ic_mean": -0.008403657716120193,
+      "ic_std": 0.04621234840568604,
+      "ic_tstat": -1.4995631947082413,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006354043438310253
+    },
+    {
+      "variable": "kz_index",
+      "ic_mean": -0.010340592608530928,
+      "ic_std": 0.053077388048292894,
+      "ic_tstat": -1.6065355558816172,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000682566820349173
+    },
+    {
+      "variable": "beta_dimson_21d",
+      "ic_mean": -0.015558171193689815,
+      "ic_std": 0.07982858395796706,
+      "ic_tstat": -1.6071432059173587,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005791613270582641
+    },
+    {
+      "variable": "lnoa_gr1a",
+      "ic_mean": -0.008158747910458286,
+      "ic_std": 0.03941869778890712,
+      "ic_tstat": -1.706772739563883,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00059478237273769
+    },
+    {
+      "variable": "at_gr1",
+      "ic_mean": -0.013874542606290697,
+      "ic_std": 0.06266642359963955,
+      "ic_tstat": -1.8257370179075652,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006631580873699416
+    },
+    {
+      "variable": "capx_gr3",
+      "ic_mean": -0.008206424457020845,
+      "ic_std": 0.03700851677350807,
+      "ic_tstat": -1.8285496309957445,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.000601919864634981
+    },
+    {
+      "variable": "capx_gr2",
+      "ic_mean": -0.008647155876197266,
+      "ic_std": 0.03811416026882678,
+      "ic_tstat": -1.8708604249587588,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005996331269009225
+    },
+    {
+      "variable": "noa_gr1a",
+      "ic_mean": -0.008749109671046192,
+      "ic_std": 0.036834605150280364,
+      "ic_tstat": -1.9586746298303603,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005913830207180393
+    },
+    {
+      "variable": "nncoa_gr1a",
+      "ic_mean": -0.009410148350182834,
+      "ic_std": 0.03927923805207577,
+      "ic_tstat": -1.9755492990519046,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005852868519293786
+    },
+    {
+      "variable": "emp_gr1",
+      "ic_mean": -0.0124316437874854,
+      "ic_std": 0.05171042545397297,
+      "ic_tstat": -1.9824621432086,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006447860968117336
+    },
+    {
+      "variable": "dsale_drec",
+      "ic_mean": -0.00578327927482893,
+      "ic_std": 0.02372149778198381,
+      "ic_tstat": -2.0104186954565098,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005704484185382608
+    },
+    {
+      "variable": "taccruals_ni",
+      "ic_mean": -0.00721211865198039,
+      "ic_std": 0.029402160554814417,
+      "ic_tstat": -2.022730739883214,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005759392191930779
+    },
+    {
+      "variable": "cash_at",
+      "ic_mean": -0.027055219163533126,
+      "ic_std": 0.10416906782580433,
+      "ic_tstat": -2.141739936120444,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006606931235655367
+    },
+    {
+      "variable": "rd_me",
+      "ic_mean": -0.022203315667352053,
+      "ic_std": 0.0844307983834364,
+      "ic_tstat": -2.16855975516592,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006520912736545093
+    },
+    {
+      "variable": "rd5_at",
+      "ic_mean": -0.019696158083972414,
+      "ic_std": 0.0731825705561714,
+      "ic_tstat": -2.2193628778521535,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006525101006085166
+    },
+    {
+      "variable": "earnings_variability",
+      "ic_mean": -0.011597255754854955,
+      "ic_std": 0.04013497814320996,
+      "ic_tstat": -2.382794891475923,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005746840099558614
+    },
+    {
+      "variable": "rd_sale",
+      "ic_mean": -0.025480531672986778,
+      "ic_std": 0.08009895930255434,
+      "ic_tstat": -2.623228176730392,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006084892895663607
+    },
+    {
+      "variable": "ami_126d",
+      "ic_mean": -0.02692785168403443,
+      "ic_std": 0.08004400472032878,
+      "ic_tstat": -2.774133482005629,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005149400571333729
+    },
+    {
+      "variable": "ni_ivol",
+      "ic_mean": -0.02970823882334018,
+      "ic_std": 0.08751196807002377,
+      "ic_tstat": -2.799393256056014,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0004502361560130286
+    },
+    {
+      "variable": "ocfq_saleq_std",
+      "ic_mean": -0.024009090638696984,
+      "ic_std": 0.07070093392477216,
+      "ic_tstat": -2.800302943203161,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005300941413528548
+    },
+    {
+      "variable": "iskew_capm_21d",
+      "ic_mean": -0.012975119679464688,
+      "ic_std": 0.038067609605204056,
+      "ic_tstat": -2.810672353651006,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005726004469521762
+    },
+    {
+      "variable": "eq_dur",
+      "ic_mean": -0.031882990588491734,
+      "ic_std": 0.09254252731717598,
+      "ic_tstat": -2.8410060037884155,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00040065517556042707
+    },
+    {
+      "variable": "iskew_hxz4_21d",
+      "ic_mean": -0.011869139753460222,
+      "ic_std": 0.03444166537616336,
+      "ic_tstat": -2.8417741334078013,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005681371526722323
+    },
+    {
+      "variable": "rmax5_21d",
+      "ic_mean": -0.05110007644373816,
+      "ic_std": 0.13462904164158918,
+      "ic_tstat": -3.1299489335380266,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -9.055179561512361e-05
+    },
+    {
+      "variable": "ivol_capm_252d",
+      "ic_mean": -0.05516588154876783,
+      "ic_std": 0.14438864354778985,
+      "ic_tstat": -3.1505906692807044,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -7.90816959927998e-05
+    },
+    {
+      "variable": "rmax1_21d",
+      "ic_mean": -0.05065068380936094,
+      "ic_std": 0.12882584195534555,
+      "ic_tstat": -3.2421774418232996,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00014137932619684435
+    },
+    {
+      "variable": "rvol_21d",
+      "ic_mean": -0.05736871131516597,
+      "ic_std": 0.145417623988476,
+      "ic_tstat": -3.253213054515887,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -2.0730541556712723e-05
+    },
+    {
+      "variable": "fnl_gr1a",
+      "ic_mean": -0.011036071630079886,
+      "ic_std": 0.027671320134632554,
+      "ic_tstat": -3.2888123010619834,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006035891941615912
+    },
+    {
+      "variable": "bidaskhl_21d",
+      "ic_mean": -0.056098767843024595,
+      "ic_std": 0.13952110657910816,
+      "ic_tstat": -3.3156437897465585,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -4.534940536360388e-05
+    },
+    {
+      "variable": "turnover_126d",
+      "ic_mean": -0.04372473099700655,
+      "ic_std": 0.10870692127230791,
+      "ic_tstat": -3.316839116449188,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0003575288378647734
+    },
+    {
+      "variable": "rskew_21d",
+      "ic_mean": -0.016367985961266124,
+      "ic_std": 0.040644747226915634,
+      "ic_tstat": -3.32081952042434,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005395972090067591
+    },
+    {
+      "variable": "ivol_capm_21d",
+      "ic_mean": -0.05748053188032363,
+      "ic_std": 0.13942658063830984,
+      "ic_tstat": -3.399614381622987,
+      "ic_n_months": 68,
+      "oos_r2_univariate": 1.419364134125356e-05
+    },
+    {
+      "variable": "ivol_hxz4_21d",
+      "ic_mean": -0.05477527831271579,
+      "ic_std": 0.13281595477456573,
+      "ic_tstat": -3.400860364092051,
+      "ic_n_months": 68,
+      "oos_r2_univariate": 5.387388709809926e-06
+    },
+    {
+      "variable": "ivol_ff3_21d",
+      "ic_mean": -0.05535805411169446,
+      "ic_std": 0.13400167764147483,
+      "ic_tstat": -3.4066305489376885,
+      "ic_n_months": 68,
+      "oos_r2_univariate": 1.2182682334493933e-05
+    },
+    {
+      "variable": "iskew_ff3_21d",
+      "ic_mean": -0.013806960142045101,
+      "ic_std": 0.0331828746539807,
+      "ic_tstat": -3.431140648781362,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005622730999434999
+    },
+    {
+      "variable": "oaccruals_ni",
+      "ic_mean": -0.016890280827437418,
+      "ic_std": 0.03959249789850415,
+      "ic_tstat": -3.5178589679485937,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005423985203401038
+    },
+    {
+      "variable": "opex_at",
+      "ic_mean": -0.02330455685618089,
+      "ic_std": 0.053358797872103236,
+      "ic_tstat": -3.6015485096406876,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0005828441714550436
+    },
+    {
+      "variable": "o_score",
+      "ic_mean": -0.04559306654425327,
+      "ic_std": 0.10386140957278135,
+      "ic_tstat": -3.619920621740448,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00020323362439045312
+    },
+    {
+      "variable": "dolvol_var_126d",
+      "ic_mean": -0.04287905988207919,
+      "ic_std": 0.09254931096415507,
+      "ic_tstat": -3.8205555758156002,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0003735214162878808
+    },
+    {
+      "variable": "dbnetis_at",
+      "ic_mean": -0.02092134510757098,
+      "ic_std": 0.04501581170616464,
+      "ic_tstat": -3.832471855514782,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.0006213665987233608
+    },
+    {
+      "variable": "turnover_var_126d",
+      "ic_mean": -0.04178733091343403,
+      "ic_std": 0.08792586679659667,
+      "ic_tstat": -3.919064672226707,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00040976817538984633
+    },
+    {
+      "variable": "eqnetis_at",
+      "ic_mean": -0.05381064720885479,
+      "ic_std": 0.10244127071499234,
+      "ic_tstat": -4.3315937156270765,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -5.7389457081225004e-05
+    },
+    {
+      "variable": "chcsho_12m",
+      "ic_mean": -0.0576167300869301,
+      "ic_std": 0.10325955124641199,
+      "ic_tstat": -4.601218213397386,
+      "ic_n_months": 68,
+      "oos_r2_univariate": 2.1396135497786517e-05
+    },
+    {
+      "variable": "netis_at",
+      "ic_mean": -0.052798105993196405,
+      "ic_std": 0.09394611788019781,
+      "ic_tstat": -4.634404757844523,
+      "ic_n_months": 68,
+      "oos_r2_univariate": -0.00022687980861890722
+    }
+  ]
+}
