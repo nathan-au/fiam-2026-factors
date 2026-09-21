@@ -1,0 +1,31 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+  [fold 2021] val IC by target t_raw1=-0.006 t_gauss1=0.005 t_sector1=-0.015 t_raw3=0.001 t_raw6=0.014 | ens_equal -0.000 ridge(in-sample) 0.062 weights {"t_raw1": -0.021, "t_gauss1": 0.093, "t_sector1": -0.108, "t_raw3": -0.048, "t_raw6": 0.085} | 52s
+  [fold 2022] val IC by target t_raw1=0.042 t_gauss1=0.041 t_sector1=0.026 t_raw3=0.040 t_raw6=0.032 | ens_equal 0.038 ridge(in-sample) 0.052 weights {"t_raw1": 0.035, "t_gauss1": 0.028, "t_sector1": -0.047, "t_raw3": 0.081, "t_raw6": -0.058} | 69s
+  [fold 2023] val IC by target t_raw1=-0.033 t_gauss1=-0.023 t_sector1=-0.032 t_raw3=-0.040 t_raw6=-0.032 | ens_equal -0.034 ridge(in-sample) 0.051 weights {"t_raw1": 0.06, "t_gauss1": 0.025, "t_sector1": -0.01, "t_raw3": -0.182, "t_raw6": 0.079} | 86s
+  [fold 2024] val IC by target t_raw1=0.023 t_gauss1=0.027 t_sector1=0.024 t_raw3=0.001 t_raw6=-0.005 | ens_equal 0.016 ridge(in-sample) 0.042 weights {"t_raw1": 0.093, "t_gauss1": 0.01, "t_sector1": -0.007, "t_raw3": -0.083, "t_raw6": -0.001} | 108s
+  [fold 2025] val IC by target t_raw1=0.030 t_gauss1=0.037 t_sector1=0.026 t_raw3=0.031 t_raw6=0.031 | ens_equal 0.032 ridge(in-sample) 0.045 weights {"t_raw1": -0.01, "t_gauss1": 0.093, "t_sector1": -0.069, "t_raw3": -0.003, "t_raw6": 0.027} | 129s
+  [fold 2026] val IC by target t_raw1=0.012 t_gauss1=0.016 t_sector1=0.004 t_raw3=0.011 t_raw6=0.007 | ens_equal 0.010 ridge(in-sample) 0.029 weights {"t_raw1": 0.008, "t_gauss1": 0.044, "t_sector1": -0.047, "t_raw3": 0.014, "t_raw6": -0.008} | 150s
+  t_raw1               IC 0.0165 (t 1.11) | lc_t10 IR gross -0.28 net -0.37
+  t_gauss1             IC 0.0212 (t 1.38) | lc_t10 IR gross -0.33 net -0.41
+  t_sector1            IC 0.0198 (t 1.25) | lc_t10 IR gross -0.19 net -0.28
+  t_raw3               IC 0.0132 (t 0.87) | lc_t10 IR gross -0.35 net -0.43
+  t_raw6               IC 0.0134 (t 0.87) | lc_t10 IR gross -0.23 net -0.31
+  ens_equal            IC 0.0168 (t 1.08) | lc_t10 IR gross -0.36 net -0.45
+  ens_ridge            IC -0.0025 (t -0.19) | lc_t10 IR gross -1.18 net -1.29
+  ens_ridge_neutral    IC -0.0031 (t -0.32) | lc_t10 IR gross -1.16 net -1.28
+
+==============================================================================
+SUMMARY (control = t_raw1, single winsorised 1-month target, 3-seed ET)
+==============================================================================
+              arm      ic    ic_t  d_ic_vs_single_raw1  paired_t_vs_single_raw1  d10_d1  ir_gross  ir_net    beta  max_dd_net_pct
+           t_raw1  0.0165  1.1096               0.0000                      NaN -0.1898   -0.2828 -0.3695 -0.1148        -37.1552
+         t_gauss1  0.0212  1.3833               0.0047                   1.1691 -0.2267   -0.3299 -0.4109 -0.0510        -36.5076
+        t_sector1  0.0198  1.2480               0.0032                   0.6800 -0.0200   -0.1902 -0.2768 -0.0717        -36.9601
+           t_raw3  0.0132  0.8687              -0.0033                  -0.7965 -0.1107   -0.3466 -0.4321 -0.1110        -35.2862
+           t_raw6  0.0134  0.8724              -0.0031                  -0.4322 -0.0617   -0.2305 -0.3128 -0.1287        -38.5066
+        ens_equal  0.0168  1.0796               0.0003                   0.1072 -0.1567   -0.3566 -0.4474 -0.0752        -32.8615
+        ens_ridge -0.0025 -0.1915              -0.0190                  -1.0595 -0.7511   -1.1804 -1.2936 -0.0028        -34.8324
+ens_ridge_neutral -0.0031 -0.3165              -0.0197                  -1.2436 -0.5309   -1.1572 -1.2816  0.0477        -30.3473
+
+done in 10.6 min

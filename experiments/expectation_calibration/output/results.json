@@ -1,0 +1,97 @@
+{
+  "n_months": 68,
+  "realised": {
+    "ic": 0.03664503081739846,
+    "ic_sd_monthly": 0.15783265723395334,
+    "ic_t": 1.914576303308223,
+    "ir_gross": 0.6147635085044834,
+    "ir_net": 0.5411376376523045
+  },
+  "fundamental_law": {
+    "effective_names_in_book": 214.8652470973462,
+    "law_ir_annual_at_tc1": 1.8607533213970164,
+    "realised_gross_ir": 0.6147635085044834,
+    "implied_transfer_coefficient": 0.33038420592092843,
+    "note": "docs/NEW.md sec 5 applies IR ~ IC*sqrt(breadth) without the sqrt(12) for monthly bets and without a transfer coefficient; the constrained LP realises about this share of the unconstrained law"
+  },
+  "haircut_table": [
+    {
+      "haircut_on_gross_alpha": 0.0,
+      "expected_ic": 0.03664503081739846,
+      "expected_ir_gross": 0.6147635085044825,
+      "expected_ir_net_of_assumed_costs": 0.5411883748219974
+    },
+    {
+      "haircut_on_gross_alpha": 0.2,
+      "expected_ic": 0.029316024653918773,
+      "expected_ir_gross": 0.4329558372699092,
+      "expected_ir_net_of_assumed_costs": 0.3593807035874239
+    },
+    {
+      "haircut_on_gross_alpha": 0.4,
+      "expected_ic": 0.02198701849043908,
+      "expected_ir_gross": 0.2511481660353357,
+      "expected_ir_net_of_assumed_costs": 0.1775730323528504
+    },
+    {
+      "haircut_on_gross_alpha": 0.5,
+      "expected_ic": 0.01832251540869923,
+      "expected_ir_gross": 0.1602443304180491,
+      "expected_ir_net_of_assumed_costs": 0.0866691967355638
+    },
+    {
+      "haircut_on_gross_alpha": 0.57,
+      "expected_ic": 0.015757363251481343,
+      "expected_ir_gross": 0.09661164548594847,
+      "expected_ir_net_of_assumed_costs": 0.023036511803463177
+    }
+  ],
+  "power": {
+    "monthly_ic_sd": 0.15783265723395334,
+    "se_of_mean_ic_68m": 0.01914002108669109,
+    "min_detectable_ic_with_T_months": 0.053592059042735035,
+    "months_needed_to_detect": {
+      "0.05": 78.12135915436797,
+      "0.037": 142.6613571117019,
+      "0.03": 217.0037754287999,
+      "0.02": 488.2584947147998,
+      "0.015": 868.0151017151996,
+      "0.01": 1953.0339788591991
+    }
+  },
+  "bootstrap_5_50_95": {
+    "mean_ic": [
+      0.0063675696434304105,
+      0.03607473274351636,
+      0.06455122368100907
+    ],
+    "ir_gross": [
+      -0.09110304131333409,
+      0.6120127158747457,
+      1.3008674471021127
+    ],
+    "ir_net": [
+      -0.1718531634150305,
+      0.5360444943524932,
+      1.2235449031253973
+    ],
+    "se_ir_net": 0.43078245686685895,
+    "share_draws_ir_net_gt_0": 0.888,
+    "share_draws_ic_gt_0": 0.9805
+  },
+  "decay_within_sample": {
+    "ic_2021_2023": 0.05363174161730955,
+    "ic_2024_2026": 0.017534981167498513,
+    "welch_t_h1_minus_h2": 0.9464686684304922,
+    "trend_slope_ic_per_month": -0.0014777786220287626,
+    "trend_t": -1.5305465834657883,
+    "ic_by_year": {
+      "2021": 0.07723640971814578,
+      "2022": 0.07745953983649333,
+      "2023": 0.006199275297289475,
+      "2024": 0.061534119610295444,
+      "2025": -0.025549407340738545,
+      "2026": 0.01616285626565869
+    }
+  }
+}

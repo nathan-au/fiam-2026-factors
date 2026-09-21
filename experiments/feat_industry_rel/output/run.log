@@ -1,0 +1,27 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+BASELINE composite: IC 0.0366 (t 1.91); lc_t10 IR gross 0.615 / net 0.541   [published: {'comp_ic': 0.0366, 'comp_ir_gross': 0.61, 'comp_ir_net': 0.54}]
+Truncation-invariance test: {"passed": true, "dates": ["2024-07-31", "2023-11-30", "2025-08-31"], "n_values_compared": 22695, "max_abs_diff_by_feature": {"cum_12_1": 0.0, "ff49": 0.0}}
+  ind_rel_mom                  block IC +0.0086 (t +0.60) | comp 0.0366 -> 0.0367 gain +0.0000 (paired t +0.01) | resid IC +0.0052 (t +0.39) | perm p 0.294 | IR gross 0.92 net 0.84
+  ind_mom_12_1                 block IC -0.0007 (t -0.05) | comp 0.0366 -> 0.0359 gain -0.0007 (paired t -0.13) | resid IC -0.0002 (t -0.02) | perm p 0.010 | IR gross 0.83 net 0.75
+  mom_52wk_high_neutral        block IC +0.0008 (t +0.05) | comp 0.0366 -> 0.0368 gain +0.0002 (paired t +0.03) | resid IC +0.0009 (t +0.06) | perm p 0.303 | IR gross 0.99 net 0.90
+  resff3_12_1_existing         block IC +0.0134 (t +1.00) | comp 0.0366 -> 0.0397 gain +0.0030 (paired t +0.60) | resid IC +0.0115 (t +0.89) | perm p 0.025 | IR gross 0.95 net 0.87
+  comp_indrel_gics2            IC 0.0324 (t 1.92) vs comp 0.0366: paired -0.0043 (t -0.73) | IR gross 0.61 net 0.53
+  comp_indrel_ff49             IC 0.0324 (t 2.14) vs comp 0.0366: paired -0.0042 (t -0.62) | IR gross 0.97 net 0.88
+  comp_half_indrel_ff49        IC 0.0356 (t 2.04) vs comp 0.0366: paired -0.0010 (t -0.33) | IR gross 0.89 net 0.80
+  comp_half_indrel_gics2       IC 0.0347 (t 1.92) vs comp 0.0366: paired -0.0020 (t -0.70) | IR gross 0.64 net 0.57
+
+==============================================================================
+SUMMARY (4 blocks tested; Bonferroni factor 4)
+==============================================================================
+                  name                  kind   sign  coverage  block_ic  block_ic_t  comp_ic  comp_plus_block_ic    gain  gain_t  resid_ic  resid_ic_t  corr_with_comp  perm_p  gain_small  gain_mid  gain_large  ir_gross  ir_net  d_ir_gross kill_gain_t_lt_1 kill_only_small_tercile  perm_p_bonferroni passes
+           ind_rel_mom                 block 1.0000    0.9925    0.0086      0.6023   0.0366              0.0367  0.0000  0.0055    0.0052      0.3853          0.1282  0.2935      0.0024   -0.0023      0.0015    0.9250  0.8429      0.3102             True                   False             1.0000  False
+          ind_mom_12_1                 block 1.0000    0.9925   -0.0007     -0.0492   0.0366              0.0359 -0.0007 -0.1301   -0.0002     -0.0177         -0.0238  0.0100     -0.0001   -0.0032      0.0037    0.8252  0.7451      0.2105             True                   False             0.0398  False
+ mom_52wk_high_neutral                 block 1.0000    1.0000    0.0008      0.0504   0.0366              0.0368  0.0002  0.0316    0.0009      0.0610         -0.0044  0.3035      0.0020   -0.0050      0.0065    0.9850  0.9026      0.3703             True                   False             1.0000  False
+  resff3_12_1_existing                 block 1.0000    1.0000    0.0134      1.0043   0.0366              0.0397  0.0030  0.6027    0.0115      0.8925          0.0802  0.0249      0.0023    0.0026      0.0065    0.9513  0.8741      0.3366             True                   False             0.0995  False
+     comp_indrel_gics2 replacement_composite    NaN       NaN    0.0324      1.9193   0.0366              0.0324 -0.0043 -0.7349       NaN         NaN          0.9235     NaN     -0.0088   -0.0027     -0.0006    0.6056  0.5286     -0.0092              NaN                     NaN                NaN    NaN
+      comp_indrel_ff49 replacement_composite    NaN       NaN    0.0324      2.1418   0.0366              0.0324 -0.0042 -0.6181       NaN         NaN          0.8708     NaN     -0.0086   -0.0026     -0.0005    0.9739  0.8769      0.3591              NaN                     NaN                NaN    NaN
+ comp_half_indrel_ff49 replacement_composite    NaN       NaN    0.0356      2.0398   0.0366              0.0356 -0.0010 -0.3312       NaN         NaN          0.9663     NaN     -0.0027   -0.0005      0.0006    0.8850  0.8026      0.2703              NaN                     NaN                NaN    NaN
+comp_half_indrel_gics2 replacement_composite    NaN       NaN    0.0347      1.9153   0.0366              0.0347 -0.0020 -0.7001       NaN         NaN          0.9793     NaN     -0.0041   -0.0016     -0.0002    0.6410  0.5668      0.0262              NaN                     NaN                NaN    NaN
+
+done in 0.9 min

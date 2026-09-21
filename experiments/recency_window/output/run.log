@@ -1,0 +1,192 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+
+==============================================================================
+et__control  ({}, seed=42)
+==============================================================================
+  [et__control fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0065 (range -0.0161..-0.0065) n_tr=46,835 4s
+  [et__control fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0401 (range 0.0332..0.0401) n_tr=59,211 5s
+  [et__control fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0315 (range -0.0384..-0.0315) n_tr=71,366 7s
+  [et__control fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0230 (range 0.0185..0.0230) n_tr=85,763 9s
+  [et__control fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0288 (range 0.0227..0.0288) n_tr=99,605 10s
+  [et__control fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0119 (range 0.0073..0.0119) n_tr=113,269 12s
+  IC 0.0164 (t 1.10) D10-D1 -0.17%/m | lc_t10 IR gross -0.22 net -0.30 | beta -0.09 | 52s
+
+==============================================================================
+et__hl24  ({'half_life': 24}, seed=42)
+==============================================================================
+  [et__hl24 fold 2021] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0131 (range -0.0190..-0.0131) n_tr=46,835 4s
+  [et__hl24 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0404 (range 0.0363..0.0404) n_tr=59,211 6s
+  [et__hl24 fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0625 (range -0.0761..-0.0625) n_tr=71,366 7s
+  [et__hl24 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0341 (range 0.0280..0.0341) n_tr=85,763 9s
+  [et__hl24 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0182 (range 0.0137..0.0182) n_tr=99,605 11s
+  [et__hl24 fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0082 (range 0.0047..0.0082) n_tr=113,269 13s
+  IC 0.0141 (t 0.87) D10-D1 -0.13%/m | lc_t10 IR gross -0.42 net -0.51 | beta -0.15 | 54s
+
+==============================================================================
+et__hl48  ({'half_life': 48}, seed=42)
+==============================================================================
+  [et__hl48 fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0085 (range -0.0180..-0.0085) n_tr=46,835 4s
+  [et__hl48 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0405 (range 0.0352..0.0405) n_tr=59,211 6s
+  [et__hl48 fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0523 (range -0.0635..-0.0523) n_tr=71,366 7s
+  [et__hl48 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0287 (range 0.0233..0.0287) n_tr=85,763 9s
+  [et__hl48 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0226 (range 0.0185..0.0226) n_tr=99,605 11s
+  [et__hl48 fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0091 (range 0.0060..0.0091) n_tr=113,269 13s
+  IC 0.0140 (t 0.91) D10-D1 -0.28%/m | lc_t10 IR gross -0.37 net -0.46 | beta -0.14 | 54s
+
+==============================================================================
+et__hl96  ({'half_life': 96}, seed=42)
+==============================================================================
+  [et__hl96 fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0059 (range -0.0168..-0.0059) n_tr=46,835 4s
+  [et__hl96 fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0395 (range 0.0345..0.0395) n_tr=59,211 6s
+  [et__hl96 fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0435 (range -0.0547..-0.0435) n_tr=71,366 7s
+  [et__hl96 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0252 (range 0.0195..0.0252) n_tr=85,763 9s
+  [et__hl96 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0266 (range 0.0219..0.0266) n_tr=99,605 11s
+  [et__hl96 fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0086 (range 0.0067..0.0086) n_tr=113,269 13s
+  IC 0.0153 (t 1.02) D10-D1 -0.27%/m | lc_t10 IR gross -0.37 net -0.46 | beta -0.12 | 54s
+
+==============================================================================
+et__win24  ({'window': 24}, seed=42)
+==============================================================================
+  [et__win24 fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0029 (range -0.0003..0.0029) n_tr=24,847 2s
+  [et__win24 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0328 (range 0.0291..0.0328) n_tr=25,155 2s
+  [et__win24 fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0779 (range -0.0888..-0.0779) n_tr=24,531 2s
+  [et__win24 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 300} val_ic=0.0118 (range 0.0083..0.0118) n_tr=26,552 2s
+  [et__win24 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0144 (range 0.0075..0.0144) n_tr=28,239 3s
+  [et__win24 fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0203 (range 0.0132..0.0203) n_tr=27,506 2s
+  IC 0.0075 (t 0.36) D10-D1 -0.37%/m | lc_t10 IR gross -0.31 net -0.40 | beta -0.17 | 18s
+
+==============================================================================
+et__win48  ({'window': 48}, seed=42)
+==============================================================================
+  [et__win48 fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0065 (range -0.0161..-0.0065) n_tr=46,835 4s
+  [et__win48 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0482 (range 0.0389..0.0482) n_tr=48,426 4s
+  [et__win48 fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0557 (range -0.0696..-0.0557) n_tr=49,378 5s
+  [et__win48 fold 2024] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0106 (range 0.0079..0.0106) n_tr=51,707 5s
+  [et__win48 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0304 (range 0.0199..0.0304) n_tr=52,770 5s
+  [et__win48 fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0002 (range -0.0052..0.0002) n_tr=54,058 5s
+  IC 0.0130 (t 0.90) D10-D1 -0.14%/m | lc_t10 IR gross -0.22 net -0.31 | beta -0.10 | 31s
+
+==============================================================================
+et__era_stack3  ({}, seed=42)
+==============================================================================
+  [et__era_stack3 fold 2021] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100, 'blocks': 3, 'full': False} val_ic=-0.0136 (range -0.0244..-0.0136) n_tr=46,835 6s
+  [et__era_stack3 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100, 'blocks': 3, 'full': False} val_ic=0.0415 (range 0.0333..0.0415) n_tr=59,211 7s
+  [et__era_stack3 fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100, 'blocks': 3, 'full': False} val_ic=-0.0243 (range -0.0330..-0.0243) n_tr=71,366 8s
+  [et__era_stack3 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000, 'blocks': 3, 'full': False} val_ic=0.0229 (range 0.0187..0.0229) n_tr=85,763 10s
+  [et__era_stack3 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000, 'blocks': 3, 'full': False} val_ic=0.0315 (range 0.0263..0.0315) n_tr=99,605 11s
+  [et__era_stack3 fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000, 'blocks': 3, 'full': False} val_ic=0.0093 (range 0.0018..0.0093) n_tr=113,269 14s
+  IC 0.0196 (t 1.34) D10-D1 -0.20%/m | lc_t10 IR gross -0.24 net -0.33 | beta -0.10 | 60s
+
+==============================================================================
+et__era_stack3_full  ({}, seed=42)
+==============================================================================
+  [et__era_stack3_full fold 2021] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100, 'blocks': 3, 'full': True} val_ic=-0.0120 (range -0.0220..-0.0120) n_tr=46,835 10s
+  [et__era_stack3_full fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100, 'blocks': 3, 'full': True} val_ic=0.0413 (range 0.0334..0.0413) n_tr=59,211 13s
+  [et__era_stack3_full fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100, 'blocks': 3, 'full': True} val_ic=-0.0275 (range -0.0346..-0.0275) n_tr=71,366 15s
+  [et__era_stack3_full fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000, 'blocks': 3, 'full': True} val_ic=0.0232 (range 0.0187..0.0232) n_tr=85,763 17s
+  [et__era_stack3_full fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000, 'blocks': 3, 'full': True} val_ic=0.0310 (range 0.0255..0.0310) n_tr=99,605 18s
+  [et__era_stack3_full fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000, 'blocks': 3, 'full': True} val_ic=0.0098 (range 0.0034..0.0098) n_tr=113,269 21s
+  IC 0.0190 (t 1.28) D10-D1 -0.29%/m | lc_t10 IR gross -0.20 net -0.28 | beta -0.10 | 99s
+
+==============================================================================
+lgbm__control  ({}, seed=42)
+==============================================================================
+  [lgbm__control fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0024 (range -0.0179..-0.0024) n_tr=46,835 1s
+  [lgbm__control fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0446 (range 0.0351..0.0446) n_tr=59,211 1s
+  [lgbm__control fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0295 (range -0.0428..-0.0295) n_tr=71,366 1s
+  [lgbm__control fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0199 (range 0.0167..0.0199) n_tr=85,763 1s
+  [lgbm__control fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0323 (range 0.0292..0.0323) n_tr=99,605 1s
+  [lgbm__control fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0127 (range 0.0085..0.0127) n_tr=113,269 1s
+  IC 0.0160 (t 1.04) D10-D1 -0.18%/m | lc_t10 IR gross -0.17 net -0.25 | beta -0.12 | 10s
+
+==============================================================================
+lgbm__hl24  ({'half_life': 24}, seed=42)
+==============================================================================
+  [lgbm__hl24 fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0101 (range -0.0222..-0.0101) n_tr=46,835 1s
+  [lgbm__hl24 fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0465 (range 0.0360..0.0465) n_tr=59,211 1s
+  [lgbm__hl24 fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0622 (range -0.0759..-0.0622) n_tr=71,366 1s
+  [lgbm__hl24 fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=0.0323 (range 0.0286..0.0323) n_tr=85,763 1s
+  [lgbm__hl24 fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0202 (range 0.0156..0.0202) n_tr=99,605 1s
+  [lgbm__hl24 fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0102 (range 0.0033..0.0102) n_tr=113,269 1s
+  IC 0.0079 (t 0.47) D10-D1 -0.44%/m | lc_t10 IR gross -0.49 net -0.58 | beta -0.14 | 11s
+
+==============================================================================
+lgbm__hl48  ({'half_life': 48}, seed=42)
+==============================================================================
+  [lgbm__hl48 fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0036 (range -0.0154..-0.0036) n_tr=46,835 1s
+  [lgbm__hl48 fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0462 (range 0.0328..0.0462) n_tr=59,211 1s
+  [lgbm__hl48 fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0528 (range -0.0649..-0.0528) n_tr=71,366 1s
+  [lgbm__hl48 fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0252 (range 0.0214..0.0252) n_tr=85,763 1s
+  [lgbm__hl48 fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0239 (range 0.0204..0.0239) n_tr=99,605 1s
+  [lgbm__hl48 fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0064 (range 0.0020..0.0064) n_tr=113,269 1s
+  IC 0.0121 (t 0.77) D10-D1 -0.25%/m | lc_t10 IR gross -0.34 net -0.43 | beta -0.16 | 11s
+
+==============================================================================
+lgbm__hl96  ({'half_life': 96}, seed=42)
+==============================================================================
+  [lgbm__hl96 fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0039 (range -0.0222..-0.0039) n_tr=46,835 1s
+  [lgbm__hl96 fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0483 (range 0.0346..0.0483) n_tr=59,211 1s
+  [lgbm__hl96 fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0425 (range -0.0571..-0.0425) n_tr=71,366 1s
+  [lgbm__hl96 fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0224 (range 0.0193..0.0224) n_tr=85,763 1s
+  [lgbm__hl96 fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0308 (range 0.0249..0.0308) n_tr=99,605 1s
+  [lgbm__hl96 fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0096 (range 0.0048..0.0096) n_tr=113,269 1s
+  IC 0.0135 (t 0.86) D10-D1 -0.28%/m | lc_t10 IR gross -0.54 net -0.63 | beta -0.09 | 11s
+
+==============================================================================
+lgbm__win24  ({'window': 24}, seed=42)
+==============================================================================
+  [lgbm__win24 fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=0.0057 (range 0.0021..0.0057) n_tr=24,847 1s
+  [lgbm__win24 fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0347 (range 0.0244..0.0347) n_tr=25,155 1s
+  [lgbm__win24 fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0773 (range -0.0836..-0.0773) n_tr=24,531 1s
+  [lgbm__win24 fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0088 (range 0.0054..0.0088) n_tr=26,552 1s
+  [lgbm__win24 fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0151 (range 0.0075..0.0151) n_tr=28,239 1s
+  [lgbm__win24 fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0196 (range 0.0058..0.0196) n_tr=27,506 1s
+  IC 0.0065 (t 0.31) D10-D1 -0.60%/m | lc_t10 IR gross -0.56 net -0.64 | beta -0.11 | 8s
+
+==============================================================================
+lgbm__win48  ({'window': 48}, seed=42)
+==============================================================================
+  [lgbm__win48 fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0024 (range -0.0179..-0.0024) n_tr=46,835 1s
+  [lgbm__win48 fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0577 (range 0.0380..0.0577) n_tr=48,426 1s
+  [lgbm__win48 fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0535 (range -0.0675..-0.0535) n_tr=49,378 1s
+  [lgbm__win48 fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0077 (range -0.0021..0.0077) n_tr=51,707 1s
+  [lgbm__win48 fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0314 (range 0.0241..0.0314) n_tr=52,770 1s
+  [lgbm__win48 fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0005 (range -0.0047..0.0005) n_tr=54,058 1s
+  IC 0.0111 (t 0.74) D10-D1 +0.09%/m | lc_t10 IR gross -0.38 net -0.47 | beta -0.10 | 10s
+
+==============================================================================
+SUMMARY
+==============================================================================
+                key    ic     t  d10_d1  ir_gross_t10  ir_net_t10  ir_gross_free
+        et__control 0.016 1.102  -0.170        -0.216      -0.302         -0.182
+           et__hl24 0.014 0.867  -0.134        -0.419      -0.509         -0.425
+           et__hl48 0.014 0.914  -0.284        -0.370      -0.461         -0.330
+           et__hl96 0.015 1.021  -0.270        -0.369      -0.456         -0.346
+          et__win24 0.007 0.358  -0.367        -0.313      -0.400         -0.674
+          et__win48 0.013 0.896  -0.135        -0.220      -0.314         -0.181
+     et__era_stack3 0.020 1.341  -0.202        -0.241      -0.327         -0.226
+et__era_stack3_full 0.019 1.284  -0.287        -0.199      -0.284         -0.239
+      lgbm__control 0.016 1.044  -0.175        -0.167      -0.251         -0.264
+         lgbm__hl24 0.008 0.468  -0.438        -0.487      -0.576         -0.452
+         lgbm__hl48 0.012 0.775  -0.247        -0.342      -0.434         -0.481
+         lgbm__hl96 0.013 0.856  -0.277        -0.543      -0.630         -0.371
+        lgbm__win24 0.007 0.313  -0.605        -0.556      -0.638         -0.733
+        lgbm__win48 0.011 0.741   0.094        -0.383      -0.475         -0.294
+
+Paired monthly IC vs control (same model family):
+model             arm    ic  ic_control  mean_diff      t  ir_gross  ir_gross_control
+   et            hl24 0.014       0.016     -0.002 -0.362    -0.419            -0.216
+   et            hl48 0.014       0.016     -0.002 -0.671    -0.370            -0.216
+   et            hl96 0.015       0.016     -0.001 -0.493    -0.369            -0.216
+   et           win24 0.007       0.016     -0.009 -0.668    -0.313            -0.216
+   et           win48 0.013       0.016     -0.003 -0.663    -0.220            -0.216
+   et      era_stack3 0.020       0.016      0.003  1.435    -0.241            -0.216
+   et era_stack3_full 0.019       0.016      0.003  1.547    -0.199            -0.216
+ lgbm            hl24 0.008       0.016     -0.008 -1.076    -0.487            -0.167
+ lgbm            hl48 0.012       0.016     -0.004 -0.866    -0.342            -0.167
+ lgbm            hl96 0.013       0.016     -0.003 -0.898    -0.543            -0.167
+ lgbm           win24 0.007       0.016     -0.010 -0.716    -0.556            -0.167
+ lgbm           win48 0.011       0.016     -0.005 -0.955    -0.383            -0.167
+
+Adoption rules: {"hl24": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "hl48": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "hl96": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "win24": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "win48": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "era_stack3": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "era_stack3_full": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}}

@@ -1,0 +1,89 @@
+{
+  "rows": [
+    {
+      "side": "long",
+      "target_fdr_q": 0.6,
+      "months_total": 68,
+      "months_with_any_selection": 51,
+      "avg_names_selected_when_any": 40.15686274509804,
+      "precision_of_selected(win_rate)": 0.30642012496915066,
+      "realised_FDR(1-precision)": 0.6935798750308493,
+      "base_rate_win": 0.3,
+      "precision_same_size_topk": 0.30642012496915066,
+      "mean_ret_selected_pct": 0.8642460525313074,
+      "mean_ret_unselected_pct": 0.9383907592958391,
+      "mean_ret_same_size_topk_pct": 0.8642460525313076
+    },
+    {
+      "side": "long",
+      "target_fdr_q": 0.65,
+      "months_total": 68,
+      "months_with_any_selection": 53,
+      "avg_names_selected_when_any": 47.264150943396224,
+      "precision_of_selected(win_rate)": 0.29567258905115334,
+      "realised_FDR(1-precision)": 0.7043274109488467,
+      "base_rate_win": 0.3,
+      "precision_same_size_topk": 0.29567258905115334,
+      "mean_ret_selected_pct": 1.0540591236715973,
+      "mean_ret_unselected_pct": 0.8075203248321083,
+      "mean_ret_same_size_topk_pct": 1.054059123671597
+    },
+    {
+      "side": "long",
+      "target_fdr_q": 0.7,
+      "months_total": 68,
+      "months_with_any_selection": 56,
+      "avg_names_selected_when_any": 54.392857142857146,
+      "precision_of_selected(win_rate)": 0.2822355215223224,
+      "realised_FDR(1-precision)": 0.7177644784776775,
+      "base_rate_win": 0.3,
+      "precision_same_size_topk": 0.2822355215223224,
+      "mean_ret_selected_pct": 0.6148100385770725,
+      "mean_ret_unselected_pct": 0.85100095407245,
+      "mean_ret_same_size_topk_pct": 0.6148100385770724
+    },
+    {
+      "side": "short",
+      "target_fdr_q": 0.6,
+      "months_total": 68,
+      "months_with_any_selection": 57,
+      "avg_names_selected_when_any": 62.54385964912281,
+      "precision_of_selected(win_rate)": 0.449618198578539,
+      "realised_FDR(1-precision)": 0.550381801421461,
+      "base_rate_win": 0.3,
+      "precision_same_size_topk": 0.449618198578539,
+      "mean_ret_selected_pct": 0.6562316881422062,
+      "mean_ret_unselected_pct": -0.9098793889558251,
+      "mean_ret_same_size_topk_pct": 0.6562316881422062
+    },
+    {
+      "side": "short",
+      "target_fdr_q": 0.65,
+      "months_total": 68,
+      "months_with_any_selection": 60,
+      "avg_names_selected_when_any": 81.8,
+      "precision_of_selected(win_rate)": 0.43637993805690295,
+      "realised_FDR(1-precision)": 0.5636200619430971,
+      "base_rate_win": 0.3,
+      "precision_same_size_topk": 0.43637993805690295,
+      "mean_ret_selected_pct": -0.6268888113487392,
+      "mean_ret_unselected_pct": -0.9205427975432214,
+      "mean_ret_same_size_topk_pct": -0.6268888113487394
+    },
+    {
+      "side": "short",
+      "target_fdr_q": 0.7,
+      "months_total": 68,
+      "months_with_any_selection": 62,
+      "avg_names_selected_when_any": 103.30645161290323,
+      "precision_of_selected(win_rate)": 0.4347045804253976,
+      "realised_FDR(1-precision)": 0.5652954195746024,
+      "base_rate_win": 0.3,
+      "precision_same_size_topk": 0.4347045804253976,
+      "mean_ret_selected_pct": -0.48090005395869506,
+      "mean_ret_unselected_pct": -0.9289964899969259,
+      "mean_ret_same_size_topk_pct": -0.4809000539586954
+    }
+  ],
+  "definition": "win = next-month excess return in the top 30% of the >= $2B universe cross-section (loser = bottom 30%); null = calibration units that are not winners; calibration = all universe months before the test year"
+}

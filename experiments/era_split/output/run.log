@@ -1,0 +1,75 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+  [fold 2021] orig               n_eras= 47 chosen n_trees=250 val_ic=0.0089 (3s)
+  [fold 2021] era_avg            n_eras= 47 chosen n_trees=250 val_ic=0.0080 (3s)
+  [fold 2021] era_softmin        n_eras= 47 chosen n_trees=250 val_ic=0.0028 (4s)
+  [fold 2021] era_dir            n_eras= 47 chosen n_trees=250 val_ic=0.0003 (3s)
+  [fold 2021] era_dir_size       n_eras=141 chosen n_trees=250 val_ic=-0.0012 (4s)
+  [fold 2021] orig_init          n_eras= 47 chosen n_trees=250 val_ic=-0.0014 (3s)
+  [fold 2021] era_dir_init       n_eras= 47 chosen n_trees=250 val_ic=-0.0085 (3s)
+  [fold 2021] era_dir_size_init  n_eras=141 chosen n_trees=250 val_ic=-0.0077 (4s)
+  [fold 2022] orig               n_eras= 59 chosen n_trees=150 val_ic=0.0463 (2s)
+  [fold 2022] era_avg            n_eras= 59 chosen n_trees=250 val_ic=0.0283 (3s)
+  [fold 2022] era_softmin        n_eras= 59 chosen n_trees=250 val_ic=0.0342 (5s)
+  [fold 2022] era_dir            n_eras= 59 chosen n_trees=250 val_ic=0.0434 (4s)
+  [fold 2022] era_dir_size       n_eras=177 chosen n_trees=250 val_ic=0.0445 (5s)
+  [fold 2022] orig_init          n_eras= 59 chosen n_trees=250 val_ic=0.0464 (4s)
+  [fold 2022] era_dir_init       n_eras= 59 chosen n_trees=250 val_ic=0.0423 (5s)
+  [fold 2022] era_dir_size_init  n_eras=177 chosen n_trees=250 val_ic=0.0435 (5s)
+  [fold 2023] orig               n_eras= 71 chosen n_trees=250 val_ic=-0.0415 (6s)
+  [fold 2023] era_avg            n_eras= 71 chosen n_trees=250 val_ic=-0.0528 (7s)
+  [fold 2023] era_softmin        n_eras= 71 chosen n_trees= 50 val_ic=-0.0546 (8s)
+  [fold 2023] era_dir            n_eras= 71 chosen n_trees=250 val_ic=-0.0516 (7s)
+  [fold 2023] era_dir_size       n_eras=213 chosen n_trees=250 val_ic=-0.0495 (8s)
+  [fold 2023] orig_init          n_eras= 71 chosen n_trees=  0 val_ic=0.0773 (6s)
+  [fold 2023] era_dir_init       n_eras= 71 chosen n_trees=  0 val_ic=0.0773 (5s)
+  [fold 2023] era_dir_size_init  n_eras=213 chosen n_trees=  0 val_ic=0.0773 (6s)
+  [fold 2024] orig               n_eras= 83 chosen n_trees=250 val_ic=0.0215 (5s)
+  [fold 2024] era_avg            n_eras= 83 chosen n_trees=250 val_ic=0.0120 (6s)
+  [fold 2024] era_softmin        n_eras= 83 chosen n_trees=100 val_ic=0.0114 (7s)
+  [fold 2024] era_dir            n_eras= 83 chosen n_trees=150 val_ic=0.0167 (6s)
+  [fold 2024] era_dir_size       n_eras=249 chosen n_trees= 50 val_ic=0.0182 (7s)
+  [fold 2024] orig_init          n_eras= 83 chosen n_trees=  0 val_ic=0.0418 (5s)
+  [fold 2024] era_dir_init       n_eras= 83 chosen n_trees=  0 val_ic=0.0418 (6s)
+  [fold 2024] era_dir_size_init  n_eras=249 chosen n_trees=  0 val_ic=0.0418 (8s)
+  [fold 2025] orig               n_eras= 95 chosen n_trees= 50 val_ic=0.0428 (6s)
+  [fold 2025] era_avg            n_eras= 95 chosen n_trees=150 val_ic=0.0349 (8s)
+  [fold 2025] era_softmin        n_eras= 95 chosen n_trees=150 val_ic=0.0377 (8s)
+  [fold 2025] era_dir            n_eras= 95 chosen n_trees= 50 val_ic=0.0279 (8s)
+  [fold 2025] era_dir_size       n_eras=285 chosen n_trees= 50 val_ic=0.0282 (8s)
+  [fold 2025] orig_init          n_eras= 95 chosen n_trees= 50 val_ic=0.0414 (6s)
+  [fold 2025] era_dir_init       n_eras= 95 chosen n_trees=100 val_ic=0.0403 (7s)
+  [fold 2025] era_dir_size_init  n_eras=285 chosen n_trees= 50 val_ic=0.0363 (8s)
+  [fold 2026] orig               n_eras=107 chosen n_trees= 50 val_ic=0.0019 (6s)
+  [fold 2026] era_avg            n_eras=107 chosen n_trees=150 val_ic=0.0018 (7s)
+  [fold 2026] era_softmin        n_eras=107 chosen n_trees= 50 val_ic=-0.0019 (8s)
+  [fold 2026] era_dir            n_eras=107 chosen n_trees=150 val_ic=-0.0092 (7s)
+  [fold 2026] era_dir_size       n_eras=321 chosen n_trees=100 val_ic=-0.0083 (9s)
+  [fold 2026] orig_init          n_eras=107 chosen n_trees=  0 val_ic=0.0180 (6s)
+  [fold 2026] era_dir_init       n_eras=107 chosen n_trees=  0 val_ic=0.0180 (7s)
+  [fold 2026] era_dir_size_init  n_eras=321 chosen n_trees=  0 val_ic=0.0180 (9s)
+  comp               IC 0.0366 (t 1.91) vs comp +0.0000 (paired t +nan) | IR gross +0.61 net +0.54 | avg trees None
+  orig               IC 0.0181 (t 1.42) vs comp -0.0185 (paired t -0.85) | IR gross -0.41 net -0.49 | avg trees 166.66666666666666
+  era_avg            IC 0.0054 (t 0.37) vs comp -0.0312 (paired t -1.34) | IR gross -0.84 net -0.93 | avg trees 216.66666666666666
+  era_softmin        IC 0.0042 (t 0.27) vs comp -0.0324 (paired t -1.33) | IR gross -0.73 net -0.81 | avg trees 141.66666666666666
+  era_dir            IC 0.0142 (t 1.03) vs comp -0.0224 (paired t -1.06) | IR gross -0.44 net -0.53 | avg trees 183.33333333333334
+  era_dir_size       IC 0.0129 (t 0.92) vs comp -0.0238 (paired t -1.13) | IR gross -0.33 net -0.41 | avg trees 158.33333333333334
+  orig_init          IC 0.0161 (t 1.00) vs comp -0.0206 (paired t -1.77) | IR gross -0.06 net -0.17 | avg trees 91.66666666666667
+  era_dir_init       IC 0.0212 (t 1.32) vs comp -0.0154 (paired t -1.44) | IR gross -0.18 net -0.28 | avg trees 100.0
+  era_dir_size_init  IC 0.0197 (t 1.21) vs comp -0.0169 (paired t -1.63) | IR gross +0.08 net -0.03 | avg trees 91.66666666666667
+
+==============================================================================
+SUMMARY
+==============================================================================
+              arm     ic   ic_t  d_ic_vs_comp  paired_t_vs_comp  resid_ic_after_comp  ic_small  ic_mid  ic_large  ir_gross  ir_net    beta  max_dd_net_pct  avg_trees_chosen  paired_t_vs_orig  d_ic_vs_orig
+             comp 0.0366 1.9146        0.0000               NaN                  NaN    0.0512  0.0359    0.0145    0.6148  0.5411 -0.0613        -18.9470               NaN            0.8483        0.0185
+             orig 0.0181 1.4199       -0.0185           -0.8483               0.0048    0.0259  0.0121    0.0067   -0.4111 -0.4926 -0.1480        -40.9689          166.6667               NaN        0.0000
+          era_avg 0.0054 0.3653       -0.0312           -1.3357              -0.0043    0.0096 -0.0025   -0.0012   -0.8428 -0.9307 -0.1742        -43.3445          216.6667           -1.9104       -0.0127
+      era_softmin 0.0042 0.2743       -0.0324           -1.3294              -0.0043    0.0137 -0.0043   -0.0083   -0.7287 -0.8101 -0.1524        -41.7510          141.6667           -1.7733       -0.0139
+          era_dir 0.0142 1.0333       -0.0224           -1.0572               0.0005    0.0234  0.0073    0.0029   -0.4383 -0.5275 -0.1730        -33.0601          183.3333           -0.9332       -0.0039
+     era_dir_size 0.0129 0.9172       -0.0238           -1.1295              -0.0005    0.0213  0.0074   -0.0008   -0.3305 -0.4100 -0.1278        -35.2733          158.3333           -1.1267       -0.0052
+        orig_init 0.0161 0.9950       -0.0206           -1.7732              -0.0200    0.0348  0.0150   -0.0132   -0.0614 -0.1662 -0.1767        -25.4631           91.6667           -0.1174       -0.0020
+     era_dir_init 0.0212 1.3160       -0.0154           -1.4374              -0.0162    0.0390  0.0196   -0.0062   -0.1828 -0.2849 -0.2183        -23.5538          100.0000            0.1785        0.0031
+era_dir_size_init 0.0197 1.2135       -0.0169           -1.6265              -0.0178    0.0380  0.0179   -0.0094    0.0782 -0.0281 -0.1727        -19.9466           91.6667            0.0902        0.0016
+
+done in 5.8 min

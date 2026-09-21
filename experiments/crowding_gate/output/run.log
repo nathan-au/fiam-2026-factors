@@ -1,0 +1,26 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+  validation-slice calibration of the IC cutoff (2017-2020, D10-D1 P&L): chosen -0.01 (Sharpe by candidate: {-0.03: -0.159, -0.02: -0.168, -0.01: -0.154, 0.0: -0.174, 0.01: -0.171, 0.02: -0.211, 0.03: -0.198})
+  [G0_ungated                            ] IR +0.54 | maxDD -19% | 2025 -12.4% | gated 0% of months | unwind windows ungated -0.7% -> gated -0.7%
+  [G1_trailing_IC12_lt_0                 ] IR +0.41 | maxDD -16% | 2025 -11.1% | gated 35% of months | unwind windows ungated -0.7% -> gated -5.0%
+  [G2_sleeve_moves_z_gt_1                ] IR +0.35 | maxDD -21% | 2025 -14.6% | gated 26% of months | unwind windows ungated -0.7% -> gated -4.9%
+  [G3_book_momentum_z_lt_-1              ] IR +0.51 | maxDD -15% | 2025 -9.2% | gated 18% of months | unwind windows ungated -0.7% -> gated +1.4%
+  [G4_spx_vol_z_gt_1                     ] IR +0.56 | maxDD -20% | 2025 -13.1% | gated 4% of months | unwind windows ungated -0.7% -> gated -0.7%
+  [G5_vol_scaled_(Moreira-Muir)          ] IR +0.38 | maxDD -22% | 2025 -15.8% | gated 65% of months | unwind windows ungated -0.7% -> gated -3.4%
+  [G6_any_of_G1_G2_G3                    ] IR +0.47 | maxDD -14% | 2025 -9.2% | gated 54% of months | unwind windows ungated -0.7% -> gated -2.9%
+  [G1cal_IC12_cutoff_tuned_on_2017_2020  ] IR +0.47 | maxDD -16% | 2025 -11.1% | gated 32% of months | unwind windows ungated -0.7% -> gated -5.0%
+
+==============================================================================
+SUMMARY
+==============================================================================
+                                gate  ir_net  d_ir_vs_ungated  max_dd_pct  cy2025_net_pct  share_months_gated  stress_windows_ungated_sum_pct  stress_windows_gated_sum_pct
+                          G0_ungated   0.541            0.000     -18.947         -12.397               0.000                          -0.661                        -0.661
+               G1_trailing_IC12_lt_0   0.412           -0.129     -15.686         -11.137               0.353                          -0.661                        -4.960
+              G2_sleeve_moves_z_gt_1   0.349           -0.192     -20.914         -14.636               0.265                          -0.661                        -4.946
+            G3_book_momentum_z_lt_-1   0.505           -0.036     -15.424          -9.234               0.176                          -0.661                         1.351
+                   G4_spx_vol_z_gt_1   0.556            0.015     -19.563         -13.063               0.044                          -0.661                        -0.736
+        G5_vol_scaled_(Moreira-Muir)   0.382           -0.159     -21.842         -15.767               0.647                          -0.661                        -3.421
+                  G6_any_of_G1_G2_G3   0.472           -0.069     -14.481          -9.199               0.544                          -0.661                        -2.873
+G1cal_IC12_cutoff_tuned_on_2017_2020   0.471           -0.070     -15.686         -11.137               0.324                          -0.661                        -4.960
+
+done in 0.3 min

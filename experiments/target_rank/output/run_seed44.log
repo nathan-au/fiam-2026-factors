@@ -1,0 +1,62 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+
+==============================================================================
+et__control  (target=raw, winsor=True, seed=44)
+==============================================================================
+  [et__control fold 2021] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0068 (range -0.0175..-0.0068) n_tr=46,835 5s
+  [et__control fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0407 (range 0.0336..0.0407) n_tr=59,211 6s
+  [et__control fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0312 (range -0.0368..-0.0312) n_tr=71,366 7s
+  [et__control fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0232 (range 0.0197..0.0232) n_tr=85,763 9s
+  [et__control fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0301 (range 0.0260..0.0301) n_tr=99,605 11s
+  [et__control fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0121 (range 0.0076..0.0121) n_tr=113,269 12s
+  IC 0.0170 (t 1.13) D10-D1 -0.19%/m | lc_t10 IR gross -0.39 net -0.48 | beta -0.09 | 54s
+
+==============================================================================
+et__rank_uniform  (target=rank_uniform, winsor=False, seed=44)
+==============================================================================
+  [et__rank_uniform fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0000 (range -0.0146..-0.0000) n_tr=46,835 4s
+  [et__rank_uniform fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0408 (range 0.0298..0.0408) n_tr=59,211 5s
+  [et__rank_uniform fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=-0.0229 (range -0.0263..-0.0229) n_tr=71,366 7s
+  [et__rank_uniform fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0259 (range 0.0231..0.0259) n_tr=85,763 8s
+  [et__rank_uniform fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0371 (range 0.0318..0.0371) n_tr=99,605 10s
+  [et__rank_uniform fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0185 (range 0.0156..0.0185) n_tr=113,269 14s
+  IC 0.0209 (t 1.31) D10-D1 -0.12%/m | lc_t10 IR gross -0.23 net -0.31 | beta -0.02 | 53s
+
+==============================================================================
+lgbm__control  (target=raw, winsor=True, seed=44)
+==============================================================================
+  [lgbm__control fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0040 (range -0.0177..-0.0040) n_tr=46,835 1s
+  [lgbm__control fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0427 (range 0.0328..0.0427) n_tr=59,211 2s
+  [lgbm__control fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=-0.0328 (range -0.0404..-0.0328) n_tr=71,366 1s
+  [lgbm__control fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0231 (range 0.0177..0.0231) n_tr=85,763 1s
+  [lgbm__control fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0321 (range 0.0296..0.0321) n_tr=99,605 2s
+  [lgbm__control fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0154 (range 0.0082..0.0154) n_tr=113,269 2s
+  IC 0.0160 (t 1.01) D10-D1 -0.33%/m | lc_t10 IR gross -0.35 net -0.44 | beta -0.14 | 13s
+
+==============================================================================
+lgbm__rank_uniform  (target=rank_uniform, winsor=False, seed=44)
+==============================================================================
+  [lgbm__rank_uniform fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0012 (range -0.0200..-0.0012) n_tr=46,835 1s
+  [lgbm__rank_uniform fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0438 (range 0.0343..0.0438) n_tr=59,211 1s
+  [lgbm__rank_uniform fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0220 (range -0.0277..-0.0220) n_tr=71,366 1s
+  [lgbm__rank_uniform fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0270 (range 0.0220..0.0270) n_tr=85,763 1s
+  [lgbm__rank_uniform fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0384 (range 0.0362..0.0384) n_tr=99,605 1s
+  [lgbm__rank_uniform fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0180 (range 0.0127..0.0180) n_tr=113,269 1s
+  IC 0.0221 (t 1.40) D10-D1 -0.11%/m | lc_t10 IR gross -0.32 net -0.40 | beta -0.03 | 11s
+
+==============================================================================
+SUMMARY
+==============================================================================
+               key    ic     t  d10_d1  ir_gross_t10  ir_net_t10  ir_gross_free
+       et__control 0.017 1.126  -0.193        -0.389      -0.477         -0.116
+  et__rank_uniform 0.021 1.313  -0.116        -0.234      -0.315         -0.015
+     lgbm__control 0.016 1.006  -0.332        -0.351      -0.437         -0.447
+lgbm__rank_uniform 0.022 1.397  -0.112        -0.323      -0.405         -0.182
+
+Paired monthly IC vs control (same model family):
+model          arm    ic  ic_control  mean_diff     t  ir_gross  ir_gross_control
+   et rank_uniform 0.021       0.017      0.004 0.767    -0.234            -0.389
+ lgbm rank_uniform 0.022       0.016      0.006 1.485    -0.323            -0.351
+
+Adoption rules: {"rank_uniform": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}}

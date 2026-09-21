@@ -1,0 +1,32 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+BASELINE composite: IC 0.0366 (t 1.91); lc_t10 IR gross 0.615 / net 0.541   [published: {'comp_ic': 0.0366, 'comp_ir_gross': 0.61, 'comp_ir_net': 0.54}]
+  8-K coverage of universe test rows: 0.944
+Truncation-invariance test: {"passed": true, "dates": ["2025-09-30", "2024-07-31"], "n_values_compared": 64215, "max_abs_diff_by_feature": {"count_12m": 0.0, "abnormal_3m": 0.0, "decayed_all": 0.0, "no_news_month": 0.0, "bad_decayed": 0.0, "bad_flag_3m": 0.0, "mgmt_decayed": 0.0, "eap_same_month_ly": 0.0, "eap_any_quarter": 0.0}}
+  k8_count_12m                 block IC -0.0013 (t -0.18) | comp 0.0366 -> 0.0330 gain -0.0036 (paired t -1.05) | resid IC -0.0073 (t -0.90) | perm p 0.871 | IR gross 0.50 net 0.43
+  k8_abnormal_3m               block IC +0.0019 (t +0.46) | comp 0.0366 -> 0.0366 gain -0.0000 (paired t -0.01) | resid IC +0.0028 (t +0.69) | perm p 0.239 | IR gross 0.44 net 0.36
+  k8_decayed_all_hl6           block IC -0.0002 (t -0.02) | comp 0.0366 -> 0.0333 gain -0.0033 (paired t -0.91) | resid IC -0.0067 (t -0.77) | perm p 0.831 | IR gross 0.48 net 0.40
+  rev_nonews                   block IC -0.0050 (t -0.52) | comp 0.0366 -> 0.0337 gain -0.0029 (paired t -0.97) | resid IC +0.0007 (t +0.07) | perm p 0.970 | IR gross 0.48 net 0.41
+  rev_news_control             block IC -0.0084 (t -0.77) | comp 0.0366 -> 0.0328 gain -0.0038 (paired t -1.00) | resid IC -0.0081 (t -0.88) | perm p 0.796 | IR gross 0.58 net 0.51
+  bad_event_decayed_hl6        block IC +0.0043 (t +0.67) | comp 0.0366 -> 0.0360 gain -0.0006 (paired t -0.38) | resid IC -0.0105 (t -1.65) | perm p 0.577 | IR gross 0.64 net 0.56
+  bad_event_flag_3m            block IC -0.0013 (t -0.23) | comp 0.0366 -> 0.0362 gain -0.0005 (paired t -1.48) | resid IC -0.0315 (t -1.87) | perm p 0.846 | IR gross 0.70 net 0.62
+  mgmt_5_02_decayed_hl6        block IC +0.0125 (t +2.87) | comp 0.0366 -> 0.0377 gain +0.0010 (paired t +0.47) | resid IC +0.0084 (t +1.78) | perm p 0.010 | IR gross 0.92 net 0.84
+  eap_same_month_last_year     block IC -0.0004 (t -0.06) | comp 0.0366 -> 0.0348 gain -0.0018 (paired t -1.13) | resid IC -0.0038 (t -0.37) | perm p 0.861 | IR gross 0.59 net 0.51
+  eap_any_quarter              block IC -0.0071 (t -0.99) | comp 0.0366 -> 0.0334 gain -0.0033 (paired t -1.68) | resid IC +0.0075 (t +0.69) | perm p 0.990 | IR gross 0.73 net 0.65
+
+==============================================================================
+SUMMARY (10 blocks tested; Bonferroni factor 10)
+==============================================================================
+                    name  kind  sign  coverage  block_ic  block_ic_t  comp_ic  comp_plus_block_ic    gain  gain_t  resid_ic  resid_ic_t  corr_with_comp  perm_p  gain_small  gain_mid  gain_large  ir_gross  ir_net  d_ir_gross kill_gain_t_lt_1 kill_only_small_tercile  perm_p_bonferroni passes
+            k8_count_12m block    -1    0.9439   -0.0013     -0.1775   0.0366              0.0330 -0.0036 -1.0470   -0.0073     -0.8956          0.1302  0.8706     -0.0019   -0.0008     -0.0066    0.5032  0.4253     -0.1116             True                    True             1.0000  False
+          k8_abnormal_3m block    -1    0.9439    0.0019      0.4574   0.0366              0.0366 -0.0000 -0.0117    0.0028      0.6851         -0.0169  0.2388     -0.0046   -0.0002      0.0054    0.4398  0.3639     -0.1750             True                   False             1.0000  False
+      k8_decayed_all_hl6 block    -1    0.9439   -0.0002     -0.0234   0.0366              0.0333 -0.0033 -0.9052   -0.0067     -0.7691          0.1298  0.8308     -0.0015    0.0003     -0.0069    0.4751  0.3970     -0.1396             True                   False             1.0000  False
+              rev_nonews block     1    0.9439   -0.0050     -0.5169   0.0366              0.0337 -0.0029 -0.9665    0.0007      0.0667          0.0264  0.9701     -0.0044   -0.0006     -0.0034    0.4761  0.4061     -0.1386             True                    True             1.0000  False
+        rev_news_control block     1    0.9439   -0.0084     -0.7710   0.0366              0.0328 -0.0038 -1.0040   -0.0081     -0.8818          0.0240  0.7960     -0.0016   -0.0052     -0.0060    0.5780  0.5062     -0.0368             True                    True             1.0000  False
+   bad_event_decayed_hl6 block    -1    0.9439    0.0043      0.6730   0.0366              0.0360 -0.0006 -0.3850   -0.0105     -1.6475          0.1002  0.5771     -0.0017   -0.0012      0.0024    0.6384  0.5591      0.0236             True                   False             1.0000  False
+       bad_event_flag_3m block    -1    0.9439   -0.0013     -0.2324   0.0366              0.0362 -0.0005 -1.4841   -0.0315     -1.8736          0.0969  0.8458     -0.0011   -0.0005      0.0004    0.6970  0.6233      0.0822             True                   False             1.0000  False
+   mgmt_5_02_decayed_hl6 block    -1    0.9439    0.0125      2.8695   0.0366              0.0377  0.0010  0.4750    0.0084      1.7824          0.0893  0.0100      0.0023    0.0022      0.0015    0.9152  0.8350      0.3004             True                   False             0.0995  False
+eap_same_month_last_year block     1    0.9439   -0.0004     -0.0595   0.0366              0.0348 -0.0018 -1.1275   -0.0038     -0.3670         -0.0058  0.8607     -0.0054    0.0010      0.0001    0.5851  0.5086     -0.0296             True                   False             1.0000  False
+         eap_any_quarter block     1    0.9439   -0.0071     -0.9907   0.0366              0.0334 -0.0033 -1.6763    0.0075      0.6871          0.0026  0.9900     -0.0052   -0.0006     -0.0043    0.7306  0.6545      0.1158             True                    True             1.0000  False
+
+done in 1.3 min

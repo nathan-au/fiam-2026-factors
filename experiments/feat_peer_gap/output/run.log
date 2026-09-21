@@ -1,0 +1,19 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+BASELINE composite: IC 0.0366 (t 1.91); lc_t10 IR gross 0.615 / net 0.541   [published: {'comp_ic': 0.0366, 'comp_ir_gross': 0.61, 'comp_ir_net': 0.54}]
+Truncation-invariance test: {"passed": true, "dates": ["2025-09-30", "2024-07-31"], "n_values_compared": 15615, "max_abs_diff_by_feature": {"peer_ret_1m": 0.0, "peer_gap_1m": 0.0, "peer_ret_12_1": 0.0, "ind_ret_1m": 0.0}}
+  peer_ret_1m                  block IC +0.0079 (t +0.47) | comp 0.0366 -> 0.0371 gain +0.0005 (paired t +0.07) | resid IC +0.0070 (t +0.45) | perm p 0.114 | IR gross 0.70 net 0.63
+  peer_gap_1m                  block IC -0.0071 (t -1.02) | comp 0.0366 -> 0.0325 gain -0.0042 (paired t -1.54) | resid IC -0.0066 (t -0.99) | perm p 0.990 | IR gross 0.43 net 0.36
+  peer_ret_12_1                block IC -0.0018 (t -0.11) | comp 0.0366 -> 0.0361 gain -0.0005 (paired t -0.09) | resid IC -0.0031 (t -0.20) | perm p 0.075 | IR gross 0.90 net 0.82
+  ind_ret_1m_control           block IC +0.0003 (t +0.02) | comp 0.0366 -> 0.0346 gain -0.0020 (paired t -0.35) | resid IC -0.0014 (t -0.09) | perm p 0.104 | IR gross 0.67 net 0.59
+
+==============================================================================
+SUMMARY (4 blocks tested; Bonferroni factor 4)
+==============================================================================
+              name  kind  sign  coverage  block_ic  block_ic_t  comp_ic  comp_plus_block_ic    gain  gain_t  resid_ic  resid_ic_t  corr_with_comp  perm_p  gain_small  gain_mid  gain_large  ir_gross  ir_net  d_ir_gross kill_gain_t_lt_1 kill_only_small_tercile  perm_p_bonferroni passes
+       peer_ret_1m block     1    0.9817    0.0079      0.4750   0.0366              0.0371  0.0005  0.0744    0.0070      0.4541         -0.0258  0.1144      0.0005   -0.0008      0.0032    0.7025  0.6254      0.0877             True                   False             0.4577  False
+       peer_gap_1m block    -1    0.9817   -0.0071     -1.0165   0.0366              0.0325 -0.0042 -1.5449   -0.0066     -0.9882          0.0140  0.9900     -0.0028   -0.0069     -0.0031    0.4280  0.3564     -0.1868             True                    True             1.0000  False
+     peer_ret_12_1 block     1    0.9812   -0.0018     -0.1075   0.0366              0.0361 -0.0005 -0.0894   -0.0031     -0.2015          0.0365  0.0746     -0.0030   -0.0002      0.0049    0.9005  0.8217      0.2857             True                   False             0.2985  False
+ind_ret_1m_control block     1    0.9836    0.0003      0.0190   0.0366              0.0346 -0.0020 -0.3539   -0.0014     -0.0918         -0.0331  0.1045     -0.0003   -0.0031     -0.0013    0.6669  0.5894      0.0521             True                    True             0.4179  False
+
+done in 0.9 min

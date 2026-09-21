@@ -1,0 +1,16 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+Shapley IC by group (sum 0.0366 = full IC 0.0366): {"value": 0.0197, "profitability": 0.0041, "investment_issuance_accruals": 0.007, "quality": 0.0028, "surprise": 0.0001, "volatility_beta": 0.0026, "liquidity": 0.0004}
+Leave-one-group-out IC: {"value": 0.0276, "profitability": 0.0377, "investment_issuance_accruals": 0.0342, "quality": 0.0388, "surprise": 0.036, "volatility_beta": 0.038, "liquidity": 0.0365}
+IC definitions: {"raw": {"ic": 0.03664503081739846, "t": 1.914576303308223}, "sector_neutral": {"ic": 0.03305335056108618, "t": 1.9571396870007283}, "risk_model_residual (size, momentum, beta, ivol, liquidity, value + sector)": {"ic": 0.025200474688865118, "t": 2.665473283634496}, "mean_monthly_r2_of_composite_on_styles_and_sectors": 0.5387315324579935}
+IC by size tercile: {"small": {"raw": 0.051166522069074474, "risk_model_residual": 0.028175838626274197}, "mid": {"raw": 0.0358579364761016, "risk_model_residual": 0.03098863582067666}, "large": {"raw": 0.014525598233123676, "risk_model_residual": 0.016682351078346355}}
+Composite vs value+quality screen: {"screen_ic": 0.031143395080846136, "screen_ic_t": 2.040250842998856, "composite_ic": 0.03664503081739846, "paired_composite_minus_screen": {"mean_diff": 0.005501635736552331, "t": 0.4151047998994411, "share_a_better": 0.5}, "mean_rank_corr_composite_vs_screen": 0.5379089326119669, "mean_top_quintile_overlap_share (random = 0.20)": 0.4140709950497208}
+  drop value                         : IC 0.0276 IR gross +0.50 net +0.42
+  drop profitability                 : IC 0.0377 IR gross +0.63 net +0.56
+  drop investment_issuance_accruals  : IC 0.0342 IR gross +0.60 net +0.52
+  drop quality                       : IC 0.0388 IR gross +0.64 net +0.57
+  drop surprise                      : IC 0.0360 IR gross +0.65 net +0.58
+  drop volatility_beta               : IC 0.0380 IR gross +0.76 net +0.68
+  drop liquidity                     : IC 0.0365 IR gross +0.58 net +0.51
+
+done in 0.6 min

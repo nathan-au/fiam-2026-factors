@@ -1,0 +1,88 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+
+==============================================================================
+et__control  (target=raw, winsor=True, seed=42)
+==============================================================================
+  [et__control fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0065 (range -0.0161..-0.0065) n_tr=46,835 4s
+  [et__control fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0401 (range 0.0332..0.0401) n_tr=59,211 5s
+  [et__control fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0315 (range -0.0384..-0.0315) n_tr=71,366 6s
+  [et__control fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0230 (range 0.0185..0.0230) n_tr=85,763 7s
+  [et__control fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0288 (range 0.0227..0.0288) n_tr=99,605 9s
+  [et__control fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0119 (range 0.0073..0.0119) n_tr=113,269 10s
+  IC 0.0164 (t 1.10) D10-D1 -0.17%/m | lc_t10 IR gross -0.22 net -0.30 | beta -0.09 | 44s
+
+==============================================================================
+et__rank_uniform  (target=rank_uniform, winsor=False, seed=42)
+==============================================================================
+  [et__rank_uniform fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0009 (range -0.0122..0.0009) n_tr=46,835 4s
+  [et__rank_uniform fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0410 (range 0.0286..0.0410) n_tr=59,211 5s
+  [et__rank_uniform fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0227 (range -0.0286..-0.0227) n_tr=71,366 6s
+  [et__rank_uniform fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 300} val_ic=0.0262 (range 0.0225..0.0262) n_tr=85,763 7s
+  [et__rank_uniform fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0370 (range 0.0335..0.0370) n_tr=99,605 9s
+  [et__rank_uniform fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0193 (range 0.0144..0.0193) n_tr=113,269 10s
+  IC 0.0222 (t 1.44) D10-D1 -0.08%/m | lc_t10 IR gross -0.14 net -0.22 | beta +0.01 | 44s
+
+==============================================================================
+et__rank_gauss  (target=rank_gauss, winsor=False, seed=42)
+==============================================================================
+  [et__rank_gauss fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0061 (range -0.0086..0.0061) n_tr=46,835 4s
+  [et__rank_gauss fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0390 (range 0.0310..0.0390) n_tr=59,211 5s
+  [et__rank_gauss fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0222 (range -0.0282..-0.0222) n_tr=71,366 6s
+  [et__rank_gauss fold 2024] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0270 (range 0.0246..0.0270) n_tr=85,763 7s
+  [et__rank_gauss fold 2025] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0374 (range 0.0326..0.0374) n_tr=99,605 9s
+  [et__rank_gauss fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0161 (range 0.0113..0.0161) n_tr=113,269 11s
+  IC 0.0198 (t 1.32) D10-D1 -0.10%/m | lc_t10 IR gross -0.36 net -0.44 | beta -0.07 | 45s
+
+==============================================================================
+lgbm__control  (target=raw, winsor=True, seed=42)
+==============================================================================
+  [lgbm__control fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0024 (range -0.0179..-0.0024) n_tr=46,835 1s
+  [lgbm__control fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0446 (range 0.0351..0.0446) n_tr=59,211 1s
+  [lgbm__control fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0295 (range -0.0428..-0.0295) n_tr=71,366 1s
+  [lgbm__control fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0199 (range 0.0167..0.0199) n_tr=85,763 1s
+  [lgbm__control fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0323 (range 0.0292..0.0323) n_tr=99,605 1s
+  [lgbm__control fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0127 (range 0.0085..0.0127) n_tr=113,269 1s
+  IC 0.0160 (t 1.04) D10-D1 -0.18%/m | lc_t10 IR gross -0.17 net -0.25 | beta -0.12 | 11s
+
+==============================================================================
+lgbm__rank_uniform  (target=rank_uniform, winsor=False, seed=42)
+==============================================================================
+  [lgbm__rank_uniform fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0005 (range -0.0137..0.0005) n_tr=46,835 1s
+  [lgbm__rank_uniform fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0436 (range 0.0292..0.0436) n_tr=59,211 1s
+  [lgbm__rank_uniform fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0213 (range -0.0287..-0.0213) n_tr=71,366 1s
+  [lgbm__rank_uniform fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=0.0257 (range 0.0230..0.0257) n_tr=85,763 1s
+  [lgbm__rank_uniform fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=0.0393 (range 0.0388..0.0393) n_tr=99,605 1s
+  [lgbm__rank_uniform fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0148 (range 0.0101..0.0148) n_tr=113,269 1s
+  IC 0.0210 (t 1.38) D10-D1 -0.10%/m | lc_t10 IR gross -0.23 net -0.31 | beta -0.05 | 10s
+
+==============================================================================
+lgbm__rank_gauss  (target=rank_gauss, winsor=False, seed=42)
+==============================================================================
+  [lgbm__rank_gauss fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0040 (range -0.0090..0.0040) n_tr=46,835 1s
+  [lgbm__rank_gauss fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=0.0445 (range 0.0299..0.0445) n_tr=59,211 1s
+  [lgbm__rank_gauss fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0232 (range -0.0288..-0.0232) n_tr=71,366 1s
+  [lgbm__rank_gauss fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0244 (range 0.0190..0.0244) n_tr=85,763 1s
+  [lgbm__rank_gauss fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0410 (range 0.0349..0.0410) n_tr=99,605 1s
+  [lgbm__rank_gauss fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0153 (range 0.0082..0.0153) n_tr=113,269 1s
+  IC 0.0191 (t 1.28) D10-D1 -0.07%/m | lc_t10 IR gross -0.25 net -0.34 | beta -0.07 | 11s
+
+==============================================================================
+SUMMARY
+==============================================================================
+               key    ic     t  d10_d1  ir_gross_t10  ir_net_t10  ir_gross_free
+       et__control 0.016 1.102  -0.170        -0.216      -0.302         -0.182
+  et__rank_uniform 0.022 1.442  -0.084        -0.141      -0.223         -0.099
+    et__rank_gauss 0.020 1.320  -0.098        -0.361      -0.441         -0.171
+     lgbm__control 0.016 1.044  -0.175        -0.167      -0.251         -0.264
+lgbm__rank_uniform 0.021 1.376  -0.104        -0.225      -0.306         -0.322
+  lgbm__rank_gauss 0.019 1.277  -0.067        -0.253      -0.336         -0.179
+
+Paired monthly IC vs control (same model family):
+model          arm    ic  ic_control  mean_diff     t  ir_gross  ir_gross_control
+   et rank_uniform 0.022       0.016      0.006 1.379    -0.141            -0.216
+   et   rank_gauss 0.020       0.016      0.003 0.844    -0.361            -0.216
+ lgbm rank_uniform 0.021       0.016      0.005 1.283    -0.225            -0.167
+ lgbm   rank_gauss 0.019       0.016      0.003 0.730    -0.253            -0.167
+
+Adoption rules: {"rank_uniform": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "rank_gauss": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}}

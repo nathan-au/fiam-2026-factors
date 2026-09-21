@@ -1,0 +1,192 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+
+==============================================================================
+et__control  ({}, seed=42)
+==============================================================================
+  [et__control fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0065 (range -0.0161..-0.0065) n_tr=46,835 4s
+  [et__control fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0401 (range 0.0332..0.0401) n_tr=59,211 5s
+  [et__control fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0315 (range -0.0384..-0.0315) n_tr=71,366 6s
+  [et__control fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0230 (range 0.0185..0.0230) n_tr=85,763 7s
+  [et__control fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0288 (range 0.0227..0.0288) n_tr=99,605 10s
+  [et__control fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0119 (range 0.0073..0.0119) n_tr=113,269 12s
+  IC 0.0164 (t 1.10) D10-D1 -0.17%/m | lc_t10 IR gross -0.22 net -0.30 | beta -0.09 | 49s
+
+==============================================================================
+et__w_sqrt_mcap  ({'weight': 'sqrt_mcap'}, seed=42)
+==============================================================================
+  [et__w_sqrt_mcap fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0078 (range -0.0157..-0.0078) n_tr=46,835 7s
+  [et__w_sqrt_mcap fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0424 (range 0.0332..0.0424) n_tr=59,211 10s
+  [et__w_sqrt_mcap fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0340 (range -0.0446..-0.0340) n_tr=71,366 12s
+  [et__w_sqrt_mcap fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0197 (range 0.0136..0.0197) n_tr=85,763 16s
+  [et__w_sqrt_mcap fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0265 (range 0.0211..0.0265) n_tr=99,605 20s
+  [et__w_sqrt_mcap fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0146 (range 0.0119..0.0146) n_tr=113,269 23s
+  IC 0.0127 (t 0.84) D10-D1 -0.40%/m | lc_t10 IR gross -0.28 net -0.37 | beta -0.11 | 93s
+
+==============================================================================
+et__w_mcap  ({'weight': 'mcap'}, seed=42)
+==============================================================================
+  [et__w_mcap fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0104 (range -0.0152..-0.0104) n_tr=46,835 5s
+  [et__w_mcap fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0418 (range 0.0331..0.0418) n_tr=59,211 6s
+  [et__w_mcap fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0360 (range -0.0510..-0.0360) n_tr=71,366 7s
+  [et__w_mcap fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0168 (range 0.0091..0.0168) n_tr=85,763 9s
+  [et__w_mcap fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0251 (range 0.0200..0.0251) n_tr=99,605 10s
+  [et__w_mcap fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0170 (range 0.0136..0.0170) n_tr=113,269 11s
+  IC 0.0106 (t 0.69) D10-D1 -0.42%/m | lc_t10 IR gross -0.31 net -0.40 | beta -0.07 | 52s
+
+==============================================================================
+et__w_sqrt_dolvol  ({'weight': 'sqrt_dolvol'}, seed=42)
+==============================================================================
+  [et__w_sqrt_dolvol fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0063 (range -0.0132..-0.0063) n_tr=46,835 5s
+  [et__w_sqrt_dolvol fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0452 (range 0.0365..0.0452) n_tr=59,211 6s
+  [et__w_sqrt_dolvol fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0426 (range -0.0553..-0.0426) n_tr=71,366 7s
+  [et__w_sqrt_dolvol fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0148 (range 0.0090..0.0148) n_tr=85,763 9s
+  [et__w_sqrt_dolvol fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0242 (range 0.0205..0.0242) n_tr=99,605 11s
+  [et__w_sqrt_dolvol fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0123 (range 0.0091..0.0123) n_tr=113,269 13s
+  IC 0.0093 (t 0.61) D10-D1 -0.45%/m | lc_t10 IR gross -0.48 net -0.57 | beta -0.07 | 54s
+
+==============================================================================
+et__all_unweighted  ({'train': 'all'}, seed=42)
+==============================================================================
+  [et__all_unweighted fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0055 (range -0.0231..-0.0055) n_tr=169,285 22s
+  [et__all_unweighted fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0429 (range 0.0282..0.0429) n_tr=211,799 42s
+  [et__all_unweighted fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=-0.0238 (range -0.0367..-0.0238) n_tr=254,392 45s
+  [et__all_unweighted fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0317 (range 0.0243..0.0317) n_tr=302,257 58s
+  [et__all_unweighted fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0356 (range 0.0231..0.0356) n_tr=354,485 69s
+  [et__all_unweighted fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0091 (range 0.0051..0.0091) n_tr=403,962 79s
+  IC 0.0204 (t 1.51) D10-D1 -0.03%/m | lc_t10 IR gross -0.03 net -0.11 | beta -0.14 | 317s
+
+==============================================================================
+et__all_w_sqrt_mcap  ({'train': 'all', 'weight': 'sqrt_mcap'}, seed=42)
+==============================================================================
+  [et__all_w_sqrt_mcap fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0073 (range -0.0169..-0.0073) n_tr=169,285 22s
+  [et__all_w_sqrt_mcap fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0428 (range 0.0360..0.0428) n_tr=211,799 30s
+  [et__all_w_sqrt_mcap fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0448 (range -0.0498..-0.0448) n_tr=254,392 42s
+  [et__all_w_sqrt_mcap fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0197 (range 0.0171..0.0197) n_tr=302,257 56s
+  [et__all_w_sqrt_mcap fold 2025] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0281 (range 0.0193..0.0281) n_tr=354,485 82s
+  [et__all_w_sqrt_mcap fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0112 (range 0.0089..0.0112) n_tr=403,962 104s
+  IC 0.0144 (t 1.01) D10-D1 -0.00%/m | lc_t10 IR gross -0.29 net -0.38 | beta -0.13 | 340s
+
+==============================================================================
+et__all_w_mcap  ({'train': 'all', 'weight': 'mcap'}, seed=42)
+==============================================================================
+  [et__all_w_mcap fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0075 (range -0.0141..-0.0075) n_tr=169,285 27s
+  [et__all_w_mcap fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0420 (range 0.0379..0.0420) n_tr=211,799 33s
+  [et__all_w_mcap fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0424 (range -0.0581..-0.0424) n_tr=254,392 44s
+  [et__all_w_mcap fold 2024] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0167 (range 0.0090..0.0167) n_tr=302,257 54s
+  [et__all_w_mcap fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0228 (range 0.0163..0.0228) n_tr=354,485 77s
+  [et__all_w_mcap fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0132 (range 0.0097..0.0132) n_tr=403,962 87s
+  IC 0.0098 (t 0.70) D10-D1 -0.21%/m | lc_t10 IR gross -0.04 net -0.13 | beta -0.10 | 327s
+
+==============================================================================
+lgbm__control  ({}, seed=42)
+==============================================================================
+  [lgbm__control fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0024 (range -0.0179..-0.0024) n_tr=46,835 1s
+  [lgbm__control fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0446 (range 0.0351..0.0446) n_tr=59,211 1s
+  [lgbm__control fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0295 (range -0.0428..-0.0295) n_tr=71,366 1s
+  [lgbm__control fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0199 (range 0.0167..0.0199) n_tr=85,763 1s
+  [lgbm__control fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0323 (range 0.0292..0.0323) n_tr=99,605 1s
+  [lgbm__control fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0127 (range 0.0085..0.0127) n_tr=113,269 1s
+  IC 0.0160 (t 1.04) D10-D1 -0.18%/m | lc_t10 IR gross -0.17 net -0.25 | beta -0.12 | 11s
+
+==============================================================================
+lgbm__w_sqrt_mcap  ({'weight': 'sqrt_mcap'}, seed=42)
+==============================================================================
+  [lgbm__w_sqrt_mcap fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0042 (range -0.0189..-0.0042) n_tr=46,835 1s
+  [lgbm__w_sqrt_mcap fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0463 (range 0.0323..0.0463) n_tr=59,211 1s
+  [lgbm__w_sqrt_mcap fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0408 (range -0.0511..-0.0408) n_tr=71,366 1s
+  [lgbm__w_sqrt_mcap fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0131 (range 0.0076..0.0131) n_tr=85,763 1s
+  [lgbm__w_sqrt_mcap fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=0.0285 (range 0.0258..0.0285) n_tr=99,605 1s
+  [lgbm__w_sqrt_mcap fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0127 (range 0.0070..0.0127) n_tr=113,269 1s
+  IC 0.0111 (t 0.69) D10-D1 -0.28%/m | lc_t10 IR gross -0.43 net -0.52 | beta -0.10 | 11s
+
+==============================================================================
+lgbm__w_mcap  ({'weight': 'mcap'}, seed=42)
+==============================================================================
+  [lgbm__w_mcap fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0043 (range -0.0160..-0.0043) n_tr=46,835 1s
+  [lgbm__w_mcap fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0431 (range 0.0329..0.0431) n_tr=59,211 1s
+  [lgbm__w_mcap fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0494 (range -0.0564..-0.0494) n_tr=71,366 1s
+  [lgbm__w_mcap fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=0.0067 (range -0.0016..0.0067) n_tr=85,763 1s
+  [lgbm__w_mcap fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0264 (range 0.0220..0.0264) n_tr=99,605 1s
+  [lgbm__w_mcap fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0159 (range 0.0072..0.0159) n_tr=113,269 2s
+  IC 0.0074 (t 0.46) D10-D1 -0.44%/m | lc_t10 IR gross -0.37 net -0.47 | beta -0.07 | 12s
+
+==============================================================================
+lgbm__w_sqrt_dolvol  ({'weight': 'sqrt_dolvol'}, seed=42)
+==============================================================================
+  [lgbm__w_sqrt_dolvol fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0044 (range -0.0208..-0.0044) n_tr=46,835 1s
+  [lgbm__w_sqrt_dolvol fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0482 (range 0.0364..0.0482) n_tr=59,211 1s
+  [lgbm__w_sqrt_dolvol fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0474 (range -0.0583..-0.0474) n_tr=71,366 1s
+  [lgbm__w_sqrt_dolvol fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0096 (range 0.0028..0.0096) n_tr=85,763 1s
+  [lgbm__w_sqrt_dolvol fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=0.0270 (range 0.0232..0.0270) n_tr=99,605 1s
+  [lgbm__w_sqrt_dolvol fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0115 (range 0.0062..0.0115) n_tr=113,269 2s
+  IC 0.0065 (t 0.39) D10-D1 -0.26%/m | lc_t10 IR gross -0.46 net -0.54 | beta -0.09 | 12s
+
+==============================================================================
+lgbm__all_unweighted  ({'train': 'all'}, seed=42)
+==============================================================================
+  [lgbm__all_unweighted fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=-0.0030 (range -0.0274..-0.0030) n_tr=169,285 2s
+  [lgbm__all_unweighted fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0403 (range 0.0188..0.0403) n_tr=211,799 2s
+  [lgbm__all_unweighted fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=-0.0063 (range -0.0249..-0.0063) n_tr=254,392 2s
+  [lgbm__all_unweighted fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0460 (range 0.0290..0.0460) n_tr=302,257 3s
+  [lgbm__all_unweighted fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0453 (range 0.0377..0.0453) n_tr=354,485 3s
+  [lgbm__all_unweighted fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0198 (range 0.0048..0.0198) n_tr=403,962 3s
+  IC 0.0230 (t 1.83) D10-D1 +0.26%/m | lc_t10 IR gross 0.08 net -0.00 | beta -0.06 | 20s
+
+==============================================================================
+lgbm__all_w_sqrt_mcap  ({'train': 'all', 'weight': 'sqrt_mcap'}, seed=42)
+==============================================================================
+  [lgbm__all_w_sqrt_mcap fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0032 (range -0.0164..-0.0032) n_tr=169,285 2s
+  [lgbm__all_w_sqrt_mcap fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0455 (range 0.0344..0.0455) n_tr=211,799 2s
+  [lgbm__all_w_sqrt_mcap fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=-0.0476 (range -0.0551..-0.0476) n_tr=254,392 2s
+  [lgbm__all_w_sqrt_mcap fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0199 (range 0.0116..0.0199) n_tr=302,257 3s
+  [lgbm__all_w_sqrt_mcap fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0377 (range 0.0295..0.0377) n_tr=354,485 3s
+  [lgbm__all_w_sqrt_mcap fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0137 (range 0.0032..0.0137) n_tr=403,962 3s
+  IC 0.0116 (t 0.77) D10-D1 -0.24%/m | lc_t10 IR gross -0.30 net -0.38 | beta -0.13 | 19s
+
+==============================================================================
+lgbm__all_w_mcap  ({'train': 'all', 'weight': 'mcap'}, seed=42)
+==============================================================================
+  [lgbm__all_w_mcap fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0014 (range -0.0155..-0.0014) n_tr=169,285 2s
+  [lgbm__all_w_mcap fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=0.0454 (range 0.0358..0.0454) n_tr=211,799 2s
+  [lgbm__all_w_mcap fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0558 (range -0.0716..-0.0558) n_tr=254,392 2s
+  [lgbm__all_w_mcap fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0048 (range 0.0011..0.0048) n_tr=302,257 3s
+  [lgbm__all_w_mcap fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0284 (range 0.0251..0.0284) n_tr=354,485 3s
+  [lgbm__all_w_mcap fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0145 (range 0.0051..0.0145) n_tr=403,962 3s
+  IC 0.0078 (t 0.51) D10-D1 -0.02%/m | lc_t10 IR gross -0.27 net -0.36 | beta -0.06 | 19s
+
+==============================================================================
+SUMMARY
+==============================================================================
+                  key    ic     t  d10_d1  ir_gross_t10  ir_net_t10  ir_gross_free
+          et__control 0.016 1.102  -0.170        -0.216      -0.302         -0.182
+      et__w_sqrt_mcap 0.013 0.836  -0.398        -0.284      -0.372         -0.271
+           et__w_mcap 0.011 0.687  -0.419        -0.306      -0.400         -0.300
+    et__w_sqrt_dolvol 0.009 0.608  -0.446        -0.482      -0.569         -0.409
+   et__all_unweighted 0.020 1.507  -0.029        -0.026      -0.109         -0.032
+  et__all_w_sqrt_mcap 0.014 1.015  -0.001        -0.289      -0.381         -0.096
+       et__all_w_mcap 0.010 0.697  -0.208        -0.035      -0.130         -0.262
+        lgbm__control 0.016 1.044  -0.175        -0.167      -0.251         -0.264
+    lgbm__w_sqrt_mcap 0.011 0.690  -0.278        -0.428      -0.515         -0.450
+         lgbm__w_mcap 0.007 0.457  -0.444        -0.371      -0.472         -0.518
+  lgbm__w_sqrt_dolvol 0.006 0.394  -0.258        -0.455      -0.538         -0.423
+ lgbm__all_unweighted 0.023 1.830   0.259         0.079      -0.000          0.152
+lgbm__all_w_sqrt_mcap 0.012 0.767  -0.242        -0.303      -0.384         -0.148
+     lgbm__all_w_mcap 0.008 0.514  -0.020        -0.273      -0.360         -0.137
+
+Paired monthly IC vs control (same model family):
+model             arm    ic  ic_control  mean_diff      t  ir_gross  ir_gross_control
+   et     w_sqrt_mcap 0.013       0.016     -0.004 -1.582    -0.284            -0.216
+   et          w_mcap 0.011       0.016     -0.006 -1.430    -0.306            -0.216
+   et   w_sqrt_dolvol 0.009       0.016     -0.007 -2.746    -0.482            -0.216
+   et  all_unweighted 0.020       0.016      0.004  1.106    -0.026            -0.216
+   et all_w_sqrt_mcap 0.014       0.016     -0.002 -0.594    -0.289            -0.216
+   et      all_w_mcap 0.010       0.016     -0.007 -1.438    -0.035            -0.216
+ lgbm     w_sqrt_mcap 0.011       0.016     -0.005 -1.968    -0.428            -0.167
+ lgbm          w_mcap 0.007       0.016     -0.009 -1.999    -0.371            -0.167
+ lgbm   w_sqrt_dolvol 0.006       0.016     -0.010 -2.934    -0.455            -0.167
+ lgbm  all_unweighted 0.023       0.016      0.007  0.942     0.079            -0.167
+ lgbm all_w_sqrt_mcap 0.012       0.016     -0.004 -1.314    -0.303            -0.167
+ lgbm      all_w_mcap 0.008       0.016     -0.008 -1.857    -0.273            -0.167
+
+Adoption rules: {"w_sqrt_mcap": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "w_mcap": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "w_sqrt_dolvol": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "all_unweighted": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "all_w_sqrt_mcap": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "all_w_mcap": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}}

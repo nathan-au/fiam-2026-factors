@@ -1,0 +1,25 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+BASELINE composite: IC 0.0366 (t 1.91); lc_t10 IR gross 0.615 / net 0.541   [published: {'comp_ic': 0.0366, 'comp_ir_gross': 0.61, 'comp_ir_net': 0.54}]
+Truncation-invariance test: {"passed": true, "dates": ["2024-07-31", "2023-11-30", "2025-08-31"], "n_values_compared": 100461, "max_abs_diff_by_feature": {"d3_qmj": 0.0, "d12_qmj": 0.0, "d3_gp_at": 0.0, "d12_gp_at": 0.0, "d3_be_me": 0.0, "d12_be_me": 0.0, "d3_niq_su": 0.0, "d12_niq_su": 0.0, "d3_at_gr1": 0.0, "d12_at_gr1": 0.0}}
+  chg12m_composite             block IC +0.0010 (t +0.11) | comp 0.0366 -> 0.0317 gain -0.0050 (paired t -1.47) | resid IC -0.0110 (t -1.36) | perm p 0.970 | IR gross 0.56 net 0.49
+  chg3m_composite              block IC +0.0082 (t +1.05) | comp 0.0366 -> 0.0355 gain -0.0012 (paired t -0.36) | resid IC +0.0010 (t +0.13) | perm p 0.861 | IR gross 0.61 net 0.54
+  d12_qmj                      block IC +0.0075 (t +0.82) | comp 0.0366 -> 0.0346 gain -0.0020 (paired t -0.60) | resid IC -0.0063 (t -0.67) | perm p 0.269 | IR gross 0.70 net 0.62
+  d12_gp_at                    block IC +0.0090 (t +1.03) | comp 0.0366 -> 0.0350 gain -0.0016 (paired t -0.47) | resid IC -0.0015 (t -0.18) | perm p 0.478 | IR gross 0.66 net 0.58
+  d12_be_me                    block IC -0.0082 (t -0.53) | comp 0.0366 -> 0.0314 gain -0.0052 (paired t -0.93) | resid IC -0.0084 (t -0.58) | perm p 1.000 | IR gross 0.07 net 0.00
+  d12_niq_su                   block IC +0.0011 (t +0.13) | comp 0.0366 -> 0.0330 gain -0.0036 (paired t -1.03) | resid IC -0.0053 (t -0.64) | perm p 0.980 | IR gross 0.70 net 0.63
+  d12_at_gr1                   block IC -0.0053 (t -0.83) | comp 0.0366 -> 0.0326 gain -0.0040 (paired t -1.46) | resid IC -0.0031 (t -0.51) | perm p 0.716 | IR gross 0.60 net 0.52
+
+==============================================================================
+SUMMARY (7 blocks tested; Bonferroni factor 7)
+==============================================================================
+            name  kind  sign  coverage  block_ic  block_ic_t  comp_ic  comp_plus_block_ic    gain  gain_t  resid_ic  resid_ic_t  corr_with_comp  perm_p  gain_small  gain_mid  gain_large  ir_gross  ir_net  d_ir_gross kill_gain_t_lt_1 kill_only_small_tercile  perm_p_bonferroni passes
+chg12m_composite block     1    1.0000    0.0010      0.1121   0.0366              0.0317 -0.0050 -1.4699   -0.0110     -1.3581          0.2493  0.9701     -0.0094   -0.0027     -0.0008    0.5632  0.4862     -0.0515             True                    True             1.0000  False
+ chg3m_composite block     1    1.0000    0.0082      1.0468   0.0366              0.0355 -0.0012 -0.3586    0.0010      0.1271          0.1638  0.8607     -0.0063   -0.0006      0.0038    0.6143  0.5401     -0.0005             True                   False             1.0000  False
+         d12_qmj block     1    0.9302    0.0075      0.8229   0.0366              0.0346 -0.0020 -0.6010   -0.0063     -0.6725          0.3077  0.2687     -0.0043   -0.0016      0.0026    0.6971  0.6220      0.0824             True                   False             1.0000  False
+       d12_gp_at block     1    0.9987    0.0090      1.0272   0.0366              0.0350 -0.0016 -0.4698   -0.0015     -0.1786          0.2017  0.4776     -0.0051   -0.0011      0.0039    0.6559  0.5800      0.0411             True                   False             1.0000  False
+       d12_be_me block     1    0.9510   -0.0082     -0.5254   0.0366              0.0314 -0.0052 -0.9272   -0.0084     -0.5803         -0.0295  1.0000     -0.0094   -0.0010     -0.0065    0.0718  0.0036     -0.5430             True                    True             1.0000  False
+      d12_niq_su block     1    0.9889    0.0011      0.1302   0.0366              0.0330 -0.0036 -1.0263   -0.0053     -0.6366          0.1770  0.9801     -0.0056   -0.0044      0.0004    0.7015  0.6251      0.0867             True                   False             1.0000  False
+      d12_at_gr1 block    -1    0.9981   -0.0053     -0.8301   0.0366              0.0326 -0.0040 -1.4572   -0.0031     -0.5121         -0.0413  0.7164     -0.0040   -0.0030     -0.0041    0.5999  0.5232     -0.0149             True                    True             1.0000  False
+
+done in 1.0 min

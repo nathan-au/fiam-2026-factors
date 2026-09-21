@@ -1,0 +1,20 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+BASELINE composite: IC 0.0366 (t 1.91); lc_t10 IR gross 0.615 / net 0.541   [published: {'comp_ic': 0.0366, 'comp_ir_gross': 0.61, 'comp_ir_net': 0.54}]
+  TNIC top rivals table: 253,542 rows, byears 2019-2023
+Truncation-invariance test: {"passed": true, "dates": ["2025-09-30", "2024-07-31"], "n_values_compared": 18486, "max_abs_diff_by_feature": {"tnic_peer_ret_1m": 0.0, "tnic_peer_gap_1m": 0.0, "tnic_peer_ret_12_1": 0.0, "ind_ret_1m_control": 0.0}}
+  tnic_peer_ret_1m             block IC +0.0091 (t +0.69) | comp 0.0366 -> 0.0368 gain +0.0001 (paired t +0.03) | resid IC +0.0072 (t +0.59) | perm p 0.095 | IR gross 0.75 net 0.68
+  tnic_peer_gap_1m             block IC -0.0113 (t -1.80) | comp 0.0366 -> 0.0320 gain -0.0046 (paired t -2.07) | resid IC -0.0102 (t -1.79) | perm p 0.990 | IR gross 0.51 net 0.44
+  tnic_peer_ret_12_1           block IC -0.0074 (t -0.56) | comp 0.0366 -> 0.0332 gain -0.0035 (paired t -0.83) | resid IC -0.0064 (t -0.53) | perm p 0.502 | IR gross 0.66 net 0.59
+  ind_ret_1m_control           block IC +0.0012 (t +0.08) | comp 0.0366 -> 0.0349 gain -0.0017 (paired t -0.30) | resid IC -0.0006 (t -0.04) | perm p 0.075 | IR gross 0.60 net 0.53
+
+==============================================================================
+SUMMARY (4 blocks tested; Bonferroni factor 4)
+==============================================================================
+              name  kind  sign  coverage  block_ic  block_ic_t  comp_ic  comp_plus_block_ic    gain  gain_t  resid_ic  resid_ic_t  corr_with_comp  perm_p  gain_small  gain_mid  gain_large  ir_gross  ir_net  d_ir_gross kill_gain_t_lt_1 kill_only_small_tercile  perm_p_bonferroni passes
+  tnic_peer_ret_1m block     1    0.7747    0.0091      0.6862   0.0366              0.0368  0.0001  0.0253    0.0072      0.5897         -0.0205  0.0945      0.0001    0.0004      0.0013    0.7500  0.6765      0.1353             True                   False             0.3781  False
+  tnic_peer_gap_1m block    -1    0.7747   -0.0113     -1.8049   0.0366              0.0320 -0.0046 -2.0663   -0.0102     -1.7944          0.0051  0.9900     -0.0047   -0.0066     -0.0031    0.5136  0.4425     -0.1011             True                    True             1.0000  False
+tnic_peer_ret_12_1 block     1    0.7747   -0.0074     -0.5556   0.0366              0.0332 -0.0035 -0.8320   -0.0064     -0.5296          0.0130  0.5025     -0.0039   -0.0043     -0.0005    0.6638  0.5894      0.0491             True                    True             1.0000  False
+ind_ret_1m_control block     1    0.9912    0.0012      0.0777   0.0366              0.0349 -0.0017 -0.2965   -0.0006     -0.0387         -0.0328  0.0746      0.0003   -0.0030     -0.0011    0.6026  0.5254     -0.0121             True                    True             0.2985  False
+
+done in 6.9 min

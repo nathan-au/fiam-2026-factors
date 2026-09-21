@@ -1,0 +1,141 @@
+{
+  "n_test_months": 68,
+  "shapley_ic": {
+    "values": {
+      "value": 0.01974657877474279,
+      "profitability": 0.0040799137736954065,
+      "investment_issuance_accruals": 0.006978382722945767,
+      "quality": 0.0027537472360874785,
+      "surprise": 0.00011120218112674938,
+      "volatility_beta": 0.002606765203805143,
+      "liquidity": 0.000368440924995133
+    },
+    "sum": 0.03664503081739847,
+    "full_composite_ic": 0.03664503081739846,
+    "leave_one_group_out_ic": {
+      "value": 0.02755943221990125,
+      "profitability": 0.03765062740033873,
+      "investment_issuance_accruals": 0.034150889550414475,
+      "quality": 0.03883159403123733,
+      "surprise": 0.03596759797003445,
+      "volatility_beta": 0.03804404703658993,
+      "liquidity": 0.03654929513821375
+    },
+    "d_ic_when_dropped": {
+      "value": -0.009085598597497215,
+      "profitability": 0.00100559658294027,
+      "investment_issuance_accruals": -0.002494141266983989,
+      "quality": 0.0021865632138388658,
+      "surprise": -0.0006774328473640109,
+      "volatility_beta": 0.0013990162191914665,
+      "liquidity": -9.573567918471498e-05
+    }
+  },
+  "ic_definitions": {
+    "raw": {
+      "ic": 0.03664503081739846,
+      "t": 1.914576303308223
+    },
+    "sector_neutral": {
+      "ic": 0.03305335056108618,
+      "t": 1.9571396870007283
+    },
+    "risk_model_residual (size, momentum, beta, ivol, liquidity, value + sector)": {
+      "ic": 0.025200474688865118,
+      "t": 2.665473283634496
+    },
+    "mean_monthly_r2_of_composite_on_styles_and_sectors": 0.5387315324579935
+  },
+  "ic_by_size_tercile": {
+    "small": {
+      "raw": 0.051166522069074474,
+      "risk_model_residual": 0.028175838626274197
+    },
+    "mid": {
+      "raw": 0.0358579364761016,
+      "risk_model_residual": 0.03098863582067666
+    },
+    "large": {
+      "raw": 0.014525598233123676,
+      "risk_model_residual": 0.016682351078346355
+    }
+  },
+  "value_quality_screen": {
+    "screen_ic": 0.031143395080846136,
+    "screen_ic_t": 2.040250842998856,
+    "composite_ic": 0.03664503081739846,
+    "paired_composite_minus_screen": {
+      "mean_diff": 0.005501635736552331,
+      "t": 0.4151047998994411,
+      "share_a_better": 0.5
+    },
+    "mean_rank_corr_composite_vs_screen": 0.5379089326119669,
+    "mean_top_quintile_overlap_share (random = 0.20)": 0.4140709950497208
+  },
+  "leave_one_group_out_portfolios": [
+    {
+      "dropped_group": "value",
+      "ic": 0.02755943221990125,
+      "ir_gross": 0.4966135740028799,
+      "ir_net": 0.4172516519845099,
+      "max_dd_net_pct": -22.66450275207098,
+      "cy2025_net": -0.12917273819663222
+    },
+    {
+      "dropped_group": "profitability",
+      "ic": 0.03765062740033873,
+      "ir_gross": 0.627059952901284,
+      "ir_net": 0.5573388502767125,
+      "max_dd_net_pct": -25.748141257527134,
+      "cy2025_net": -0.1289803207145095
+    },
+    {
+      "dropped_group": "investment_issuance_accruals",
+      "ic": 0.034150889550414475,
+      "ir_gross": 0.6003516060415696,
+      "ir_net": 0.5216430230929477,
+      "max_dd_net_pct": -18.507546818402233,
+      "cy2025_net": -0.1255565373366888
+    },
+    {
+      "dropped_group": "quality",
+      "ic": 0.03883159403123733,
+      "ir_gross": 0.6426242719471668,
+      "ir_net": 0.5731697379762317,
+      "max_dd_net_pct": -22.17863221960944,
+      "cy2025_net": -0.11726021503256379
+    },
+    {
+      "dropped_group": "surprise",
+      "ic": 0.03596759797003445,
+      "ir_gross": 0.647465063313543,
+      "ir_net": 0.5764896103621573,
+      "max_dd_net_pct": -21.407159685631438,
+      "cy2025_net": -0.11260966811815987
+    },
+    {
+      "dropped_group": "volatility_beta",
+      "ic": 0.03804404703658993,
+      "ir_gross": 0.7584310048328371,
+      "ir_net": 0.6813521588716999,
+      "max_dd_net_pct": -21.609951262708716,
+      "cy2025_net": -0.1429244920586119
+    },
+    {
+      "dropped_group": "liquidity",
+      "ic": 0.03654929513821375,
+      "ir_gross": 0.5825812234545996,
+      "ir_net": 0.5079466960111364,
+      "max_dd_net_pct": -23.615597927261668,
+      "cy2025_net": -0.165862306208289
+    },
+    {
+      "dropped_group": "(none, full composite)",
+      "ic": 0.03664503081739846,
+      "ir_gross": 0.6147635085044834,
+      "ir_net": 0.5411376376523045,
+      "max_dd_net_pct": -18.946959830379818,
+      "cy2025_net": -0.1239749100571631
+    }
+  ]
+}

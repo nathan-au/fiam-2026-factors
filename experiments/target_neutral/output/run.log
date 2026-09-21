@@ -1,0 +1,140 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+
+==============================================================================
+et__control  (target=raw, winsor=True, seed=42)
+==============================================================================
+  [et__control fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0065 (range -0.0161..-0.0065) n_tr=46,835 4s
+  [et__control fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0401 (range 0.0332..0.0401) n_tr=59,211 5s
+  [et__control fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0315 (range -0.0384..-0.0315) n_tr=71,366 6s
+  [et__control fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0230 (range 0.0185..0.0230) n_tr=85,763 7s
+  [et__control fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0288 (range 0.0227..0.0288) n_tr=99,605 9s
+  [et__control fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0119 (range 0.0073..0.0119) n_tr=113,269 11s
+  IC 0.0164 (t 1.10) D10-D1 -0.17%/m | lc_t10 IR gross -0.22 net -0.30 | beta -0.09 | 46s
+
+==============================================================================
+et__demean_size  (target=demean_size, winsor=True, seed=42)
+==============================================================================
+  [et__demean_size fold 2021] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0050 (range -0.0091..0.0050) n_tr=46,835 4s
+  [et__demean_size fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0415 (range 0.0329..0.0415) n_tr=59,211 5s
+  [et__demean_size fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0513 (range -0.0627..-0.0513) n_tr=71,366 6s
+  [et__demean_size fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 300} val_ic=0.0203 (range 0.0182..0.0203) n_tr=85,763 8s
+  [et__demean_size fold 2025] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0338 (range 0.0236..0.0338) n_tr=99,605 9s
+  [et__demean_size fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0004 (range -0.0024..0.0004) n_tr=113,269 11s
+  IC 0.0119 (t 0.90) D10-D1 -0.36%/m | lc_t10 IR gross -0.51 net -0.59 | beta -0.10 | 46s
+
+==============================================================================
+et__demean_sector  (target=demean_sector, winsor=True, seed=42)
+==============================================================================
+  [et__demean_sector fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0154 (range -0.0217..-0.0154) n_tr=46,835 4s
+  [et__demean_sector fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0261 (range 0.0222..0.0261) n_tr=59,211 5s
+  [et__demean_sector fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0314 (range -0.0479..-0.0314) n_tr=71,366 6s
+  [et__demean_sector fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0248 (range 0.0185..0.0248) n_tr=85,763 8s
+  [et__demean_sector fold 2025] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0264 (range 0.0166..0.0264) n_tr=99,605 9s
+  [et__demean_sector fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0039 (range -0.0025..0.0039) n_tr=113,269 11s
+  IC 0.0206 (t 1.31) D10-D1 -0.07%/m | lc_t10 IR gross -0.27 net -0.36 | beta -0.08 | 47s
+
+==============================================================================
+et__demean_size_sector  (target=demean_size_sector, winsor=True, seed=42)
+==============================================================================
+  [et__demean_size_sector fold 2021] chosen={'max_features': 'sqrt', 'min_samples_leaf': 300} val_ic=-0.0114 (range -0.0185..-0.0114) n_tr=46,835 4s
+  [et__demean_size_sector fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0303 (range 0.0266..0.0303) n_tr=59,211 5s
+  [et__demean_size_sector fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0442 (range -0.0614..-0.0442) n_tr=71,366 6s
+  [et__demean_size_sector fold 2024] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0221 (range 0.0185..0.0221) n_tr=85,763 8s
+  [et__demean_size_sector fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0232 (range 0.0114..0.0232) n_tr=99,605 9s
+  [et__demean_size_sector fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=-0.0090 (range -0.0150..-0.0090) n_tr=113,269 11s
+  IC 0.0159 (t 1.15) D10-D1 +0.01%/m | lc_t10 IR gross -0.28 net -0.37 | beta -0.12 | 47s
+
+==============================================================================
+et__resid_factor  (target=resid_factor, winsor=True, seed=42)
+==============================================================================
+  [et__resid_factor fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0067 (range 0.0019..0.0067) n_tr=46,835 4s
+  [et__resid_factor fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0369 (range 0.0287..0.0369) n_tr=59,211 5s
+  [et__resid_factor fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0294 (range -0.0429..-0.0294) n_tr=71,366 6s
+  [et__resid_factor fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0211 (range 0.0159..0.0211) n_tr=85,763 8s
+  [et__resid_factor fold 2025] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0385 (range 0.0253..0.0385) n_tr=99,605 9s
+  [et__resid_factor fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0072 (range -0.0007..0.0072) n_tr=113,269 11s
+  IC 0.0211 (t 1.60) D10-D1 +0.28%/m | lc_t10 IR gross -0.11 net -0.20 | beta -0.09 | 47s
+
+==============================================================================
+lgbm__control  (target=raw, winsor=True, seed=42)
+==============================================================================
+  [lgbm__control fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0024 (range -0.0179..-0.0024) n_tr=46,835 1s
+  [lgbm__control fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0446 (range 0.0351..0.0446) n_tr=59,211 1s
+  [lgbm__control fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0295 (range -0.0428..-0.0295) n_tr=71,366 1s
+  [lgbm__control fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0199 (range 0.0167..0.0199) n_tr=85,763 1s
+  [lgbm__control fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0323 (range 0.0292..0.0323) n_tr=99,605 1s
+  [lgbm__control fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0127 (range 0.0085..0.0127) n_tr=113,269 1s
+  IC 0.0160 (t 1.04) D10-D1 -0.18%/m | lc_t10 IR gross -0.17 net -0.25 | beta -0.12 | 10s
+
+==============================================================================
+lgbm__demean_size  (target=demean_size, winsor=True, seed=42)
+==============================================================================
+  [lgbm__demean_size fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0016 (range -0.0102..0.0016) n_tr=46,835 1s
+  [lgbm__demean_size fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0421 (range 0.0361..0.0421) n_tr=59,211 1s
+  [lgbm__demean_size fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0537 (range -0.0632..-0.0537) n_tr=71,366 1s
+  [lgbm__demean_size fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0186 (range 0.0154..0.0186) n_tr=85,763 1s
+  [lgbm__demean_size fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0374 (range 0.0333..0.0374) n_tr=99,605 1s
+  [lgbm__demean_size fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0002 (range -0.0044..0.0002) n_tr=113,269 1s
+  IC 0.0121 (t 0.88) D10-D1 -0.25%/m | lc_t10 IR gross -0.45 net -0.53 | beta -0.12 | 10s
+
+==============================================================================
+lgbm__demean_sector  (target=demean_sector, winsor=True, seed=42)
+==============================================================================
+  [lgbm__demean_sector fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0138 (range -0.0242..-0.0138) n_tr=46,835 1s
+  [lgbm__demean_sector fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0352 (range 0.0187..0.0352) n_tr=59,211 1s
+  [lgbm__demean_sector fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0306 (range -0.0437..-0.0306) n_tr=71,366 1s
+  [lgbm__demean_sector fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=0.0277 (range 0.0230..0.0277) n_tr=85,763 1s
+  [lgbm__demean_sector fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0325 (range 0.0256..0.0325) n_tr=99,605 1s
+  [lgbm__demean_sector fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0042 (range -0.0029..0.0042) n_tr=113,269 1s
+  IC 0.0210 (t 1.33) D10-D1 +0.14%/m | lc_t10 IR gross -0.12 net -0.21 | beta -0.09 | 11s
+
+==============================================================================
+lgbm__demean_size_sector  (target=demean_size_sector, winsor=True, seed=42)
+==============================================================================
+  [lgbm__demean_size_sector fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0117 (range -0.0212..-0.0117) n_tr=46,835 1s
+  [lgbm__demean_size_sector fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0393 (range 0.0311..0.0393) n_tr=59,211 1s
+  [lgbm__demean_size_sector fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=-0.0467 (range -0.0662..-0.0467) n_tr=71,366 1s
+  [lgbm__demean_size_sector fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0248 (range 0.0197..0.0248) n_tr=85,763 1s
+  [lgbm__demean_size_sector fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0260 (range 0.0215..0.0260) n_tr=99,605 1s
+  [lgbm__demean_size_sector fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=-0.0125 (range -0.0168..-0.0125) n_tr=113,269 1s
+  IC 0.0120 (t 0.90) D10-D1 -0.11%/m | lc_t10 IR gross -0.16 net -0.25 | beta -0.10 | 11s
+
+==============================================================================
+lgbm__resid_factor  (target=resid_factor, winsor=True, seed=42)
+==============================================================================
+  [lgbm__resid_factor fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0144 (range 0.0010..0.0144) n_tr=46,835 1s
+  [lgbm__resid_factor fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=0.0422 (range 0.0375..0.0422) n_tr=59,211 1s
+  [lgbm__resid_factor fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0313 (range -0.0470..-0.0313) n_tr=71,366 1s
+  [lgbm__resid_factor fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0292 (range 0.0180..0.0292) n_tr=85,763 1s
+  [lgbm__resid_factor fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0375 (range 0.0321..0.0375) n_tr=99,605 1s
+  [lgbm__resid_factor fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0078 (range 0.0025..0.0078) n_tr=113,269 1s
+  IC 0.0183 (t 1.35) D10-D1 +0.16%/m | lc_t10 IR gross -0.04 net -0.14 | beta -0.07 | 10s
+
+==============================================================================
+SUMMARY
+==============================================================================
+                     key    ic     t  d10_d1  ir_gross_t10  ir_net_t10  ir_gross_free  ic_vs_resid_factor  ic_vs_demean_sector
+             et__control 0.016 1.102  -0.170        -0.216      -0.302         -0.182               0.012                0.023
+         et__demean_size 0.012 0.895  -0.356        -0.514      -0.595         -0.303               0.007                0.015
+       et__demean_sector 0.021 1.313  -0.065        -0.274      -0.359         -0.089               0.013                0.028
+  et__demean_size_sector 0.016 1.145   0.012        -0.281      -0.365         -0.071               0.009                0.022
+        et__resid_factor 0.021 1.597   0.284        -0.113      -0.201         -0.080               0.013                0.025
+           lgbm__control 0.016 1.044  -0.175        -0.167      -0.251         -0.264               0.012                0.024
+       lgbm__demean_size 0.012 0.876  -0.251        -0.447      -0.528         -0.270               0.009                0.016
+     lgbm__demean_sector 0.021 1.326   0.139        -0.123      -0.208         -0.073               0.014                0.028
+lgbm__demean_size_sector 0.012 0.903  -0.108        -0.161      -0.253         -0.145               0.009                0.019
+      lgbm__resid_factor 0.018 1.352   0.157        -0.043      -0.138          0.044               0.012                0.023
+
+Paired monthly IC vs control (same model family):
+model                arm    ic  ic_control  mean_diff      t  ir_gross  ir_gross_control
+   et        demean_size 0.012       0.016     -0.004 -0.655    -0.514            -0.216
+   et      demean_sector 0.021       0.016      0.004  0.923    -0.274            -0.216
+   et demean_size_sector 0.016       0.016     -0.000 -0.067    -0.281            -0.216
+   et       resid_factor 0.021       0.016      0.005  0.607    -0.113            -0.216
+ lgbm        demean_size 0.012       0.016     -0.004 -0.540    -0.447            -0.167
+ lgbm      demean_sector 0.021       0.016      0.005  0.918    -0.123            -0.167
+ lgbm demean_size_sector 0.012       0.016     -0.004 -0.559    -0.161            -0.167
+ lgbm       resid_factor 0.018       0.016      0.002  0.287    -0.043            -0.167
+
+Adoption rules: {"demean_size": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "demean_sector": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "demean_size_sector": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "resid_factor": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}}

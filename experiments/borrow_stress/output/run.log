@@ -1,0 +1,38 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+baseline net IR 0.541; avg borrow cost 4.8 bp of NAV/month (57 bp/yr)
+  borrow x1 : IR +0.54  CAGR +11.0%  maxDD -19%
+  borrow x2 : IR +0.50  CAGR +10.3%  maxDD -20%
+  borrow x5 : IR +0.37  CAGR +8.5%  maxDD -22%
+  borrow x10: IR +0.16  CAGR +5.4%  maxDD -27%
+  borrow x20: IR -0.26  CAGR -0.4%  maxDD -37%
+  strong-thesis shorts pay borrow x2 : IR +0.53  maxDD -19%
+  strong-thesis shorts pay borrow x5 : IR +0.49  maxDD -20%
+  strong-thesis shorts pay borrow x10: IR +0.43  maxDD -21%
+  short_px10: net IR 0.57 (gross 0.64); with borrow x5 IR +0.40
+  short_px20: net IR 0.50 (gross 0.57); with borrow x5 IR +0.33
+  forced cover of 4% of shorts at +15%: IR mean -0.01 (p5 -0.02), maxDD mean -31% (p5 -32%)
+  forced cover of 4% of shorts at +30%: IR mean -0.55 (p5 -0.58), maxDD mean -44% (p5 -45%)
+  Jan-2021: {'net_return_pct': 0.17201694418294, 'short_leg_pct': -3.65166193771485}
+
+==============================================================================
+SUMMARY
+==============================================================================
+                         scenario     ir  cagr_pct  max_dd_pct  worst_month_pct
+                         baseline  0.541       NaN         NaN              NaN
+                        borrow x1  0.541    10.969     -18.947           -8.945
+                        borrow x2  0.499    10.343     -19.554           -8.992
+                        borrow x5  0.373     8.483     -21.837           -9.134
+                       borrow x10  0.163     5.448     -26.818           -9.371
+                       borrow x20 -0.256    -0.392     -36.989           -9.846
+          strong-thesis borrow x2  0.529    10.789     -19.092           -8.956
+          strong-thesis borrow x5  0.493    10.249     -19.654           -8.991
+         strong-thesis borrow x10  0.433     9.356     -20.736           -9.049
+                  short_px10 base  0.566    11.249     -17.816           -8.076
+                  short_px20 base  0.496    10.265     -20.720           -8.768
+           short_px10 + borrow x5  0.397     8.778     -21.397           -8.265
+           short_px20 + borrow x5  0.331     7.862     -25.187           -8.954
+forced cover +15% (mean of draws) -0.005       NaN     -31.154              NaN
+forced cover +30% (mean of draws) -0.551       NaN     -43.779              NaN
+
+done in 0.4 min

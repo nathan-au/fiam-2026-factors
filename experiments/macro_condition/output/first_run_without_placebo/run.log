@@ -1,0 +1,128 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+  macro features appended: ['ycurve_10y2y', 'credit_baa10y', 'vix']; distinct months in training data: 139
+
+==============================================================================
+et__control  (extra features [], seed=42)
+==============================================================================
+  [et__control fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0065 (range -0.0161..-0.0065) n_tr=46,835 4s
+  [et__control fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0401 (range 0.0332..0.0401) n_tr=59,211 5s
+  [et__control fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0315 (range -0.0384..-0.0315) n_tr=71,366 6s
+  [et__control fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0230 (range 0.0185..0.0230) n_tr=85,763 7s
+  [et__control fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0288 (range 0.0227..0.0288) n_tr=99,605 9s
+  [et__control fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0119 (range 0.0073..0.0119) n_tr=113,269 10s
+  IC 0.0164 (t 1.10) | lc_t10 IR gross -0.22 net -0.30 | macro importance {} | 44s
+
+==============================================================================
+et__plus_ycurve  (extra features ['ycurve_10y2y'], seed=42)
+==============================================================================
+  [et__plus_ycurve fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0206 (range -0.0099..0.0206) n_tr=46,835 4s
+  [et__plus_ycurve fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0899 (range 0.0470..0.0899) n_tr=59,211 5s
+  [et__plus_ycurve fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0280 (range -0.0169..0.0280) n_tr=71,366 6s
+  [et__plus_ycurve fold 2024] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0420 (range 0.0016..0.0420) n_tr=85,763 8s
+  [et__plus_ycurve fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0337 (range 0.0007..0.0337) n_tr=99,605 9s
+  [et__plus_ycurve fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0180 (range 0.0130..0.0180) n_tr=113,269 11s
+  IC 0.0345 (t 2.50) | lc_t10 IR gross -0.18 net -0.27 | macro importance {'ycurve_10y2y': 0.566} | 47s
+
+==============================================================================
+et__plus_credit  (extra features ['credit_baa10y'], seed=42)
+==============================================================================
+  [et__plus_credit fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0045 (range -0.0215..-0.0045) n_tr=46,835 4s
+  [et__plus_credit fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0215 (range 0.0142..0.0215) n_tr=59,211 5s
+  [et__plus_credit fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0245 (range -0.0403..-0.0245) n_tr=71,366 6s
+  [et__plus_credit fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0191 (range 0.0114..0.0191) n_tr=85,763 8s
+  [et__plus_credit fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0250 (range 0.0160..0.0250) n_tr=99,605 10s
+  [et__plus_credit fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0150 (range 0.0006..0.0150) n_tr=113,269 11s
+  IC 0.0076 (t 0.38) | lc_t10 IR gross -0.28 net -0.36 | macro importance {'credit_baa10y': 0.564} | 48s
+
+==============================================================================
+et__plus_vix  (extra features ['vix'], seed=42)
+==============================================================================
+  [et__plus_vix fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=-0.0190 (range -0.0258..-0.0190) n_tr=46,835 4s
+  [et__plus_vix fold 2022] chosen={'max_features': 'sqrt', 'min_samples_leaf': 300} val_ic=0.0503 (range 0.0307..0.0503) n_tr=59,211 5s
+  [et__plus_vix fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=-0.0321 (range -0.0460..-0.0321) n_tr=71,366 6s
+  [et__plus_vix fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 300} val_ic=0.0217 (range 0.0022..0.0217) n_tr=85,763 8s
+  [et__plus_vix fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0322 (range 0.0248..0.0322) n_tr=99,605 10s
+  [et__plus_vix fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0266 (range 0.0223..0.0266) n_tr=113,269 11s
+  IC 0.0248 (t 1.42) | lc_t10 IR gross -0.10 net -0.18 | macro importance {'vix': 0.634} | 48s
+
+==============================================================================
+et__plus_all_macro  (extra features ['ycurve_10y2y', 'credit_baa10y', 'vix'], seed=42)
+==============================================================================
+  [et__plus_all_macro fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0042 (range -0.0220..-0.0042) n_tr=46,835 4s
+  [et__plus_all_macro fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0483 (range 0.0312..0.0483) n_tr=59,211 5s
+  [et__plus_all_macro fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0117 (range -0.0239..0.0117) n_tr=71,366 6s
+  [et__plus_all_macro fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=0.0166 (range -0.0045..0.0166) n_tr=85,763 8s
+  [et__plus_all_macro fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0248 (range -0.0116..0.0248) n_tr=99,605 10s
+  [et__plus_all_macro fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0176 (range -0.0157..0.0176) n_tr=113,269 11s
+  IC 0.0264 (t 1.43) | lc_t10 IR gross 0.16 net 0.08 | macro importance {'ycurve_10y2y': 0.254, 'credit_baa10y': 0.281, 'vix': 0.344} | 48s
+
+==============================================================================
+lgbm__control  (extra features [], seed=42)
+==============================================================================
+  [lgbm__control fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0024 (range -0.0179..-0.0024) n_tr=46,835 1s
+  [lgbm__control fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0446 (range 0.0351..0.0446) n_tr=59,211 1s
+  [lgbm__control fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0295 (range -0.0428..-0.0295) n_tr=71,366 1s
+  [lgbm__control fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0199 (range 0.0167..0.0199) n_tr=85,763 1s
+  [lgbm__control fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0323 (range 0.0292..0.0323) n_tr=99,605 1s
+  [lgbm__control fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0127 (range 0.0085..0.0127) n_tr=113,269 1s
+  IC 0.0160 (t 1.04) | lc_t10 IR gross -0.17 net -0.25 | macro importance {} | 10s
+
+==============================================================================
+lgbm__plus_ycurve  (extra features ['ycurve_10y2y'], seed=42)
+==============================================================================
+  [lgbm__plus_ycurve fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0078 (range -0.0089..0.0078) n_tr=46,835 1s
+  [lgbm__plus_ycurve fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0794 (range 0.0429..0.0794) n_tr=59,211 1s
+  [lgbm__plus_ycurve fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0026 (range -0.0340..-0.0026) n_tr=71,366 1s
+  [lgbm__plus_ycurve fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0147 (range 0.0087..0.0147) n_tr=85,763 1s
+  [lgbm__plus_ycurve fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=0.0361 (range 0.0306..0.0361) n_tr=99,605 1s
+  [lgbm__plus_ycurve fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0258 (range 0.0176..0.0258) n_tr=113,269 1s
+  IC 0.0246 (t 1.63) | lc_t10 IR gross -0.36 net -0.44 | macro importance {'ycurve_10y2y': 0.709} | 11s
+
+==============================================================================
+lgbm__plus_credit  (extra features ['credit_baa10y'], seed=42)
+==============================================================================
+  [lgbm__plus_credit fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=-0.0087 (range -0.0229..-0.0087) n_tr=46,835 1s
+  [lgbm__plus_credit fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0370 (range 0.0282..0.0370) n_tr=59,211 1s
+  [lgbm__plus_credit fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0121 (range -0.0197..-0.0121) n_tr=71,366 1s
+  [lgbm__plus_credit fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0207 (range 0.0177..0.0207) n_tr=85,763 1s
+  [lgbm__plus_credit fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0255 (range 0.0216..0.0255) n_tr=99,605 1s
+  [lgbm__plus_credit fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0179 (range 0.0057..0.0179) n_tr=113,269 1s
+  IC 0.0092 (t 0.45) | lc_t10 IR gross -0.45 net -0.53 | macro importance {'credit_baa10y': 0.648} | 11s
+
+==============================================================================
+lgbm__plus_vix  (extra features ['vix'], seed=42)
+==============================================================================
+  [lgbm__plus_vix fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=-0.0139 (range -0.0243..-0.0139) n_tr=46,835 1s
+  [lgbm__plus_vix fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0839 (range 0.0355..0.0839) n_tr=59,211 1s
+  [lgbm__plus_vix fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=-0.0374 (range -0.0502..-0.0374) n_tr=71,366 1s
+  [lgbm__plus_vix fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0118 (range 0.0022..0.0118) n_tr=85,763 1s
+  [lgbm__plus_vix fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=0.0354 (range 0.0282..0.0354) n_tr=99,605 1s
+  [lgbm__plus_vix fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0227 (range 0.0170..0.0227) n_tr=113,269 1s
+  IC 0.0225 (t 1.29) | lc_t10 IR gross -0.17 net -0.24 | macro importance {'vix': 0.755} | 11s
+
+==============================================================================
+lgbm__plus_all_macro  (extra features ['ycurve_10y2y', 'credit_baa10y', 'vix'], seed=42)
+==============================================================================
+  [lgbm__plus_all_macro fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=-0.0127 (range -0.0279..-0.0127) n_tr=46,835 1s
+  [lgbm__plus_all_macro fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0543 (range 0.0311..0.0543) n_tr=59,211 1s
+  [lgbm__plus_all_macro fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300} val_ic=-0.0266 (range -0.0358..-0.0266) n_tr=71,366 1s
+  [lgbm__plus_all_macro fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0144 (range 0.0053..0.0144) n_tr=85,763 1s
+  [lgbm__plus_all_macro fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 200} val_ic=0.0239 (range 0.0218..0.0239) n_tr=99,605 1s
+  [lgbm__plus_all_macro fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100} val_ic=0.0219 (range 0.0162..0.0219) n_tr=113,269 1s
+  IC 0.0220 (t 1.09) | lc_t10 IR gross -0.13 net -0.21 | macro importance {'ycurve_10y2y': 0.296, 'credit_baa10y': 0.248, 'vix': 0.354} | 11s
+
+==============================================================================
+SUMMARY
+==============================================================================
+                 key     ic   ic_t  d_ic_vs_control  paired_t  ir_gross_t10  ir_net_t10  macro_importance_sum
+         et__control 0.0164 1.1021           0.0000       NaN       -0.2158     -0.3021                0.0000
+     et__plus_ycurve 0.0345 2.4969           0.0181    1.1868       -0.1764     -0.2691                0.5664
+     et__plus_credit 0.0076 0.3793          -0.0088   -0.8364       -0.2777     -0.3576                0.5645
+        et__plus_vix 0.0248 1.4194           0.0085    1.0207       -0.1005     -0.1794                0.6337
+  et__plus_all_macro 0.0264 1.4256           0.0100    0.7730        0.1590      0.0760                0.8785
+       lgbm__control 0.0160 1.0436           0.0000       NaN       -0.1668     -0.2512                0.0000
+   lgbm__plus_ycurve 0.0246 1.6310           0.0086    1.1510       -0.3596     -0.4388                0.7091
+   lgbm__plus_credit 0.0092 0.4498          -0.0069   -0.6768       -0.4484     -0.5294                0.6475
+      lgbm__plus_vix 0.0225 1.2856           0.0065    0.5721       -0.1654     -0.2411                0.7550
+lgbm__plus_all_macro 0.0220 1.0915           0.0059    0.5693       -0.1303     -0.2055                0.8970

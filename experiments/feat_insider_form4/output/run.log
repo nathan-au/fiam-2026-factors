@@ -1,0 +1,24 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+BASELINE composite: IC 0.0366 (t 1.91); lc_t10 IR gross 0.615 / net 0.541   [published: {'comp_ic': 0.0366, 'comp_ir_gross': 0.61, 'comp_ir_net': 0.54}]
+    2026q2_form345.zip: not available (HTTPError)
+    2026q3_form345.zip: not available (HTTPError)
+    2026q4_form345.zip: not available (HTTPError)
+  728,711 open-market P/S trade rows, 3567 permnos, filing months 2020-01-31..2026-03-31
+  insider-map coverage of universe test rows: 0.945
+Truncation-invariance test: {"passed": true, "dates": ["2024-07-31", "2023-11-30", "2025-08-31"], "n_values_compared": 30573, "max_abs_diff_by_feature": {"buy_value_6m": 0.0, "sell_value_6m": 0.0, "n_buyers_3m": 0.0}}
+  ins_buy_6m_over_mcap         block IC +0.0003 (t +0.05) | comp 0.0366 -> 0.0366 gain -0.0001 (paired t -0.05) | resid IC +0.0182 (t +1.63) | perm p 0.542 | IR gross 0.57 net 0.49
+  ins_net_buy_6m_over_mcap     block IC +0.0161 (t +1.36) | comp 0.0366 -> 0.0375 gain +0.0009 (paired t +0.24) | resid IC +0.0134 (t +1.23) | perm p 0.214 | IR gross 0.43 net 0.36
+  ins_sell_6m_over_mcap        block IC +0.0188 (t +1.55) | comp 0.0366 -> 0.0384 gain +0.0017 (paired t +0.49) | resid IC +0.0152 (t +1.38) | perm p 0.055 | IR gross 0.48 net 0.41
+  ins_buyers_3m                block IC -0.0035 (t -0.63) | comp 0.0366 -> 0.0368 gain +0.0002 (paired t +0.13) | resid IC +0.0030 (t +0.21) | perm p 0.294 | IR gross 0.50 net 0.43
+
+==============================================================================
+SUMMARY (4 blocks tested; Bonferroni factor 4)
+==============================================================================
+                    name  kind  sign  coverage  block_ic  block_ic_t  comp_ic  comp_plus_block_ic    gain  gain_t  resid_ic  resid_ic_t  corr_with_comp  perm_p  gain_small  gain_mid  gain_large  ir_gross  ir_net  d_ir_gross kill_gain_t_lt_1 kill_only_small_tercile  perm_p_bonferroni passes
+    ins_buy_6m_over_mcap block     1    0.9452    0.0003      0.0531   0.0366              0.0366 -0.0001 -0.0461    0.0182      1.6341         -0.0865  0.5423     -0.0021    0.0021      0.0001    0.5657  0.4899     -0.0490             True                   False             1.0000  False
+ins_net_buy_6m_over_mcap block     1    0.9452    0.0161      1.3646   0.0366              0.0375  0.0009  0.2373    0.0134      1.2259          0.0420  0.2139     -0.0030    0.0022      0.0021    0.4294  0.3606     -0.1854             True                   False             0.8557  False
+   ins_sell_6m_over_mcap block    -1    0.9452    0.0188      1.5504   0.0366              0.0384  0.0017  0.4872    0.0152      1.3805          0.0659  0.0547     -0.0020    0.0026      0.0033    0.4768  0.4077     -0.1380             True                   False             0.2189  False
+           ins_buyers_3m block     1    0.9452   -0.0035     -0.6283   0.0366              0.0368  0.0002  0.1345    0.0030      0.2121         -0.0705  0.2935     -0.0001    0.0002     -0.0003    0.5038  0.4286     -0.1110             True                   False             1.0000  False
+
+done in 1.9 min

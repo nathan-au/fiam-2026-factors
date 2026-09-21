@@ -1,0 +1,88 @@
+Loading...
+  523,125 rows; universe rows 153,392; folds [2021, 2022, 2023, 2024, 2025, 2026]
+
+==============================================================================
+xgb__control  (target=raw, winsor=True, seed=42)
+==============================================================================
+  [xgb__control fold 2021] chosen={'max_depth': 4, 'n_trees': 200} val_ic=0.0160 (range -0.0039..0.0160) n_tr=46,835 1s
+  [xgb__control fold 2022] chosen={'max_depth': 2, 'n_trees': 400} val_ic=0.0482 (range 0.0395..0.0482) n_tr=59,211 1s
+  [xgb__control fold 2023] chosen={'max_depth': 4, 'n_trees': 400} val_ic=-0.0278 (range -0.0377..-0.0278) n_tr=71,366 1s
+  [xgb__control fold 2024] chosen={'max_depth': 4, 'n_trees': 400} val_ic=0.0097 (range 0.0038..0.0097) n_tr=85,763 1s
+  [xgb__control fold 2025] chosen={'max_depth': 2, 'n_trees': 100} val_ic=0.0309 (range 0.0083..0.0309) n_tr=99,605 1s
+  [xgb__control fold 2026] chosen={'max_depth': 2, 'n_trees': 100} val_ic=0.0162 (range -0.0035..0.0162) n_tr=113,269 1s
+  IC 0.0055 (t 0.46) D10-D1 +0.07%/m | lc_t10 IR gross -0.06 net -0.17 | beta -0.11 | 11s
+
+==============================================================================
+xgb__rank_ndcg  (target=decile, winsor=False, seed=42)
+==============================================================================
+  [xgb__rank_ndcg fold 2021] chosen={'max_depth': 2, 'n_trees': 400, 'objective': 'rank:ndcg'} val_ic=0.0325 (range -0.0288..0.0325) n_tr=46,835 2s
+  [xgb__rank_ndcg fold 2022] chosen={'max_depth': 2, 'n_trees': 400, 'objective': 'rank:ndcg'} val_ic=0.0057 (range -0.0137..0.0057) n_tr=59,211 2s
+  [xgb__rank_ndcg fold 2023] chosen={'max_depth': 2, 'n_trees': 100, 'objective': 'rank:ndcg'} val_ic=-0.0043 (range -0.0458..-0.0043) n_tr=71,366 3s
+  [xgb__rank_ndcg fold 2024] chosen={'max_depth': 2, 'n_trees': 200, 'objective': 'rank:ndcg'} val_ic=0.0047 (range -0.0005..0.0047) n_tr=85,763 3s
+  [xgb__rank_ndcg fold 2025] chosen={'max_depth': 4, 'n_trees': 100, 'objective': 'rank:ndcg'} val_ic=0.0368 (range 0.0268..0.0368) n_tr=99,605 4s
+  [xgb__rank_ndcg fold 2026] chosen={'max_depth': 2, 'n_trees': 100, 'objective': 'rank:ndcg'} val_ic=0.0315 (range 0.0079..0.0315) n_tr=113,269 4s
+  IC 0.0109 (t 0.92) D10-D1 +0.32%/m | lc_t10 IR gross -0.39 net -0.51 | beta +0.05 | 22s
+
+==============================================================================
+xgb__rank_pairwise  (target=decile, winsor=False, seed=42)
+==============================================================================
+  [xgb__rank_pairwise fold 2021] chosen={'max_depth': 2, 'n_trees': 200, 'objective': 'rank:pairwise'} val_ic=0.0139 (range 0.0073..0.0139) n_tr=46,835 3s
+  [xgb__rank_pairwise fold 2022] chosen={'max_depth': 2, 'n_trees': 100, 'objective': 'rank:pairwise'} val_ic=0.0532 (range 0.0246..0.0532) n_tr=59,211 4s
+  [xgb__rank_pairwise fold 2023] chosen={'max_depth': 4, 'n_trees': 200, 'objective': 'rank:pairwise'} val_ic=-0.0130 (range -0.0181..-0.0130) n_tr=71,366 4s
+  [xgb__rank_pairwise fold 2024] chosen={'max_depth': 2, 'n_trees': 400, 'objective': 'rank:pairwise'} val_ic=0.0211 (range 0.0082..0.0211) n_tr=85,763 5s
+  [xgb__rank_pairwise fold 2025] chosen={'max_depth': 2, 'n_trees': 100, 'objective': 'rank:pairwise'} val_ic=0.0382 (range 0.0053..0.0382) n_tr=99,605 6s
+  [xgb__rank_pairwise fold 2026] chosen={'max_depth': 2, 'n_trees': 100, 'objective': 'rank:pairwise'} val_ic=0.0168 (range -0.0140..0.0168) n_tr=113,269 6s
+  IC 0.0152 (t 1.36) D10-D1 +0.05%/m | lc_t10 IR gross -0.32 net -0.42 | beta -0.04 | 32s
+
+==============================================================================
+xgb__rankic_pairwise  (target=rank_gauss, winsor=False, seed=42)
+==============================================================================
+  [xgb__rankic_pairwise fold 2021] chosen={'max_depth': 4, 'n_trees': 400, 'objective': 'rankic_pairwise'} val_ic=0.0178 (range -0.0069..0.0178) n_tr=46,835 76s
+  [xgb__rankic_pairwise fold 2022] chosen={'max_depth': 4, 'n_trees': 200, 'objective': 'rankic_pairwise'} val_ic=0.0523 (range 0.0341..0.0523) n_tr=59,211 96s
+  [xgb__rankic_pairwise fold 2023] chosen={'max_depth': 4, 'n_trees': 200, 'objective': 'rankic_pairwise'} val_ic=-0.0241 (range -0.0337..-0.0241) n_tr=71,366 114s
+  [xgb__rankic_pairwise fold 2024] chosen={'max_depth': 4, 'n_trees': 400, 'objective': 'rankic_pairwise'} val_ic=0.0227 (range 0.0147..0.0227) n_tr=85,763 134s
+  [xgb__rankic_pairwise fold 2025] chosen={'max_depth': 2, 'n_trees': 100, 'objective': 'rankic_pairwise'} val_ic=0.0371 (range 0.0297..0.0371) n_tr=99,605 157s
+  [xgb__rankic_pairwise fold 2026] chosen={'max_depth': 2, 'n_trees': 100, 'objective': 'rankic_pairwise'} val_ic=0.0135 (range 0.0003..0.0135) n_tr=113,269 180s
+  IC 0.0129 (t 0.95) D10-D1 -0.11%/m | lc_t10 IR gross -0.68 net -0.78 | beta -0.12 | 761s
+
+==============================================================================
+lgbm__control  (target=raw, winsor=True, seed=42)
+==============================================================================
+  [lgbm__control fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=-0.0024 (range -0.0179..-0.0024) n_tr=46,835 1s
+  [lgbm__control fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300} val_ic=0.0446 (range 0.0351..0.0446) n_tr=59,211 1s
+  [lgbm__control fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=-0.0295 (range -0.0428..-0.0295) n_tr=71,366 1s
+  [lgbm__control fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0199 (range 0.0167..0.0199) n_tr=85,763 1s
+  [lgbm__control fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 200} val_ic=0.0323 (range 0.0292..0.0323) n_tr=99,605 1s
+  [lgbm__control fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 100} val_ic=0.0127 (range 0.0085..0.0127) n_tr=113,269 1s
+  IC 0.0160 (t 1.04) D10-D1 -0.18%/m | lc_t10 IR gross -0.17 net -0.25 | beta -0.12 | 13s
+
+==============================================================================
+lgbm__lambdarank  (target=decile, winsor=False, seed=42)
+==============================================================================
+  [lgbm__lambdarank fold 2021] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300, 'objective': 'lambdarank'} val_ic=-0.0272 (range -0.0362..-0.0272) n_tr=46,835 8s
+  [lgbm__lambdarank fold 2022] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300, 'objective': 'lambdarank'} val_ic=0.0355 (range 0.0321..0.0355) n_tr=59,211 9s
+  [lgbm__lambdarank fold 2023] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 100, 'objective': 'lambdarank'} val_ic=-0.0349 (range -0.0454..-0.0349) n_tr=71,366 12s
+  [lgbm__lambdarank fold 2024] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300, 'objective': 'lambdarank'} val_ic=0.0086 (range 0.0035..0.0086) n_tr=85,763 12s
+  [lgbm__lambdarank fold 2025] chosen={'num_leaves': 7, 'min_child_samples': 500, 'n_trees': 300, 'objective': 'lambdarank'} val_ic=0.0458 (range 0.0404..0.0458) n_tr=99,605 15s
+  [lgbm__lambdarank fold 2026] chosen={'num_leaves': 7, 'min_child_samples': 2000, 'n_trees': 300, 'objective': 'lambdarank'} val_ic=0.0211 (range 0.0164..0.0211) n_tr=113,269 12s
+  IC 0.0163 (t 1.03) D10-D1 +0.08%/m | lc_t10 IR gross -0.37 net -0.45 | beta +0.01 | 72s
+
+==============================================================================
+SUMMARY
+==============================================================================
+                 key    ic     t  d10_d1  ir_gross_t10  ir_net_t10  ir_gross_free
+        xgb__control 0.006 0.457   0.066        -0.065      -0.167          0.046
+      xgb__rank_ndcg 0.011 0.917   0.321        -0.389      -0.513          0.052
+  xgb__rank_pairwise 0.015 1.364   0.055        -0.315      -0.421         -0.436
+xgb__rankic_pairwise 0.013 0.948  -0.109        -0.681      -0.777         -0.387
+       lgbm__control 0.016 1.044  -0.175        -0.167      -0.251         -0.264
+    lgbm__lambdarank 0.016 1.027   0.084        -0.365      -0.452         -0.159
+
+Paired monthly IC vs control (same model family):
+model             arm    ic  ic_control  mean_diff     t  ir_gross  ir_gross_control
+  xgb       rank_ndcg 0.011       0.006      0.005 0.446    -0.389            -0.065
+  xgb   rank_pairwise 0.015       0.006      0.010 1.571    -0.315            -0.065
+  xgb rankic_pairwise 0.013       0.006      0.007 1.117    -0.681            -0.065
+ lgbm      lambdarank 0.016       0.016      0.000 0.028    -0.365            -0.167
+
+Adoption rules: {"rank_ndcg": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "rank_pairwise": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "lambdarank": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}, "rankic_pairwise": {"families_with_paired_t_ge_2": 0, "adopt_rule_A_two_families_t_ge_2": false, "adopt_rule_B_ic_ge_0.037_and_t_ge_2": false}}

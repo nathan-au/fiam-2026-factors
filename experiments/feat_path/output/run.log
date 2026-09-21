@@ -1,0 +1,21 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+BASELINE composite: IC 0.0366 (t 1.91); lc_t10 IR gross 0.615 / net 0.541   [published: {'comp_ic': 0.0366, 'comp_ir_gross': 0.61, 'comp_ir_net': 0.54}]
+Truncation-invariance test: {"passed": true, "dates": ["2024-07-31", "2023-11-30", "2025-08-31"], "n_values_compared": 56345, "max_abs_diff_by_feature": {"cum_12_1": 0.0, "ID": 0.0, "up_minus_down_frac": 0.0, "trend_strength": 0.0, "path_maxdd": 0.0}}
+  mom_x_continuity             block IC +0.0036 (t +0.19) | comp 0.0366 -> 0.0357 gain -0.0010 (paired t -0.15) | resid IC +0.0000 (t +0.00) | perm p 0.149 | IR gross 0.95 net 0.86
+  trend_strength               block IC +0.0117 (t +0.63) | comp 0.0366 -> 0.0378 gain +0.0011 (paired t +0.17) | resid IC +0.0074 (t +0.41) | perm p 0.065 | IR gross 1.03 net 0.95
+  up_minus_down_frac           block IC +0.0091 (t +0.62) | comp 0.0366 -> 0.0350 gain -0.0016 (paired t -0.32) | resid IC -0.0001 (t -0.00) | perm p 0.159 | IR gross 0.88 net 0.80
+  path_maxdd                   block IC +0.0203 (t +0.96) | comp 0.0366 -> 0.0359 gain -0.0008 (paired t -0.14) | resid IC +0.0040 (t +0.22) | perm p 0.114 | IR gross 0.61 net 0.53
+  mom_12_1_plain               block IC +0.0045 (t +0.24) | comp 0.0366 -> 0.0363 gain -0.0003 (paired t -0.05) | resid IC +0.0017 (t +0.09) | perm p 0.075 | IR gross 0.91 net 0.83
+
+==============================================================================
+SUMMARY (5 blocks tested; Bonferroni factor 5)
+==============================================================================
+              name  kind  sign  coverage  block_ic  block_ic_t  comp_ic  comp_plus_block_ic    gain  gain_t  resid_ic  resid_ic_t  corr_with_comp  perm_p  gain_small  gain_mid  gain_large  ir_gross  ir_net  d_ir_gross kill_gain_t_lt_1 kill_only_small_tercile  perm_p_bonferroni passes
+  mom_x_continuity block     1    1.0000    0.0036      0.1921   0.0366              0.0357 -0.0010 -0.1487    0.0000      0.0021          0.1151  0.1493      0.0021   -0.0038      0.0008    0.9453  0.8634      0.3305             True                   False             0.7463  False
+    trend_strength block     1    0.9999    0.0117      0.6307   0.0366              0.0378  0.0011  0.1727    0.0074      0.4134          0.1267  0.0647      0.0031   -0.0013      0.0037    1.0306  0.9468      0.4158             True                   False             0.3234  False
+up_minus_down_frac block     1    0.9999    0.0091      0.6175   0.0366              0.0350 -0.0016 -0.3172   -0.0001     -0.0042          0.1683  0.1592      0.0026   -0.0054     -0.0026    0.8757  0.7960      0.2610             True                    True             0.7960  False
+        path_maxdd block     1    0.9999    0.0203      0.9627   0.0366              0.0359 -0.0008 -0.1413    0.0040      0.2203          0.4344  0.1144      0.0017   -0.0013     -0.0034    0.6078  0.5313     -0.0069             True                    True             0.5721  False
+    mom_12_1_plain block     1    0.9999    0.0045      0.2358   0.0366              0.0363 -0.0003 -0.0516    0.0017      0.0908          0.1113  0.0746      0.0021   -0.0041      0.0036    0.9114  0.8287      0.2966             True                   False             0.3731  False
+
+done in 0.9 min

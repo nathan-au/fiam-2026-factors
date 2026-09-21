@@ -1,0 +1,572 @@
+{
+  "D0_beta_only": {
+    "row": {
+      "variant": "D0_beta_only",
+      "signal_ic": 0.03664503081739846,
+      "signal_ic_t": 1.914576303308223,
+      "ir_gross": 0.6552057685639957,
+      "ir_net": 0.5863048440325377,
+      "sharpe_net": 0.8550699396834455,
+      "cagr_net_pct": 12.284043981965143,
+      "max_dd_net_pct": -20.483430884282505,
+      "beta": -0.025005862848764063,
+      "beta_t": -0.20542860007861097,
+      "roll_beta_min": -0.4143573054732159,
+      "roll_beta_max": 0.41353751098281555,
+      "max_abs_beta_formation": 7.771561172376096e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.639010149503001,
+      "avg_n_positions": 220.05882352941177,
+      "min_n_positions": 202,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 6592.114,
+      "cy2025_net": -0.18660594137607334,
+      "worst_month_net": -0.1104586942263826,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.01,
+      "stress_net_ret": {
+        "2025-06": -0.0437479684422345,
+        "2025-07": -0.0338918477288932,
+        "2026-01": 0.0053912511107362,
+        "2026-07": 0.0728696753141369,
+        "2021-01": 0.0126221679476357
+      },
+      "expo_x_size_max_abs_formation": 0.44358702040288805,
+      "expo_x_mom_max_abs_formation": 0.5995939077788623,
+      "expo_x_vol_max_abs_formation": 0.6767314968320213,
+      "expo_x_qual_max_abs_formation": 1.1227133363114419,
+      "stress_sum_5_windows": 0.013243278201381107
+    },
+    "exposures": {
+      "x_size": {
+        "mean": 0.09060558313972647,
+        "max_abs": 0.44358702040288805
+      },
+      "x_mom": {
+        "mean": 0.19795635509879383,
+        "max_abs": 0.5995939077788623
+      },
+      "x_vol": {
+        "mean": -0.45135280014383633,
+        "max_abs": 0.6767314968320213
+      },
+      "x_qual": {
+        "mean": 1.0057633580324394,
+        "max_abs": 1.1227133363114419
+      }
+    }
+  },
+  "D1_beta_sector (current lc_t10)": {
+    "row": {
+      "variant": "D1_beta_sector (current lc_t10)",
+      "signal_ic": 0.03664503081739846,
+      "signal_ic_t": 1.914576303308223,
+      "ir_gross": 0.6147635085044834,
+      "ir_net": 0.5411376376523045,
+      "sharpe_net": 0.8353848966407118,
+      "cagr_net_pct": 10.969168324693456,
+      "max_dd_net_pct": -18.946959830379818,
+      "beta": -0.061288239145670664,
+      "beta_t": -0.5523882261121303,
+      "roll_beta_min": -0.5982261017769746,
+      "roll_beta_max": 0.32219454209980464,
+      "max_abs_beta_formation": 6.38378239159465e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.5814367310276944,
+      "avg_n_positions": 227.89705882352942,
+      "min_n_positions": 202,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 7340.27733,
+      "cy2025_net": -0.1239749100571631,
+      "worst_month_net": -0.0894480884457819,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.010000000000000002,
+      "stress_net_ret": {
+        "2025-06": -0.0493429028294948,
+        "2025-07": -0.0432479785668313,
+        "2026-01": 0.00177862065241,
+        "2026-07": 0.084200176939304,
+        "2021-01": 0.0017201694418294
+      },
+      "expo_x_size_max_abs_formation": 0.2947900653771085,
+      "expo_x_mom_max_abs_formation": 0.5388588183722041,
+      "expo_x_vol_max_abs_formation": 0.6668675757500493,
+      "expo_x_qual_max_abs_formation": 1.139789530063535,
+      "stress_sum_5_windows": -0.004891914362782704
+    },
+    "exposures": {
+      "x_size": {
+        "mean": 0.07819738855312497,
+        "max_abs": 0.2947900653771085
+      },
+      "x_mom": {
+        "mean": 0.1904201482689479,
+        "max_abs": 0.5388588183722041
+      },
+      "x_vol": {
+        "mean": -0.3965069622737743,
+        "max_abs": 0.6668675757500493
+      },
+      "x_qual": {
+        "mean": 1.0102116260671554,
+        "max_abs": 1.139789530063535
+      }
+    }
+  },
+  "D2_plus_size": {
+    "row": {
+      "variant": "D2_plus_size",
+      "signal_ic": 0.03664503081739846,
+      "signal_ic_t": 1.914576303308223,
+      "ir_gross": 0.5329775076192207,
+      "ir_net": 0.45917610168697504,
+      "sharpe_net": 0.7553059718822387,
+      "cagr_net_pct": 9.719208686768322,
+      "max_dd_net_pct": -21.086722943404524,
+      "beta": -0.07381944791004624,
+      "beta_t": -0.6702899496059004,
+      "roll_beta_min": -0.5665828327199558,
+      "roll_beta_max": 0.31961549763597363,
+      "max_abs_beta_formation": 6.661338147750939e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.580351730195161,
+      "avg_n_positions": 231.23529411764707,
+      "min_n_positions": 204,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 7427.59124,
+      "cy2025_net": -0.13513791221565052,
+      "worst_month_net": -0.0898063853324882,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.01,
+      "stress_net_ret": {
+        "2025-06": -0.0553895182547689,
+        "2025-07": -0.0376947919167314,
+        "2026-01": 0.0002889013746817,
+        "2026-07": 0.0836226051130296,
+        "2021-01": -0.0002136989869741
+      },
+      "expo_x_size_max_abs_formation": 1.5834555888716295e-14,
+      "expo_x_mom_max_abs_formation": 0.5203474950815551,
+      "expo_x_vol_max_abs_formation": 0.6697405069486901,
+      "expo_x_qual_max_abs_formation": 1.1200399249950772,
+      "stress_sum_5_windows": -0.00938650267076309
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -3.851698372012974e-15,
+        "max_abs": 1.5834555888716295e-14
+      },
+      "x_mom": {
+        "mean": 0.18549166986367238,
+        "max_abs": 0.5203474950815551
+      },
+      "x_vol": {
+        "mean": -0.3912814049823345,
+        "max_abs": 0.6697405069486901
+      },
+      "x_qual": {
+        "mean": 1.0013222346098798,
+        "max_abs": 1.1200399249950772
+      }
+    }
+  },
+  "D3_plus_size_mom": {
+    "row": {
+      "variant": "D3_plus_size_mom",
+      "signal_ic": 0.03664503081739846,
+      "signal_ic_t": 1.914576303308223,
+      "ir_gross": 0.33417279615553835,
+      "ir_net": 0.26319404502099103,
+      "sharpe_net": 0.5458745935470473,
+      "cagr_net_pct": 6.959564523344897,
+      "max_dd_net_pct": -28.497463869085095,
+      "beta": -0.05208516972608501,
+      "beta_t": -0.4506296723472896,
+      "roll_beta_min": -0.6030467146898172,
+      "roll_beta_max": 0.4178268306660566,
+      "max_abs_beta_formation": 7.216449660063518e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.611218290285481,
+      "avg_n_positions": 232.72058823529412,
+      "min_n_positions": 203,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 7167.024949999999,
+      "cy2025_net": -0.16496790096150415,
+      "worst_month_net": -0.0821924632521997,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.010000000000000002,
+      "stress_net_ret": {
+        "2025-06": -0.046462574435518,
+        "2025-07": -0.0489690125574539,
+        "2026-01": 0.0011397449798024,
+        "2026-07": 0.0717876143994104,
+        "2021-01": -0.0008797890448089
+      },
+      "expo_x_size_max_abs_formation": 1.5654144647214707e-14,
+      "expo_x_mom_max_abs_formation": 1.4064270581481964e-15,
+      "expo_x_vol_max_abs_formation": 0.6679623385413248,
+      "expo_x_qual_max_abs_formation": 1.0462843762907406,
+      "stress_sum_5_windows": -0.023384016658568013
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -1.742453199700645e-15,
+        "max_abs": 1.5654144647214707e-14
+      },
+      "x_mom": {
+        "mean": -1.9310497690007586e-16,
+        "max_abs": 1.4064270581481964e-15
+      },
+      "x_vol": {
+        "mean": -0.3829636583513761,
+        "max_abs": 0.6679623385413248
+      },
+      "x_qual": {
+        "mean": 0.9462304103850542,
+        "max_abs": 1.0462843762907406
+      }
+    }
+  },
+  "D4_plus_size_mom_vol_qual": {
+    "row": {
+      "variant": "D4_plus_size_mom_vol_qual",
+      "signal_ic": 0.03664503081739846,
+      "signal_ic_t": 1.914576303308223,
+      "ir_gross": 0.5109937450818907,
+      "ir_net": 0.43156985529322495,
+      "sharpe_net": 0.7660066359094108,
+      "cagr_net_pct": 8.80413492892611,
+      "max_dd_net_pct": -17.721352543338188,
+      "beta": -0.018652697720024064,
+      "beta_t": -0.19046113957056193,
+      "roll_beta_min": -0.47881222841945054,
+      "roll_beta_max": 0.32976896967417146,
+      "max_abs_beta_formation": 9.71445146547012e-16,
+      "turnover_one_way_pct_gross": 10.07462686567164,
+      "trade_cost_bp_nav_month": 3.545090572351798,
+      "avg_n_positions": 246.60294117647058,
+      "min_n_positions": 207,
+      "months_cap_relaxed": 1,
+      "short_median_mcap_musd": 9368.6376,
+      "cy2025_net": -0.08440425201390978,
+      "worst_month_net": -0.0597832944137068,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.010000000000000002,
+      "stress_net_ret": {
+        "2025-06": -0.0256800659524874,
+        "2025-07": -0.0194988564879324,
+        "2026-01": 0.0280401631398499,
+        "2026-07": 0.0492468675697285,
+        "2021-01": 0.058372693214199
+      },
+      "expo_x_size_max_abs_formation": 1.4099832412739488e-14,
+      "expo_x_mom_max_abs_formation": 8.063008268867355e-16,
+      "expo_x_vol_max_abs_formation": 1.205639592067459e-15,
+      "expo_x_qual_max_abs_formation": 8.184371149549952e-16,
+      "stress_sum_5_windows": 0.0904808014833576
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -9.698028991386883e-16,
+        "max_abs": 1.4099832412739488e-14
+      },
+      "x_mom": {
+        "mean": -1.623285828417332e-16,
+        "max_abs": 8.063008268867355e-16
+      },
+      "x_vol": {
+        "mean": 2.5915960188319876e-16,
+        "max_abs": 1.205639592067459e-15
+      },
+      "x_qual": {
+        "mean": -1.7136652403987155e-16,
+        "max_abs": 8.184371149549952e-16
+      }
+    }
+  },
+  "P2_alpha_ortho_size": {
+    "row": {
+      "variant": "P2_alpha_ortho_size",
+      "signal_ic": 0.03456130240288688,
+      "signal_ic_t": 1.8745986463024351,
+      "ir_gross": 0.47011205368218656,
+      "ir_net": 0.3982277826023892,
+      "sharpe_net": 0.6947563943667999,
+      "cagr_net_pct": 8.818443103640083,
+      "max_dd_net_pct": -24.46725053351838,
+      "beta": -0.06824026281705216,
+      "beta_t": -0.6201258536188797,
+      "roll_beta_min": -0.6370115326558999,
+      "roll_beta_max": 0.34540585586028516,
+      "max_abs_beta_formation": 6.106226635438361e-16,
+      "turnover_one_way_pct_gross": 9.999999999999998,
+      "trade_cost_bp_nav_month": 3.6000029729840217,
+      "avg_n_positions": 228.60294117647058,
+      "min_n_positions": 202,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 9051.48,
+      "cy2025_net": -0.15716595837221425,
+      "worst_month_net": -0.0842895251783986,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.010000000000000002,
+      "stress_net_ret": {
+        "2025-06": -0.0561414475121857,
+        "2025-07": -0.038475963035034,
+        "2026-01": -0.0031735131481933,
+        "2026-07": 0.0782939300691868,
+        "2021-01": 0.0056619126462435
+      },
+      "expo_x_size_max_abs_formation": 0.889999441776024,
+      "expo_x_mom_max_abs_formation": 0.46094814948623797,
+      "expo_x_vol_max_abs_formation": 0.6041302742305323,
+      "expo_x_qual_max_abs_formation": 1.101618618777483,
+      "stress_sum_5_windows": -0.013835080979982685
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -0.5920650878331635,
+        "max_abs": 0.889999441776024
+      },
+      "x_mom": {
+        "mean": 0.17446974587738867,
+        "max_abs": 0.46094814948623797
+      },
+      "x_vol": {
+        "mean": -0.34612595920788003,
+        "max_abs": 0.6041302742305323
+      },
+      "x_qual": {
+        "mean": 0.962006839693003,
+        "max_abs": 1.101618618777483
+      }
+    }
+  },
+  "P3_alpha_ortho_size_mom": {
+    "row": {
+      "variant": "P3_alpha_ortho_size_mom",
+      "signal_ic": 0.03395852236796583,
+      "signal_ic_t": 1.9126175805787284,
+      "ir_gross": 0.32617979521972407,
+      "ir_net": 0.2563862526567093,
+      "sharpe_net": 0.545086603252149,
+      "cagr_net_pct": 6.812898194099604,
+      "max_dd_net_pct": -27.39235236808968,
+      "beta": -0.029337102437061044,
+      "beta_t": -0.2589093742812751,
+      "roll_beta_min": -0.556178741707206,
+      "roll_beta_max": 0.49049154212838,
+      "max_abs_beta_formation": 6.106226635438361e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.609847082955987,
+      "avg_n_positions": 227.38235294117646,
+      "min_n_positions": 201,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 9199.3659,
+      "cy2025_net": -0.17474905412187813,
+      "worst_month_net": -0.0943721987709848,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.010000000000000002,
+      "stress_net_ret": {
+        "2025-06": -0.0541126363749084,
+        "2025-07": -0.0471614927391783,
+        "2026-01": 0.0015119517473298,
+        "2026-07": 0.0655411811639513,
+        "2021-01": 0.0050592576938252
+      },
+      "expo_x_size_max_abs_formation": 0.943497665404019,
+      "expo_x_mom_max_abs_formation": 0.3563014399577772,
+      "expo_x_vol_max_abs_formation": 0.6354529856943211,
+      "expo_x_qual_max_abs_formation": 1.0542012895121655,
+      "stress_sum_5_windows": -0.029161738508980396
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -0.596984711661348,
+        "max_abs": 0.943497665404019
+      },
+      "x_mom": {
+        "mean": 0.00880828690916279,
+        "max_abs": 0.3563014399577772
+      },
+      "x_vol": {
+        "mean": -0.33884940925005813,
+        "max_abs": 0.6354529856943211
+      },
+      "x_qual": {
+        "mean": 0.9164966481414298,
+        "max_abs": 1.0542012895121655
+      }
+    }
+  },
+  "P4_alpha_ortho_all4": {
+    "row": {
+      "variant": "P4_alpha_ortho_all4",
+      "signal_ic": 0.02440804835270606,
+      "signal_ic_t": 1.6295801911561854,
+      "ir_gross": 0.537625827055943,
+      "ir_net": 0.46340087217156983,
+      "sharpe_net": 0.7765094051837771,
+      "cagr_net_pct": 9.51994599780317,
+      "max_dd_net_pct": -18.08440496344175,
+      "beta": -0.020771373013014377,
+      "beta_t": -0.1986353361567016,
+      "roll_beta_min": -0.5608218281672513,
+      "roll_beta_max": 0.4161522764540915,
+      "max_abs_beta_formation": 8.604228440844963e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.526585411725555,
+      "avg_n_positions": 234.85294117647058,
+      "min_n_positions": 202,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 9675.238539999998,
+      "cy2025_net": -0.08377055090864005,
+      "worst_month_net": -0.0663627134665878,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.010000000000000002,
+      "stress_net_ret": {
+        "2025-06": -0.0377361816601255,
+        "2025-07": -0.013866187660946,
+        "2026-01": 0.0521629628700555,
+        "2026-07": 0.0290820105651807,
+        "2021-01": 0.06837036413442
+      },
+      "expo_x_size_max_abs_formation": 0.38899595536540144,
+      "expo_x_mom_max_abs_formation": 0.31933919988130616,
+      "expo_x_vol_max_abs_formation": 0.1774535337404309,
+      "expo_x_qual_max_abs_formation": 0.19854238349288367,
+      "stress_sum_5_windows": 0.0980129682485847
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -0.11561431759126205,
+        "max_abs": 0.38899595536540144
+      },
+      "x_mom": {
+        "mean": -0.004616984192227171,
+        "max_abs": 0.31933919988130616
+      },
+      "x_vol": {
+        "mean": -0.013536369608313501,
+        "max_abs": 0.1774535337404309
+      },
+      "x_qual": {
+        "mean": -0.03826523923593208,
+        "max_abs": 0.19854238349288367
+      }
+    }
+  },
+  "S1_sector_rank_no_sector_caps": {
+    "row": {
+      "variant": "S1_sector_rank_no_sector_caps",
+      "signal_ic": 0.03102661253299075,
+      "signal_ic_t": 1.8618411600758324,
+      "ir_gross": 0.5056462826337614,
+      "ir_net": 0.4150941922345669,
+      "sharpe_net": 0.7868120275465049,
+      "cagr_net_pct": 8.19105659967596,
+      "max_dd_net_pct": -18.220903676369147,
+      "beta": -0.004840623186435987,
+      "beta_t": -0.05498044804741054,
+      "roll_beta_min": -0.2870028832143132,
+      "roll_beta_max": 0.25803546191352295,
+      "max_abs_beta_formation": 6.661338147750939e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.507767106513638,
+      "avg_n_positions": 225.8235294117647,
+      "min_n_positions": 201,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 7949.531245,
+      "cy2025_net": -0.14236692546330243,
+      "worst_month_net": -0.0802443194622065,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.01,
+      "stress_net_ret": {
+        "2025-06": -0.0428295873218343,
+        "2025-07": -0.0451444903640978,
+        "2026-01": -0.0086170653353719,
+        "2026-07": 0.0694971448453621,
+        "2021-01": 0.0172257932324121
+      },
+      "expo_x_size_max_abs_formation": 0.28777755818792866,
+      "expo_x_mom_max_abs_formation": 0.39740066735066154,
+      "expo_x_vol_max_abs_formation": 0.5726051355107222,
+      "expo_x_qual_max_abs_formation": 1.1071775343658612,
+      "stress_sum_5_windows": -0.009868204943529808
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -0.009805243440074685,
+        "max_abs": 0.28777755818792866
+      },
+      "x_mom": {
+        "mean": 0.1506584507847574,
+        "max_abs": 0.39740066735066154
+      },
+      "x_vol": {
+        "mean": -0.35300016219811825,
+        "max_abs": 0.5726051355107222
+      },
+      "x_qual": {
+        "mean": 0.9635442291331996,
+        "max_abs": 1.1071775343658612
+      }
+    }
+  },
+  "S2_sector_rank_plus_sector_caps": {
+    "row": {
+      "variant": "S2_sector_rank_plus_sector_caps",
+      "signal_ic": 0.03102661253299075,
+      "signal_ic_t": 1.8618411600758324,
+      "ir_gross": 0.3733901381277541,
+      "ir_net": 0.28427945293258594,
+      "sharpe_net": 0.6523994194842535,
+      "cagr_net_pct": 6.70948045276456,
+      "max_dd_net_pct": -20.496433138092208,
+      "beta": -0.0486222362010445,
+      "beta_t": -0.5481001957732828,
+      "roll_beta_min": -0.4566492299342262,
+      "roll_beta_max": 0.26832842170980303,
+      "max_abs_beta_formation": 6.38378239159465e-16,
+      "turnover_one_way_pct_gross": 9.999999999999996,
+      "trade_cost_bp_nav_month": 3.51114521985796,
+      "avg_n_positions": 232.08823529411765,
+      "min_n_positions": 203,
+      "months_cap_relaxed": 0,
+      "short_median_mcap_musd": 8233.42086,
+      "cy2025_net": -0.12460544709320531,
+      "worst_month_net": -0.0810121751057726,
+      "top10_share_gross": 0.04999999999999999,
+      "max_position_abs": 0.010000000000000002,
+      "stress_net_ret": {
+        "2025-06": -0.0371305327530353,
+        "2025-07": -0.0301284744853083,
+        "2026-01": -0.0048025015037477,
+        "2026-07": 0.0798269494828903,
+        "2021-01": 0.0185326869883104
+      },
+      "expo_x_size_max_abs_formation": 0.31512960007455976,
+      "expo_x_mom_max_abs_formation": 0.41269542421075867,
+      "expo_x_vol_max_abs_formation": 0.5692890660620911,
+      "expo_x_qual_max_abs_formation": 1.070946960553461,
+      "stress_sum_5_windows": 0.026298127729109402
+    },
+    "exposures": {
+      "x_size": {
+        "mean": -0.053730380629693895,
+        "max_abs": 0.31512960007455976
+      },
+      "x_mom": {
+        "mean": 0.1497941982274209,
+        "max_abs": 0.41269542421075867
+      },
+      "x_vol": {
+        "mean": -0.34279030608908423,
+        "max_abs": 0.5692890660620911
+      },
+      "x_qual": {
+        "mean": 0.9479340729088556,
+        "max_abs": 1.070946960553461
+      }
+    }
+  }
+}

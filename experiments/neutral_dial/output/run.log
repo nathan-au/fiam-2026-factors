@@ -1,0 +1,29 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+  [D0_beta_only                      ] IC 0.0366 | IR gross +0.66 net +0.59 | beta -0.03 roll [-0.41,+0.41] | maxDD -20% | stress {'25-06': -4.4, '25-07': -3.4, '26-01': 0.5, '26-07': 7.3, '21-01': 1.3} | relaxed 0
+  [D1_beta_sector (current lc_t10)   ] IC 0.0366 | IR gross +0.61 net +0.54 | beta -0.06 roll [-0.60,+0.32] | maxDD -19% | stress {'25-06': -4.9, '25-07': -4.3, '26-01': 0.2, '26-07': 8.4, '21-01': 0.2} | relaxed 0
+  [D2_plus_size                      ] IC 0.0366 | IR gross +0.53 net +0.46 | beta -0.07 roll [-0.57,+0.32] | maxDD -21% | stress {'25-06': -5.5, '25-07': -3.8, '26-01': 0.0, '26-07': 8.4, '21-01': -0.0} | relaxed 0
+  [D3_plus_size_mom                  ] IC 0.0366 | IR gross +0.33 net +0.26 | beta -0.05 roll [-0.60,+0.42] | maxDD -28% | stress {'25-06': -4.6, '25-07': -4.9, '26-01': 0.1, '26-07': 7.2, '21-01': -0.1} | relaxed 0
+  [D4_plus_size_mom_vol_qual         ] IC 0.0366 | IR gross +0.51 net +0.43 | beta -0.02 roll [-0.48,+0.33] | maxDD -18% | stress {'25-06': -2.6, '25-07': -1.9, '26-01': 2.8, '26-07': 4.9, '21-01': 5.8} | relaxed 1
+  [P2_alpha_ortho_size               ] IC 0.0346 | IR gross +0.47 net +0.40 | beta -0.07 roll [-0.64,+0.35] | maxDD -24% | stress {'25-06': -5.6, '25-07': -3.8, '26-01': -0.3, '26-07': 7.8, '21-01': 0.6} | relaxed 0
+  [P3_alpha_ortho_size_mom           ] IC 0.0340 | IR gross +0.33 net +0.26 | beta -0.03 roll [-0.56,+0.49] | maxDD -27% | stress {'25-06': -5.4, '25-07': -4.7, '26-01': 0.2, '26-07': 6.6, '21-01': 0.5} | relaxed 0
+  [P4_alpha_ortho_all4               ] IC 0.0244 | IR gross +0.54 net +0.46 | beta -0.02 roll [-0.56,+0.42] | maxDD -18% | stress {'25-06': -3.8, '25-07': -1.4, '26-01': 5.2, '26-07': 2.9, '21-01': 6.8} | relaxed 0
+  [S1_sector_rank_no_sector_caps     ] IC 0.0310 | IR gross +0.51 net +0.42 | beta -0.00 roll [-0.29,+0.26] | maxDD -18% | stress {'25-06': -4.3, '25-07': -4.5, '26-01': -0.9, '26-07': 6.9, '21-01': 1.7} | relaxed 0
+  [S2_sector_rank_plus_sector_caps   ] IC 0.0310 | IR gross +0.37 net +0.28 | beta -0.05 roll [-0.46,+0.27] | maxDD -20% | stress {'25-06': -3.7, '25-07': -3.0, '26-01': -0.5, '26-07': 8.0, '21-01': 1.9} | relaxed 0
+
+==============================================================================
+SUMMARY
+==============================================================================
+                        variant  signal_ic  ir_gross  ir_net  paired_net_ret_t_vs_D1   beta  roll_beta_min  roll_beta_max  max_dd_net_pct  cy2025_net  stress_sum_5_windows  months_cap_relaxed
+                   D0_beta_only      0.037     0.655   0.586                   0.644 -0.025         -0.414          0.414         -20.483      -0.187                 0.013                   0
+D1_beta_sector (current lc_t10)      0.037     0.615   0.541                     NaN -0.061         -0.598          0.322         -18.947      -0.124                -0.005                   0
+                   D2_plus_size      0.037     0.533   0.459                  -2.147 -0.074         -0.567          0.320         -21.087      -0.135                -0.009                   0
+               D3_plus_size_mom      0.037     0.334   0.263                  -2.213 -0.052         -0.603          0.418         -28.497      -0.165                -0.023                   0
+      D4_plus_size_mom_vol_qual      0.037     0.511   0.432                  -0.601 -0.019         -0.479          0.330         -17.721      -0.084                 0.090                   1
+            P2_alpha_ortho_size      0.035     0.470   0.398                  -1.985 -0.068         -0.637          0.345         -24.467      -0.157                -0.014                   0
+        P3_alpha_ortho_size_mom      0.034     0.326   0.256                  -1.855 -0.029         -0.556          0.490         -27.392      -0.175                -0.029                   0
+            P4_alpha_ortho_all4      0.024     0.538   0.463                  -0.365 -0.021         -0.561          0.416         -18.084      -0.084                 0.098                   0
+  S1_sector_rank_no_sector_caps      0.031     0.506   0.415                  -1.195 -0.005         -0.287          0.258         -18.221      -0.142                -0.010                   0
+S2_sector_rank_plus_sector_caps      0.031     0.373   0.284                  -2.483 -0.049         -0.457          0.268         -20.496      -0.125                 0.026                   0
+
+done in 1.0 min

@@ -1,0 +1,25 @@
+Loading...
+  523,125 rows; universe rows 153,392; test rows 268,733 (universe 82,026)
+match rate 0.959; universe SI ratio quantiles: [0.011, 0.03, 0.095, 0.198]; DTC: [1.73, 3.54, 8.2, 16.02]
+  si_ratio: mean next-month excess return by decile (%/m, D1 = lowest): [0.96, 0.86, 0.73, 0.96, 0.74, 0.95, 0.65, 0.5, 0.35, 0.44]; D1-D10 +0.52; D10 minus universe -0.28, D1 minus universe +0.25
+  days_to_cover: mean next-month excess return by decile (%/m, D1 = lowest): [1.25, 0.91, 0.93, 0.89, 0.81, 0.85, 0.49, 0.74, 0.07, 0.19]; D1-D10 +1.06; D10 minus universe -0.52, D1 minus universe +0.54
+  staleness (IC of -rank, older file): {"si_ratio_lag0m": 0.0446, "days_to_cover_lag0m": 0.0351, "si_ratio_lag1m": 0.0455, "days_to_cover_lag1m": 0.0305, "si_ratio_lag2m": 0.0452, "days_to_cover_lag2m": 0.0361, "si_ratio_lag3m": 0.0462, "days_to_cover_lag3m": 0.0364, "si_ratio_lag6m": 0.0446, "days_to_cover_lag6m": 0.037}
+  [comp                      ] IR gross +0.61 net +0.54 | short-book avg SI ratio 0.074 | net IR with the highest-SI fifth of shorts paying x3/x5/x10 borrow: +0.52/+0.50/+0.45
+  [comp_plus_dtc             ] IR gross +0.66 net +0.58 | short-book avg SI ratio 0.084 | net IR with the highest-SI fifth of shorts paying x3/x5/x10 borrow: +0.56/+0.54/+0.50
+  [comp_plus_sir             ] IR gross +0.63 net +0.55 | short-book avg SI ratio 0.086 | net IR with the highest-SI fifth of shorts paying x3/x5/x10 borrow: +0.53/+0.51/+0.47
+  [comp_plus_dtc_sir         ] IR gross +0.54 net +0.47 | short-book avg SI ratio 0.092 | net IR with the highest-SI fifth of shorts paying x3/x5/x10 borrow: +0.45/+0.43/+0.38
+  [comp_shortcap10           ] IR gross +0.59 net +0.51 | short-book avg SI ratio 0.047 | net IR with the highest-SI fifth of shorts paying x3/x5/x10 borrow: +0.48/+0.46/+0.41
+  [comp_plus_dtc_shortcap10  ] IR gross +0.72 net +0.64 | short-book avg SI ratio 0.054 | net IR with the highest-SI fifth of shorts paying x3/x5/x10 borrow: +0.61/+0.59/+0.53
+
+==============================================================================
+SUMMARY
+==============================================================================
+                 variant  avg_short_sir  avg_long_sir  share_short_weight_in_top_SI_fifth  ir_net_hiSI_short_borrow_x1  ir_net_hiSI_short_borrow_x3  ir_net_hiSI_short_borrow_x5  ir_net_hiSI_short_borrow_x10  ir_gross  ir_net   beta  max_dd_net_pct  cy2025_net  avg_n_positions  short_median_mcap_musd  paired_net_t_vs_comp
+                    comp          0.074         0.037                               0.203                        0.541                        0.521                        0.501                         0.451     0.615   0.541 -0.061         -18.947      -0.124          227.897                7340.277                   NaN
+           comp_plus_dtc          0.084         0.026                               0.201                        0.584                        0.565                        0.545                         0.496     0.659   0.584 -0.022         -20.288      -0.128          227.956                5610.390                 0.378
+           comp_plus_sir          0.086         0.023                               0.201                        0.554                        0.534                        0.514                         0.465     0.629   0.554 -0.077         -22.458      -0.136          226.926                5791.436                 0.196
+       comp_plus_dtc_sir          0.092         0.018                               0.199                        0.468                        0.448                        0.429                         0.379     0.544   0.468 -0.030         -23.171      -0.127          226.632                5040.234                -0.309
+         comp_shortcap10          0.047         0.037                               0.199                        0.508                        0.485                        0.462                         0.405     0.590   0.508  0.002          -9.791      -0.066          231.397                9682.221                -0.565
+comp_plus_dtc_shortcap10          0.054         0.023                               0.203                        0.637                        0.614                        0.591                         0.534     0.721   0.637  0.023          -9.795      -0.010          229.794                6979.799                 0.095
+
+done in 1.0 min

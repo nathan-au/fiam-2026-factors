@@ -2,3 +2,6 @@
 .venv/
 malek/
 __pycache__/
+cache/tnic/
+cache/finra_short_interest/
+cache/sec_form345/

@@ -1,0 +1,135 @@
+{
+  "truncation_rebuilt_characteristics": {
+    "passed": true,
+    "dates": [
+      "2024-07-31",
+      "2023-11-30",
+      "2025-08-31"
+    ],
+    "n_values_compared": 77651,
+    "max_abs_diff_by_feature": {
+      "ret_1_0": 0.0,
+      "ret_3_1": 0.0,
+      "ret_6_1": 0.0,
+      "ret_9_1": 0.0,
+      "ret_12_1": 0.0,
+      "ret_12_7": 0.0,
+      "ret_60_12": 0.0
+    }
+  },
+  "rebuilt_vs_panel": {
+    "ret_1_0": {
+      "n_compared": 526287,
+      "max_abs_diff_vs_panel_column": 8.881784197001252e-16,
+      "share_within_1e-9": 1.0
+    },
+    "ret_3_1": {
+      "n_compared": 513021,
+      "max_abs_diff_vs_panel_column": 3.552713678800501e-15,
+      "share_within_1e-9": 1.0
+    },
+    "ret_6_1": {
+      "n_compared": 493272,
+      "max_abs_diff_vs_panel_column": 7.105427357601002e-15,
+      "share_within_1e-9": 1.0
+    },
+    "ret_9_1": {
+      "n_compared": 473746,
+      "max_abs_diff_vs_panel_column": 1.4210854715202004e-14,
+      "share_within_1e-9": 1.0
+    },
+    "ret_12_1": {
+      "n_compared": 454576,
+      "max_abs_diff_vs_panel_column": 2.1316282072803006e-14,
+      "share_within_1e-9": 1.0
+    },
+    "ret_12_7": {
+      "n_compared": 454755,
+      "max_abs_diff_vs_panel_column": 7.105427357601002e-15,
+      "share_within_1e-9": 1.0
+    },
+    "ret_60_12": {
+      "n_compared": 214516,
+      "max_abs_diff_vs_panel_column": 8.526512829121202e-14,
+      "share_within_1e-9": 1.0
+    }
+  },
+  "negative_control_leaky_feature": {
+    "passed": false,
+    "dates": [
+      "2024-07-31",
+      "2023-11-30",
+      "2025-08-31"
+    ],
+    "n_values_compared": 23077,
+    "max_abs_diff_by_feature": {
+      "leaky_ret_next_1m": null,
+      "ok_ret_1_0": 0.0
+    }
+  },
+  "label_alignment": {
+    "n_compared": 522431,
+    "share_equal_1e-9": 1.0,
+    "max_abs_diff": 0.0,
+    "note": "mismatches, if any, are where ret_exc_lead1m is not the plain next-month value (e.g. delisting-return handling) - inspected below",
+    "n_mismatch": 0
+  },
+  "suspicious_ic_scan": {
+    "n_characteristics": 147,
+    "n_flagged_abs_ic_gt_0.10": 11,
+    "top10_by_abs_ic_all_stocks": [
+      {
+        "characteristic": "ivol_capm_252d",
+        "ic_all_stocks": -0.12162641633429337,
+        "ic_universe": -0.022303729623360257
+      },
+      {
+        "characteristic": "bidaskhl_21d",
+        "ic_all_stocks": -0.11884524080378717,
+        "ic_universe": -0.018818643323935073
+      },
+      {
+        "characteristic": "ivol_capm_21d",
+        "ic_all_stocks": -0.11879309608746023,
+        "ic_universe": -0.021781057482168173
+      },
+      {
+        "characteristic": "ivol_ff3_21d",
+        "ic_all_stocks": -0.1186469786183247,
+        "ic_universe": -0.026023292644821817
+      },
+      {
+        "characteristic": "ivol_hxz4_21d",
+        "ic_all_stocks": -0.11772824310718925,
+        "ic_universe": -0.022999936666046116
+      },
+      {
+        "characteristic": "rvol_21d",
+        "ic_all_stocks": -0.11607703925623965,
+        "ic_universe": -0.016374184924567044
+      },
+      {
+        "characteristic": "rmax5_21d",
+        "ic_all_stocks": -0.11034454614029149,
+        "ic_universe": -0.015805699118687646
+      },
+      {
+        "characteristic": "prc",
+        "ic_all_stocks": 0.10412677202643857,
+        "ic_universe": 0.011923598671225276
+      },
+      {
+        "characteristic": "rmax1_21d",
+        "ic_all_stocks": -0.10400858763204125,
+        "ic_universe": -0.011361581958630664
+      },
+      {
+        "characteristic": "ni_me",
+        "ic_all_stocks": 0.10122235486295658,
+        "ic_universe": 0.014443094923629836
+      }
+    ],
+    "max_abs_ic_universe": 0.0339666755249314
+  },
+  "coverage_note": "Only the 7 return-derived characteristics can be rebuilt from the panel's own `ret` column; the other characteristics need raw daily / accounting data that is not in the panel, so they are screened (IC scan) rather than proven point-in-time."
+}
