@@ -5,4 +5,5 @@ __pycache__/
 cache/tnic/
 cache/finra_short_interest/
 cache/sec_form345/
-fiam/
+fiam/8k_20150101_20260831_identified.parquet
+fiam/chars_final_with_names.parquet
