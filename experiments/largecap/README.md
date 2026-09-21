@@ -1,6 +1,6 @@
 # Large-Cap-Only Strategy, Pre-Registered (LARGECAP)
 
-Implementation: `largecap.py` (run with `.venv/bin/python experiments/largecap/largecap.py --seeds 5`, about 12 minutes). New file; imports the frozen harness in `et.py` (data, rank transform, folds, LP, costs, performance stats) and edits nothing. Outputs in `output/`: `lc_results.json`, `lc_summary.csv`, `lc_monthly_ic.csv`, `oos_predictions_lc_<arm>.csv`, `portfolio_{holdings,returns}_<variant>_lc_<arm>.csv`, `lc_feature_importance_<arm>.csv`, `lc_run.log`.
+Implementation: `largecap.py` (run with `.venv/bin/python experiments/largecap/largecap.py --seeds 5`, about 12 minutes). New file; contains a verbatim copy of the parts of the frozen `et.py` harness it uses (standalone) (data, rank transform, folds, LP, costs, performance stats) and edits nothing. Outputs in `output/`: `lc_results.json`, `lc_summary.csv`, `lc_monthly_ic.csv`, `oos_predictions_lc_<arm>.csv`, `portfolio_{holdings,returns}_<variant>_lc_<arm>.csv`, `lc_feature_importance_<arm>.csv`, `lc_run.log`.
 
 **Why.** `experiments/pm_ablation/README.md` showed the tree models' edge lives in small-cap shorts, and that a $2B market-cap floor was the one non-negative tradeable row (post-hoc, trained on all stocks). This tests that idea with the design fixed in the script header before any result was seen, and with training/validation restricted to the large-cap universe.
 

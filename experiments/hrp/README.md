@@ -1,6 +1,6 @@
 # Hierarchical Risk Parity Sizing on the Large-Cap Composite Book (HRP)
 
-Implementation: `hrp.py` (run with `.venv/bin/python experiments/hrp/hrp.py` for the $2B book and `--floor 1000` for the $1B sensitivity; about 10 seconds each). New file; imports the frozen harness in `et.py` and reads the holdings saved by `largecap.py` (`output/portfolio_holdings_lc_t10_<lc|lc1000>_comp.csv`); edits nothing. Outputs in `output/`: `hrp_summary_<tag>.csv`, `hrp_results_<tag>.json`, `hrp_run_<tag>.log`, `portfolio_{holdings,returns}_<scheme>_cap<per-mille>_<tag>_comp.csv`.
+Implementation: `hrp.py` (run with `.venv/bin/python experiments/hrp/hrp.py` for the $2B book and `--floor 1000` for the $1B sensitivity; about 10 seconds each). New file; contains a verbatim copy of the parts of the frozen `et.py` harness it uses (standalone) and reads the holdings saved by `largecap.py` (`output/portfolio_holdings_lc_t10_<lc|lc1000>_comp.csv`); edits nothing. Outputs in `output/`: `hrp_summary_<tag>.csv`, `hrp_results_<tag>.json`, `hrp_run_<tag>.log`, `portfolio_{holdings,returns}_<scheme>_cap<per-mille>_<tag>_comp.csv`.
 
 **Question.** `experiments/largecap/README.md`'s headline book is sized by an LP whose linear objective pushes positions to the per-name cap (roughly equal weight). Does risk-aware sizing (López de Prado's HRP) lower volatility and drawdown without hurting neutrality or return? HRP is a sizing method, not a signal: it adds no information, so the only expected effect is on risk.
 
