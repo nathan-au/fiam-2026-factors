@@ -21,7 +21,7 @@ characteristics**:
   effects no linear model can express (e.g. momentum conditional on size,
   accruals conditional on leverage) and handle correlated/redundant factors
   natively via split selection — a free fix for the "no feature
-  deduplication" issue noted in `docs/OLS.md` §4.3, without doing manual
+  deduplication" issue noted in `experiments/ols/README.md` §4.3, without doing manual
   dedup.
 - A small feedforward net is the other standard option, but trees are the
   more natural first move: less tuning surface, easier to reason about
@@ -40,7 +40,7 @@ walk-forward fold schedule. Swap only the model-fitting step.
 ## 2. Beta neutralization: switch `beta_60m` → `betabab_1260d`
 
 Current state (`ols.py`, beta-neutral LP): the per-month constraint is
-`Σ w_i · beta_60m_i = 0`. `docs/OLS.md` §3.5 documents the consequence:
+`Σ w_i · beta_60m_i = 0`. `experiments/ols/README.md` §3.5 documents the consequence:
 formation beta is exact (zero to float precision), but **realized** beta
 over the OOS window only fell to −0.17 (t = −0.67), not all the way to
 zero — because `beta_60m` is a plain 5-year trailing OLS beta, a slow,
@@ -100,10 +100,10 @@ Build a LightGBM (or XGBoost) model:
    `betabab_1260d` — to get a direct before/after comparison of the
    neutralization fix.
 5. Compare OOS R², IR, Sharpe, realized beta, and turnover against the OLS
-   benchmark in `docs/OLS.md`.
+   benchmark in `experiments/ols/README.md`.
 
-Keep this as a new script + new doc (e.g. `lgbm.py` / `docs/LGBM.md`) rather
-than modifying `ols.py` or `docs/OLS.md` — those stay frozen as the linear
+Keep this as a new script + new doc (e.g. `lgbm.py` / `experiments/lgbm/README.md`) rather
+than modifying `ols.py` or `experiments/ols/README.md` — those stay frozen as the linear
 baseline.
 
 ---
@@ -111,7 +111,7 @@ baseline.
 ## Other candidates, lower priority for now
 
 - Turnover/transaction-cost model (both OLS legs run ~40% one-way monthly
-  turnover, uncosted — see `docs/OLS.md` §4.4).
+  turnover, uncosted — see `experiments/ols/README.md` §4.4).
 - Sector/factor neutrality as a refinement beyond beta (FIAM.md §2,
   optional).
 - Daily risk measurement between monthly rebalances (FIAM.md §11,

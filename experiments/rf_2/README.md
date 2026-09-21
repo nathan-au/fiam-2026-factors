@@ -1,21 +1,21 @@
 # Random Forest, Round 2 — Hardening the Modern Arm
 
-Implementation: `rf_2.py` (run with `.venv/bin/python rf_2.py`; `--stages a,b` for a
-subset, `--smoke` for a fast plumbing test). Follows up `docs/RF.md`, where the
+Implementation: `rf_2.py` (run with `.venv/bin/python experiments/rf_2/rf_2.py`; `--stages a,b` for a
+subset, `--smoke` for a fast plumbing test). Follows up `experiments/rf/README.md`, where the
 Modern arm (15 characteristics) was the best result in the project (IR 1.05).
 `rf.py` and its outputs are untouched; everything here is `rf2_*` /
-`*_rf2_modern`. Full numbers: `output/rf2_results.json` and one CSV per stage.
+`*_rf2_modern`. Full numbers: `experiments/rf_2/output/rf2_results.json` and one CSV per stage.
 
 **Bottom line.** Modern is a real, positive result — every one of 15 grid
 configurations, 5 seeds, and 6 beta/feature variants has a positive IR — but two
-things in `docs/RF.md` do not survive stress-testing:
+things in `experiments/rf/README.md` do not survive stress-testing:
 
 1. **The curated 15-factor set is not special.** 15 *random* characteristics
    give a mean IR of 1.02 (Modern: 1.04–1.20 depending on config/seed). What is
    unusual is the **Graham** set, which is far *worse* than random, not Modern
    being better.
 2. **The Graham failure is not a short-squeeze story.** Graham's signal is ~zero
-   on *both* sides (details in §5), so the explanation offered in `docs/RF.md`
+   on *both* sides (details in §5), so the explanation offered in `experiments/rf/README.md`
    is not needed and is not supported.
 
 The honest headline number is **IR ≈ 1.0–1.1 gross** (about 0.9 after a 10 bp
@@ -140,15 +140,15 @@ returns):
 | LP book long-leg / short-leg CAGR | −3.8% / −4.7% | 12.4% / 10.4% |
 | Rank IC | 0.005 | 0.095 |
 
-`docs/RF.md` proposed that Graham loses because its **short** leg gets squeezed
+`experiments/rf/README.md` proposed that Graham loses because its **short** leg gets squeezed
 in a book that the paper's long-only design avoids. The test says otherwise:
 Graham's **long-only** book *also* loses to the universe (−6.5%/yr, insignificant)
 and to T-bills, the top-minus-bottom spread is zero, and IC is zero. The signal
 simply has no power in this sample on either side. Both legs of the LP book lose
 (−3.8% long, −4.7% short). The paper's result therefore does not replicate even
 long-only here — with the caveats that the paper's window (Mar 2022–Mar 2026)
-differs and the Graham/Modern mapping is this project's own (`docs/RF.md`
-limitation 1). **`docs/RF.md`'s explanation paragraph should be revised;** I have
+differs and the Graham/Modern mapping is this project's own (`experiments/rf/README.md`
+limitation 1). **`experiments/rf/README.md`'s explanation paragraph should be revised;** I have
 not edited that file.
 
 Side finding for Modern: the edge is **short-heavy**. Top-100 long-only beats the

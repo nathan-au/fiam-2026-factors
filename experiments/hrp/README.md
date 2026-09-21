@@ -1,8 +1,8 @@
 # Hierarchical Risk Parity Sizing on the Large-Cap Composite Book (HRP)
 
-Implementation: `hrp.py` (run with `.venv/bin/python hrp.py` for the $2B book and `--floor 1000` for the $1B sensitivity; about 10 seconds each). New file; imports the frozen harness in `et.py` and reads the holdings saved by `largecap.py` (`output/portfolio_holdings_lc_t10_<lc|lc1000>_comp.csv`); edits nothing. Outputs in `output/`: `hrp_summary_<tag>.csv`, `hrp_results_<tag>.json`, `hrp_run_<tag>.log`, `portfolio_{holdings,returns}_<scheme>_cap<per-mille>_<tag>_comp.csv`.
+Implementation: `hrp.py` (run with `.venv/bin/python experiments/hrp/hrp.py` for the $2B book and `--floor 1000` for the $1B sensitivity; about 10 seconds each). New file; imports the frozen harness in `et.py` and reads the holdings saved by `largecap.py` (`output/portfolio_holdings_lc_t10_<lc|lc1000>_comp.csv`); edits nothing. Outputs in `output/`: `hrp_summary_<tag>.csv`, `hrp_results_<tag>.json`, `hrp_run_<tag>.log`, `portfolio_{holdings,returns}_<scheme>_cap<per-mille>_<tag>_comp.csv`.
 
-**Question.** `docs/LARGECAP.md`'s headline book is sized by an LP whose linear objective pushes positions to the per-name cap (roughly equal weight). Does risk-aware sizing (López de Prado's HRP) lower volatility and drawdown without hurting neutrality or return? HRP is a sizing method, not a signal: it adds no information, so the only expected effect is on risk.
+**Question.** `experiments/largecap/README.md`'s headline book is sized by an LP whose linear objective pushes positions to the per-name cap (roughly equal weight). Does risk-aware sizing (López de Prado's HRP) lower volatility and drawdown without hurting neutrality or return? HRP is a sizing method, not a signal: it adds no information, so the only expected effect is on risk.
 
 ## Design (pre-registered in the script header before any result was seen)
 
@@ -12,7 +12,7 @@ Implementation: `hrp.py` (run with `.venv/bin/python hrp.py` for the $2B book an
 | Schemes | `ew` equal weight within each leg (**control**: same names, same repair); `ivp` inverse-volatility within each leg (**control**: risk-aware sizing without clustering); `hrp` HRP within each leg. |
 | HRP | 60-month trailing correlation of monthly excess returns (`ret_exc`, months up to the characteristic month), distance √((1−ρ)/2), single linkage, quasi-diagonalisation by dendrogram leaf order, recursive bisection with inverse-variance cluster variance. No covariance inversion, no shrinkage, pairwise-complete correlations (≥ 48 obs). |
 | Neutrality | Each leg's target sizes (sum 1 per leg, gross 200%) are repaired by the smallest L1 change that restores the selection LP's constraints exactly: dollar-neutral, neutral to `beta_60m` and `betabab_1260d`, net sector ≤ 5% NAV, sector gross ≤ 35%, side of every name unchanged, per-name cap. Headline cap 2%, sensitivity 1% (the LP's own cap). The repair was feasible in every month (0 fallbacks). |
-| Turnover | No turnover constraint in the repair; realised turnover and tiered costs (`docs/PM_ABLATION.md` §1) are in the net figures. |
+| Turnover | No turnover constraint in the repair; realised turnover and tiered costs (`experiments/pm_ablation/README.md` §1) are in the net figures. |
 | Verdict rule | HRP is "useful" only if, versus `ew` at the same cap, **net Sharpe is not lower AND net max drawdown is shallower AND neutrality is not worse** (beta t-stat, rolling-12m beta range). `hrp` vs `ivp` is reported separately. Not tuned; not re-run. |
 
 ## Results, $2B floor (2021-01 – 2026-08, 68 months, net of assumed costs unless "gross")

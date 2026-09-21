@@ -5,7 +5,7 @@ Self-contained sibling of ols.py (not imported from it, per project convention
 that each model script stands alone). Ports the same data loading, target-
 month alignment, cross-sectional rank transform, walk-forward fold schedule,
 investability screen, beta-neutral LP portfolio construction, and performance
-evaluation -- see docs/OLS.md for the full rationale behind each of those,
+evaluation -- see experiments/ols/README.md for the full rationale behind each of those,
 which is unchanged here. The only thing that changes is the model-fitting
 step: plain OLS -> gradient-boosted trees (XGBoost), and the validation fold
 now does real work (early-stopping / hyperparameter selection) instead of
@@ -24,11 +24,11 @@ Pipeline:
      (trees) are still estimated on training only, never on validation.
   4. Score every stock each out-of-sample month, screen for investability,
      form a dollar- and beta-neutral portfolio via a per-month LP (still
-     constrained on beta_60m -- see docs/XGB.md for why this is deferred
+     constrained on beta_60m -- see experiments/xgb/README.md for why this is deferred
      rather than switched to betabab_1260d here), and evaluate it against the
      T-bill + 4% benchmark and the S&P 500.
 
-Run: .venv/bin/python xgb.py
+Run: .venv/bin/python experiments/xgb/xgb.py
 cache/ holds only downloaded external data (TB3MS.csv, SP500.csv), shared
 with ols.py.
 Outputs (all in output/): oos_predictions_xgb.csv,
@@ -49,10 +49,11 @@ from scipy.optimize import linprog
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"  # downloaded external data only (FRED series)
-OUTPUT = BASE / "output"  # everything this script produces
+OUTPUT = HERE / "output"  # everything this script produces
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 
@@ -132,7 +133,7 @@ def cross_sectional_rank_transform(df: pd.DataFrame, stock_vars: list[str]) -> p
 # ---------------------------------------------------------------------------
 
 # Small grid: (max_depth, learning_rate). Kept deliberately narrow -- with an
-# OOS R^2 near zero from the linear baseline (docs/OLS.md), the risk here is
+# OOS R^2 near zero from the linear baseline (experiments/ols/README.md), the risk here is
 # overfitting a weak signal, not underfitting, so the grid favors shallow
 # trees / low learning rates over exhaustive search.
 PARAM_GRID = [
@@ -274,7 +275,7 @@ def oos_r2(actual: np.ndarray, predicted: np.ndarray) -> float:
     return 1.0 - np.sum((actual - predicted) ** 2) / np.sum(actual**2)
 
 
-# Investability screen, matching ols.py exactly (see docs/OLS.md for the
+# Investability screen, matching ols.py exactly (see experiments/ols/README.md for the
 # diagnosis -- an unscreened top/bottom-N portfolio shorts illiquid
 # microcaps). Applied only at portfolio-formation time, never during
 # training.
@@ -493,7 +494,7 @@ def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
     perf["benchmark_monthly"] = perf["rf_monthly"] + 0.04 / 12.0
 
     # Convention: the dollar-neutral spread return is already earned in excess
-    # of a risk-free rate -- see docs/OLS.md for the stated caveat, carried
+    # of a risk-free rate -- see experiments/ols/README.md for the stated caveat, carried
     # over unchanged here.
     perf["active_ret"] = perf["port_excess_ret"] - 0.04 / 12.0
 
@@ -637,4 +638,4 @@ if __name__ == "__main__":
     with open(OUTPUT / "xgb_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
 
-    print("\nFull results written to output/xgb_results.json")
+    print("\nFull results written to experiments/xgb/output/xgb_results.json")

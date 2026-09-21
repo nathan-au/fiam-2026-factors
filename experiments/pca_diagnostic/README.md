@@ -1,7 +1,7 @@
 # PCA Subspace Stability Diagnostic (Methodology and Results)
 
 Implementation: `pca_diagnostic.py` (run with
-`.venv/bin/python pca_diagnostic.py`). Operationalizes *Principal component
+`.venv/bin/python experiments/pca_diagnostic/pca_diagnostic.py`). Operationalizes *Principal component
 error in high-dimensional factor models* (Bernstein, Goldberg, Gunther,
 Kercheval, Lan, Lin & Yao, arXiv 2609.20550, Sep 2026 — `docs/PAPERS.md`
 §3).
@@ -41,7 +41,7 @@ script's only outputs are diagnostic tables.
 ## Results
 
 Average subspace stability (mean principal-angle cosine) across all 6
-folds, by `k` (`output/pca_stability_by_k.csv`):
+folds, by `k` (`experiments/pca_diagnostic/output/pca_stability_by_k.csv`):
 
 | k | Stability (cosine) | k | Stability (cosine) |
 |---:|---:|---:|---:|
@@ -63,13 +63,13 @@ though the *combined* subspace up to that point is still well-estimated —
 a well-known PCA phenomenon (component-level instability near eigenvalue
 ties), not evidence the whole top-15 subspace is unreliable.
 
-**Variance explained** (`output/pca_variance_explained.csv`): 8 components
+**Variance explained** (`experiments/pca_diagnostic/output/pca_variance_explained.csv`): 8 components
 are needed on average to explain 50% of total cross-sectional variance in
 the 147 characteristics; more than 15 are needed to reach 90% (the diagnostic
 was capped at k=15). This is a meaningfully diffuse spectrum — no small
 handful of components dominates — consistent with the univariate finding
 that no individual characteristic carries outsized standalone signal, and
-with `docs/OLS.md` §4.5's note that the 147 characteristics include many
+with `experiments/ols/README.md` §4.5's note that the 147 characteristics include many
 correlated-but-not-redundant groups rather than a small number of true
 underlying factors.
 

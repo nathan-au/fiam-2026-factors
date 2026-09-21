@@ -1,8 +1,8 @@
 # XGBoost, Round 2 — Fixing the Tuning and the Regularization
 
-Implementation: `xgb_2.py` (run with `.venv/bin/python xgb_2.py`). Follows `docs/XGB.md`; `xgb.py` and its outputs are untouched.
+Implementation: `xgb_2.py` (run with `.venv/bin/python experiments/xgb_2/xgb_2.py`). Follows `experiments/xgb/README.md`; `xgb.py` and its outputs are untouched.
 
-**What was wrong in `docs/XGB.md`.** Selection and early stopping on validation **MSE** (the 2025 fold stopped after 4 trees — validation MSE cannot see this signal), 0.8 row/column sampling, no leaf-size floor, `reg_lambda=1`, a 6-config (`max_depth` × `learning_rate`) grid, all 147 characteristics including momentum, and an unwinsorized label. Result: IR 0.12, OOS R² −0.13%, below the OLS floor.
+**What was wrong in `experiments/xgb/README.md`.** Selection and early stopping on validation **MSE** (the 2025 fold stopped after 4 trees — validation MSE cannot see this signal), 0.8 row/column sampling, no leaf-size floor, `reg_lambda=1`, a 6-config (`max_depth` × `learning_rate`) grid, all 147 characteristics including momentum, and an unwinsorized label. Result: IR 0.12, OOS R² −0.13%, below the OLS floor.
 
 **What changed here.**
 
@@ -13,10 +13,10 @@ Implementation: `xgb_2.py` (run with `.venv/bin/python xgb_2.py`). Follows `docs
 | Big leaves and strong shrinkage | `min_child_weight` {500, 5000} (≈ rows per leaf), `reg_lambda=100`, `max_depth` {2, 4} |
 | Winsorized fit label | 1st/99th training-fold percentile |
 | Feature arms | `modern_nomom` (12), `modern` (15), and **`all_nomom` (139)** — run so the comparison to `xgb.py` (147 features) is close to like-for-like |
-| Portfolio layer | as `docs/RF_3.md` |
+| Portfolio layer | as `experiments/rf_3/README.md` |
 
 **Bottom line.**
-1. **The XGBoost failure was tuning and regularization, not "trees don't work here".** On the same legacy LP as `docs/XGB.md`, XGB_2 goes from IR 0.12 to 1.25 on the 139-feature arm (0.90 on 12 features, 1.04 on 15). Several changes were made together (the feature set also differs by the 8 momentum columns), so no single fix is credited.
+1. **The XGBoost failure was tuning and regularization, not "trees don't work here".** On the same legacy LP as `experiments/xgb/README.md`, XGB_2 goes from IR 0.12 to 1.25 on the 139-feature arm (0.90 on 12 features, 1.04 on 15). Several changes were made together (the feature set also differs by the 8 momentum columns), so no single fix is credited.
 2. **Same tradeability problem as every other model:** on the PM LP the 139-feature model is worse than the small-feature arms (`pm_t10` IR -0.54 gross), i.e. more characteristics fit more of the small-cap structure the PM screens remove.
 
 ## Portfolio layer (shared by the five scripts of this batch)
@@ -25,17 +25,17 @@ Two portfolios are built from the same predictions each month and every result i
 
 | Name | What it is |
 |---|---|
-| `legacy` | The exact LP of every earlier script (`docs/OLS.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `docs/RF.md`, `docs/RF_2.md`, `docs/XGB.md`, etc. |
+| `legacy` | The exact LP of every earlier script (`experiments/ols/README.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `experiments/rf/README.md`, `experiments/rf_2/README.md`, `experiments/xgb/README.md`, etc. |
 | `pm_free` / `pm_t20` / `pm_t10` | A "portfolio-manager" LP built from *Valentino's FIAM Tips* (`Valentino_FIAM_Tips.pdf`) and the financial-engineer notes: price ≥ $5 and market cap ≥ $500M screens (plus the $10M dollar-volume screen); neutral to **both** `beta_60m` and `betabab_1260d`; net sector exposure ≤ 5% of NAV and sector share ≤ 35% of the gross book (2-digit GICS); and a **hard one-way turnover budget** as an LP constraint — none (`pm_free`), 20% (`pm_t20`) or 10% (`pm_t10`, the headline, following the tips' "around 10% per month"). |
 
 - **Turnover convention:** one-way, as a share of the 200% gross book, from drift-adjusted trades (last month's weights are drifted by that month's realized returns, which are known at the rebalance date). This is the same convention as this project's `avg_monthly_turnover`. If the cap is infeasible in a month (names forced out of the universe), it is loosened stepwise ×1.5, 2, 3, 5 and the month is counted in "Months cap relaxed".
-- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `docs/PM_ABLATION.md`.
+- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `experiments/pm_ablation/README.md`.
 - **Pre-specified, not tuned.** The screens, sector limits and the 10% headline cap were fixed from the tips before any result was seen. The `pm_free`/`pm_t20`/`pm_t10` rows are a sensitivity sweep, not a search.
 - **Selection:** hyperparameters (and tree counts for boosted models) are picked per fold on **validation mean monthly rank IC**, never on validation MSE and never on test data. The fitting label is `ret_exc_lead1m` winsorized at the training fold's 1st/99th percentiles (`--raw-target` disables); predictions remain in next-month-return units and OOS R² is scored on the raw return.
 
 ## 1. Like-for-like comparison with `xgb.py` (`legacy` LP, gross)
 
-| Metric (2021-01 – 2026-08, `legacy` LP, gross) | `xgb.py` (`docs/XGB.md`), 147 features | `xgb_2.py` `all_nomom`, 139 features | `xgb_2.py` `modern`, 15 | `xgb_2.py` `modern_nomom`, 12 |
+| Metric (2021-01 – 2026-08, `legacy` LP, gross) | `xgb.py` (`experiments/xgb/README.md`), 147 features | `xgb_2.py` `all_nomom`, 139 features | `xgb_2.py` `modern`, 15 | `xgb_2.py` `modern_nomom`, 12 |
 |---|---:|---:|---:|---:|
 | OOS R² | −0.127% | -0.014% | +0.098% | +0.140% |
 | Information ratio | 0.12 | 1.25 | 1.04 | 0.90 |
@@ -46,7 +46,7 @@ Two portfolios are built from the same predictions each month and every result i
 | Max drawdown | −30.6% | -27.8% | -41.0% | -43.8% |
 | One-way turnover (project convention) | 44.2% | 39.5% | 44.7% | 41.2% |
 
-`xgb.py` numbers are copied from `docs/XGB.md` §3. The LP, benchmark, folds and OOS window are identical; `xgb_2.py` additionally uses the momentum-free / smaller feature sets and the winsorized label.
+`xgb.py` numbers are copied from `experiments/xgb/README.md` §3. The LP, benchmark, folds and OOS window are identical; `xgb_2.py` additionally uses the momentum-free / smaller feature sets and the winsorized label.
 
 ## 2. Selection (headline arm `modern_nomom`)
 
@@ -100,7 +100,7 @@ Depth 2 (the shallower option) is chosen in every fold, and 50–200 trees — s
 | modern | pm_t20 | -0.11 | -0.23 | -0.04 | -0.4% / -2.9% | -0.19 | +0.08 (+0.49) | -0.90 / +1.35 (1) | 20% | -39% | $2,296M | 203–247 |
 | modern | pm_t10 | -0.29 | -0.39 | -0.18 | -3.5% / -5.4% | -0.46 | +0.04 (+0.22) | -0.67 / +1.02 (1) | 10% | -38% | $2,568M | 203–283 |
 
-Costs: tiered trading and borrow assumptions from `docs/PM_ABLATION.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
+Costs: tiered trading and borrow assumptions from `experiments/pm_ablation/README.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
 
 ### 3.3 Legs, costs and trading, headline arm (`modern_nomom`)
 
@@ -150,21 +150,21 @@ Model-level: mean val rank IC 0.1132, test rank IC 0.1163, OOS R² -0.014%, pred
 
 1. **Rank IC and R² are in line with the other tree models** on the small arms (test IC 0.148, R² +0.140% on `modern_nomom`); the 139-feature arm has a slightly lower IC and an R² of about zero. XGBoost is not worse than RF here once tuned on the right metric.
 2. **Legacy portfolio:** IR 0.90 / 1.04 / 1.25 (12 / 15 / 139 features). The 139-feature model has the best legacy book of the XGB arms and the worst PM book.
-3. Under the PM constraints every arm is at or below 0 (see §3); `docs/PM_ABLATION.md` explains it.
+3. Under the PM constraints every arm is at or below 0 (see §3); `experiments/pm_ablation/README.md` explains it.
 4. Rolling-12m β exceeds 1 in at most one window (the first, ending Dec 2021) on every book; the 139-feature books never exceed 0.9.
 
 ## 5. Limitations
 
 - Depth 2 and the smallest tree counts sit on the grid edge (see §2); depth-1 stumps or < 50 trees were not tried.
 - The `xgb.py` → `xgb_2.py` gain bundles several changes, and the feature set is not identical (139 vs 147).
-- Single seed; assumed cost tiers. Same PM caveats as `docs/RF_3.md` §5.
+- Single seed; assumed cost tiers. Same PM caveats as `experiments/rf_3/README.md` §5.
 
 ## Reproduce
 
 ```
-.venv/bin/python xgb_2.py                                              # modern_nomom, modern  -> xgb2_results.json / xgb2_summary.csv
-.venv/bin/python xgb_2.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> xgb2_results_trad.json
+.venv/bin/python experiments/xgb_2/xgb_2.py                                              # modern_nomom, modern  -> xgb2_results.json / xgb2_summary.csv
+.venv/bin/python experiments/xgb_2/xgb_2.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> xgb2_results_trad.json
 ```
 Outputs are in `output/` (`oos_predictions_xgb2_<arm>.csv`, `portfolio_holdings_<portfolio>_xgb2_<arm>.csv`, `portfolio_returns_<portfolio>_xgb2_<arm>.csv`, `xgb2_feature_importance_<arm>.csv`).
 
-(The 139-feature arm: `.venv/bin/python xgb_2.py --arms all_nomom --suffix _all` → `xgb2_results_all.json`.)
+(The 139-feature arm: `.venv/bin/python experiments/xgb_2/xgb_2.py --arms all_nomom --suffix _all` → `xgb2_results_all.json`.)

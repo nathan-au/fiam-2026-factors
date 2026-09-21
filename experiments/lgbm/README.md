@@ -1,8 +1,8 @@
 # LightGBM, Forest-Style — Methodology and Results
 
-Implementation: `lgbm.py` (run with `.venv/bin/python lgbm.py`). `docs/NEXT.md` §1 named LightGBM as the natural next step; `docs/XGB.md` showed ordinary boosting overfits this panel. New file; no existing file edited.
+Implementation: `lgbm.py` (run with `.venv/bin/python experiments/lgbm/lgbm.py`). `docs/NEXT.md` §1 named LightGBM as the natural next step; `experiments/xgb/README.md` showed ordinary boosting overfits this panel. New file; no existing file edited.
 
-**Configuration ("forest-style").** Learning rate 0.02, shallow trees (`num_leaves` 7 or 31), huge leaves (`min_child_samples` 1000 or 5000), 30% feature sampling per tree, 50% row bagging every round, randomized thresholds (`extra_trees=True`), L2 = 100, 63 bins. Up to 600 trees; the tree count {50, 100, 200, 400, 600} is selected per fold on **validation rank IC** (`num_iteration`). One extra candidate per fold: LightGBM's bagged-forest mode (`boosting='rf'`, 63 leaves, 300 trees). Features `modern_nomom` (12, headline) and `modern` (15). Everything else as `docs/RF_3.md`.
+**Configuration ("forest-style").** Learning rate 0.02, shallow trees (`num_leaves` 7 or 31), huge leaves (`min_child_samples` 1000 or 5000), 30% feature sampling per tree, 50% row bagging every round, randomized thresholds (`extra_trees=True`), L2 = 100, 63 bins. Up to 600 trees; the tree count {50, 100, 200, 400, 600} is selected per fold on **validation rank IC** (`num_iteration`). One extra candidate per fold: LightGBM's bagged-forest mode (`boosting='rf'`, 63 leaves, 300 trees). Features `modern_nomom` (12, headline) and `modern` (15). Everything else as `experiments/rf_3/README.md`.
 
 **Bottom line.** Similar to the other tree models on rank IC (0.155 — nominally the highest) and worse on the legacy portfolio (IR 0.92 / 1.07). Validation picked **50 trees** (the smallest option) in five of six folds and **never** picked `rf` mode. The tradeable-universe result is the same as everywhere else.
 
@@ -12,11 +12,11 @@ Two portfolios are built from the same predictions each month and every result i
 
 | Name | What it is |
 |---|---|
-| `legacy` | The exact LP of every earlier script (`docs/OLS.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `docs/RF.md`, `docs/RF_2.md`, `docs/XGB.md`, etc. |
+| `legacy` | The exact LP of every earlier script (`experiments/ols/README.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `experiments/rf/README.md`, `experiments/rf_2/README.md`, `experiments/xgb/README.md`, etc. |
 | `pm_free` / `pm_t20` / `pm_t10` | A "portfolio-manager" LP built from *Valentino's FIAM Tips* (`Valentino_FIAM_Tips.pdf`) and the financial-engineer notes: price ≥ $5 and market cap ≥ $500M screens (plus the $10M dollar-volume screen); neutral to **both** `beta_60m` and `betabab_1260d`; net sector exposure ≤ 5% of NAV and sector share ≤ 35% of the gross book (2-digit GICS); and a **hard one-way turnover budget** as an LP constraint — none (`pm_free`), 20% (`pm_t20`) or 10% (`pm_t10`, the headline, following the tips' "around 10% per month"). |
 
 - **Turnover convention:** one-way, as a share of the 200% gross book, from drift-adjusted trades (last month's weights are drifted by that month's realized returns, which are known at the rebalance date). This is the same convention as this project's `avg_monthly_turnover`. If the cap is infeasible in a month (names forced out of the universe), it is loosened stepwise ×1.5, 2, 3, 5 and the month is counted in "Months cap relaxed".
-- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `docs/PM_ABLATION.md`.
+- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `experiments/pm_ablation/README.md`.
 - **Pre-specified, not tuned.** The screens, sector limits and the 10% headline cap were fixed from the tips before any result was seen. The `pm_free`/`pm_t20`/`pm_t10` rows are a sensitivity sweep, not a search.
 - **Selection:** hyperparameters (and tree counts for boosted models) are picked per fold on **validation mean monthly rank IC**, never on validation MSE and never on test data. The fitting label is `ret_exc_lead1m` winsorized at the training fold's 1st/99th percentiles (`--raw-target` disables); predictions remain in next-month-return units and OOS R² is scored on the raw return.
 
@@ -72,7 +72,7 @@ The smallest tree count is chosen in 5 of 6 folds: validation IC is peaked at ve
 | modern | pm_t20 | -0.10 | -0.22 | -0.03 | -0.2% / -2.8% | -0.05 | -0.01 (-0.09) | -0.93 / +1.34 (1) | 20% | -42% | $2,004M | 204–236 |
 | modern | pm_t10 | -0.33 | -0.43 | -0.23 | -4.7% / -6.6% | -0.53 | +0.00 (+0.02) | -0.81 / +1.32 (1) | 10% | -48% | $2,230M | 204–272 |
 
-Costs: tiered trading and borrow assumptions from `docs/PM_ABLATION.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
+Costs: tiered trading and borrow assumptions from `experiments/pm_ablation/README.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
 
 ### 3.3 Legs, costs and trading, headline arm (`modern_nomom`)
 
@@ -117,13 +117,13 @@ Calendar-year returns, `modern_nomom`:
 ## 4. Limitations
 
 - Tree-count and depth grid-edge picks (see §1); `rf` mode was included but got no validation wins.
-- Single seed; assumed costs; `all_nomom` not run. Same PM caveats as `docs/RF_3.md` §5.
+- Single seed; assumed costs; `all_nomom` not run. Same PM caveats as `experiments/rf_3/README.md` §5.
 
 ## Reproduce
 
 ```
-.venv/bin/python lgbm.py                                              # modern_nomom, modern  -> lgbm_results.json / lgbm_summary.csv
-.venv/bin/python lgbm.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> lgbm_results_trad.json
+.venv/bin/python experiments/lgbm/lgbm.py                                              # modern_nomom, modern  -> lgbm_results.json / lgbm_summary.csv
+.venv/bin/python experiments/lgbm/lgbm.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> lgbm_results_trad.json
 ```
 Requires `pip install lightgbm==4.7.0 catboost==1.2.10` for the LightGBM/CatBoost scripts (`requirements.txt` is untouched).
 

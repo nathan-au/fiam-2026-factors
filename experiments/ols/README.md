@@ -1,6 +1,6 @@
 # Baseline OLS Strategy — Methodology and Results
 
-Implementation: `ols.py` (single file, run with `.venv/bin/python ols.py`).
+Implementation: `ols.py` (single file, run with `.venv/bin/python experiments/ols/ols.py`).
 Downloaded benchmark data is cached in `cache/` (`TB3MS.csv`, `SP500.csv`) —
 `cache/` holds only external downloads. Everything the script produces
 (`oos_predictions.csv`, `portfolio_holdings_beta_neutral.csv`,
@@ -151,7 +151,7 @@ portfolios, and those showed why each constraint is needed:
 ## 3. Results
 
 All figures are for 2021-01 through 2026-08 (68 months) and are gross of
-trading costs. Source: `output/ols_results.json`.
+trading costs. Source: `experiments/ols/output/ols_results.json`.
 
 ### 3.1 Predictive power
 **OOS R² = −0.0086%** (pooled across all 268,733 OOS predictions).
@@ -237,7 +237,7 @@ nor the $10M liquidity screen protects against it, because it was a
 short-crowding event, not a market-beta event. The strategy spends far less
 time underwater than the S&P 500 (11 vs. 23 months), but its worst drawdown
 is much deeper and happens much faster. The per-month `drawdown` and
-`sp500_drawdown` columns in `output/portfolio_returns_beta_neutral.csv` are
+`sp500_drawdown` columns in `experiments/ols/output/portfolio_returns_beta_neutral.csv` are
 the data for the required underwater chart.
 
 ### 3.5 Exposure, concentration, and implementation

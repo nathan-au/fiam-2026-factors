@@ -150,4 +150,4 @@ Format: `subreddit | query`. Use Reddit's own search with `restrict to subreddit
 
 - Keep: comments citing a paper, a costs assumption, a live/paper-traded period, or a concrete failure.
 - Discount: single-backtest Sharpe > 2 with no universe; "guaranteed" language; AI-generated posts; crypto-only results; sub-$5 or micro-cap universes.
-- Cross-check anything promising against `docs/PM_ABLATION.md`: if the idea's edge would live in small/illiquid shorts, it fails our tradeability screen.
+- Cross-check anything promising against `experiments/pm_ablation/README.md`: if the idea's edge would live in small/illiquid shorts, it fails our tradeability screen.

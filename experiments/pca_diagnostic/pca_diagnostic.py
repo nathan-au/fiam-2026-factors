@@ -37,7 +37,7 @@ imported). No target variable, no walk-forward test/val split, no LP, no
 beta-neutral portfolio, no OOS R^2 -- this script produces a diagnostic
 table, not predictions or holdings.
 
-Run: .venv/bin/python pca_diagnostic.py
+Run: .venv/bin/python experiments/pca_diagnostic/pca_diagnostic.py
 Outputs (all in output/): pca_stability_by_k.csv, pca_variance_explained.csv,
     pca_diagnostic_results.json
 """
@@ -51,9 +51,10 @@ import pandas as pd
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 OUTPUT.mkdir(exist_ok=True)
 
 CHARS_FILE = FIAM_DIR / "chars_final_with_names.parquet"
@@ -213,4 +214,4 @@ if __name__ == "__main__":
 
     print(f"\nk needed for 50% cumulative variance (avg across folds): {k_for_50pct}")
     print(f"k needed for 90% cumulative variance within top {MAX_K} (avg across folds): {k_for_90pct}")
-    print("\nFull results written to output/pca_diagnostic_results.json")
+    print("\nFull results written to experiments/pca_diagnostic/output/pca_diagnostic_results.json")

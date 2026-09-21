@@ -1,8 +1,8 @@
 # Extra-Trees (Extremely Randomized Trees) — Methodology and Results
 
-Implementation: `et.py` (run with `.venv/bin/python et.py`). Sibling of `rf_3.py` (`docs/RF_3.md`); new file, no existing file edited.
+Implementation: `et.py` (run with `.venv/bin/python experiments/et/et.py`). Sibling of `rf_3.py` (`experiments/rf_3/README.md`); new file, no existing file edited.
 
-**Why this model.** Extra-Trees draw split thresholds at random and grow every tree on all rows (no bootstrap): more randomization per tree, less variance in the ensemble — a natural candidate when the label is close to pure noise (`docs/OLS.md` §3.1). Grid: `max_features` {sqrt, 0.33} × `min_samples_leaf` {100, 300, 1000}, 300 trees. Features: `modern_nomom` (12, headline), `modern` (15, reference). Everything else — data, folds, selection on validation rank IC, winsorized label, portfolio layer — is identical to `docs/RF_3.md`.
+**Why this model.** Extra-Trees draw split thresholds at random and grow every tree on all rows (no bootstrap): more randomization per tree, less variance in the ensemble — a natural candidate when the label is close to pure noise (`experiments/ols/README.md` §3.1). Grid: `max_features` {sqrt, 0.33} × `min_samples_leaf` {100, 300, 1000}, 300 trees. Features: `modern_nomom` (12, headline), `modern` (15, reference). Everything else — data, folds, selection on validation rank IC, winsorized label, portfolio layer — is identical to `experiments/rf_3/README.md`.
 
 **Bottom line.** ET matches RF on rank IC (0.15 vs 0.14) but is no better on the portfolio: legacy IR 0.96 / 1.13, and it fails the tradeable-universe test exactly like the others (`pm_t10` IR −0.28 gross). It also selected the **largest** allowed leaf (1000) in five of six folds, so the grid edge, not the optimum, was picked.
 
@@ -12,11 +12,11 @@ Two portfolios are built from the same predictions each month and every result i
 
 | Name | What it is |
 |---|---|
-| `legacy` | The exact LP of every earlier script (`docs/OLS.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `docs/RF.md`, `docs/RF_2.md`, `docs/XGB.md`, etc. |
+| `legacy` | The exact LP of every earlier script (`experiments/ols/README.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `experiments/rf/README.md`, `experiments/rf_2/README.md`, `experiments/xgb/README.md`, etc. |
 | `pm_free` / `pm_t20` / `pm_t10` | A "portfolio-manager" LP built from *Valentino's FIAM Tips* (`Valentino_FIAM_Tips.pdf`) and the financial-engineer notes: price ≥ $5 and market cap ≥ $500M screens (plus the $10M dollar-volume screen); neutral to **both** `beta_60m` and `betabab_1260d`; net sector exposure ≤ 5% of NAV and sector share ≤ 35% of the gross book (2-digit GICS); and a **hard one-way turnover budget** as an LP constraint — none (`pm_free`), 20% (`pm_t20`) or 10% (`pm_t10`, the headline, following the tips' "around 10% per month"). |
 
 - **Turnover convention:** one-way, as a share of the 200% gross book, from drift-adjusted trades (last month's weights are drifted by that month's realized returns, which are known at the rebalance date). This is the same convention as this project's `avg_monthly_turnover`. If the cap is infeasible in a month (names forced out of the universe), it is loosened stepwise ×1.5, 2, 3, 5 and the month is counted in "Months cap relaxed".
-- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `docs/PM_ABLATION.md`.
+- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `experiments/pm_ablation/README.md`.
 - **Pre-specified, not tuned.** The screens, sector limits and the 10% headline cap were fixed from the tips before any result was seen. The `pm_free`/`pm_t20`/`pm_t10` rows are a sensitivity sweep, not a search.
 - **Selection:** hyperparameters (and tree counts for boosted models) are picked per fold on **validation mean monthly rank IC**, never on validation MSE and never on test data. The fitting label is `ret_exc_lead1m` winsorized at the training fold's 1st/99th percentiles (`--raw-target` disables); predictions remain in next-month-return units and OOS R² is scored on the raw return.
 
@@ -72,7 +72,7 @@ Two portfolios are built from the same predictions each month and every result i
 | modern | pm_t20 | -0.14 | -0.27 | -0.07 | -0.9% / -3.4% | -0.20 | +0.03 (+0.18) | -0.86 / +1.34 (1) | 20% | -39% | $2,222M | 204–236 |
 | modern | pm_t10 | -0.32 | -0.42 | -0.21 | -3.9% / -5.8% | -0.48 | -0.01 (-0.04) | -0.82 / +1.22 (1) | 10% | -45% | $2,432M | 204–272 |
 
-Costs: tiered trading and borrow assumptions from `docs/PM_ABLATION.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
+Costs: tiered trading and borrow assumptions from `experiments/pm_ablation/README.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
 
 ### 3.3 Legs, costs and trading, headline arm (`modern_nomom`)
 
@@ -111,19 +111,19 @@ Calendar-year returns, `modern_nomom`:
 
 1. Rank IC 0.152 (`modern_nomom`), OOS R² +0.154% — the second-highest rank IC of the batch (LightGBM 0.155) and the third-highest OOS R² (after RF and CatBoost), but the differences between models (IC 0.143–0.155) are far inside noise.
 2. Legacy IR: 0.96 (`modern_nomom`) vs 1.13 (`modern`); Random Forest reaches 1.26/1.33 on the same LP. ET's importance is the most concentrated in the lottery/volatility pair (`rmax5_21d`, `ivol_capm_21d`, 44% together), i.e. ET leans hardest on the effect that is untradeable.
-3. Under the PM constraints: `pm_free` −0.11, `pm_t10` −0.28 gross (net −0.30 / −0.37). The turnover cap itself is cheap on the legacy book (`+turnover_10pct`: IR 0.96 → 0.91) — see `docs/PM_ABLATION.md`.
+3. Under the PM constraints: `pm_free` −0.11, `pm_t10` −0.28 gross (net −0.30 / −0.37). The turnover cap itself is cheap on the legacy book (`+turnover_10pct`: IR 0.96 → 0.91) — see `experiments/pm_ablation/README.md`.
 4. Beta: legacy realized β −0.31 (t −1.3 in this window); PM books ≈ 0. Rolling-12m β exceeds 1 only in the first window.
 
 ## 4. Limitations
 
 - Grid-edge selection (leaf 1000, `max_features=sqrt`) — the search space, not the model, limited this run.
 - Single seed; no bootstrap, so `max_samples` was not used. Costs are assumed tiers. `all_nomom` not run.
-- Same caveats on the PM constraints and cost tiers as `docs/RF_3.md` §5.
+- Same caveats on the PM constraints and cost tiers as `experiments/rf_3/README.md` §5.
 
 ## Reproduce
 
 ```
-.venv/bin/python et.py                                              # modern_nomom, modern  -> et_results.json / et_summary.csv
-.venv/bin/python et.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> et_results_trad.json
+.venv/bin/python experiments/et/et.py                                              # modern_nomom, modern  -> et_results.json / et_summary.csv
+.venv/bin/python experiments/et/et.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> et_results_trad.json
 ```
 Outputs are in `output/` (`oos_predictions_et_<arm>.csv`, `portfolio_holdings_<portfolio>_et_<arm>.csv`, `portfolio_returns_<portfolio>_et_<arm>.csv`, `et_feature_importance_<arm>.csv`).

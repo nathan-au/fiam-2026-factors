@@ -29,28 +29,35 @@ PRE-REGISTERED DESIGN (fixed before any result was seen)
   Verdict          A TPA arm is called useful only if it beats `tpa_eq` on net IR in BOTH lc_t10 and lc_free AND the
                    paired monthly universe-IC difference has t >= 2. Between "beats on IR" and t < 2 it is reported
                    as suggestive only. Expectation before running: with 47-107 monthly observations for 7 sleeves,
-                   estimation error is large and 1/N is hard to beat (DeMiguel et al.), and docs/FACTOR_FILTER.md sec 2
+                   estimation error is large and 1/N is hard to beat (DeMiguel et al.), and experiments/factor_filter/README.md sec 2
                    found factor IC does not persist in the investable universe. Not tuned; not re-run.
 
 Reuses the frozen harness in et.py and the pre-registered definitions in largecap.py (imported, not modified).
 
-Run:  .venv/bin/python tpa.py [--floor 2000] [--smoke]
+Run:  .venv/bin/python experiments/tpa/tpa.py [--floor 2000] [--smoke]
 Outputs (output/): oos_predictions_<tag>_tpa_<arm>.csv, portfolio_{holdings,returns}_<variant>_<tag>_tpa_<arm>.csv,
     tpa_results_<tag>.json, tpa_summary_<tag>.csv, tpa_weights_<tag>.csv, tpa_monthly_ic_<tag>.csv
 """
 
 import argparse
 import json
+import sys
 import time
 import warnings
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
 from sklearn.covariance import LedoitWolf
 
+HERE = Path(__file__).resolve().parent  # experiments/tpa/
+OUTPUT = HERE / "output"
+sys.path[:0] = [str(HERE.parent / "et"), str(HERE.parent / "largecap")]  # frozen harness + large-cap factor set
 import et
 import largecap as lc
+
+et.OUT = OUTPUT  # importing largecap pointed et.OUT at its folder; write this experiment's files here instead
 
 warnings.filterwarnings("ignore")
 TARGET = et.TARGET_COL
@@ -181,7 +188,7 @@ def main():
     floor = args.floor
     tag = "lc" if floor == 2000.0 else f"lc{int(floor)}"
     if args.smoke:
-        et.OUT = et.OUTPUT / "_smoke_tpa"
+        et.OUT = OUTPUT / "_smoke_tpa"
         et.OUT.mkdir(exist_ok=True)
 
     print("Loading model table...", flush=True)

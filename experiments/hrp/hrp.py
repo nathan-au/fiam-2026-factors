@@ -32,14 +32,16 @@ PRE-REGISTERED DESIGN (fixed before any result was seen)
 
 Reuses the frozen harness in et.py (imported, not modified) and reads largecap.py's saved holdings.
 
-Run:  .venv/bin/python hrp.py [--floor 2000] [--caps 0.02,0.01]
+Run:  .venv/bin/python experiments/hrp/hrp.py [--floor 2000] [--caps 0.02,0.01]
 Outputs (output/): portfolio_{holdings,returns}_<scheme>_cap<bp>_<tag>_comp.csv, hrp_results.json, hrp_summary.csv
 """
 
 import argparse
 import json
+import sys
 import time
 import warnings
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -48,7 +50,13 @@ from scipy.cluster.hierarchy import leaves_list, linkage
 from scipy.optimize import linprog
 from scipy.spatial.distance import squareform
 
+HERE = Path(__file__).resolve().parent  # experiments/hrp/
+OUTPUT = HERE / "output"
+LC_OUTPUT = HERE.parent / "largecap" / "output"  # selection book and reference results come from largecap.py
+sys.path.insert(0, str(HERE.parent / "et"))  # the frozen harness lives in experiments/et/
 import et
+
+et.OUT = OUTPUT  # et writes through its module-level OUT; keep this experiment's files in its own folder
 
 warnings.filterwarnings("ignore")
 TARGET = et.TARGET_COL
@@ -228,10 +236,10 @@ def main():
     tag = "lc" if args.floor == 2000.0 else f"lc{int(args.floor)}"
     caps = [float(c) for c in args.caps.split(",")]
     if args.smoke:
-        et.OUT = et.OUTPUT / "_smoke_hrp"
+        et.OUT = OUTPUT / "_smoke_hrp"
         et.OUT.mkdir(exist_ok=True)
 
-    base = pd.read_csv(et.OUTPUT / f"portfolio_holdings_lc_t10_{tag}_comp.csv", parse_dates=["target_month"],
+    base = pd.read_csv(LC_OUTPUT / f"portfolio_holdings_lc_t10_{tag}_comp.csv", parse_dates=["target_month"],
                        dtype={"sector": str})
     months = sorted(base["target_month"].unique())
     if args.smoke:
@@ -279,10 +287,10 @@ def main():
                   f"({(time.time() - t0) / 60:.1f} min)", flush=True)
 
     # Reference: the selection book itself (largecap.py lc_t10, LP-sized)
-    ref = pd.read_csv(et.OUTPUT / f"portfolio_returns_lc_t10_{tag}_comp.csv", parse_dates=["target_month"]).set_index("target_month")
+    ref = pd.read_csv(LC_OUTPUT / f"portfolio_returns_lc_t10_{tag}_comp.csv", parse_dates=["target_month"]).set_index("target_month")
     ret_store["lp_lc_t10"] = ref["net_port_excess_ret"]
     ref_row = None
-    lr = json.load(open(et.OUTPUT / f"{tag}_results.json"))["comp"]["variants"]["lc_t10"]
+    lr = json.load(open(LC_OUTPUT / f"{tag}_results.json"))["comp"]["variants"]["lc_t10"]
     ref_row = {"scheme": "lp(lc_t10)", "cap": 0.01, "ir_gross": lr["gross"]["information_ratio"], "ir_net": lr["net"]["information_ratio"],
                "sharpe_net": lr["net"]["sharpe_ratio"], "cagr_net_pct": 100 * lr["net"]["annualized_return_geo_cagr"],
                "max_dd_net_pct": 100 * lr["net"]["max_drawdown"], "beta": lr["gross"]["beta"], "beta_t": lr["gross"]["beta_tstat"],

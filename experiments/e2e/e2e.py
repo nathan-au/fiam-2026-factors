@@ -18,7 +18,7 @@ vector, optimized by SPSA (Simultaneous Perturbation Stochastic
 Approximation, Spall 1992), a classic zeroth-order method that needs only
 objective evaluations, not gradients.
 
-FIX (see docs/E2E.md for the full before/after): the first version's
+FIX (see experiments/e2e/README.md for the full before/after): the first version's
 training objective was Sharpe alone. This version implements the paper's
 actual REWARD STRUCTURE -- "a composite reward function that balances
 risk-adjusted excess return, benchmark correlation, and transaction
@@ -60,7 +60,7 @@ Self-contained: data loading, rank transform, walk-forward schedule,
 investability screen, beta-neutral LP, and evaluation code are ported from
 ols.py / xgb.py (not imported).
 
-Run: .venv/bin/python e2e.py
+Run: .venv/bin/python experiments/e2e/e2e.py
 Outputs (all in output/): oos_predictions_e2e.csv,
     portfolio_holdings_beta_neutral_e2e.csv,
     portfolio_returns_beta_neutral_e2e.csv, e2e_training_curve.csv,
@@ -79,10 +79,11 @@ from sklearn.linear_model import LinearRegression
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 
@@ -615,4 +616,4 @@ if __name__ == "__main__":
 
     with open(OUTPUT / "e2e_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
-    print("\nFull results written to output/e2e_results.json")
+    print("\nFull results written to experiments/e2e/output/e2e_results.json")

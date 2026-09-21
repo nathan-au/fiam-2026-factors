@@ -1,6 +1,6 @@
 # Analog Forecasting (Lookalike Stocks) — Methodology and Results
 
-Implementation: `analog.py` (run with `.venv/bin/python analog.py`, about 15 minutes). New file; nothing existing is edited. Data, target (`ret_exc_lead1m`), rank transform, walk-forward schedule and the portfolio layer are the same as `docs/RF_3.md` (ported, not imported).
+Implementation: `analog.py` (run with `.venv/bin/python experiments/analog/analog.py`, about 15 minutes). New file; nothing existing is edited. Data, target (`ret_exc_lead1m`), rank transform, walk-forward schedule and the portfolio layer are the same as `experiments/rf_3/README.md` (ported, not imported).
 
 ## The idea
 
@@ -15,7 +15,7 @@ Instead of fitting a function from characteristics to returns, **remember** ever
 | Forecast | (Weighted) mean next-month return of the K lookalikes, each measured **relative to its own month's cross-sectional median across all stocks** (so market-wide moves in a neighbour's month don't leak in), winsorized at the bank's 1st/99th percentiles. Predictions are therefore relative returns; OOS R² is still scored on raw returns. |
 | Hyperparameters | K ∈ {25, 100, 400, 1600} × {uniform, inverse-distance} weights, chosen per fold on **validation mean monthly rank IC**. |
 | `_inv` arm | `modern_nomom_inv`: the bank contains only LP-investable stock-months (price ≥ $5, market cap ≥ $500M, $10M dollar volume, both betas observed), so a tradeable stock's lookalikes are tradeable. Validation queries are also investable only. Test rows are still scored for every stock. |
-| Portfolios | `legacy`, `pm_free`, `pm_t20`, `pm_t10` exactly as `docs/RF_3.md`. |
+| Portfolios | `legacy`, `pm_free`, `pm_t20`, `pm_t10` exactly as `experiments/rf_3/README.md`. |
 
 ## Bottom line
 
@@ -27,7 +27,7 @@ Instead of fitting a function from characteristics to returns, **remember** ever
 
 ## Portfolio layer
 
-Same as `docs/RF_3.md` (see its "Portfolio layer" section): `legacy` is the project's original LP (it reproduces `rf_2.py`'s IR to four decimals); `pm_free` / `pm_t20` / `pm_t10` add price ≥ $5, market cap ≥ $500M, dual-beta neutrality, 5% net / 35% gross sector limits and a hard turnover budget (none / 20% / 10% one-way of gross), all reported gross and net of assumed market-cap-tiered costs. The constraint set and the 10% headline were fixed from the tips before any result was seen.
+Same as `experiments/rf_3/README.md` (see its "Portfolio layer" section): `legacy` is the project's original LP (it reproduces `rf_2.py`'s IR to four decimals); `pm_free` / `pm_t20` / `pm_t10` add price ≥ $5, market cap ≥ $500M, dual-beta neutrality, 5% net / 35% gross sector limits and a hard turnover budget (none / 20% / 10% one-way of gross), all reported gross and net of assumed market-cap-tiered costs. The constraint set and the 10% headline were fixed from the tips before any result was seen.
 
 ## 1. Model-level results
 
@@ -37,7 +37,7 @@ Same as `docs/RF_3.md` (see its "Portfolio layer" section): `legacy` is the proj
 | `modern` | 15 | 0.1148 | 0.1392 (84%) | 0.0296 (2.4) | +0.140% | 0.72 |
 | `modern_nomom_inv` | 12 | 0.0100 | 0.0739 (81%) | 0.0158 (2.0) | -0.148% | 0.57 |
 
-`Test rank IC, LP-investable` is measured on the same universe as the tradeable portfolios (screens plus both betas observed); the trees' figure for that universe is 0.034–0.037 (`docs/PM_ABLATION.md` §3). Diagnostics from `analog_results.json` (`modern_nomom`): the 100 nearest lookalikes are on average 0.76 away for investable queries, against ≈ 2.8 between two random stock-months in 12 rank dimensions (my arithmetic, assuming uniform ranks); 58% of an investable stock's 100 nearest lookalikes are themselves investable (investable stock-months are about 36% of the bank), against 19% for non-investable stocks.
+`Test rank IC, LP-investable` is measured on the same universe as the tradeable portfolios (screens plus both betas observed); the trees' figure for that universe is 0.034–0.037 (`experiments/pm_ablation/README.md` §3). Diagnostics from `analog_results.json` (`modern_nomom`): the 100 nearest lookalikes are on average 0.76 away for investable queries, against ≈ 2.8 between two random stock-months in 12 rank dimensions (my arithmetic, assuming uniform ranks); 58% of an investable stock's 100 nearest lookalikes are themselves investable (investable stock-months are about 36% of the bank), against 19% for non-investable stocks.
 
 ## 2. Selection: bigger neighbourhoods are always better
 
@@ -96,7 +96,7 @@ For the `_inv` arm (memory = tradeable stocks only) the same table is much flatt
 | modern | pm_t20 | -0.26 | -0.40 | -0.18 | -2.4% / -4.9% | -0.49 | +0.04 (+0.31) | -0.77 / +1.13 (1) | 20% | -36% | $2,259M | 205–238 |
 | modern | pm_t10 | -0.47 | -0.58 | -0.35 | -5.6% / -7.4% | -0.91 | +0.08 (+0.53) | -0.54 / +1.09 (1) | 10% | -43% | $2,619M | 205–283 |
 
-Costs: tiered assumptions from `docs/PM_ABLATION.md` §1; net = gross − trading cost − borrow cost. Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1 (at most one, the first window ending Dec 2021, for every full-memory book; none for the `_inv` books).
+Costs: tiered assumptions from `experiments/pm_ablation/README.md` §1; net = gross − trading cost − borrow cost. Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1 (at most one, the first window ending Dec 2021, for every full-memory book; none for the `_inv` books).
 
 ### Legs and costs, `modern_nomom`
 
@@ -118,7 +118,7 @@ Costs: tiered assumptions from `docs/PM_ABLATION.md` §1; net = gross − tradin
 | xgb2 | 0.1480 | 0.0343 | +0.140% | 0.90 / 0.76 | -0.17 / -0.27 |
 | **analog** | **0.1395** | **0.0319** | **+0.142%** | **1.04 / 0.85** | **-0.48 / -0.58** |
 
-Tree rows are copied from the model docs (`docs/RF_3.md`, `ET.md`, `LGBM.md`, `CAT.md`, `XGB_2.md`) and the LP-investable IC column from `docs/PM_ABLATION.md` §3.
+Tree rows are copied from the model docs (`experiments/rf_3/README.md`, `experiments/et/README.md`, `experiments/lgbm/README.md`, `experiments/cat/README.md`, `experiments/xgb_2/README.md`) and the LP-investable IC column from `experiments/pm_ablation/README.md` §3.
 
 ## 5. Findings
 
@@ -133,12 +133,12 @@ Tree rows are copied from the model docs (`docs/RF_3.md`, `ET.md`, `LGBM.md`, `C
 - Equal-weight Euclidean distance on 12–15 rank-transformed factors; no learned or IC-weighted metric, no sector or size matching, no PCA-reduced space. A metric tuned on validation could behave differently.
 - The memory bank is the training window only (never updated with validation rows for test predictions), consistent with every other script; a longer memory for the later folds was not tried.
 - Single run (the method is deterministic), no confidence intervals: 68 test months; an IC of 0.03 has t ≈ 2.4–2.6 and the differences among models are far inside noise.
-- Same assumed cost tiers and PM caveats as `docs/RF_3.md` §5. The `_inv` arm and the K = 1600 extension were added after a first run with K ≤ 400 showed grid-edge selection; that run's numbers were discarded and not used.
+- Same assumed cost tiers and PM caveats as `experiments/rf_3/README.md` §5. The `_inv` arm and the K = 1600 extension were added after a first run with K ≤ 400 showed grid-edge selection; that run's numbers were discarded and not used.
 
 ## Reproduce
 
 ```
-.venv/bin/python analog.py                                  # modern_nomom, modern_nomom_inv, modern -> analog_results.json / analog_summary.csv
-.venv/bin/python analog.py --arms modern_nomom --suffix _x  # subset
+.venv/bin/python experiments/analog/analog.py                                  # modern_nomom, modern_nomom_inv, modern -> analog_results.json / analog_summary.csv
+.venv/bin/python experiments/analog/analog.py --arms modern_nomom --suffix _x  # subset
 ```
 Outputs (`output/`): `oos_predictions_analog_<arm>.csv`, `portfolio_holdings_<portfolio>_analog_<arm>.csv`, `portfolio_returns_<portfolio>_analog_<arm>.csv`, `analog_results.json`, `analog_summary.csv`.

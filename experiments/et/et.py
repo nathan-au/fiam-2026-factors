@@ -3,17 +3,17 @@ FIAM 2026 - Extra-Trees (extremely randomized trees) strategy.
 
 Bagging/randomization family, sibling of rf.py / rf_3.py: split thresholds are drawn at random instead of
 optimized and every tree sees all training rows (no bootstrap), so single trees fit less noise than a random
-forest's. Cheap to fit; often steadier than RF when the label is mostly noise (docs/OLS.md sec 3.1: OOS R^2
+forest's. Cheap to fit; often steadier than RF when the label is mostly noise (experiments/ols/README.md sec 3.1: OOS R^2
 about 0 for a linear model). Grid: max_features {sqrt, 0.33} x min_samples_leaf {100, 300, 1000}, 300 trees.
 Feature arms: `modern_nomom` (12, the headline), `modern` (15, with momentum -- reference), `all_nomom`
 (139: all characteristics minus the 8 momentum ones). Momentum is excluded from the headline arm per the
-financial-engineer review (see docs/RF_3.md).
+financial-engineer review (see experiments/rf_3/README.md).
 
 Portfolio layer (shared by all five scripts in this batch; ported, not imported, per project convention):
-  legacy   -- the exact LP every earlier script uses (docs/OLS.md sec 2.5): $10M dollar-volume screen,
+  legacy   -- the exact LP every earlier script uses (experiments/ols/README.md sec 2.5): $10M dollar-volume screen,
               dollar- and beta_60m-neutral, gross 200%, 1% cap. Reproduces rf_2.py's recorded IR (1.0373) to
-              four decimals on rf_2's own predictions, so results are directly comparable to docs/RF.md,
-              docs/RF_2.md, docs/XGB.md, ....
+              four decimals on rf_2's own predictions, so results are directly comparable to experiments/rf/README.md,
+              experiments/rf_2/README.md, experiments/xgb/README.md, ....
   pm_*     -- "portfolio-manager" LP from Valentino_FIAM_Tips.pdf and the financial-engineer notes: HARD monthly
               turnover budget (pm_free none, pm_t20 20%, pm_t10 10% -- the headline, per the tips' ~10%), net
               sector exposure <= 5% of NAV and gross sector share <= 35%, neutral to BOTH beta_60m and
@@ -22,7 +22,7 @@ Portfolio layer (shared by all five scripts in this batch; ported, not imported,
 Every portfolio is reported gross AND net of costs, with rolling-12-month beta (min/max, months above 1).
 
 Selection discipline: hyperparameters (and number of trees for boosted models) are chosen per fold on
-VALIDATION mean monthly rank IC, never on test results and never on validation MSE (docs/RF_2.md sec 1 showed
+VALIDATION mean monthly rank IC, never on test results and never on validation MSE (experiments/rf_2/README.md sec 1 showed
 validation MSE cannot separate configs). The label used for fitting is the next-month excess return
 (`ret_exc_lead1m`), winsorized at the training fold's 1st/99th percentiles (pass --raw-target to disable);
 predictions stay in next-month-return units and OOS R^2 is scored against the raw return.
@@ -30,12 +30,12 @@ predictions stay in next-month-return units and OOS R^2 is scored against the ra
 Extra arms `<arm>_trad` (e.g. `modern_nomom_trad`): same features, but training and validation rows are
 restricted to the tradeable universe (price >= $5, market cap >= $500M, $10M dollar volume); test rows are
 still scored for every stock. Added after the ablation in pm_ablation.py showed the full-universe models' edge
-lives in sub-$5 / sub-$500M names the tradeable book cannot hold (docs/PM_ABLATION.md).
+lives in sub-$5 / sub-$500M names the tradeable book cannot hold (experiments/pm_ablation/README.md).
 
 Default arms are `modern_nomom` and `modern`; `all_nomom` and the `_trad` arms are opt-in via --arms (see the
 model's doc for which ones were run).
 
-Run:  .venv/bin/python et.py [--arms modern_nomom,modern,all_nomom,modern_nomom_trad] [--suffix _x] [--raw-target] [--smoke]
+Run:  .venv/bin/python experiments/et/et.py [--arms modern_nomom,modern,all_nomom,modern_nomom_trad] [--suffix _x] [--raw-target] [--smoke]
 Outputs (output/): oos_predictions_et_<arm>.csv, et_feature_importance_<arm>.csv,
     portfolio_holdings_<portfolio>_et_<arm>.csv, portfolio_returns_<portfolio>_et_<arm>.csv,
     et_results.json, et_summary.csv     (<arm> in modern_nomom | modern | all_nomom)
@@ -56,10 +56,11 @@ from sklearn.ensemble import ExtraTreesRegressor
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"  # downloaded external data only (FRED series)
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 OUT = OUTPUT  # rebound by --smoke so plumbing tests never touch real outputs
@@ -74,14 +75,14 @@ TEST_YEARS = range(2021, 2027)
 SEED = 42
 
 # ---------------------------------------------------------------------------
-# Feature arms. MODERN is docs/RF.md's 15-factor arm (includes 3 momentum
+# Feature arms. MODERN is experiments/rf/README.md's 15-factor arm (includes 3 momentum
 # factors). MODERN_NOMOM drops them (a financial-engineer review flagged
-# momentum as suspect; docs/RF_2.md's leave-group-out already showed dropping
+# momentum as suspect; experiments/rf_2/README.md's leave-group-out already showed dropping
 # it RAISES IR). ALL_NOMOM is all 147 characteristics minus the 8 characteristics
 # in docs/FACTORS.md sec 4 ("Momentum"). NOTE: `mispricing_perf` is itself a
 # composite that includes a momentum component (docs/FACTORS.md sec 13) and is
 # kept in every arm -- it is the most load-bearing single factor in
-# docs/RF_2.md's leave-one-out.
+# experiments/rf_2/README.md's leave-one-out.
 # ---------------------------------------------------------------------------
 MODERN_FEATURES = [
     "ret_12_1", "ret_6_1", "resff3_12_1", "qmj", "qmj_prof", "qmj_growth",
@@ -185,9 +186,9 @@ class Context:
 
 
 # ---------------------------------------------------------------------------
-# 2. Selection metrics. docs/RF_2.md found validation MSE identical to four
+# 2. Selection metrics. experiments/rf_2/README.md found validation MSE identical to four
 #    decimals across 15 RF configs (it cannot tell configs apart), and
-#    docs/XGB.md's 2025 fold early-stopped after 4 trees on MSE. Everything here
+#    experiments/xgb/README.md's 2025 fold early-stopped after 4 trees on MSE. Everything here
 #    selects hyperparameters on VALIDATION mean monthly rank IC instead -- the
 #    quantity a long/short book actually monetizes.
 # ---------------------------------------------------------------------------
@@ -263,9 +264,9 @@ def oos_r2(actual, predicted):
 # ---------------------------------------------------------------------------
 # 3. Portfolio construction.
 #
-# LEGACY: the LP used by every prior script (docs/OLS.md sec 2.5): $10M
+# LEGACY: the LP used by every prior script (experiments/ols/README.md sec 2.5): $10M
 # dollar-volume screen, dollar-neutral, beta_60m-neutral, gross 200%, 1% cap.
-# Kept so results here are directly comparable to docs/RF.md, docs/RF_2.md etc.
+# Kept so results here are directly comparable to experiments/rf/README.md, experiments/rf_2/README.md etc.
 #
 # PM ("portfolio-manager"): the same LP plus the constraints from Valentino's
 # tips (Valentino_FIAM_Tips.pdf) and the financial engineer's notes:
@@ -527,7 +528,7 @@ def compute_drawdown_stats(rets, dates, cagr):
 
 
 def compute_performance(stats_df):
-    """Returns (results dict, per-month frame). Same metrics as every prior script (docs/OLS.md sec 2.6),
+    """Returns (results dict, per-month frame). Same metrics as every prior script (experiments/ols/README.md sec 2.6),
     plus rolling-12-month beta to the S&P 500 (docs/FIAM.md sec 12 chart; the financial engineer's
     'no peaks over 1 in the middle' check)."""
     tb3ms, sp500 = load_fred_series()

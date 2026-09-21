@@ -30,7 +30,7 @@ Self-contained: data loading, rank transform, walk-forward schedule,
 investability screen, beta-neutral LP, and evaluation code are ported from
 ols.py / xgb.py (not imported).
 
-Run: .venv/bin/python rankglu.py
+Run: .venv/bin/python experiments/rankglu/rankglu.py
 Outputs (all in output/): oos_predictions_rankglu.csv,
     portfolio_holdings_beta_neutral_rankglu.csv,
     portfolio_returns_beta_neutral_rankglu.csv, rankglu_results.json
@@ -47,10 +47,11 @@ from scipy.optimize import linprog
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 
@@ -514,4 +515,4 @@ if __name__ == "__main__":
 
     with open(OUTPUT / "rankglu_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
-    print("\nFull results written to output/rankglu_results.json")
+    print("\nFull results written to experiments/rankglu/output/rankglu_results.json")

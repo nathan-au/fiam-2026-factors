@@ -1,12 +1,12 @@
 # Random Forest, Round 3 — Momentum-Free Features, Rank-IC Selection, Portfolio-Manager LP
 
-Implementation: `rf_3.py` (run with `.venv/bin/python rf_3.py`). Follows `docs/RF.md` / `docs/RF_2.md`; `rf.py` and `rf_2.py` are untouched.
-Same data, target (`ret_exc_lead1m`), rank transform, walk-forward schedule (`docs/OLS.md` §2) as every earlier script; self-contained (ported, not imported).
+Implementation: `rf_3.py` (run with `.venv/bin/python experiments/rf_3/rf_3.py`). Follows `experiments/rf/README.md` / `experiments/rf_2/README.md`; `rf.py` and `rf_2.py` are untouched.
+Same data, target (`ret_exc_lead1m`), rank transform, walk-forward schedule (`experiments/ols/README.md` §2) as every earlier script; self-contained (ported, not imported).
 
 **Bottom line.**
-1. On the project's legacy LP the retrained Random Forest is the best model of the batch (IR 1.26 momentum-free, 1.33 with the original 15 factors, vs. 1.04 in `docs/RF_2.md`).
-2. **That edge does not survive a tradeable universe.** Under the portfolio-manager LP (price ≥ $5, market cap ≥ $500M, dual-beta, sector limits, 10% turnover) IR falls to about 0 gross and about −0.3 net, and the short leg loses money. `docs/PM_ABLATION.md` shows why: the alpha lives in the short leg, in sub-$5 / sub-$500M names, concentrated in Health Care / biotech.
-3. Momentum is not what the result rests on: removing the three momentum factors moves legacy IR 1.33 → 1.26, inside the ±0.11 noise band of `docs/RF_2.md` §1.
+1. On the project's legacy LP the retrained Random Forest is the best model of the batch (IR 1.26 momentum-free, 1.33 with the original 15 factors, vs. 1.04 in `experiments/rf_2/README.md`).
+2. **That edge does not survive a tradeable universe.** Under the portfolio-manager LP (price ≥ $5, market cap ≥ $500M, dual-beta, sector limits, 10% turnover) IR falls to about 0 gross and about −0.3 net, and the short leg loses money. `experiments/pm_ablation/README.md` shows why: the alpha lives in the short leg, in sub-$5 / sub-$500M names, concentrated in Health Care / biotech.
+3. Momentum is not what the result rests on: removing the three momentum factors moves legacy IR 1.33 → 1.26, inside the ±0.11 noise band of `experiments/rf_2/README.md` §1.
 
 ## Portfolio layer (shared by the five scripts of this batch)
 
@@ -14,11 +14,11 @@ Two portfolios are built from the same predictions each month and every result i
 
 | Name | What it is |
 |---|---|
-| `legacy` | The exact LP of every earlier script (`docs/OLS.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `docs/RF.md`, `docs/RF_2.md`, `docs/XGB.md`, etc. |
+| `legacy` | The exact LP of every earlier script (`experiments/ols/README.md` §2.5): $10M `dolvol_126d` screen, dollar-neutral, `beta_60m`-neutral, gross 200%, 1% per-name cap. It reproduces `rf_2.py`'s recorded IR (1.0373) to four decimals on `rf_2.py`'s own predictions, so it is directly comparable to `experiments/rf/README.md`, `experiments/rf_2/README.md`, `experiments/xgb/README.md`, etc. |
 | `pm_free` / `pm_t20` / `pm_t10` | A "portfolio-manager" LP built from *Valentino's FIAM Tips* (`Valentino_FIAM_Tips.pdf`) and the financial-engineer notes: price ≥ $5 and market cap ≥ $500M screens (plus the $10M dollar-volume screen); neutral to **both** `beta_60m` and `betabab_1260d`; net sector exposure ≤ 5% of NAV and sector share ≤ 35% of the gross book (2-digit GICS); and a **hard one-way turnover budget** as an LP constraint — none (`pm_free`), 20% (`pm_t20`) or 10% (`pm_t10`, the headline, following the tips' "around 10% per month"). |
 
 - **Turnover convention:** one-way, as a share of the 200% gross book, from drift-adjusted trades (last month's weights are drifted by that month's realized returns, which are known at the rebalance date). This is the same convention as this project's `avg_monthly_turnover`. If the cap is infeasible in a month (names forced out of the universe), it is loosened stepwise ×1.5, 2, 3, 5 and the month is counted in "Months cap relaxed".
-- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `docs/PM_ABLATION.md`.
+- **Costs are assumptions, not measurements** (the panel has no borrow or spread data by name): one-way trading cost 5 / 10 / 20 bp and annual borrow 30 / 75 / 200 bp on short notional for market caps ≥ $10B / $2–10B / < $2B. Full derivation in `experiments/pm_ablation/README.md`.
 - **Pre-specified, not tuned.** The screens, sector limits and the 10% headline cap were fixed from the tips before any result was seen. The `pm_free`/`pm_t20`/`pm_t10` rows are a sensitivity sweep, not a search.
 - **Selection:** hyperparameters (and tree counts for boosted models) are picked per fold on **validation mean monthly rank IC**, never on validation MSE and never on test data. The fitting label is `ret_exc_lead1m` winsorized at the training fold's 1st/99th percentiles (`--raw-target` disables); predictions remain in next-month-return units and OOS R² is scored on the raw return.
 
@@ -26,8 +26,8 @@ Two portfolios are built from the same predictions each month and every result i
 
 | Change | Why |
 |---|---|
-| **Momentum removed** (`modern_nomom` = Modern minus `ret_12_1`, `ret_6_1`, `resff3_12_1`; `all_nomom` = all 147 minus the 8 momentum characteristics of `docs/FACTORS.md` §4). `modern` (the original 15) is kept as an in-harness reference. | The financial engineer flagged momentum as suspect; `docs/RF_2.md` §2 had already found dropping it did not hurt. Caveat: `mispricing_perf` is a composite that includes a momentum component (`docs/FACTORS.md` §13) and stays in every arm — it is the most load-bearing single factor in `docs/RF_2.md`'s leave-one-out. |
-| Hyperparameters chosen on **validation rank IC** instead of MSE. | `docs/RF_2.md` §1: validation MSE was identical to four decimals across 15 configs. |
+| **Momentum removed** (`modern_nomom` = Modern minus `ret_12_1`, `ret_6_1`, `resff3_12_1`; `all_nomom` = all 147 minus the 8 momentum characteristics of `docs/FACTORS.md` §4). `modern` (the original 15) is kept as an in-harness reference. | The financial engineer flagged momentum as suspect; `experiments/rf_2/README.md` §2 had already found dropping it did not hurt. Caveat: `mispricing_perf` is a composite that includes a momentum component (`docs/FACTORS.md` §13) and stays in every arm — it is the most load-bearing single factor in `experiments/rf_2/README.md`'s leave-one-out. |
+| Hyperparameters chosen on **validation rank IC** instead of MSE. | `experiments/rf_2/README.md` §1: validation MSE was identical to four decimals across 15 configs. |
 | Grid: `max_depth` {6, 8, 12} × `min_samples_leaf` {200, 500} (was leaf 100/50/200), 300 trees, `max_samples=0.5`, `max_features=sqrt`. | Bigger leaves = more averaging on an almost-pure-noise label; subsampling decorrelates trees and halves fit time. |
 | Winsorized training label (1st/99th percentile of the training fold). | Heavy-tailed microcap returns dominate an MSE forest. |
 | New portfolio layer (above). | Valentino's tips; financial-engineer notes. |
@@ -45,7 +45,7 @@ These changes were made together, so their effects are **not separately attribut
 | 2025 | {'max_depth': 6, 'min_samples_leaf': 200} | 0.1465 | 0.1371 … 0.1465 |
 | 2026 | {'max_depth': 6, 'min_samples_leaf': 500} | 0.1348 | 0.1287 … 0.1348 |
 
-Validation IC barely separates the six configs (range in the last column), and the picks jump between leaf 200 and 500 — the same "tuning is close to noise" finding as `docs/RF_2.md` §1, now on a metric that is at least the right one. Depth 6 is chosen in five of six folds.
+Validation IC barely separates the six configs (range in the last column), and the picks jump between leaf 200 and 500 — the same "tuning is close to noise" finding as `experiments/rf_2/README.md` §1, now on a metric that is at least the right one. Depth 6 is chosen in five of six folds.
 
 Average impurity importance (fold-averaged):
 
@@ -62,7 +62,7 @@ Average impurity importance (fold-averaged):
 | gp_at | 0.043 |
 | at_gr1 | 0.028 |
 
-The model leans on quality (`qmj*`), lottery/volatility (`ivol_capm_21d`, `rmax5_21d`) and `mispricing_perf`/`betabab_1260d` — i.e. it ranks stocks largely by volatility and low quality. That is consistent with where the edge lives (small, volatile, distressed shorts; `docs/PM_ABLATION.md`).
+The model leans on quality (`qmj*`), lottery/volatility (`ivol_capm_21d`, `rmax5_21d`) and `mispricing_perf`/`betabab_1260d` — i.e. it ranks stocks largely by volatility and low quality. That is consistent with where the edge lives (small, volatile, distressed shorts; `experiments/pm_ablation/README.md`).
 
 ## 3. Results
 
@@ -90,7 +90,7 @@ The model leans on quality (`qmj*`), lottery/volatility (`ivol_capm_21d`, `rmax5
 | modern | pm_t20 | -0.05 | -0.17 | 0.02 | 0.8% / -1.7% | -0.02 | +0.07 (+0.39) | -0.86 / +1.19 (1) | 20% | -43% | $2,358M | 205–250 |
 | modern | pm_t10 | -0.15 | -0.26 | -0.05 | -0.8% / -2.8% | -0.20 | +0.07 (+0.44) | -0.58 / +1.04 (1) | 10% | -38% | $2,375M | 205–282 |
 
-Costs: tiered trading and borrow assumptions from `docs/PM_ABLATION.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
+Costs: tiered trading and borrow assumptions from `experiments/pm_ablation/README.md` §1; net = gross − trading cost − borrow cost. `Positions` is the min–max count of holdings per month (limit 100–500). Rolling-12m β: the parenthesis is the number of 12-month windows with β > 1.
 
 ### 3.3 Legs, costs and trading, headline arm (`modern_nomom`)
 
@@ -127,15 +127,15 @@ Calendar-year returns, `modern_nomom`:
 
 ## 4. Findings
 
-1. **Full-universe skill is high, tradeable skill is not.** Test rank IC is 0.14 over all stocks, but the ablation script measures it at about 0.05 inside price ≥ $5 / market cap ≥ $500M, 0.035 once names without beta history are also excluded (the universe the LP can hold), and 0.20 below $250M (`docs/PM_ABLATION.md` §3).
-2. **Momentum:** legacy IR 1.33 (`modern`) vs 1.26 (`modern_nomom`); the same direction (small drop when momentum is removed) appears in all five models of this batch (`docs/PM_ABLATION.md` §5), so the data do not support "momentum is hurting" — the case for excluding it is defensibility, not performance. Note the five models share data and features, so this is not five independent confirmations.
+1. **Full-universe skill is high, tradeable skill is not.** Test rank IC is 0.14 over all stocks, but the ablation script measures it at about 0.05 inside price ≥ $5 / market cap ≥ $500M, 0.035 once names without beta history are also excluded (the universe the LP can hold), and 0.20 below $250M (`experiments/pm_ablation/README.md` §3).
+2. **Momentum:** legacy IR 1.33 (`modern`) vs 1.26 (`modern_nomom`); the same direction (small drop when momentum is removed) appears in all five models of this batch (`experiments/pm_ablation/README.md` §5), so the data do not support "momentum is hurting" — the case for excluding it is defensibility, not performance. Note the five models share data and features, so this is not five independent confirmations.
 3. **Turnover.** The legacy LP trades 1.7× capital per month (43% one-way of gross) and pays about 22 bp/month of NAV in trading cost plus 14 bp of borrow. A 10% cap on its own (ablation row `+turnover_10pct`) costs little IR (1.26 → 1.00 gross) — the cheapest of the constraints. In the full `pm_t10` book the turnover is 10% by construction but the book has no edge, so the cap saves cost without producing return.
 4. **Beta consistency.** Formation beta is exactly zero on both betas in every PM month (LP constraint). Realized beta over 68 months is −0.19 (t −0.85) for `legacy` and +0.06 (t +0.43) for `pm_t10`. Rolling-12m β exceeds 1 in exactly **one** window — the first, ending Dec 2021, which contains the Jan-2021 squeeze — and is roughly within ±0.6 afterwards (legacy min −1.08 in the last window). The financial engineer's "no peaks over 1 in the middle" is met after the first window; the first window is 12 noisy observations (s.e. ≈ 0.4).
 5. **Positions:** legacy 201; PM books 201–287 (partial fills under the turnover cap add names); all within the 100–500 rule.
 
 ## 5. Limitations
 
-- Single seed (42); `docs/RF_2.md` §1 puts the seed noise at sd ≈ 0.055 IR (±0.11 at 2 sd), and that estimate is not refreshed for this configuration.
+- Single seed (42); `experiments/rf_2/README.md` §1 puts the seed noise at sd ≈ 0.055 IR (±0.11 at 2 sd), and that estimate is not refreshed for this configuration.
 - Costs and borrow are assumed tiers, not measured; real borrow on the legacy shorts (IOVA, NTLA, AMC, MULN, NKLA …) would be far higher than 200 bp.
 - The PM constraint set and 10% cap were fixed a priori (not tuned); a different set could give a different — but, per the ablation, not a qualitatively different — answer.
 - `all_nomom` (139 features) was **not run** for this model (about 10× slower); only 12/15-feature arms are reported.
@@ -144,7 +144,7 @@ Calendar-year returns, `modern_nomom`:
 ## Reproduce
 
 ```
-.venv/bin/python rf_3.py                                              # modern_nomom, modern  -> rf3_results.json / rf3_summary.csv
-.venv/bin/python rf_3.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> rf3_results_trad.json
+.venv/bin/python experiments/rf_3/rf_3.py                                              # modern_nomom, modern  -> rf3_results.json / rf3_summary.csv
+.venv/bin/python experiments/rf_3/rf_3.py --arms modern_nomom_trad,modern_trad --suffix _trad   # tradeable-universe training -> rf3_results_trad.json
 ```
 Outputs are in `output/` (`oos_predictions_rf3_<arm>.csv`, `portfolio_holdings_<portfolio>_rf3_<arm>.csv`, `portfolio_returns_<portfolio>_rf3_<arm>.csv`, `rf3_feature_importance_<arm>.csv`).

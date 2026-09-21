@@ -3,7 +3,7 @@ FIAM 2026 - Interpretable polynomial model, loosely inspired by
 "AlphaPortfolio: Goal-Oriented Investment Management Through Deep
 Reinforcement Learning" (NBER WP 35195, May 2026, Cong-Tang-Wang).
 
-CITATION-ACCURACY CORRECTION (see docs/POLY.md for the full story): this
+CITATION-ACCURACY CORRECTION (see experiments/poly/README.md for the full story): this
 script was originally described as operationalizing a "polynomial-network
 layer for economic distillation" allegedly part of NBER WP 35195. Reading
 the actual paper (not a search summary) showed that framing is wrong: WP
@@ -29,11 +29,11 @@ Feature selection (the "curation" step): rather than use all 147
 characteristics (which would make a degree-2 expansion ~10,000+ columns),
 this script selects the **top 20 characteristics by |IC t-stat|**, using the
 same univariate Information-Coefficient methodology as univariate.py --
-but NOT by reading univariate.py's saved output/univariate_results.csv
+but NOT by reading univariate.py's saved experiments/univariate/output/univariate_results.csv
 directly. That file's IC was computed over the 2021-01..2026-08 OOS window,
 the exact window this script is evaluated on, so using it to pick features
 here would be look-ahead bias in the selection step (caught during
-development -- see docs/POLY.md). Instead, feature selection is redone from
+development -- see experiments/poly/README.md). Instead, feature selection is redone from
 scratch INSIDE each walk-forward fold, using only that fold's TRAINING data,
 so the selected-20 for the 2021 test fold, say, only ever saw characteristic
 months through 2018-12. A degree-2 polynomial expansion of the selected 20
@@ -47,7 +47,7 @@ post-hoc "polynomial-feature-sensitivity analysis," per the verbatim
 abstract's own phrase, applied to an already-trained complex model's
 predictions rather than used as a standalone predictor. Since this project
 has no Transformer/RL model to analyze, xgb.py's already-computed,
-already-honest OOS predictions (output/oos_predictions_xgb.csv) stand in as
+already-honest OOS predictions (experiments/xgb/output/oos_predictions_xgb.csv) stand in as
 "the complex model" -- for each test year, a degree-2 polynomial surrogate
 is fit IN-SAMPLE on that year's realized characteristics to explain (not
 forecast) XGBoost's own predictions that year, reporting the surrogate R^2
@@ -56,14 +56,14 @@ a handful of named characteristics explain") and the dominant terms -- this
 is an attribution analysis of a different model, contemporaneous by
 construction (no forecasting, hence no walk-forward split needed for this
 part), not a new trading strategy. See run_sensitivity_analysis() and
-docs/POLY.md.
+experiments/poly/README.md.
 
 Self-contained: data loading, rank transform, walk-forward schedule,
 investability screen, beta-neutral LP, and evaluation code are ported from
 ols.py / xgb.py (not imported).
 
-Run: .venv/bin/python poly.py
-Requires output/oos_predictions_xgb.csv to already exist (from xgb.py) for
+Run: .venv/bin/python experiments/poly/poly.py
+Requires experiments/xgb/output/oos_predictions_xgb.csv to already exist (from xgb.py) for
 the sensitivity-analysis section; the primary poly model runs regardless.
 Outputs (all in output/): oos_predictions_poly.csv,
     portfolio_holdings_beta_neutral_poly.csv,
@@ -84,10 +84,11 @@ from sklearn.preprocessing import PolynomialFeatures
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 
@@ -454,7 +455,7 @@ def compute_performance(stats_df, tag):
 #    (the technique NBER WP 35195 actually describes -- see module docstring)
 # ---------------------------------------------------------------------------
 
-XGB_PREDICTIONS_FILE = OUTPUT / "oos_predictions_xgb.csv"
+XGB_PREDICTIONS_FILE = HERE.parent / "xgb" / "output" / "oos_predictions_xgb.csv"  # from xgb.py
 
 
 def run_sensitivity_analysis(df: pd.DataFrame, stock_vars: list[str]) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -565,4 +566,4 @@ if __name__ == "__main__":
 
     with open(OUTPUT / "poly_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
-    print("\nFull results written to output/poly_results.json")
+    print("\nFull results written to experiments/poly/output/poly_results.json")

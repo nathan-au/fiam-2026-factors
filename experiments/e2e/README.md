@@ -1,6 +1,6 @@
 # End-to-End Weight Learning — SPSA (Methodology and Results)
 
-Implementation: `e2e.py` (run with `.venv/bin/python e2e.py`). Operationalizes
+Implementation: `e2e.py` (run with `.venv/bin/python experiments/e2e/e2e.py`). Operationalizes
 *AlphaZeroBeta: Deep Reinforcement Learning for Market-Neutral Portfolios*
 (arXiv 2607.18001, Jul 2026 — `docs/PAPERS.md` §2).
 

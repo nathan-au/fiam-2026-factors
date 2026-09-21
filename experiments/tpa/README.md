@@ -1,8 +1,8 @@
 # Total Portfolio Approach, Factors-Only Adaptation (TPA)
 
-Implementation: `tpa.py` (run with `.venv/bin/python tpa.py` for the $2B book and `--floor 1000` for the $1B sensitivity; about 2 minutes each). New file; imports the frozen harness in `et.py` and the pre-registered definitions in `largecap.py`; edits nothing. Outputs in `output/`: `tpa_results_<tag>.json`, `tpa_summary_<tag>.csv`, `tpa_weights_<tag>.csv` (sleeve weights and risk contributions per test year), `tpa_monthly_ic_<tag>.csv`, `tpa_run_<tag>.log`, `oos_predictions_<tag>_tpa_<arm>.csv`, `portfolio_{holdings,returns}_<variant>_<tag>_tpa_<arm>.csv`. No 8-K sleeve yet; that would plug in as an eighth sleeve.
+Implementation: `tpa.py` (run with `.venv/bin/python experiments/tpa/tpa.py` for the $2B book and `--floor 1000` for the $1B sensitivity; about 2 minutes each). New file; imports the frozen harness in `et.py` and the pre-registered definitions in `largecap.py`; edits nothing. Outputs in `output/`: `tpa_results_<tag>.json`, `tpa_summary_<tag>.csv`, `tpa_weights_<tag>.csv` (sleeve weights and risk contributions per test year), `tpa_monthly_ic_<tag>.csv`, `tpa_run_<tag>.log`, `oos_predictions_<tag>_tpa_<arm>.csv`, `portfolio_{holdings,returns}_<variant>_<tag>_tpa_<arm>.csv`. No 8-K sleeve yet; that would plug in as an eighth sleeve.
 
-**Idea.** TPA manages one total portfolio against one objective and gives each opportunity capital according to its marginal contribution to total risk and return, instead of equal or fixed buckets. We hold a single long/short equity book, so the "sleeves" are the seven pre-registered factor groups of `docs/LARGECAP.md`. Question: does allocating sleeve capital by contribution to total risk or risk-adjusted return beat the equal-group composite?
+**Idea.** TPA manages one total portfolio against one objective and gives each opportunity capital according to its marginal contribution to total risk and return, instead of equal or fixed buckets. We hold a single long/short equity book, so the "sleeves" are the seven pre-registered factor groups of `experiments/largecap/README.md`. Question: does allocating sleeve capital by contribution to total risk or risk-adjusted return beat the equal-group composite?
 
 ## Design (pre-registered in the script header before any result was seen)
 
@@ -32,7 +32,7 @@ Sleeve share of total risk under `tpa_eq` at $2B (Ledoit-Wolf covariance): volat
 | tpa_ms | lc_t10 | −0.05 | −0.15 | 0.24 | 2.0% | 0.00 (+0.05) | −0.45 / +0.50 | −24.8% |
 | tpa_ms | lc_free | 0.14 | −0.02 | 0.35 | 3.3% | −0.09 (−0.97) | −0.38 / +0.27 | −26.2% |
 
-`lc_t20` and `lc_t10_w05` rows are in `output/tpa_summary_lc.csv` and tell the same story (`tpa_erc` net IR 0.60 / 0.52 vs `tpa_eq` 0.48 / 0.47; `tpa_ms` −0.03 / −0.28).
+`lc_t20` and `lc_t10_w05` rows are in `experiments/tpa/output/tpa_summary_lc.csv` and tell the same story (`tpa_erc` net IR 0.60 / 0.52 vs `tpa_eq` 0.48 / 0.47; `tpa_ms` −0.03 / −0.28).
 
 | Arm | Universe rank IC (t) | D10 − D1 (%/month) | IC by year 2021 / 22 / 23 / 24 / 25 / 26 | Paired IC vs `tpa_eq` |
 |---|---:|---:|---|---|
@@ -62,7 +62,7 @@ At $1B `tpa_ms` fell back to equal weights for 2021 (no sleeve had a positive sh
 ## Findings
 
 1. **Equal-risk sleeve budgeting (`tpa_erc`) improves the portfolio numbers, but not the signal.** Its universe rank IC is statistically identical to equal capital (paired t 0.0–0.2), while its net IR is higher in every LP variant at both floors, so the gain is portfolio-level (a more balanced, lower-noise composite) rather than better stock selection. That is exactly what the rule calls suggestive; with one path and 68 months, IR differences of 0.1–0.2 are inside the noise (IR standard error about 0.46).
-2. **Return-based allocation (`tpa_ms`) fails, and it fails for an informative reason.** Sleeve returns before 2021 pointed at the wrong sleeves: value and investment had negative pre-2021 Sharpe (−0.64, −0.59) yet were the best-performing groups afterwards (value IC +0.047, investment +0.022 in `docs/LARGECAP.md`). Estimating expected returns from a short history of factor sleeves chases what worked before and misses regime shifts; this is the sleeve-level version of `docs/FACTOR_FILTER.md` §2 (past factor IC does not persist).
+2. **Return-based allocation (`tpa_ms`) fails, and it fails for an informative reason.** Sleeve returns before 2021 pointed at the wrong sleeves: value and investment had negative pre-2021 Sharpe (−0.64, −0.59) yet were the best-performing groups afterwards (value IC +0.047, investment +0.022 in `experiments/largecap/README.md`). Estimating expected returns from a short history of factor sleeves chases what worked before and misses regime shifts; this is the sleeve-level version of `experiments/factor_filter/README.md` §2 (past factor IC does not persist).
 3. **Risk-only allocation is the defensible half of TPA here.** It uses no return forecast, is stable year to year (weights move by a few points), and its framing is coherent for the deck: "equal capital across factor groups was 30–33% volatility/beta risk; we budget risk, not capital".
 4. **Neutrality is a little looser with `tpa_erc`.** Realised beta is −0.13 to −0.18 (t −1.2 to −1.6 at $2B; −1.8 at $1B, `lc_free`), not statistically different from zero but larger in magnitude than the equal-capital composite's (t −0.8 to −1.1); rolling-12m beta stays within about −0.7 / +0.2 with no window above 1.
 5. **What it does not change.** The composite's weaknesses stay: strong 2021–22 and 2024, negative 2025 for every arm, no significant IC. TPA does not add information.

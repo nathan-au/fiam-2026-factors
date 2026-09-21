@@ -1,6 +1,6 @@
 # REDDIT_RESEARCH.md — Reddit-led deep research, extending NEW.md (2026-09-21)
 
-Project context (from `NEW.md` / `REDDIT.md` / `docs/LARGECAP.md`): monthly US equity long/short from 147 characteristics; the tradeable large-cap universe (price ≥ $5, mcap ≥ $2B, ~1,200 names/month) has rank IC ≈ 0.035; the only honest positive is a no-fit, equal-group composite of 18 factors (net IR ≈ 0.54, IC 0.037, 2025 negative); every fitted model (ET IC 0.016) lost to it.
+Project context (from `NEW.md` / `REDDIT.md` / `experiments/largecap/README.md`): monthly US equity long/short from 147 characteristics; the tradeable large-cap universe (price ≥ $5, mcap ≥ $2B, ~1,200 names/month) has rank IC ≈ 0.035; the only honest positive is a no-fit, equal-group composite of 18 factors (net IR ≈ 0.54, IC 0.037, 2025 negative); every fitted model (ET IC 0.016) lost to it.
 
 ---
 
@@ -54,7 +54,7 @@ Project context (from `NEW.md` / `REDDIT.md` / `docs/LARGECAP.md`): monthly US e
 
 **Core concept.** Enter a name only when its predicted rank is in the extreme (e.g. top decile), but keep holding it until it falls well outside the entry zone (e.g. out of the top half). Separately, trade only a fraction of the gap to target, and only if the gap exceeds a band. In Gârleanu–Pedersen terms: *aim in front of the target and trade partially toward the aim*.
 
-**Why interesting.** NEW.md §3.9 #4 proposes EMA smoothing and blended horizons; the repo's LP applies a **hard 10% one-way turnover budget** (`docs/LARGECAP.md`). A hard cap makes the LP keep stale names by *feasibility*, not by *design*. An explicit hysteresis rule spends the same turnover on the names where the rank change is most informative.
+**Why interesting.** NEW.md §3.9 #4 proposes EMA smoothing and blended horizons; the repo's LP applies a **hard 10% one-way turnover budget** (`experiments/largecap/README.md`). A hard cap makes the LP keep stale names by *feasibility*, not by *design*. An explicit hysteresis rule spends the same turnover on the names where the rank change is most informative.
 
 **Evidence.**
 - *Demonstrated (peer-reviewed).* Blitz, Hanauer, Honarvar, Huisman, van Vliet, *Beyond Fama-French Factors: Alpha from Short-Term Signals* (FAJ 2023): MSCI World constituents only (no small/off-benchmark stocks), Dec 1985–Dec 2021, monthly rebalance. Individual signals have 1,300–2,000% annual turnover; with a naive "buy 20 / hold 20" at 25 bp costs the composite's net alpha loses **more than two-thirds** to costs, but with **"buy 10 / hold 50"** the composite's net alpha stays **above 6%**. (Robeco summary; abstract on SSRN 4115411.)
@@ -84,7 +84,7 @@ Project context (from `NEW.md` / `REDDIT.md` / `docs/LARGECAP.md`): monthly US e
 
 **Core concept.** Five *cheap* short-horizon signals that survive in liquid large caps and are largely uncorrelated with Fama–French factors: (1) **industry-relative 1-month reversal**, (2) **1-month industry momentum**, (3) **analyst revisions (past 30 days)**, (4) **same-calendar-month return seasonality**, (5) **1-month idiosyncratic volatility**.
 
-**Why interesting.** It is a published composite defined *only* on a large-cap universe, monthly — the exact regime we lose in. The repo's composite deliberately has **no momentum/short-term** content (`LARGECAP.md`: "no momentum"), so this block would be **orthogonal to what we have**.
+**Why interesting.** It is a published composite defined *only* on a large-cap universe, monthly — the exact regime we lose in. The repo's composite deliberately has **no momentum/short-term** content (`experiments/largecap/README.md`: "no momentum"), so this block would be **orthogonal to what we have**.
 
 **Evidence.** *Demonstrated (peer-reviewed).* Robeco summary and the paper's abstract: individual gross returns 5–8%/yr; composite average return > 12%, six-factor alpha > 12% (significant); break-even cost < 25 bp individually, > 30 bp composite; alpha persists out-of-sample and post-publication, across regions, with several-day implementation lags, and uncorrelated with traditional FF factors. Source above.
 

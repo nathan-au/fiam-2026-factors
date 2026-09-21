@@ -21,14 +21,14 @@ next-month excess return (ret_exc_lead1m), two ways:
      expanding-window / annual-refit walk-forward schedule as ols.py /
      xgb.py, pooled over all OOS predictions (2021-01 to 2026-08). Directly
      comparable in magnitude to the 147-feature OOS R^2 already reported in
-     docs/OLS.md (-0.0086%) and docs/XGB.md (-0.1265%).
+     experiments/ols/README.md (-0.0086%) and experiments/xgb/README.md (-0.1265%).
 
 Self-contained: data loading, rank transform, and the walk-forward fold
 schedule are ported from ols.py (not imported), matching the project
 convention that each analysis script stands alone.
 
-Run: .venv/bin/python univariate.py
-Output: output/univariate_results.csv, output/univariate_results.json
+Run: .venv/bin/python experiments/univariate/univariate.py
+Output: experiments/univariate/output/univariate_results.csv, experiments/univariate/output/univariate_results.json
 """
 
 import json
@@ -40,9 +40,10 @@ import pandas as pd
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 OUTPUT.mkdir(exist_ok=True)
 
 CHARS_FILE = FIAM_DIR / "chars_final_with_names.parquet"
@@ -222,4 +223,4 @@ if __name__ == "__main__":
     print(f"\n{n_positive_r2} / {len(stock_vars)} characteristics have positive single-factor OOS R^2")
     print(f"{n_sig_ic} / {len(stock_vars)} characteristics have |IC t-stat| > 2")
 
-    print("\nFull results written to output/univariate_results.csv and .json")
+    print("\nFull results written to experiments/univariate/output/univariate_results.csv and .json")

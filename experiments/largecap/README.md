@@ -1,18 +1,18 @@
 # Large-Cap-Only Strategy, Pre-Registered (LARGECAP)
 
-Implementation: `largecap.py` (run with `.venv/bin/python largecap.py --seeds 5`, about 12 minutes). New file; imports the frozen harness in `et.py` (data, rank transform, folds, LP, costs, performance stats) and edits nothing. Outputs in `output/`: `lc_results.json`, `lc_summary.csv`, `lc_monthly_ic.csv`, `oos_predictions_lc_<arm>.csv`, `portfolio_{holdings,returns}_<variant>_lc_<arm>.csv`, `lc_feature_importance_<arm>.csv`, `lc_run.log`.
+Implementation: `largecap.py` (run with `.venv/bin/python experiments/largecap/largecap.py --seeds 5`, about 12 minutes). New file; imports the frozen harness in `et.py` (data, rank transform, folds, LP, costs, performance stats) and edits nothing. Outputs in `output/`: `lc_results.json`, `lc_summary.csv`, `lc_monthly_ic.csv`, `oos_predictions_lc_<arm>.csv`, `portfolio_{holdings,returns}_<variant>_lc_<arm>.csv`, `lc_feature_importance_<arm>.csv`, `lc_run.log`.
 
-**Why.** `docs/PM_ABLATION.md` showed the tree models' edge lives in small-cap shorts, and that a $2B market-cap floor was the one non-negative tradeable row (post-hoc, trained on all stocks). This tests that idea with the design fixed in the script header before any result was seen, and with training/validation restricted to the large-cap universe.
+**Why.** `experiments/pm_ablation/README.md` showed the tree models' edge lives in small-cap shorts, and that a $2B market-cap floor was the one non-negative tradeable row (post-hoc, trained on all stocks). This tests that idea with the design fixed in the script header before any result was seen, and with training/validation restricted to the large-cap universe.
 
 ## Pre-registered design (fixed before running; one run, no re-tuning)
 
 | Element | Choice |
 |---|---|
 | Universe | price ≥ $5, market cap ≥ $2,000M, 126d dollar volume ≥ $10M, both betas observed. ~1,206 stocks/month; 153,392 of 523,125 stock-months. |
-| Factors | 18 characteristics picked **by economic group** from `docs/FACTORS.md`, not by IC (`docs/FACTOR_FILTER.md` §2), no momentum: value (`be_me`, `ni_me`, `fcf_me`), profitability (`gp_at`, `ni_be`, `ebit_sale`), investment/issuance/accruals (`at_gr1`, `chcsho_12m`, `oaccruals_at`), quality (`qmj`, `f_score`), surprise (`niq_su`, `saleq_su`), volatility/beta (`ivol_capm_21d`, `rmax5_21d`, `betabab_1260d`), liquidity (`ami_126d`, `turnover_126d`). |
+| Factors | 18 characteristics picked **by economic group** from `docs/FACTORS.md`, not by IC (`experiments/factor_filter/README.md` §2), no momentum: value (`be_me`, `ni_me`, `fcf_me`), profitability (`gp_at`, `ni_be`, `ebit_sale`), investment/issuance/accruals (`at_gr1`, `chcsho_12m`, `oaccruals_at`), quality (`qmj`, `f_score`), surprise (`niq_su`, `saleq_su`), volatility/beta (`ivol_capm_21d`, `rmax5_21d`, `betabab_1260d`), liquidity (`ami_126d`, `turnover_126d`). |
 | Arms | `et` Extra-Trees trained + validated on universe rows (headline model); `comp` equal-weight composite of the same 18 factors with pre-specified signs, re-ranked within the universe each month, groups weighted equally, **no fitting**; `et_allrows` same Extra-Trees trained on all stocks (diagnostic). |
-| Portfolio | Same LP as `docs/RF_3.md` `pm_*`: dollar-neutral, neutral to both `beta_60m` and `betabab_1260d`, net sector ≤ 5% NAV, gross sector share ≤ 35%, gross 200%. Headline `lc_t10` (10% one-way turnover budget, from the tips). Sensitivities: `lc_free`, `lc_t20`, `lc_t10_w05` (0.5% per-name cap, ≥ 400 names). |
-| Costs | Tiered assumptions of `docs/PM_ABLATION.md` §1 (assumed, not measured). |
+| Portfolio | Same LP as `experiments/rf_3/README.md` `pm_*`: dollar-neutral, neutral to both `beta_60m` and `betabab_1260d`, net sector ≤ 5% NAV, gross sector share ≤ 35%, gross 200%. Headline `lc_t10` (10% one-way turnover budget, from the tips). Sensitivities: `lc_free`, `lc_t20`, `lc_t10_w05` (0.5% per-name cap, ≥ 400 names). |
+| Costs | Tiered assumptions of `experiments/pm_ablation/README.md` §1 (assumed, not measured). |
 
 ## Results (2021-01 – 2026-08, 68 months, one path)
 
@@ -42,13 +42,13 @@ Model-level, on universe rows only:
 ## Findings
 
 1. **The model does not work on large caps; the simple rule does.** Extra-Trees trained on the universe has IC 0.016 and negative IR in every variant and every seed. The equal-weight composite of the same factors has IC 0.037 and IR 0.5–0.66 gross in every variant, with stable beta and a $7B median short book. The composite gets its edge without fitting, so it carries no fitting or tuning selection.
-2. **Restricting training to large caps did not rescue the tree model** (`et` vs `et_allrows`: both about zero). Consistent with `docs/ANALOG.md` / `docs/PM_ABLATION.md`: the ceiling is the information in these factors, not the model class.
+2. **Restricting training to large caps did not rescue the tree model** (`et` vs `et_allrows`: both about zero). Consistent with `experiments/analog/README.md` / `experiments/pm_ablation/README.md`: the ceiling is the information in these factors, not the model class.
 3. **The composite is not a statistically clean win.** IR standard error over 68 months is about 0.46, so 0.61 is about 1.3 standard errors from zero; universe IC t = 1.9. It is one pre-registered path, and the effect is concentrated in 2021–2022 and 2024, with 2025 negative (−12.4%). Read it as "consistent with a modest value/investment-style tilt", not as proven alpha.
 4. **The edge is value and investment/issuance/accruals** (post-hoc group ICs above), not volatility or liquidity, which was the untradeable family in earlier docs. The short leg still loses money; the return comes from the long leg.
 
 ## Sensitivity: $1B floor (`--floor 1000`, run after the $2B result; $2B stays the headline, nothing was chosen from this)
 
-Universe ~1,391 stocks/month. Files are tagged `lc1000` (`output/lc1000_results.json`, `lc1000_summary.csv`, `lc1000_run.log`). Arms `et` and `comp` only.
+Universe ~1,391 stocks/month. Files are tagged `lc1000` (`experiments/largecap/output/lc1000_results.json`, `lc1000_summary.csv`, `lc1000_run.log`). Arms `et` and `comp` only.
 
 | Arm | Portfolio | IR gross | IR net | Sharpe net | CAGR net | β (t) | Rolling-12m β min / max | Max DD net | Short-book median mcap |
 |---|---|---:|---:|---:|---:|---:|---|---:|---:|
@@ -59,7 +59,7 @@ Universe ~1,391 stocks/month. Files are tagged `lc1000` (`output/lc1000_results.
 
 Universe rank IC: composite 0.044 (t 2.2), Extra-Trees 0.022 (t 1.5); decile spread D10 − D1: composite +0.29, Extra-Trees −0.43 %/month. Composite IC by year: 2021 +0.088, 2022 +0.086, 2023 +0.011, 2024 +0.072, 2025 −0.017, 2026 +0.012 (same shape as at $2B). Paired IC, Extra-Trees − composite: −0.022 (t −1.15).
 
-Reading: the composite result is **not fragile to the floor** (gross IR 0.54–0.65 across all four variants at both $1B and $2B), unlike the all-stock tree models in `docs/PM_ABLATION.md` where $1B was far weaker than $2B. The Extra-Trees model is negative at both floors and worse at $1B. The same caveats apply: one path, IR standard error about 0.46, weak 2025.
+Reading: the composite result is **not fragile to the floor** (gross IR 0.54–0.65 across all four variants at both $1B and $2B), unlike the all-stock tree models in `experiments/pm_ablation/README.md` where $1B was far weaker than $2B. The Extra-Trees model is negative at both floors and worse at $1B. The same caveats apply: one path, IR standard error about 0.46, weak 2025.
 
 ## Limitations
 
@@ -72,6 +72,6 @@ Reading: the composite result is **not fragile to the floor** (gross IR 0.54–0
 ## Reproduce
 
 ```
-.venv/bin/python largecap.py --seeds 5                 # arms et, comp, et_allrows at the $2B floor
-.venv/bin/python largecap.py --floor 1000 --arms et,comp   # sensitivity (files tagged lc1000)
+.venv/bin/python experiments/largecap/largecap.py --seeds 5                 # arms et, comp, et_allrows at the $2B floor
+.venv/bin/python experiments/largecap/largecap.py --floor 1000 --arms et,comp   # sensitivity (files tagged lc1000)
 ```

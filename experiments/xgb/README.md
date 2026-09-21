@@ -1,10 +1,10 @@
 # Nonlinear ML Strategy — XGBoost (Methodology and Results)
 
-Implementation: `xgb.py` (single file, run with `.venv/bin/python xgb.py`).
+Implementation: `xgb.py` (single file, run with `.venv/bin/python experiments/xgb/xgb.py`).
 Self-contained: the data loading, rank transform, portfolio construction, and
 evaluation code is **ported from `ols.py`, not imported from it** — the two
 scripts share no code at runtime, by design, so each stands alone and either
-can be edited without touching the other. `ols.py` / `docs/OLS.md` stay
+can be edited without touching the other. `ols.py` / `experiments/ols/README.md` stay
 frozen as the linear baseline this compares against.
 
 **Naming note:** the script is `xgb.py`, not `xgboost.py`. Naming it
@@ -27,7 +27,7 @@ sit in `output/` at once.
 Per `docs/NEXT.md` §1 and §4: swap the model-fitting step from plain OLS to
 gradient-boosted trees (XGBoost), and — unlike OLS, which had no
 hyperparameters — actually use the validation fold to tune them. Everything
-else is unchanged from `docs/OLS.md`:
+else is unchanged from `experiments/ols/README.md`:
 
 - Same data (`fiam/chars_final_with_names.parquet`, 147 characteristics),
   same target (`ret_exc_lead1m`), same target-month alignment.
@@ -48,7 +48,7 @@ else is unchanged from `docs/OLS.md`:
 ## 2. What's new: validation-tuned walk-forward XGBoost
 
 For each of the six annual folds (2021–2026, same boundaries as
-`docs/OLS.md` §2.3), a small grid of `(max_depth, learning_rate)` —
+`experiments/ols/README.md` §2.3), a small grid of `(max_depth, learning_rate)` —
 `{3, 4, 5} × {0.01, 0.03}`, 6 combinations — is fit on the training fold with
 early stopping (50 rounds, cap 2000 trees) evaluated against that fold's
 validation set. The combination with the lowest validation MSE is kept, and
@@ -58,12 +58,12 @@ it never contributes to a tree split, matching `docs/FIAM.md` §5's explicit
 split of duties ("tune on validation, estimate on training").
 
 The grid is deliberately narrow (shallow trees, low learning rates) rather
-than exhaustive. `docs/OLS.md` §3.1 already showed these characteristics
+than exhaustive. `experiments/ols/README.md` §3.1 already showed these characteristics
 carry an OOS R² indistinguishable from zero under a linear model; with a
 signal this weak, the risk from a nonlinear model is overfitting noise, not
 underfitting — so the grid favors regularization over capacity.
 
-Chosen hyperparameters per fold (`output/xgb_results.json`,
+Chosen hyperparameters per fold (`experiments/xgb/output/xgb_results.json`,
 `fold_hyperparameters`):
 
 | Test year | max_depth | learning_rate | n_trees (early-stopped) | Val MSE |
@@ -89,8 +89,8 @@ Model settings held fixed across the grid (not searched): `subsample=0.8`,
 ## 3. Results
 
 All figures are for 2021-01 through 2026-08 (68 months), gross of trading
-costs. Source: `output/xgb_results.json`. OLS comparison figures are from
-`docs/OLS.md` §3.
+costs. Source: `experiments/xgb/output/xgb_results.json`. OLS comparison figures are from
+`experiments/ols/README.md` §3.
 
 ### 3.1 Predictive power
 
@@ -167,7 +167,7 @@ much return left for alpha to explain in the first place.
 | Calmar ratio | 0.16 | 0.65 | 0.54 |
 
 The single-month meme-stock-squeeze shock that dominates OLS's drawdown
-(§3.4 of `docs/OLS.md`) is smaller here (XGBoost's short book differs
+(§3.4 of `experiments/ols/README.md`) is smaller here (XGBoost's short book differs
 month-to-month from OLS's), but XGBoost's drawdown is **far more
 persistent**: 61 of 68 months spent underwater, recovering only in the
 second-to-last month of the OOS window. A shallower single-month loss but a
@@ -190,7 +190,7 @@ caps, same $10M liquidity screen). Turnover is both higher on average and
 far more variable (3%–94% vs. OLS's tighter 20%–57% band) — month-to-month
 XGBoost predictions reorder the cross-section more erratically than OLS's
 stable linear ranking, which would matter more once a transaction-cost model
-is added (neither script has one yet — see `docs/OLS.md` §4.6). The short
+is added (neither script has one yet — see `experiments/ols/README.md` §4.6). The short
 book skews toward larger, more liquid names than OLS's (median $4.1B vs.
 $1.8B market cap), which is a lower-borrow-risk book on the stated
 market-cap proxy, but is incidental to how the LP happened to fill the cap
@@ -199,7 +199,7 @@ this run, not a deliberate design choice.
 ### 3.6 Feature importance
 
 Average XGBoost gain-based importance across the six folds
-(`output/xgb_feature_importance.csv`), top 15:
+(`experiments/xgb/output/xgb_feature_importance.csv`), top 15:
 
 | Rank | Feature | Category (`docs/FACTORS.md`) |
 |---:|---|---|
@@ -239,7 +239,7 @@ hasn't been disentangled here.
    (`docs/FIAM.md` §9's own framing: "a candid account of an agent that did
    not work is worth more than a polished account of one that supposedly
    did" applies just as well to a model that didn't work).
-2. **The OLS result itself was flagged as hard to trust** (`docs/OLS.md`
+2. **The OLS result itself was flagged as hard to trust** (`experiments/ols/README.md`
    §4.1: strong portfolio returns from a near-zero-R² model). XGBoost's
    weaker portfolio result from a similarly near-zero R² is, if anything,
    more internally consistent — but that consistency doesn't resolve
@@ -258,7 +258,7 @@ hasn't been disentangled here.
    still recommends the `betabab_1260d` swap as a follow-up robustness
    check, applicable to either model).
 5. **Turnover is measured but not costed**, same caveat as
-   `docs/OLS.md` §4.6 — and XGBoost's turnover is both higher and more
+   `experiments/ols/README.md` §4.6 — and XGBoost's turnover is both higher and more
    variable, so a transaction-cost model would likely narrow the gap to
    OLS further (OLS's smaller, steadier turnover is relatively cheaper to
    trade).

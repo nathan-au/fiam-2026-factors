@@ -1,6 +1,6 @@
 # Quantity-Conditioned Prediction Model — BTQ (Methodology and Results)
 
-Implementation: `btq.py` (run with `.venv/bin/python btq.py`). Operationalizes
+Implementation: `btq.py` (run with `.venv/bin/python experiments/btq/btq.py`). Operationalizes
 *Quantity, Risk, and Return* — the Beta-Times-Quantity (BTQ) model (arXiv
 2609.05162, Sep 2026 — `docs/PAPERS.md` §1).
 
@@ -68,7 +68,7 @@ Interestingly, the more faithful factor-level construction has a **better
 pointwise R² relationship to its ablation** (primary > ablation, the
 "correct" direction) but a **slightly weaker portfolio-level result** than
 the first version's cruder per-stock proxy (IR 0.67 vs 0.77). Per-fold alpha
-selection (`output/btq_results.json`) again mostly picked the strongest
+selection (`experiments/btq/output/btq_results.json`) again mostly picked the strongest
 regularization available (`alpha=300` in four of six folds), consistent
 with heavy shrinkage being needed regardless of which quantity construction
 is used.

@@ -16,7 +16,7 @@ Pipeline:
      `sp500_drawdown` series are written to portfolio_returns_beta_neutral.csv
      for the underwater chart).
 
-Run: .venv/bin/python ols.py
+Run: .venv/bin/python experiments/ols/ols.py
 cache/ holds only downloaded external data (TB3MS.csv, SP500.csv).
 Outputs (all in output/): oos_predictions.csv,
     portfolio_holdings_beta_neutral.csv, portfolio_returns_beta_neutral.csv,
@@ -35,10 +35,11 @@ from sklearn.linear_model import LinearRegression
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"  # downloaded external data only (FRED series)
-OUTPUT = BASE / "output"  # everything this script produces
+OUTPUT = HERE / "output"  # everything this script produces
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 
@@ -189,7 +190,7 @@ def oos_r2(actual: np.ndarray, predicted: np.ndarray) -> float:
 
 
 # Investability screen: an unscreened top/bottom-N portfolio ends up shorting
-# median-$44M, median-$2.47 stocks (see docs/OLS.md) -- diagnosed directly
+# median-$44M, median-$2.47 stocks (see experiments/ols/README.md) -- diagnosed directly
 # from this run's own holdings. Applied only at portfolio-formation time
 # (using values as of the characteristic month, i.e. known before the trade),
 # never during model training. Single threshold: 6-month average daily
@@ -212,7 +213,7 @@ def build_beta_neutral_portfolio(preds: pd.DataFrame) -> tuple[pd.DataFrame, pd.
     Variables are split w_i = w_i^+ - w_i^- (both >=0) so every constraint is
     linear; scipy.optimize.linprog (HiGHS) solves it directly. Stocks with a
     missing beta_60m cannot enter the beta constraint and are excluded from
-    the eligible universe for this construction (see docs/OLS.md).
+    the eligible universe for this construction (see experiments/ols/README.md).
     """
     holdings = []
     monthly_stats = []
@@ -418,7 +419,7 @@ def compute_performance(stats_df: pd.DataFrame, tag: str) -> dict:
     # Convention: the dollar-neutral spread return is already earned in excess
     # of a risk-free rate (the pipeline's RF embedded in ret_exc_lead1m, which
     # this analysis assumes is close enough to TB3MS to treat as the same
-    # cash rate -- see docs/OLS.md for the caveat). Active return over the
+    # cash rate -- see experiments/ols/README.md for the caveat). Active return over the
     # competition benchmark is therefore the spread return minus the +4%/yr
     # hurdle only.
     perf["active_ret"] = perf["port_excess_ret"] - 0.04 / 12.0
@@ -556,4 +557,4 @@ if __name__ == "__main__":
     with open(OUTPUT / "ols_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
 
-    print("\nFull results written to output/ols_results.json")
+    print("\nFull results written to experiments/ols/output/ols_results.json")

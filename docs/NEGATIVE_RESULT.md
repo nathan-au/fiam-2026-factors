@@ -1,6 +1,6 @@
 # An Honest Negative Result: Tree Models on the 147 Characteristics
 
-Draft text for the deck's Discussion page / Appendix. Every number below comes from `docs/RF_3.md`, `docs/ET.md`, `docs/LGBM.md`, `docs/CAT.md`, `docs/XGB_2.md` and `docs/PM_ABLATION.md` (period 01/2021 – 08/2026, 68 monthly returns, one prediction path per model). The FIAM brief says a candid account of something that did not work is worth more than a polished account of something that supposedly did; this is that account.
+Draft text for the deck's Discussion page / Appendix. Every number below comes from `experiments/rf_3/README.md`, `experiments/et/README.md`, `experiments/lgbm/README.md`, `experiments/cat/README.md`, `experiments/xgb_2/README.md` and `experiments/pm_ablation/README.md` (period 01/2021 – 08/2026, 68 monthly returns, one prediction path per model). The FIAM brief says a candid account of something that did not work is worth more than a polished account of something that supposedly did; this is that account.
 
 ---
 

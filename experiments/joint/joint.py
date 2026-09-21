@@ -32,7 +32,7 @@ is computed from training-fold data only, to weight training-fold loss -- it
 never touches predictors, and no information about the test period's
 targets is used.
 
-FIX (see docs/JOINT.md for the full before/after): the first version of this
+FIX (see experiments/joint/README.md for the full before/after): the first version of this
 script selected p by UNIFORM validation MSE, which structurally always
 prefers p=0 (unweighted OLS minimizes unweighted MSE by construction) --
 every fold degenerated to plain OLS, never actually testing the weighting.
@@ -48,7 +48,7 @@ Self-contained: data loading, rank transform, walk-forward schedule,
 investability screen, beta-neutral LP, and evaluation code are ported from
 ols.py / xgb.py (not imported).
 
-Run: .venv/bin/python joint.py
+Run: .venv/bin/python experiments/joint/joint.py
 Outputs (all in output/): oos_predictions_joint.csv,
     portfolio_holdings_beta_neutral_joint.csv,
     portfolio_returns_beta_neutral_joint.csv, joint_results.json
@@ -66,10 +66,11 @@ from sklearn.linear_model import LinearRegression
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 
@@ -143,7 +144,7 @@ def validation_portfolio_sharpe(val_df: pd.DataFrame, val_pred: np.ndarray) -> f
     predictions and compute the resulting portfolio's (raw, not
     benchmark-relative) monthly Sharpe ratio. This is the fix for the
     degenerate-p=0 problem documented in this script's earlier run (see
-    docs/JOINT.md): the paper's whole argument is that pointwise error
+    experiments/joint/README.md): the paper's whole argument is that pointwise error
     should NOT be the model-selection criterion for a portfolio-aware
     model -- so the criterion here is a portfolio-level statistic, computed
     from the SAME LP construction used for final OOS evaluation, not MSE."""
@@ -520,7 +521,7 @@ if __name__ == "__main__":
     selected_ps = [p["weight_exponent_p"] for p in fold_params]
     print(f"\nSelected p per fold (portfolio-Sharpe validation): {selected_ps}")
     print("Running a forced p=2 supplementary pass regardless, as a fixed reference point")
-    print("independent of what validation happened to pick this run (see docs/JOINT.md).")
+    print("independent of what validation happened to pick this run (see experiments/joint/README.md).")
     forced_preds = run_walk_forward_forced(df, stock_vars, p=2.0)
     forced_preds = forced_preds[(forced_preds["target_month"] >= OOS_START) & (forced_preds["target_month"] <= OOS_END)]
     forced_r2 = oos_r2(forced_preds[TARGET_COL].values, forced_preds["pred"].values)
@@ -540,4 +541,4 @@ if __name__ == "__main__":
 
     with open(OUTPUT / "joint_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
-    print("\nFull results written to output/joint_results.json")
+    print("\nFull results written to experiments/joint/output/joint_results.json")

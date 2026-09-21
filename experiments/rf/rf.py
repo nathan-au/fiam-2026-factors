@@ -29,7 +29,7 @@ methodology rather than by replicating theirs):
 Random Forest is fit on each arm independently, walk-forward, validation
 -tuned, same beta-neutral LP construction as every other script in this
 batch. This project's own xgb.py already underperformed the OLS floor
-(docs/XGB.md sec 4); Random Forest was the cheapest next thing to try per
+(experiments/xgb/README.md sec 4); Random Forest was the cheapest next thing to try per
 docs/PAPERS.md's ranking (#1 by relevance).
 
 Self-contained: data loading, rank transform, walk-forward schedule,
@@ -37,7 +37,7 @@ investability screen, beta-neutral LP, and evaluation code are ported from
 ols.py / xgb.py (not imported), matching the project convention that each
 analysis script stands alone.
 
-Run: .venv/bin/python rf.py
+Run: .venv/bin/python experiments/rf/rf.py
 Outputs (all in output/, one set per arm, arm in {graham, modern, combined}):
     oos_predictions_rf_<arm>.csv, portfolio_holdings_beta_neutral_rf_<arm>.csv,
     portfolio_returns_beta_neutral_rf_<arm>.csv,
@@ -56,10 +56,11 @@ from sklearn.ensemble import RandomForestRegressor
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 
@@ -127,7 +128,7 @@ def cross_sectional_rank_transform(df: pd.DataFrame, stock_vars: list[str]) -> p
 
 # Small grid: (max_depth, min_samples_leaf). Random Forest's own bagging
 # variance-reduction is the main defense against the near-zero-signal regime
-# documented in docs/OLS.md/docs/XGB.md, so depth/leaf-size regularization is
+# documented in experiments/ols/README.md/experiments/xgb/README.md, so depth/leaf-size regularization is
 # kept modest rather than exhaustive -- consistent with xgb.py's narrow grid
 # rationale.
 PARAM_GRID = [
@@ -512,4 +513,4 @@ if __name__ == "__main__":
             f"MaxDD={b['max_drawdown']*100:.2f}%  Calmar={b['calmar_ratio']:.3f}"
         )
 
-    print("\nFull results written to output/rf_results.json")
+    print("\nFull results written to experiments/rf/output/rf_results.json")

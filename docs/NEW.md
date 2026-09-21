@@ -2,7 +2,7 @@
 
 Scope: a broad web sweep (~160 searches/fetches: arXiv, SSRN abstracts, Quantpedia/Quantocracy, practitioner Substacks, Numerai, quant-fund news, X). Goal: ideas we have **not** tried, not a re-run of what is in `docs/`. Everything is measured against where the repo stands (see §1).
 
-Companion docs: `docs/NEGATIVE_RESULT.md`, `docs/LARGECAP.md`, `docs/PM_ABLATION.md`, `docs/FACTOR_FILTER.md`, `docs/TPA.md`, `docs/HRP.md`.
+Companion docs: `docs/NEGATIVE_RESULT.md`, `experiments/largecap/README.md`, `experiments/pm_ablation/README.md`, `experiments/factor_filter/README.md`, `experiments/tpa/README.md`, `experiments/hrp/README.md`.
 
 ---
 

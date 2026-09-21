@@ -11,21 +11,21 @@ three pieces, none of which touches an existing file:
   B. PERSISTENCE: does a factor's past information coefficient (IC) predict its future IC? Per-factor mean monthly
      rank IC with next-month return in the LP-investable universe (price >= $5, market cap >= $500M, $10M dollar
      volume, both betas observed) and in all stocks, for target months before 2021 (train era) vs 2021-01..2026-08.
-  C. FILTER EXPERIMENT: Extra-Trees (docs/ET.md) on feature sets chosen by filter rules, WALK-FORWARD -- every rule
+  C. FILTER EXPERIMENT: Extra-Trees (experiments/et/README.md) on feature sets chosen by filter rules, WALK-FORWARD -- every rule
      sees only rows whose target month is before that fold's validation window (`tr`), never validation/test data:
-       all139         all characteristics except the 8 momentum ones (docs/RF_3.md)
+       all139         all characteristics except the 8 momentum ones (experiments/rf_3/README.md)
        decorr         cluster pruning at |rho| > 0.8, keep the member with the largest |train IC| per cluster
        ic_top30       the 30 factors with the largest |mean train IC|
        decorr_ic_top30  cluster pruning, then the 30 largest |train IC| among the representatives
        sign_stable    |IC t-stat| >= 2 over the training window AND the same IC sign in both halves of it
                       (at least 5 kept; if fewer qualify, the 5 largest |t|)
-       curated12      docs/RF_3.md's momentum-free Modern factors (reference)
+       curated12      experiments/rf_3/README.md's momentum-free Modern factors (reference)
        random30_s0..4 five random 30-factor subsets (the NULL: how good is 'any 30 factors'?)
      Models are trained and validated on the LP-investable rows only and scored on every test stock; the headline
-     metric is test rank IC on the LP-investable test universe, with pm_free / pm_t10 portfolios (docs/RF_3.md
+     metric is test rank IC on the LP-investable test universe, with pm_free / pm_t10 portfolios (experiments/rf_3/README.md
      portfolio layer, gross and net of the assumed cost tiers) as the secondary check.
 
-Run:  .venv/bin/python factor_filter.py [--smoke]
+Run:  .venv/bin/python experiments/factor_filter/factor_filter.py [--smoke]
 Outputs (output/): factor_redundancy_clusters.csv, factor_redundancy_pairs.csv, factor_ic_persistence.csv,
     factor_filter_selected_features.csv, factor_filter_summary.csv, factor_filter_results.json,
     factor_filter_monthly_ic.csv, factor_filter_paired_tests.csv
@@ -49,10 +49,11 @@ from sklearn.ensemble import ExtraTreesRegressor
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"  # downloaded external data only (FRED series)
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 OUT = OUTPUT  # rebound by --smoke so plumbing tests never touch real outputs
@@ -67,14 +68,14 @@ TEST_YEARS = range(2021, 2027)
 SEED = 42
 
 # ---------------------------------------------------------------------------
-# Feature arms. MODERN is docs/RF.md's 15-factor arm (includes 3 momentum
+# Feature arms. MODERN is experiments/rf/README.md's 15-factor arm (includes 3 momentum
 # factors). MODERN_NOMOM drops them (a financial-engineer review flagged
-# momentum as suspect; docs/RF_2.md's leave-group-out already showed dropping
+# momentum as suspect; experiments/rf_2/README.md's leave-group-out already showed dropping
 # it RAISES IR). ALL_NOMOM is all 147 characteristics minus the 8 characteristics
 # in docs/FACTORS.md sec 4 ("Momentum"). NOTE: `mispricing_perf` is itself a
 # composite that includes a momentum component (docs/FACTORS.md sec 13) and is
 # kept in every arm -- it is the most load-bearing single factor in
-# docs/RF_2.md's leave-one-out.
+# experiments/rf_2/README.md's leave-one-out.
 # ---------------------------------------------------------------------------
 MODERN_FEATURES = [
     "ret_12_1", "ret_6_1", "resff3_12_1", "qmj", "qmj_prof", "qmj_growth",
@@ -178,9 +179,9 @@ class Context:
 
 
 # ---------------------------------------------------------------------------
-# 2. Selection metrics. docs/RF_2.md found validation MSE identical to four
+# 2. Selection metrics. experiments/rf_2/README.md found validation MSE identical to four
 #    decimals across 15 RF configs (it cannot tell configs apart), and
-#    docs/XGB.md's 2025 fold early-stopped after 4 trees on MSE. Everything here
+#    experiments/xgb/README.md's 2025 fold early-stopped after 4 trees on MSE. Everything here
 #    selects hyperparameters on VALIDATION mean monthly rank IC instead -- the
 #    quantity a long/short book actually monetizes.
 # ---------------------------------------------------------------------------
@@ -256,9 +257,9 @@ def oos_r2(actual, predicted):
 # ---------------------------------------------------------------------------
 # 3. Portfolio construction.
 #
-# LEGACY: the LP used by every prior script (docs/OLS.md sec 2.5): $10M
+# LEGACY: the LP used by every prior script (experiments/ols/README.md sec 2.5): $10M
 # dollar-volume screen, dollar-neutral, beta_60m-neutral, gross 200%, 1% cap.
-# Kept so results here are directly comparable to docs/RF.md, docs/RF_2.md etc.
+# Kept so results here are directly comparable to experiments/rf/README.md, experiments/rf_2/README.md etc.
 #
 # PM ("portfolio-manager"): the same LP plus the constraints from Valentino's
 # tips (Valentino_FIAM_Tips.pdf) and the financial engineer's notes:
@@ -520,7 +521,7 @@ def compute_drawdown_stats(rets, dates, cagr):
 
 
 def compute_performance(stats_df):
-    """Returns (results dict, per-month frame). Same metrics as every prior script (docs/OLS.md sec 2.6),
+    """Returns (results dict, per-month frame). Same metrics as every prior script (experiments/ols/README.md sec 2.6),
     plus rolling-12-month beta to the S&P 500 (docs/FIAM.md sec 12 chart; the financial engineer's
     'no peaks over 1 in the middle' check)."""
     tb3ms, sp500 = load_fred_series()

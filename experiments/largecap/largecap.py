@@ -1,7 +1,7 @@
 """
 FIAM 2026 - Large-cap-only strategy, pre-registered (largecap.py).
 
-WHY. docs/PM_ABLATION.md and docs/NEGATIVE_RESULT.md show that the five tree models' edge on the 147 characteristics
+WHY. experiments/pm_ablation/README.md and docs/NEGATIVE_RESULT.md show that the five tree models' edge on the 147 characteristics
 lives in sub-$5 / sub-$500M shorts and vanishes on the tradeable book. The one non-negative tradeable row was a
 $2B market-cap floor (RF gross IR 0.67, most stable rolling beta) -- but it was one post-hoc row of a sweep and the
 model was trained on ALL stocks. This script tests that idea properly: the universe, the factor set, the model
@@ -11,7 +11,7 @@ and VALIDATED on the large-cap universe only.
 PRE-REGISTERED DESIGN (do not change after looking at results; report deviations as such)
   Universe   price >= $5, market cap >= $2,000M, 126d dollar volume >= $10M, both beta_60m and betabab_1260d
              observed (as of the characteristic month). Sensitivity floor: --floor 1000 (labelled as such).
-  Factors    18 characteristics chosen BY ECONOMIC GROUP from docs/FACTORS.md, not by IC (docs/FACTOR_FILTER.md
+  Factors    18 characteristics chosen BY ECONOMIC GROUP from docs/FACTORS.md, not by IC (experiments/factor_filter/README.md
              sec 2: past IC does not persist in the investable universe). No momentum. See FACTOR_GROUPS.
   Arms       et          Extra-Trees on the 18 factors, trained + validated on universe rows only (HEADLINE model)
              comp        equal-weight composite of the same 18 factors with pre-specified signs (no fitting);
@@ -20,32 +20,39 @@ PRE-REGISTERED DESIGN (do not change after looking at results; report deviations
                          universe-restricted training matter?)
   Selection  hyperparameters per fold on VALIDATION mean monthly rank IC (validation rows = universe rows for
              `et`), never on test results. Label winsorized at the training fold's 1/99 percentiles.
-  Portfolio  same LP as docs/RF_3.md `pm_*`: dollar-neutral, neutral to BOTH beta_60m and betabab_1260d, net sector
+  Portfolio  same LP as experiments/rf_3/README.md `pm_*`: dollar-neutral, neutral to BOTH beta_60m and betabab_1260d, net sector
              <= 5% of NAV and gross sector share <= 35%, gross 200%, per-name cap 1%. HEADLINE = `lc_t10`
              (10% one-way turnover budget, from the tips; kept for consistency with earlier docs, not tuned).
              Sensitivities: `lc_free` (no cap), `lc_t20` (20%), `lc_t10_w05` (per-name cap 0.5% -> at least 400
              names, a smoother book than the LP's cap-bound corner solution).
-  Reporting  gross AND net of the tiered cost assumptions of docs/PM_ABLATION.md; IR, beta, rolling beta, short
+  Reporting  gross AND net of the tiered cost assumptions of experiments/pm_ablation/README.md; IR, beta, rolling beta, short
              book market cap; universe-only rank IC with paired tests; decile table; seed noise for the headline
              arm (--seeds).
 
 Reuses the frozen harness in et.py (imported, not modified): data loading, rank transform, walk-forward folds,
 rank-IC selection, LP, cost model, performance statistics.
 
-Run:  .venv/bin/python largecap.py [--floor 2000] [--arms et,comp,et_allrows] [--seeds 5] [--smoke]
+Run:  .venv/bin/python experiments/largecap/largecap.py [--floor 2000] [--arms et,comp,et_allrows] [--seeds 5] [--smoke]
 Outputs (output/): oos_predictions_lc_<arm>.csv, portfolio_{holdings,returns}_<variant>_lc_<arm>.csv,
     lc_feature_importance_<arm>.csv, lc_results.json, lc_summary.csv, lc_monthly_ic.csv, lc_deciles.csv
 """
 
 import argparse
 import json
+import sys
 import time
 import warnings
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+HERE = Path(__file__).resolve().parent  # experiments/largecap/
+OUTPUT = HERE / "output"
+sys.path.insert(0, str(HERE.parent / "et"))  # the frozen harness lives in experiments/et/
 import et  # frozen harness; nothing in et.py is edited
+
+et.OUT = OUTPUT  # et writes through its module-level OUT; keep this experiment's files in its own folder
 
 warnings.filterwarnings("ignore")
 TARGET = et.TARGET_COL
@@ -225,7 +232,7 @@ def main():
     floor = args.floor
     tag = "lc" if floor == 2000.0 else f"lc{int(floor)}"
     if args.smoke:
-        et.OUT = et.OUTPUT / "_smoke_lc"
+        et.OUT = OUTPUT / "_smoke_lc"
         et.OUT.mkdir(exist_ok=True)
 
     print("Loading model table...", flush=True)

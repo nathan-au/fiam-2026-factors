@@ -1,6 +1,6 @@
 # Gated Score-Formation Model — RankGLU (Methodology and Results)
 
-Implementation: `rankglu.py` (run with `.venv/bin/python rankglu.py`).
+Implementation: `rankglu.py` (run with `.venv/bin/python experiments/rankglu/rankglu.py`).
 Operationalizes *RankGLU: Residual Gated Score Formation for Cross-Sectional
 Stock Prediction* (arXiv 2606.08930, Jun 2026 — `docs/PAPERS.md` §1): a
 prediction-head architecture with a direct linear scoring pathway plus a

@@ -1,6 +1,6 @@
 # Interpretable Polynomial Model (Methodology and Results)
 
-Implementation: `poly.py` (run with `.venv/bin/python poly.py`).
+Implementation: `poly.py` (run with `.venv/bin/python experiments/poly/poly.py`).
 Loosely inspired by *AlphaPortfolio: Goal-Oriented Investment Management
 Through Deep Reinforcement Learning* (NBER WP 35195, May 2026, Cong-Tang-Wang
 — `docs/PAPERS.md` §2).
@@ -67,7 +67,7 @@ RL/deep-learning infrastructure in this project).
 ## ⚠ A look-ahead bias bug was caught and fixed during development
 
 The first version of this script selected its 20 characteristics by reading
-`output/univariate_results.csv` — the file produced by `univariate.py`,
+`experiments/univariate/output/univariate_results.csv` — the file produced by `univariate.py`,
 whose Information Coefficient was computed **over the 2021-01–2026-08 OOS
 window**, the exact window this script is evaluated on. Using that file to
 pick features here would be look-ahead bias in the selection step: the
@@ -122,12 +122,12 @@ Degree-2 polynomial expansion of the selected 20 (20 levels + 20 squares +
 removing the leakage — and by a meaningful margin on Sharpe (1.08 vs the
 next-best e2e.py's 0.96). Max drawdown (−21.4%) is also the second-best in
 the batch after Sparse (−19.6%, itself partly a degenerate-fold artifact —
-see `docs/SPARSE.md`). Hit rate (52.9%) is unremarkable, and alpha t-stat
+see `experiments/sparse/README.md`). Hit rate (52.9%) is unremarkable, and alpha t-stat
 (2.74) is the highest of any of the 8 models — a smoother, less
 lottery-ticket-shaped return profile than most of the alternatives here,
 which shows up in Sharpe more than in raw CAGR.
 
-**Attribution — top terms selected per fold** (`output/poly_top_terms.csv`,
+**Attribution — top terms selected per fold** (`experiments/poly/output/poly_top_terms.csv`,
 for the standalone model): the dominant terms cluster into two groups
 depending on the fold:
 - **Early folds (2021–2022):** profitability interactions —
@@ -142,7 +142,7 @@ close near-twins by construction (`ivol_capm_21d`/`ivol_ff3_21d`/
 `ivol_hxz4_21d` are three flavors of idiosyncratic volatility; `rmax1_21d`/
 `rmax5_21d` are both extreme-daily-return measures — see `docs/FACTORS.md`
 §15). The model may be partly re-discovering the same multicollinearity
-`docs/OLS.md` §4.5 and `docs/XGB.md` §3.6 already flagged, rather than
+`experiments/ols/README.md` §4.5 and `experiments/xgb/README.md` §3.6 already flagged, rather than
 finding a genuinely new nonlinear relationship between economically distinct
 signals.
 
@@ -186,7 +186,7 @@ own (Transformer+RL).
    nonlinear-only predictive power would never be selected in the first
    place.
 2. **The selected-20 set changes completely fold to fold** (see printed
-   output in `output/poly_results.json`'s `fold_hyperparameters`) — there
+   output in `experiments/poly/output/poly_results.json`'s `fold_hyperparameters`) — there
    is no stable "these are the 20 that matter" story across the whole OOS
    period, consistent with the univariate analysis's own finding that no
    individual factor's standalone signal is very large.

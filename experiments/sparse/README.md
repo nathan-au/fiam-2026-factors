@@ -1,6 +1,6 @@
 # Sparse-in-Expanded-Space Prediction Model (Methodology and Results)
 
-Implementation: `sparse.py` (run with `.venv/bin/python sparse.py`).
+Implementation: `sparse.py` (run with `.venv/bin/python experiments/sparse/sparse.py`).
 Operationalizes *The Virtue of Sparsity in Complexity* (arXiv 2604.17166,
 Apr 2026 — `docs/PAPERS.md` §1).
 

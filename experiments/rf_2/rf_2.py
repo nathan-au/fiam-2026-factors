@@ -1,7 +1,7 @@
 """
 FIAM 2026 - Random Forest, round 2: hardening and stress-testing the MODERN arm.
 
-rf.py (docs/RF.md) ran three feature-set arms (Graham / Modern / Combined) and
+rf.py (experiments/rf/README.md) ran three feature-set arms (Graham / Modern / Combined) and
 found the Modern arm (15 characteristics) was the strongest result in the
 project (IR 1.05, Sharpe 1.21, CAGR 30%) while Graham lost money. This script
 keeps rf.py untouched and follows up on the "next steps" list for that result:
@@ -44,10 +44,10 @@ evaluation harness (ported, not imported, per project convention), except:
   * feature matrices are built once and sliced by column, so many feature sets
     can be evaluated cheaply.
 
-Run:  .venv/bin/python rf_2.py                       (all stages, ~1.5-2h)
-      .venv/bin/python rf_2.py --stages grid,costs   (subset; later stages reuse
+Run:  .venv/bin/python experiments/rf_2/rf_2.py                       (all stages, ~1.5-2h)
+      .venv/bin/python experiments/rf_2/rf_2.py --stages grid,costs   (subset; later stages reuse
                                                       the cached grid)
-      .venv/bin/python rf_2.py --smoke               (tiny/fast plumbing test,
+      .venv/bin/python experiments/rf_2/rf_2.py --smoke               (tiny/fast plumbing test,
                                                       writes to a scratch dir)
 Outputs (output/, all prefixed rf2_ or suffixed rf2_modern; rf.py's files are
 never overwritten): rf2_results.json plus one CSV per stage, and
@@ -70,10 +70,11 @@ from sklearn.ensemble import RandomForestRegressor
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 OUT = OUTPUT  # rebound by --smoke so plumbing tests never touch real outputs
@@ -581,7 +582,7 @@ def stage_grid_report(ctx, grid, args):
     ])
     summary.to_csv(OUT / "rf2_grid_summary.csv", index=False)
 
-    ref = OUTPUT / "rf_results.json"
+    ref = HERE.parent / "rf" / "output" / "rf_results.json"
     replication = None
     if ref.exists():
         old = json.loads(ref.read_text())["modern"]["beta_neutral"]

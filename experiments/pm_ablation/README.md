@@ -1,6 +1,6 @@
 # Portfolio-Constraint Ablation and the Tradeability Finding (PM_ABLATION)
 
-Implementation: `pm_ablation.py` (run with `.venv/bin/python pm_ablation.py` **after** `rf_3.py`, `et.py`, `lgbm.py`, `cat.py`, `xgb_2.py`; no refitting — it reads their saved predictions `output/oos_predictions_<tag>_modern_nomom.csv`). New file; nothing existing is edited. Runs in about 10 minutes.
+Implementation: `pm_ablation.py` (run with `.venv/bin/python experiments/pm_ablation/pm_ablation.py` **after** `rf_3.py`, `et.py`, `lgbm.py`, `cat.py`, `xgb_2.py`; no refitting — it reads their saved predictions `output/oos_predictions_<tag>_modern_nomom.csv`). New file; nothing existing is edited. Runs in about 10 minutes.
 
 **Why this exists.** The first run of `rf_3.py` showed the project's legacy LP at IR ≈ 1.3 but every "portfolio-manager" variant (the constraints suggested in *Valentino's FIAM Tips* and by the financial engineer) at IR ≈ 0 and net-negative. All five models later agreed. This script isolates *which* constraint does it.
 
@@ -14,7 +14,7 @@ Implementation: `pm_ablation.py` (run with `.venv/bin/python pm_ablation.py` **a
 
 **Inputs.** Predictions of the five models on the headline `modern_nomom` arm, plus `ens5` — an equal-weight ensemble (per-month cross-sectional percentile rank of each model's prediction, averaged). All are out-of-sample (2021-01 – 2026-08).
 
-**Portfolios.** All ablation rows are the legacy LP (`docs/OLS.md` §2.5) plus the change named in the row; `pm_free` is the combination of the screens + dual beta + sector limits, and `pm_t10` adds the 10% turnover cap. The constraint details: price ≥ $5, market cap ≥ $500M, both `beta_60m` and `betabab_1260d` neutral, |net| ≤ 5% of NAV and gross ≤ 35% of the book per 2-digit GICS sector, one-way drift-adjusted turnover ≤ 10% of gross (same convention as `docs/RF_3.md`). `decile_ew_tradeable` is FIAM §6's baseline: within price ≥ $5, market cap ≥ $500M, $10M dollar-volume stocks with both betas observed, long the top decile / short the bottom decile of the prediction, equal weight (100% long, 100% short), **not** beta-neutral, no sector or turnover control.
+**Portfolios.** All ablation rows are the legacy LP (`experiments/ols/README.md` §2.5) plus the change named in the row; `pm_free` is the combination of the screens + dual beta + sector limits, and `pm_t10` adds the 10% turnover cap. The constraint details: price ≥ $5, market cap ≥ $500M, both `beta_60m` and `betabab_1260d` neutral, |net| ≤ 5% of NAV and gross ≤ 35% of the book per 2-digit GICS sector, one-way drift-adjusted turnover ≤ 10% of gross (same convention as `experiments/rf_3/README.md`). `decile_ew_tradeable` is FIAM §6's baseline: within price ≥ $5, market cap ≥ $500M, $10M dollar-volume stocks with both betas observed, long the top decile / short the bottom decile of the prediction, equal weight (100% long, 100% short), **not** beta-neutral, no sector or turnover control.
 
 **Cost assumptions (net figures).** Not measured — the panel has no borrow or spread by name:
 
@@ -184,7 +184,7 @@ The legacy RF book has no sector control. Average sector exposure of its holding
 | 25 Consumer Discretionary | +11.3% | 27.4% | 13.7% | 38% |
 | 45 Information Technology | +15.6% | 33.0% | 16.5% | 30% |
 
-**Health Care is on average 34% of the gross book and 42% of NAV *net short*, and reaches 58% of NAV net short in one month** — a huge, unintended sector bet for a book meant to be market-neutral. The long side is Information Technology, Consumer Discretionary, Financials and Industrials. This is the concentrated-sector risk the tips warn about ("performance … not driven by one concentrated sector bet") and is consistent with the IR loss when sector limits are added (§2). The ten largest average shorts, by weight averaged over all months (heavily overlapping the names `docs/RF_2.md` §6 listed for its own book — IOVA, NTLA, AMC, MULN, NKLA, LAZR):
+**Health Care is on average 34% of the gross book and 42% of NAV *net short*, and reaches 58% of NAV net short in one month** — a huge, unintended sector bet for a book meant to be market-neutral. The long side is Information Technology, Consumer Discretionary, Financials and Industrials. This is the concentrated-sector risk the tips warn about ("performance … not driven by one concentrated sector bet") and is consistent with the IR loss when sector limits are added (§2). The ten largest average shorts, by weight averaged over all months (heavily overlapping the names `experiments/rf_2/README.md` §6 listed for its own book — IOVA, NTLA, AMC, MULN, NKLA, LAZR):
 
 | Ticker | Company | Avg. weight (% NAV, averaged over all 68 months) |
 |---|---|---:|
@@ -260,7 +260,7 @@ Selection is on validation rank IC only; the test numbers are reported, not used
 
 ## 8. Limitations
 
-- One prediction path per model (single seed); no confidence intervals on any IR here. `docs/RF_2.md` §1 gives ±0.11 as a 2-sd seed-noise band for RF at fixed config.
+- One prediction path per model (single seed); no confidence intervals on any IR here. `experiments/rf_2/README.md` §1 gives ±0.11 as a 2-sd seed-noise band for RF at fixed config.
 - Costs are assumed tiers; borrow availability is not modelled at all.
 - The screens ($5, $500M), the 5%/35% sector limits and the 10% cap were pre-specified from the tips; the market-cap-floor rows are a sensitivity sweep and were not used to choose anything. The `_trad` runs and the decile book were added *after* seeing the first negative result, as follow-up diagnostics.
 - Sector labels are the panel's `gics` codes as supplied (2-digit); the panel's timing of those labels is not verified.
@@ -269,7 +269,7 @@ Selection is on validation rank IC only; the test numbers are reported, not used
 ## Reproduce
 
 ```
-.venv/bin/python rf_3.py; .venv/bin/python et.py; .venv/bin/python lgbm.py; .venv/bin/python cat.py; .venv/bin/python xgb_2.py
-.venv/bin/python pm_ablation.py
+.venv/bin/python experiments/rf_3/rf_3.py; .venv/bin/python experiments/et/et.py; .venv/bin/python experiments/lgbm/lgbm.py; .venv/bin/python experiments/cat/cat.py; .venv/bin/python experiments/xgb_2/xgb_2.py
+.venv/bin/python experiments/pm_ablation/pm_ablation.py
 ```
 Outputs (`output/`): `pm_ablation_summary.csv` (one row per model × portfolio), `pm_ablation_results.json`, `pm_ablation_ic_by_bucket.csv`, `pm_ablation_deciles_tradeable.csv`, `pm_ablation_sector_exposure_legacy_rf3.csv`, `pm_ablation_top_shorts_legacy_rf3.csv`, `oos_predictions_ens5_modern_nomom.csv`.

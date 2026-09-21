@@ -1,6 +1,6 @@
 # Portfolio-Aware Weighted Regression (Methodology and Results)
 
-Implementation: `joint.py` (run with `.venv/bin/python joint.py`).
+Implementation: `joint.py` (run with `.venv/bin/python experiments/joint/joint.py`).
 Operationalizes *Machine Learning Meets Markowitz* (NBER WP 34861, Feb 2026,
 Wang/Gao/Harvey/Liu/Tao — `docs/PAPERS.md` §2): the paper argues the
 standard two-stage pipeline is "deeply problematic" because it treats every

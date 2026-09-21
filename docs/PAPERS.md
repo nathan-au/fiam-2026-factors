@@ -1,7 +1,7 @@
 # Candidate Papers — Beyond the OLS Baseline
 
 Reading list of methods to build on top of the plain-OLS floor in `ols.py` /
-`docs/OLS.md`. Scope: methods that operate on the 147 numeric characteristics
+`experiments/ols/README.md`. Scope: methods that operate on the 147 numeric characteristics
 in `fiam/chars_final_with_names.parquet` — prediction models and
 portfolio-construction methods only, no LLM/text/agentic approaches, and no
 OLS baseline itself (that's the floor, not a candidate).
@@ -15,8 +15,8 @@ with Deep Ensembles*) — all removed here per an explicit request to keep only
 2026 work. Every paper below was confirmed dated 2026 (posting date checked
 directly against NBER/arXiv, not inferred from search snippets).
 
-Each entry: what it does, and which documented weakness in `docs/OLS.md` /
-`docs/XGB.md` it would address.
+Each entry: what it does, and which documented weakness in `experiments/ols/README.md` /
+`experiments/xgb/README.md` it would address.
 
 ---
 
@@ -42,7 +42,7 @@ first, not from directly penalizing the original small feature set.
   ridgeless overparameterized-ridge comparator. This tests a much narrower,
   simpler question ("does directly penalizing the raw features help") than
   the paper's actual claim (which is about sparsity *emerging from* an
-  expanded feature space). See `docs/SPARSE.md` for the full caveat.
+  expanded feature space). See `experiments/sparse/README.md` for the full caveat.
 
 ### *Quantity, Risk, and Return* (Sep 2026)
 **Verbatim abstract (checked directly):** expected stock return depends not
@@ -63,7 +63,7 @@ factor-zoo problem by selecting a small number of factors.
   `turnover_126d`/`turnover_var_126d`/`dolvol_126d`/`dolvol_var_126d`,
   `docs/FACTORS.md` §16) interacted linearly with every characteristic —
   same general "condition on trading activity" spirit, structurally
-  different from the paper's factor-level mechanism. See `docs/BTQ.md`.
+  different from the paper's factor-level mechanism. See `experiments/btq/README.md`.
 
 ### *Quant Convergence: Bridging Classical Value Investing and Modern Factor Models for Systematic Equity Selection* (Jun 2026)
 Empirical horse race of XGBoost, AutoGluon, and Random Forest across three
@@ -72,7 +72,7 @@ feature sets (classical Graham value rules, modern factors, and a hybrid) on
 feature set had the best risk-adjusted result** (highest return, best Calmar
 ratio), while the more complex AutoGluon ensemble had a larger drawdown for
 similar return. A second independent data point — after this project's own
-XGBoost result (`docs/XGB.md` §4) — that added model complexity doesn't
+XGBoost result (`experiments/xgb/README.md` §4) — that added model complexity doesn't
 reliably buy better risk-adjusted performance on this style of tabular
 factor data, and a concrete reason to try plain Random Forest as a cheap
 bagging-based alternative to boosting before reaching for anything heavier.
@@ -89,7 +89,7 @@ curated/simple features were the other.
   147-characteristic panel* as every other script here — the paper's
   actual best-performing feature-curation arm (Graham-only, or Graham +
   momentum) was not replicated. `rf.py`'s strong result is genuine but
-  only directly confirms half of the paper's finding. See `docs/RF.md`.
+  only directly confirms half of the paper's finding. See `experiments/rf/README.md`.
 
 ### *RankGLU: Residual Gated Score Formation for Cross-Sectional Stock Prediction* (Jun 2026)
 A prediction-head architecture built specifically to solve the "how do I
@@ -112,7 +112,7 @@ given in the abstract.
   + b_out` directly implements a linear path plus a bounded (tanh),
   gated (sigmoid) multiplicative branch, hand-coded in numpy since no
   deep-learning framework was available. Exact architecture details beyond
-  what the abstract states are still unconfirmed. See `docs/RANKGLU.md`.
+  what the abstract states are still unconfirmed. See `experiments/rankglu/README.md`.
 
 ---
 
@@ -138,7 +138,7 @@ whether or not it's rebuilt jointly before the deadline.
   generation process and the final optimized portfolio." In practice,
   validation always selected the unweighted case, so the approximation
   ended up not even being tested against OLS in the primary result — see
-  `docs/JOINT.md`.
+  `experiments/joint/README.md`.
 
 ### Cong, Tang & Wang (2026), *AlphaPortfolio: Goal-Oriented Investment Management Through Deep Reinforcement Learning*, NBER WP 35195
 **Verbatim abstract (checked directly — the PDF, not a search snippet):**
@@ -173,7 +173,7 @@ came from that older paper, not from this one**, and has been corrected.
   attribution tool), repurposed here as the primary predictive model
   itself rather than an analysis layered on top of a different model. This
   is a materially narrower and structurally different thing than what the
-  paper built. See `docs/POLY.md` for the full correction and its effect
+  paper built. See `experiments/poly/README.md` for the full correction and its effect
   on results.
 
 ### *AlphaZeroBeta: Deep Reinforcement Learning for Market-Neutral Portfolios* (Jul 2026)
@@ -185,8 +185,8 @@ specific policy-gradient RL algorithm, not generic backpropagation),
 evaluated via rolling walk-forward across **seven equity indices,
 2014–2024**. Achieves higher Sharpe than baselines with near-zero benchmark
 correlation. The most literal upgrade path from the per-month linear
-program in `ols.py` §2.5/§3.5 (`docs/OLS.md`) or `xgb.py`'s identical LP
-(`docs/XGB.md`): instead of re-solving a fresh LP from a fixed prediction
+program in `ols.py` §2.5/§3.5 (`experiments/ols/README.md`) or `xgb.py`'s identical LP
+(`experiments/xgb/README.md`): instead of re-solving a fresh LP from a fixed prediction
 each month, learn the characteristics-to-constrained-weights mapping
 directly.
 - Posted 2026-07-20.
@@ -198,7 +198,7 @@ directly.
   portfolio-Sharpe proxy. The only thing genuinely shared with the paper is
   the high-level idea "train weights end-to-end against a portfolio
   objective instead of a two-stage predict-then-optimize pipeline" — the
-  actual mechanism is unrelated. See `docs/E2E.md`.
+  actual mechanism is unrelated. See `experiments/e2e/README.md`.
 
 ---
 
@@ -234,14 +234,14 @@ characteristics.
   asymptotic estimator — uses split-half principal-angle subspace stability
   as a directly computable proxy, run on the real 147-characteristic panel
   (not a synthetic simulation). Related in spirit, answers a related but
-  not identical question. See `docs/PCA_DIAGNOSTIC.md`.
+  not identical question. See `experiments/pca_diagnostic/README.md`.
 
 ---
 
 ## Status: all 8 built, run, and fidelity-checked against verbatim abstracts
 
 `ols.py` (floor) and `xgb.py` (nonlinear model, underperformed the floor —
-`docs/XGB.md` §4) were built first. All 8 entries above now have a working
+`experiments/xgb/README.md` §4) were built first. All 8 entries above now have a working
 implementation (`rf.py`, `sparse.py`, `joint.py`, `e2e.py`, `btq.py`,
 `rankglu.py`, `poly.py`, `pca_diagnostic.py`), each corrected once against
 its source paper's actual verbatim abstract (not a search summary) — see
@@ -251,16 +251,16 @@ for what was fixed and why. Final OOS results, ranked by Information Ratio
 
 | Rank | Model | OOS R² | IR | Sharpe | CAGR | Realized β (t) |
 |---|---|---:|---:|---:|---:|---:|
-| 1 | **RF-Modern** (`docs/RF.md`) | +0.12% | **1.05** | 1.21 | 30.0% | −0.04 (−0.21) |
-| 2 | **Poly** (`docs/POLY.md`) | −0.02% | 0.87 | **1.08** | 21.2% | −0.18 (−1.12) |
-| 3 | RF-Combined (`docs/RF.md`) | −0.21% | 0.81 | 0.97 | 23.8% | 0.14 (0.65) |
-| 4 | **E2E** (`docs/E2E.md`) | **+0.07%** | 0.79 | 0.93 | 25.3% | −0.21 (−0.88) |
-| 5 | Joint (`docs/JOINT.md`) | −0.52% | 0.75 | 0.88 | 23.3% | −0.18 (−0.74) |
-| 6 | BTQ (`docs/BTQ.md`) | −0.002% | 0.67 | 0.80 | 20.9% | −0.15 (−0.60) |
-| 7 | RankGLU (`docs/RANKGLU.md`) | −0.34% | 0.57 | 0.77 | 14.0% | **−0.02 (−0.12)** |
-| 8 | RF-Graham (`docs/RF.md`) | −0.44% | −0.23 | −0.07 | −4.6% | −0.29 (−0.29) |
-| 9 | Sparse-RFF (`docs/SPARSE.md`) | −0.06% | −0.47 | −0.03 | −0.7% | −0.03 (−0.36) |
-| 10 | Ridgeless-RFF (`docs/SPARSE.md`) | −0.18% | −0.70 | −0.22 | −2.2% | 0.09 (1.37) |
+| 1 | **RF-Modern** (`experiments/rf/README.md`) | +0.12% | **1.05** | 1.21 | 30.0% | −0.04 (−0.21) |
+| 2 | **Poly** (`experiments/poly/README.md`) | −0.02% | 0.87 | **1.08** | 21.2% | −0.18 (−1.12) |
+| 3 | RF-Combined (`experiments/rf/README.md`) | −0.21% | 0.81 | 0.97 | 23.8% | 0.14 (0.65) |
+| 4 | **E2E** (`experiments/e2e/README.md`) | **+0.07%** | 0.79 | 0.93 | 25.3% | −0.21 (−0.88) |
+| 5 | Joint (`experiments/joint/README.md`) | −0.52% | 0.75 | 0.88 | 23.3% | −0.18 (−0.74) |
+| 6 | BTQ (`experiments/btq/README.md`) | −0.002% | 0.67 | 0.80 | 20.9% | −0.15 (−0.60) |
+| 7 | RankGLU (`experiments/rankglu/README.md`) | −0.34% | 0.57 | 0.77 | 14.0% | **−0.02 (−0.12)** |
+| 8 | RF-Graham (`experiments/rf/README.md`) | −0.44% | −0.23 | −0.07 | −4.6% | −0.29 (−0.29) |
+| 9 | Sparse-RFF (`experiments/sparse/README.md`) | −0.06% | −0.47 | −0.03 | −0.7% | −0.03 (−0.36) |
+| 10 | Ridgeless-RFF (`experiments/sparse/README.md`) | −0.18% | −0.70 | −0.22 | −2.2% | 0.09 (1.37) |
 
 *(vs. `ols.py`'s own baseline: R² −0.01%, IR 0.85, Sharpe 0.98, CAGR
 27.6%, β −0.17 (t=−0.67) — still not beaten on IR/Sharpe/CAGR by any of the
@@ -272,5 +272,5 @@ of any model in the whole project.)*
 in-project neutrality result** (`RankGLU`) survived rigorous fidelity
 correction — these three are the strongest candidates for further work.
 **RF-Graham directly contradicts its source paper** in this project's
-market-neutral long/short setting (see `docs/RF.md` for the likely
+market-neutral long/short setting (see `experiments/rf/README.md` for the likely
 explanation) — a genuine, reportable negative result, not a bug.

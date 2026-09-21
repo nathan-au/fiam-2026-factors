@@ -1,11 +1,11 @@
 """
 FIAM 2026 - Portfolio-constraint ablation and 5-model ensemble (PM_ABLATION).
 
-The first run of rf_3.py showed the legacy LP (docs/OLS.md sec 2.5) at IR ~1.3 but every portfolio-manager
+The first run of rf_3.py showed the legacy LP (experiments/ols/README.md sec 2.5) at IR ~1.3 but every portfolio-manager
 variant (Valentino's tips + financial-engineer notes: price/market-cap screens, sector limits, dual-beta
 neutrality, turnover budget) at IR ~0. This script finds WHICH constraint removes the edge, and how the edge
 depends on the market-cap floor, using predictions the model scripts already saved (no refitting):
-  rf_3.py, et.py, lgbm.py, cat.py, xgb_2.py  ->  output/oos_predictions_<tag>_modern_nomom.csv
+  rf_3.py, et.py, lgbm.py, cat.py, xgb_2.py  ->  experiments/<name>/output/oos_predictions_<tag>_modern_nomom.csv
 plus an equal-weight ensemble `ens5` (per-month cross-sectional rank of each model's prediction, averaged).
 
 Ablations (all on the `modern_nomom` predictions; each row = legacy LP + ONE change, then combinations):
@@ -16,7 +16,7 @@ Ablations (all on the `modern_nomom` predictions; each row = legacy LP + ONE cha
 Every row is reported gross and net of the market-cap-tiered costs used in the model scripts (assumptions).
 The portfolio code below is ported from rf_3.py (same LP, same cost tiers, same metrics).
 
-Run:  .venv/bin/python pm_ablation.py
+Run:  .venv/bin/python experiments/pm_ablation/pm_ablation.py
 Outputs (output/): pm_ablation_summary.csv, pm_ablation_results.json, pm_ablation_ic_by_bucket.csv,
     pm_ablation_sector_exposure_legacy_rf3.csv, pm_ablation_top_shorts_legacy_rf3.csv, pm_ablation_deciles_tradeable.csv, oos_predictions_ens5_modern_nomom.csv
 """
@@ -35,10 +35,11 @@ from scipy.optimize import linprog
 
 warnings.filterwarnings("ignore")
 
-BASE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent  # experiments/<name>/
+BASE = HERE.parents[1]  # project root: fiam/ data and cache/ are shared
 FIAM_DIR = BASE / "fiam"
 CACHE = BASE / "cache"  # downloaded external data only (FRED series)
-OUTPUT = BASE / "output"
+OUTPUT = HERE / "output"
 CACHE.mkdir(exist_ok=True)
 OUTPUT.mkdir(exist_ok=True)
 OUT = OUTPUT  # rebound by --smoke so plumbing tests never touch real outputs
@@ -53,14 +54,14 @@ TEST_YEARS = range(2021, 2027)
 SEED = 42
 
 # ---------------------------------------------------------------------------
-# Feature arms. MODERN is docs/RF.md's 15-factor arm (includes 3 momentum
+# Feature arms. MODERN is experiments/rf/README.md's 15-factor arm (includes 3 momentum
 # factors). MODERN_NOMOM drops them (a financial-engineer review flagged
-# momentum as suspect; docs/RF_2.md's leave-group-out already showed dropping
+# momentum as suspect; experiments/rf_2/README.md's leave-group-out already showed dropping
 # it RAISES IR). ALL_NOMOM is all 147 characteristics minus the 8 characteristics
 # in docs/FACTORS.md sec 4 ("Momentum"). NOTE: `mispricing_perf` is itself a
 # composite that includes a momentum component (docs/FACTORS.md sec 13) and is
 # kept in every arm -- it is the most load-bearing single factor in
-# docs/RF_2.md's leave-one-out.
+# experiments/rf_2/README.md's leave-one-out.
 # ---------------------------------------------------------------------------
 MODERN_FEATURES = [
     "ret_12_1", "ret_6_1", "resff3_12_1", "qmj", "qmj_prof", "qmj_growth",
@@ -164,9 +165,9 @@ class Context:
 
 
 # ---------------------------------------------------------------------------
-# 2. Selection metrics. docs/RF_2.md found validation MSE identical to four
+# 2. Selection metrics. experiments/rf_2/README.md found validation MSE identical to four
 #    decimals across 15 RF configs (it cannot tell configs apart), and
-#    docs/XGB.md's 2025 fold early-stopped after 4 trees on MSE. Everything here
+#    experiments/xgb/README.md's 2025 fold early-stopped after 4 trees on MSE. Everything here
 #    selects hyperparameters on VALIDATION mean monthly rank IC instead -- the
 #    quantity a long/short book actually monetizes.
 # ---------------------------------------------------------------------------
@@ -242,9 +243,9 @@ def oos_r2(actual, predicted):
 # ---------------------------------------------------------------------------
 # 3. Portfolio construction.
 #
-# LEGACY: the LP used by every prior script (docs/OLS.md sec 2.5): $10M
+# LEGACY: the LP used by every prior script (experiments/ols/README.md sec 2.5): $10M
 # dollar-volume screen, dollar-neutral, beta_60m-neutral, gross 200%, 1% cap.
-# Kept so results here are directly comparable to docs/RF.md, docs/RF_2.md etc.
+# Kept so results here are directly comparable to experiments/rf/README.md, experiments/rf_2/README.md etc.
 #
 # PM ("portfolio-manager"): the same LP plus the constraints from Valentino's
 # tips (Valentino_FIAM_Tips.pdf) and the financial engineer's notes:
@@ -506,7 +507,7 @@ def compute_drawdown_stats(rets, dates, cagr):
 
 
 def compute_performance(stats_df):
-    """Returns (results dict, per-month frame). Same metrics as every prior script (docs/OLS.md sec 2.6),
+    """Returns (results dict, per-month frame). Same metrics as every prior script (experiments/ols/README.md sec 2.6),
     plus rolling-12-month beta to the S&P 500 (docs/FIAM.md sec 12 chart; the financial engineer's
     'no peaks over 1 in the middle' check)."""
     tb3ms, sp500 = load_fred_series()
@@ -751,6 +752,8 @@ def main(default_arms):
 
 MODEL_TAG = "pm_ablation"
 MODEL_TAGS = ["rf3", "et", "lgbm", "cat", "xgb2"]
+MODEL_EXPERIMENT = {"rf3": "rf_3", "et": "et", "lgbm": "lgbm", "cat": "cat", "xgb2": "xgb_2"}  # tag -> experiments/<name>/
+UPSTREAM = lambda exp: HERE.parent / exp / "output"  # this experiment reads the models' predictions/holdings from their own folders
 ARM = "modern_nomom"
 
 ABLATIONS = {
@@ -836,7 +839,7 @@ def ensemble_preds(frames):
 
 
 if __name__ == "__main__":
-    frames = {t: pd.read_csv(OUT / f"oos_predictions_{t}_{ARM}.csv", parse_dates=["target_month"]) for t in MODEL_TAGS}
+    frames = {t: pd.read_csv(UPSTREAM(MODEL_EXPERIMENT[t]) / f"oos_predictions_{t}_{ARM}.csv", parse_dates=["target_month"]) for t in MODEL_TAGS}
     frames["ens5"] = ensemble_preds(frames)
     frames["ens5"].to_csv(OUT / f"oos_predictions_ens5_{ARM}.csv", index=False)
     rows, ic_rows = [], []
@@ -886,7 +889,7 @@ if __name__ == "__main__":
     print("\nMean next-month excess return (%) by prediction decile, tradeable universe (1 = lowest prediction):")
     print(dec.pivot(index="decile", columns="model", values="mean_monthly_excess_ret_pct").round(3).to_string())
     # Sector footprint of the legacy (unconstrained-by-sector) book, from rf_3.py's holdings file.
-    hold = pd.read_csv(OUT / f"portfolio_holdings_legacy_rf3_{ARM}.csv", dtype={"sector": str})
+    hold = pd.read_csv(UPSTREAM("rf_3") / f"portfolio_holdings_legacy_rf3_{ARM}.csv", dtype={"sector": str})
     nm = hold["target_month"].nunique()
     sec = hold.groupby("sector")["weight"].agg(avg_net_weight=lambda x: x.sum() / nm, avg_gross_weight=lambda x: x.abs().sum() / nm)
     sec["avg_gross_share_of_book"] = sec["avg_gross_weight"] / GROSS
