@@ -1,0 +1,56 @@
+Selection book: lc composite lc_t10, 68 months, 977 distinct names
+  [ew_cap20   ] gross IR 0.62 / net IR 0.54 | net Sharpe 0.84 vol 13.3% maxDD -19% | beta -0.06 (t -0.53) roll12 [-0.53,+0.31] | turnover 12% | maxW 2.00% top10 0.05 | fallback 0 (0.0 min)
+  [ew_cap10   ] gross IR 0.62 / net IR 0.54 | net Sharpe 0.85 vol 13.2% maxDD -18% | beta -0.05 (t -0.42) roll12 [-0.53,+0.32] | turnover 12% | maxW 1.00% top10 0.05 | fallback 0 (0.0 min)
+  [ivp_cap20  ] gross IR 0.54 / net IR 0.45 | net Sharpe 0.79 vol 11.9% maxDD -13% | beta -0.03 (t -0.33) roll12 [-0.53,+0.35] | turnover 14% | maxW 2.00% top10 0.09 | fallback 0 (0.0 min)
+  [ivp_cap10  ] gross IR 0.64 / net IR 0.55 | net Sharpe 0.87 vol 12.5% maxDD -15% | beta -0.05 (t -0.46) roll12 [-0.51,+0.29] | turnover 14% | maxW 1.00% top10 0.05 | fallback 0 (0.0 min)
+  [hrp_cap20  ] gross IR 0.69 / net IR 0.58 | net Sharpe 0.88 vol 13.2% maxDD -14% | beta -0.12 (t -1.08) roll12 [-0.64,+0.23] | turnover 24% | maxW 2.00% top10 0.10 | fallback 0 (0.1 min)
+  [hrp_cap10  ] gross IR 0.69 / net IR 0.59 | net Sharpe 0.90 vol 12.8% maxDD -14% | beta -0.08 (t -0.73) roll12 [-0.57,+0.30] | turnover 17% | maxW 1.00% top10 0.05 | fallback 0 (0.1 min)
+
+Paired monthly net-return differences: {
+ "cap20": {
+  "hrp_minus_ew": {
+   "mean_monthly_diff_net": 0.00029776414381940436,
+   "t": 0.17475209014047918,
+   "share_a_better": 0.4852941176470588
+  },
+  "hrp_minus_ivp": {
+   "mean_monthly_diff_net": 0.001857748050215923,
+   "t": 1.3233013460979393,
+   "share_a_better": 0.5294117647058824
+  },
+  "ivp_minus_ew": {
+   "mean_monthly_diff_net": -0.0015599839063965189,
+   "t": -1.236470889676146,
+   "share_a_better": 0.38235294117647056
+  }
+ },
+ "cap10": {
+  "hrp_minus_ew": {
+   "mean_monthly_diff_net": 0.000296202649008538,
+   "t": 0.3408079174007898,
+   "share_a_better": 0.4852941176470588
+  },
+  "hrp_minus_ivp": {
+   "mean_monthly_diff_net": 0.0005534701459705575,
+   "t": 0.8266445009792153,
+   "share_a_better": 0.47058823529411764
+  },
+  "ivp_minus_ew": {
+   "mean_monthly_diff_net": -0.0002572674969620195,
+   "t": -0.33100271773886153,
+   "share_a_better": 0.45588235294117646
+  }
+ }
+}
+
+==============================================================================
+SUMMARY HRP sizing on the lc composite book
+==============================================================================
+    scheme  cap  ir_gross  ir_net  sharpe_net  cagr_net_pct  ann_vol_net_pct  max_dd_net_pct  beta  beta_t  roll_beta_min  roll_beta_max  turnover_one_way_pct_gross  max_position_weight_pct
+        ew 0.02      0.62    0.54        0.84         10.86            13.29          -18.99 -0.06   -0.53          -0.53           0.31                       11.98                     2.00
+        ew 0.01      0.62    0.54        0.85         10.83            13.23          -17.68 -0.05   -0.42          -0.53           0.32                       11.72                     1.00
+       ivp 0.02      0.54    0.45        0.79          9.01            11.87          -13.20 -0.03   -0.33          -0.53           0.35                       13.80                     2.00
+       ivp 0.01      0.64    0.55        0.87         10.60            12.46          -14.66 -0.05   -0.46          -0.51           0.29                       13.57                     1.00
+       hrp 0.02      0.69    0.58        0.88         11.27            13.16          -13.74 -0.12   -1.08          -0.64           0.23                       24.00                     2.00
+       hrp 0.01      0.69    0.59        0.90         11.28            12.83          -13.52 -0.08   -0.73          -0.57           0.30                       16.85                     1.00
+lp(lc_t10) 0.01      0.61    0.54        0.84         10.97              NaN          -18.95 -0.06   -0.55            NaN            NaN                       10.00                      NaN

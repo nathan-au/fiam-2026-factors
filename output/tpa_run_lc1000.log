@@ -1,0 +1,87 @@
+Loading model table...
+  sleeve return months: 139 (2015-02-28 .. 2026-08-31)
+  pre-2021 sleeve Sharpe (ann.): value -0.64, profitab -0.03, investme -0.45, quality -0.24, surprise +0.18, volatili -0.09, liquidit +0.04
+
+==============================================================================
+TPA | ARM tpa_eq | floor $1,000M | 7 factor-group sleeves
+==============================================================================
+  sleeve weights by test year:
+ test_year  w_value  w_profitability  w_investment_issuance_accruals  w_quality  w_surprise  w_volatility_beta  w_liquidity
+      2021    0.143            0.143                           0.143      0.143       0.143              0.143        0.143
+      2022    0.143            0.143                           0.143      0.143       0.143              0.143        0.143
+      2023    0.143            0.143                           0.143      0.143       0.143              0.143        0.143
+      2024    0.143            0.143                           0.143      0.143       0.143              0.143        0.143
+      2025    0.143            0.143                           0.143      0.143       0.143              0.143        0.143
+      2026    0.143            0.143                           0.143      0.143       0.143              0.143        0.143
+  universe: {"universe_rank_ic": 0.04400207857366502, "universe_rank_ic_t": 2.340859954386261, "universe_rank_ic_share_positive": 0.6323529411764706, "universe_ic_by_year": {"2021": 0.08933077927176968, "2022": 0.08429570565092796, "2023": 0.015044794848237933, "2024": 0.06554165088742102, "2025": -0.016634804865535757, "2026": 0.01765047918692142}, "decile_top_minus_bottom_pct_per_month": 0.37634168349371744, "pred_rank_autocorr": 0.937582568008933}
+  [lc_free   ] gross IR 0.52 / net IR 0.36 | beta -0.14 (t -1.12) roll12 [-0.63,+0.28] | turnover 32% | maxDD -23% | short med mcap $4,812M
+  [lc_t20    ] gross IR 0.52 / net IR 0.39 | beta -0.14 (t -1.12) roll12 [-0.59,+0.30] | turnover 20% | maxDD -28% | short med mcap $4,954M
+  [lc_t10    ] gross IR 0.56 / net IR 0.47 | beta -0.11 (t -0.87) roll12 [-0.58,+0.29] | turnover 10% | maxDD -27% | short med mcap $5,190M
+  [lc_t10_w05] gross IR 0.48 / net IR 0.37 | beta -0.06 (t -0.57) roll12 [-0.45,+0.30] | turnover 10% | maxDD -16% | short med mcap $5,627M
+  arm done in 0.2 min
+
+==============================================================================
+TPA | ARM tpa_erc | floor $1,000M | 7 factor-group sleeves
+==============================================================================
+  sleeve weights by test year:
+ test_year  w_value  w_profitability  w_investment_issuance_accruals  w_quality  w_surprise  w_volatility_beta  w_liquidity
+      2021    0.151            0.082                           0.240      0.090       0.212              0.056        0.169
+      2022    0.130            0.087                           0.216      0.098       0.233              0.062        0.174
+      2023    0.118            0.094                           0.202      0.102       0.232              0.064        0.187
+      2024    0.114            0.094                           0.212      0.099       0.234              0.061        0.186
+      2025    0.114            0.095                           0.211      0.101       0.235              0.060        0.183
+      2026    0.108            0.093                           0.207      0.104       0.258              0.059        0.171
+  universe: {"universe_rank_ic": 0.04400789665417356, "universe_rank_ic_t": 2.7431574128389777, "universe_rank_ic_share_positive": 0.6470588235294118, "universe_ic_by_year": {"2021": 0.09731508321636774, "2022": 0.0874419115710826, "2023": 0.012175659351155874, "2024": 0.048272035005040535, "2025": -0.016585221061850435, "2026": 0.031137919437780808}, "decile_top_minus_bottom_pct_per_month": 0.6744330093537474, "pred_rank_autocorr": 0.9280476021571168}
+  [lc_free   ] gross IR 0.69 / net IR 0.54 | beta -0.21 (t -1.80) roll12 [-0.58,+0.10] | turnover 30% | maxDD -27% | short med mcap $6,716M
+  [lc_t20    ] gross IR 0.67 / net IR 0.55 | beta -0.20 (t -1.61) roll12 [-0.58,+0.15] | turnover 20% | maxDD -29% | short med mcap $6,982M
+  [lc_t10    ] gross IR 0.76 / net IR 0.67 | beta -0.15 (t -1.28) roll12 [-0.66,+0.23] | turnover 10% | maxDD -24% | short med mcap $7,834M
+  [lc_t10_w05] gross IR 0.64 / net IR 0.53 | beta -0.11 (t -1.12) roll12 [-0.44,+0.20] | turnover 10% | maxDD -19% | short med mcap $7,620M
+  arm done in 0.2 min
+
+==============================================================================
+TPA | ARM tpa_ms | floor $1,000M | 7 factor-group sleeves
+==============================================================================
+  sleeve weights by test year:
+ test_year  w_value  w_profitability  w_investment_issuance_accruals  w_quality  w_surprise  w_volatility_beta  w_liquidity
+      2021    0.143            0.143                           0.143      0.143       0.143              0.143        0.143
+      2022    0.000            0.181                           0.350      0.000       0.350              0.000        0.119
+      2023    0.000            0.029                           0.350      0.000       0.350              0.000        0.271
+      2024    0.000            0.084                           0.350      0.000       0.350              0.000        0.216
+      2025    0.000            0.111                           0.350      0.000       0.350              0.000        0.189
+      2026    0.000            0.144                           0.350      0.000       0.350              0.000        0.156
+  universe: {"universe_rank_ic": 0.030184234444515717, "universe_rank_ic_t": 2.298533536325394, "universe_rank_ic_share_positive": 0.6029411764705882, "universe_ic_by_year": {"2021": 0.08933077927176968, "2022": 0.06311780964923493, "2023": -0.007016143462285633, "2024": 0.02082038414135483, "2025": -0.016395871739194476, "2026": 0.0317805559870646}, "decile_top_minus_bottom_pct_per_month": 0.7151509108837064, "pred_rank_autocorr": 0.9068908146892791}
+  [lc_free   ] gross IR 0.67 / net IR 0.51 | beta -0.15 (t -1.40) roll12 [-0.45,+0.28] | turnover 29% | maxDD -24% | short med mcap $6,967M
+  [lc_t20    ] gross IR 0.54 / net IR 0.42 | beta -0.15 (t -1.30) roll12 [-0.43,+0.25] | turnover 20% | maxDD -29% | short med mcap $6,961M
+  [lc_t10    ] gross IR 0.74 / net IR 0.65 | beta -0.05 (t -0.47) roll12 [-0.57,+0.32] | turnover 10% | maxDD -24% | short med mcap $7,515M
+  [lc_t10_w05] gross IR 0.54 / net IR 0.43 | beta -0.06 (t -0.62) roll12 [-0.32,+0.21] | turnover 10% | maxDD -18% | short med mcap $7,345M
+  arm done in 0.2 min
+
+Paired monthly universe-IC differences vs tpa_eq: {
+ "tpa_erc": {
+  "mean_diff": 5.8180805085391325e-06,
+  "t": 0.001038391490732585,
+  "share_a_better": 0.45588235294117646
+ },
+ "tpa_ms": {
+  "mean_diff": -0.013817844129149307,
+  "t": -1.2185657778111623,
+  "share_a_better": 0.39705882352941174
+ }
+}
+
+==============================================================================
+SUMMARY TPA (floor $1,000M)
+==============================================================================
+    arm  portfolio  ir_gross  ir_net  sharpe_net  cagr_net_pct  beta  roll_beta_min  roll_beta_max  turnover_one_way_pct_gross  max_dd_net_pct  universe_rank_ic  universe_rank_ic_t
+ tpa_eq    lc_free      0.52    0.36        0.62          8.71 -0.14          -0.63           0.28                       32.28          -25.77              0.04                2.34
+ tpa_eq     lc_t20      0.52    0.39        0.65          9.42 -0.14          -0.59           0.30                       20.00          -31.46              0.04                2.34
+ tpa_eq     lc_t10      0.56    0.47        0.74         10.40 -0.11          -0.58           0.29                       10.00          -29.67              0.04                2.34
+ tpa_eq lc_t10_w05      0.48    0.37        0.69          8.17 -0.06          -0.45           0.30                       10.00          -17.48              0.04                2.34
+tpa_erc    lc_free      0.69    0.54        0.81         11.56 -0.21          -0.58           0.10                       29.52          -28.50              0.04                2.74
+tpa_erc     lc_t20      0.67    0.55        0.81         11.92 -0.20          -0.58           0.15                       19.97          -30.78              0.04                2.74
+tpa_erc     lc_t10      0.76    0.67        0.94         13.79 -0.15          -0.66           0.23                       10.00          -25.75              0.04                2.74
+tpa_erc lc_t10_w05      0.64    0.53        0.86         10.22 -0.11          -0.44           0.20                       10.00          -19.68              0.04                2.74
+ tpa_ms    lc_free      0.67    0.51        0.81         10.48 -0.15          -0.45           0.28                       28.97          -27.12              0.03                2.30
+ tpa_ms     lc_t20      0.54    0.42        0.70          9.35 -0.15          -0.43           0.25                       20.00          -30.89              0.03                2.30
+ tpa_ms     lc_t10      0.74    0.65        0.94         12.92 -0.05          -0.57           0.32                       10.00          -26.00              0.03                2.30
+ tpa_ms lc_t10_w05      0.54    0.43        0.78          8.54 -0.06          -0.32           0.21                       10.00          -19.45              0.03                2.30
