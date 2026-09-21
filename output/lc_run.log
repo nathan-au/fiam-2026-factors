@@ -1,0 +1,106 @@
+Loading model table...
+  523,125 stock-month rows
+  universe rows (all months): 153,392 of 523,125
+
+==============================================================================
+LARGE-CAP | ARM et | floor $2,000M | 18 factors
+==============================================================================
+  [lc/et fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0065 (candidates: 6, val_ic range -0.0161..-0.0065) 4s
+  [lc/et fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0401 (candidates: 6, val_ic range 0.0332..0.0401) 6s
+  [lc/et fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0315 (candidates: 6, val_ic range -0.0384..-0.0315) 7s
+  [lc/et fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0230 (candidates: 6, val_ic range 0.0185..0.0230) 9s
+  [lc/et fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0288 (candidates: 6, val_ic range 0.0227..0.0288) 11s
+  [lc/et fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0119 (candidates: 6, val_ic range 0.0073..0.0119) 13s
+  universe: {"n_features": 18, "universe_stocks_per_month": 1206.264705882353, "universe_rank_ic": 0.016385163511344364, "universe_rank_ic_t": 1.1020615569297978, "universe_rank_ic_share_positive": 0.4852941176470588, "universe_ic_by_year": {"2021": 0.04979417042780691, "2022": 0.008811991946055569, "2023": 0.03171934827339066, "2024": 0.0322525682548236, "2025": -0.021290050751493605, "2026": -0.012658152379447635}, "universe_oos_r2_pct": 0.21156734088341178, "mean_val_rank_ic": 0.010983632387200801, "decile_top_minus_bottom_pct_per_month": -0.16972952626052962, "pred_rank_autocorr": 0.7925896077021785}
+  deciles (% / month): 0.65 0.74 0.67 1.00 0.87 0.60 0.69 0.81 0.76 0.48
+  [lc_free   ] gross IR -0.18 / net IR -0.36 | beta -0.08 (t -0.77) roll12 [-0.56,+0.64] | turnover 47% | maxDD -35% | short med mcap $4,259M | pos 201-204 | relaxed 0
+  [lc_t20    ] gross IR -0.16 / net IR -0.27 | beta -0.07 (t -0.64) roll12 [-0.76,+0.68] | turnover 20% | maxDD -34% | short med mcap $4,343M | pos 203-231 | relaxed 0
+  [lc_t10    ] gross IR -0.22 / net IR -0.30 | beta -0.09 (t -0.85) roll12 [-0.59,+0.60] | turnover 10% | maxDD -32% | short med mcap $4,655M | pos 203-261 | relaxed 0
+  [lc_t10_w05] gross IR -0.38 / net IR -0.49 | beta -0.06 (t -0.79) roll12 [-0.42,+0.52] | turnover 10% | maxDD -28% | short med mcap $5,218M | pos 403-477 | relaxed 0
+  arm done in 1.0 min
+
+==============================================================================
+LARGE-CAP | ARM comp | floor $2,000M | 18 factors
+==============================================================================
+  universe: {"n_features": 18, "universe_stocks_per_month": 1206.264705882353, "universe_rank_ic": 0.03664503081739846, "universe_rank_ic_t": 1.914576303308223, "universe_rank_ic_share_positive": 0.6029411764705882, "universe_ic_by_year": {"2021": 0.07723640971814578, "2022": 0.07745953983649333, "2023": 0.006199275297289475, "2024": 0.061534119610295444, "2025": -0.025549407340738545, "2026": 0.01616285626565869}, "universe_oos_r2_pct": null, "mean_val_rank_ic": null, "decile_top_minus_bottom_pct_per_month": 0.47809885173425093, "pred_rank_autocorr": 0.9216454703722443}
+  deciles (% / month): 0.34 0.59 0.89 0.72 0.78 0.67 0.82 0.79 0.85 0.82
+  [lc_free   ] gross IR 0.57 / net IR 0.43 | beta -0.12 (t -1.05) roll12 [-0.68,+0.26] | turnover 34% | maxDD -22% | short med mcap $6,716M | pos 201-204 | relaxed 0
+  [lc_t20    ] gross IR 0.66 / net IR 0.56 | beta -0.10 (t -0.85) roll12 [-0.64,+0.27] | turnover 20% | maxDD -21% | short med mcap $6,875M | pos 202-216 | relaxed 0
+  [lc_t10    ] gross IR 0.61 / net IR 0.54 | beta -0.06 (t -0.55) roll12 [-0.60,+0.32] | turnover 10% | maxDD -18% | short med mcap $7,340M | pos 202-244 | relaxed 0
+  [lc_t10_w05] gross IR 0.59 / net IR 0.50 | beta -0.05 (t -0.52) roll12 [-0.49,+0.24] | turnover 10% | maxDD -14% | short med mcap $7,672M | pos 402-456 | relaxed 0
+  arm done in 0.2 min
+
+==============================================================================
+LARGE-CAP | ARM et_allrows | floor $2,000M | 18 factors
+==============================================================================
+  [lc/et_allrows fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0549 (candidates: 6, val_ic range 0.0493..0.0549) 24s
+  [lc/et_allrows fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.1023 (candidates: 6, val_ic range 0.0983..0.1023) 36s
+  [lc/et_allrows fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.1498 (candidates: 6, val_ic range 0.1133..0.1498) 50s
+  [lc/et_allrows fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.1674 (candidates: 6, val_ic range 0.1526..0.1674) 75s
+  [lc/et_allrows fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.1612 (candidates: 6, val_ic range 0.1534..0.1612) 92s
+  [lc/et_allrows fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.1468 (candidates: 6, val_ic range 0.1391..0.1468) 110s
+  universe: {"n_features": 18, "universe_stocks_per_month": 1206.264705882353, "universe_rank_ic": 0.020209781768257308, "universe_rank_ic_t": 1.4869770387535253, "universe_rank_ic_share_positive": 0.5, "universe_ic_by_year": {"2021": 0.04769674584876719, "2022": 0.018217883064822374, "2023": 0.046520093057737966, "2024": 0.023784917016567413, "2025": -0.019847964990526976, "2026": -0.0027743659658648365}, "universe_oos_r2_pct": 0.21733999058584086, "mean_val_rank_ic": 0.13042411450876024, "decile_top_minus_bottom_pct_per_month": -0.04170378038990197, "pred_rank_autocorr": 0.7928937810135314}
+  deciles (% / month): 0.58 0.65 0.76 0.78 0.85 0.79 0.76 0.80 0.76 0.54
+  [lc_free   ] gross IR -0.02 / net IR -0.20 | beta -0.14 (t -1.22) roll12 [-0.58,+0.51] | turnover 47% | maxDD -33% | short med mcap $4,709M | pos 201-204 | relaxed 0
+  [lc_t20    ] gross IR -0.06 / net IR -0.17 | beta -0.15 (t -1.38) roll12 [-0.55,+0.49] | turnover 20% | maxDD -34% | short med mcap $4,930M | pos 203-231 | relaxed 0
+  [lc_t10    ] gross IR -0.04 / net IR -0.12 | beta -0.14 (t -1.34) roll12 [-0.49,+0.39] | turnover 10% | maxDD -35% | short med mcap $5,264M | pos 203-264 | relaxed 0
+  [lc_t10_w05] gross IR -0.21 / net IR -0.33 | beta -0.09 (t -1.21) roll12 [-0.37,+0.35] | turnover 10% | maxDD -24% | short med mcap $6,112M | pos 403-483 | relaxed 0
+  arm done in 6.6 min
+
+Paired monthly universe-IC differences: {
+ "paired_ic_et_vs_comp": {
+  "mean_diff": -0.0202598673060541,
+  "t": -1.0595718170618613,
+  "share_a_better": 0.4117647058823529
+ },
+ "paired_ic_et_vs_et_allrows": {
+  "mean_diff": -0.003824618256912947,
+  "t": -1.0782727845607667,
+  "share_a_better": 0.39705882352941174
+ }
+}
+  [lc/et seed 43 fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0066 (candidates: 6, val_ic range -0.0162..-0.0066) 5s
+  [lc/et seed 43 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0423 (candidates: 6, val_ic range 0.0336..0.0423) 7s
+  [lc/et seed 43 fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0311 (candidates: 6, val_ic range -0.0368..-0.0311) 8s
+  [lc/et seed 43 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0232 (candidates: 6, val_ic range 0.0186..0.0232) 10s
+  [lc/et seed 43 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0302 (candidates: 6, val_ic range 0.0250..0.0302) 12s
+  [lc/et seed 43 fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0111 (candidates: 6, val_ic range 0.0087..0.0111) 15s
+  seed 43: {'seed': 43, 'universe_rank_ic': 0.01688085813685376, 'ir_gross': -0.2434288296762946, 'ir_net': -0.32768898026389315, 'beta': -0.10532130615344897, 'roll_beta_max': 0.6046539546821073}
+  [lc/et seed 44 fold 2021] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0068 (candidates: 6, val_ic range -0.0175..-0.0068) 5s
+  [lc/et seed 44 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0407 (candidates: 6, val_ic range 0.0336..0.0407) 6s
+  [lc/et seed 44 fold 2023] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0312 (candidates: 6, val_ic range -0.0368..-0.0312) 8s
+  [lc/et seed 44 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0232 (candidates: 6, val_ic range 0.0197..0.0232) 10s
+  [lc/et seed 44 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0301 (candidates: 6, val_ic range 0.0260..0.0301) 14s
+  [lc/et seed 44 fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0121 (candidates: 6, val_ic range 0.0076..0.0121) 15s
+  seed 44: {'seed': 44, 'universe_rank_ic': 0.01700500595299968, 'ir_gross': -0.3892732766309151, 'ir_net': -0.4774182069817434, 'beta': -0.08921665574814978, 'roll_beta_max': 0.5835341331423317}
+  [lc/et seed 45 fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0052 (candidates: 6, val_ic range -0.0162..-0.0052) 5s
+  [lc/et seed 45 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0425 (candidates: 6, val_ic range 0.0329..0.0425) 7s
+  [lc/et seed 45 fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0314 (candidates: 6, val_ic range -0.0387..-0.0314) 8s
+  [lc/et seed 45 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0218 (candidates: 6, val_ic range 0.0184..0.0218) 11s
+  [lc/et seed 45 fold 2025] chosen={'max_features': 0.33, 'min_samples_leaf': 1000} val_ic=0.0301 (candidates: 6, val_ic range 0.0250..0.0301) 13s
+  [lc/et seed 45 fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0113 (candidates: 6, val_ic range 0.0076..0.0113) 15s
+  seed 45: {'seed': 45, 'universe_rank_ic': 0.01564663394850174, 'ir_gross': -0.3895859574234453, 'ir_net': -0.47400863337223414, 'beta': -0.11640420249810818, 'roll_beta_max': 0.6316600486736903}
+  [lc/et seed 46 fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0061 (candidates: 6, val_ic range -0.0149..-0.0061) 5s
+  [lc/et seed 46 fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0418 (candidates: 6, val_ic range 0.0329..0.0418) 7s
+  [lc/et seed 46 fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 300} val_ic=-0.0323 (candidates: 6, val_ic range -0.0387..-0.0323) 9s
+  [lc/et seed 46 fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0226 (candidates: 6, val_ic range 0.0194..0.0226) 12s
+  [lc/et seed 46 fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0300 (candidates: 6, val_ic range 0.0229..0.0300) 13s
+  [lc/et seed 46 fold 2026] chosen={'max_features': 0.33, 'min_samples_leaf': 300} val_ic=0.0104 (candidates: 6, val_ic range 0.0072..0.0104) 16s
+  seed 46: {'seed': 46, 'universe_rank_ic': 0.016757595431080137, 'ir_gross': -0.28661013155140863, 'ir_net': -0.3688244404947727, 'beta': -0.11558407392461631, 'roll_beta_max': 0.6200135374761704}
+
+==============================================================================
+SUMMARY large-cap (floor $2,000M)
+==============================================================================
+       arm  portfolio  ir_gross  ir_net  sharpe_net  cagr_net_pct  beta  roll_beta_min  roll_beta_max  turnover_one_way_pct_gross  max_dd_net_pct  universe_rank_ic  universe_rank_ic_t  short_median_mcap_musd
+        et    lc_free     -0.18   -0.36       -0.07         -1.76 -0.08          -0.56           0.64                       46.68          -41.28              0.02                1.10                 4258.93
+        et     lc_t20     -0.16   -0.27        0.02         -0.60 -0.07          -0.76           0.68                       20.00          -38.45              0.02                1.10                 4343.36
+        et     lc_t10     -0.22   -0.30        0.02         -0.49 -0.09          -0.59           0.60                       10.00          -35.15              0.02                1.10                 4654.53
+        et lc_t10_w05     -0.38   -0.49       -0.07         -1.04 -0.06          -0.42           0.52                       10.00          -30.90              0.02                1.10                 5218.19
+      comp    lc_free      0.57    0.43        0.72          9.51 -0.12          -0.68           0.26                       34.33          -24.88              0.04                1.91                 6715.83
+      comp     lc_t20      0.66    0.56        0.85         11.61 -0.10          -0.64           0.27                       20.00          -22.23              0.04                1.91                 6875.33
+      comp     lc_t10      0.61    0.54        0.84         10.97 -0.06          -0.60           0.32                       10.00          -18.95              0.04                1.91                 7340.28
+      comp lc_t10_w05      0.59    0.50        0.87          9.25 -0.05          -0.49           0.24                       10.00          -14.63              0.04                1.91                 7671.61
+et_allrows    lc_free     -0.02   -0.20        0.09          0.26 -0.14          -0.58           0.51                       46.78          -36.19              0.02                1.49                 4709.39
+et_allrows     lc_t20     -0.06   -0.17        0.13          0.88 -0.15          -0.55           0.49                       20.00          -36.22              0.02                1.49                 4929.78
+et_allrows     lc_t10     -0.04   -0.12        0.18          1.59 -0.14          -0.49           0.39                       10.00          -35.81              0.02                1.49                 5263.98
+et_allrows lc_t10_w05     -0.21   -0.33        0.12          0.71 -0.09          -0.37           0.35                       10.00          -25.12              0.02                1.49                 6112.20

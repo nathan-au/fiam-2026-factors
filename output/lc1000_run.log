@@ -1,0 +1,52 @@
+Loading model table...
+  523,125 stock-month rows
+  universe rows (all months): 179,459 of 523,125
+
+==============================================================================
+LARGE-CAP | ARM et | floor $1,000M | 18 factors
+==============================================================================
+  [lc/et fold 2021] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=-0.0115 (candidates: 6, val_ic range -0.0202..-0.0115) 6s
+  [lc/et fold 2022] chosen={'max_features': 0.33, 'min_samples_leaf': 100} val_ic=0.0390 (candidates: 6, val_ic range 0.0332..0.0390) 7s
+  [lc/et fold 2023] chosen={'max_features': 'sqrt', 'min_samples_leaf': 100} val_ic=-0.0357 (candidates: 6, val_ic range -0.0392..-0.0357) 9s
+  [lc/et fold 2024] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0343 (candidates: 6, val_ic range 0.0291..0.0343) 11s
+  [lc/et fold 2025] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0351 (candidates: 6, val_ic range 0.0285..0.0351) 14s
+  [lc/et fold 2026] chosen={'max_features': 'sqrt', 'min_samples_leaf': 1000} val_ic=0.0164 (candidates: 6, val_ic range 0.0138..0.0164) 17s
+  universe: {"n_features": 18, "universe_stocks_per_month": 1391.0294117647059, "universe_rank_ic": 0.021655067893144985, "universe_rank_ic_t": 1.5419367095680243, "universe_rank_ic_share_positive": 0.5441176470588235, "universe_ic_by_year": {"2021": 0.051880400109907805, "2022": 0.018764884718445726, "2023": 0.034723863937347006, "2024": 0.03151569272684307, "2025": -0.01424261673288623, "2026": 0.00010473995224630044}, "universe_oos_r2_pct": 0.18131530281007002, "mean_val_rank_ic": 0.012932202624958653, "decile_top_minus_bottom_pct_per_month": -0.4348630563664595, "pred_rank_autocorr": 0.8080052167645492}
+  deciles (% / month): 1.01 0.73 0.66 1.04 0.70 0.66 0.69 0.90 0.81 0.57
+  [lc_free   ] gross IR -0.43 / net IR -0.64 | beta -0.09 (t -0.68) roll12 [-0.78,+1.19] | turnover 47% | maxDD -38% | short med mcap $2,870M | pos 201-205 | relaxed 0
+  [lc_t20    ] gross IR -0.31 / net IR -0.45 | beta -0.06 (t -0.48) roll12 [-0.78,+1.10] | turnover 20% | maxDD -34% | short med mcap $2,971M | pos 202-237 | relaxed 0
+  [lc_t10    ] gross IR -0.47 / net IR -0.58 | beta -0.05 (t -0.45) roll12 [-0.84,+0.96] | turnover 10% | maxDD -37% | short med mcap $3,329M | pos 202-263 | relaxed 0
+  [lc_t10_w05] gross IR -0.51 / net IR -0.65 | beta -0.06 (t -0.72) roll12 [-0.54,+0.64] | turnover 10% | maxDD -31% | short med mcap $3,779M | pos 403-489 | relaxed 0
+  arm done in 1.3 min
+
+==============================================================================
+LARGE-CAP | ARM comp | floor $1,000M | 18 factors
+==============================================================================
+  universe: {"n_features": 18, "universe_stocks_per_month": 1391.0294117647059, "universe_rank_ic": 0.043801069437120796, "universe_rank_ic_t": 2.248444247853744, "universe_rank_ic_share_positive": 0.6470588235294118, "universe_ic_by_year": {"2021": 0.08767644530287268, "2022": 0.08617461215299847, "2023": 0.010894626724302072, "2024": 0.07212482791226037, "2025": -0.016752812460333177, "2026": 0.012132540767376215}, "universe_oos_r2_pct": null, "mean_val_rank_ic": null, "decile_top_minus_bottom_pct_per_month": 0.2934869183329666, "pred_rank_autocorr": 0.9270003435288456}
+  deciles (% / month): 0.58 0.42 1.06 0.66 0.88 0.78 0.83 0.84 0.85 0.88
+  [lc_free   ] gross IR 0.65 / net IR 0.47 | beta -0.14 (t -1.11) roll12 [-0.56,+0.23] | turnover 35% | maxDD -23% | short med mcap $4,480M | pos 201-204 | relaxed 0
+  [lc_t20    ] gross IR 0.58 / net IR 0.46 | beta -0.11 (t -0.87) roll12 [-0.49,+0.29] | turnover 20% | maxDD -25% | short med mcap $4,506M | pos 201-218 | relaxed 0
+  [lc_t10    ] gross IR 0.64 / net IR 0.55 | beta -0.09 (t -0.77) roll12 [-0.65,+0.31] | turnover 10% | maxDD -26% | short med mcap $4,771M | pos 201-251 | relaxed 0
+  [lc_t10_w05] gross IR 0.54 / net IR 0.43 | beta -0.03 (t -0.33) roll12 [-0.40,+0.31] | turnover 10% | maxDD -14% | short med mcap $5,262M | pos 403-464 | relaxed 0
+  arm done in 0.2 min
+
+Paired monthly universe-IC differences: {
+ "paired_ic_et_vs_comp": {
+  "mean_diff": -0.02214600154397582,
+  "t": -1.1478089500909054,
+  "share_a_better": 0.4117647058823529
+ }
+}
+
+==============================================================================
+SUMMARY large-cap (floor $1,000M)
+==============================================================================
+ arm  portfolio  ir_gross  ir_net  sharpe_net  cagr_net_pct  beta  roll_beta_min  roll_beta_max  turnover_one_way_pct_gross  max_dd_net_pct  universe_rank_ic  universe_rank_ic_t  short_median_mcap_musd
+  et    lc_free     -0.43   -0.64       -0.39         -7.36 -0.09          -0.78           1.19                       47.06          -45.16              0.02                1.54                 2869.96
+  et     lc_t20     -0.31   -0.45       -0.20         -4.30 -0.06          -0.78           1.10                       20.00          -36.22              0.02                1.54                 2971.02
+  et     lc_t10     -0.47   -0.58       -0.31         -5.45 -0.05          -0.84           0.96                       10.00          -37.79              0.02                1.54                 3329.01
+  et lc_t10_w05     -0.51   -0.65       -0.28         -3.62 -0.06          -0.54           0.64                       10.00          -31.96              0.02                1.54                 3778.58
+comp    lc_free      0.65    0.47        0.73         10.68 -0.14          -0.56           0.23                       34.52          -25.55              0.04                2.25                 4479.66
+comp     lc_t20      0.58    0.46        0.71         10.45 -0.11          -0.49           0.29                       20.00          -27.65              0.04                2.25                 4506.08
+comp     lc_t10      0.64    0.55        0.82         11.85 -0.09          -0.65           0.31                       10.00          -27.52              0.04                2.25                 4770.81
+comp lc_t10_w05      0.54    0.43        0.75          8.85 -0.03          -0.40           0.31                       10.00          -16.12              0.04                2.25                 5262.30
