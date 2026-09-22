@@ -2,8 +2,8 @@
 FIAM 2026 - Follow-up: where does the FINRA short-interest signal come from, and does it survive borrow stress? (feat_si_followup.py).
 
 Research origin: my own follow-up to experiments/feat_short_interest. There, FINRA days-to-cover was the FIRST block to pass the pre-registered rule (adds +0.0089 IC to the composite, paired t 2.67, Bonferroni-adjusted permutation p 0.015), and the short-interest ratio had standalone IC 0.045 (t 2.8). A result this good is
-checked before it is believed: docs/REDDIT_RESEARCH.md sec 2.10 warns that 'the reason you want to short is correlated with the borrow becoming expensive or unavailable', and high-short-interest names are exactly the hard-to-borrow ones - so the alpha may sit on the short leg where the project's borrow-cost assumptions are weakest.
-docs/NEW.md sec 3.7 itself suggests short interest is 'more valuable as a short-selection / squeeze-risk filter'.
+checked before it is believed: docs/RESEARCH.md Part II sec 2.10 warns that 'the reason you want to short is correlated with the borrow becoming expensive or unavailable', and high-short-interest names are exactly the hard-to-borrow ones - so the alpha may sit on the short leg where the project's borrow-cost assumptions are weakest.
+docs/RESEARCH.md Part I sec 3.7 itself suggests short interest is 'more valuable as a short-selection / squeeze-risk filter'.
 
 HYPOTHESIS. (a) The effect is concentrated in the high-SI decile's UNDERperformance (short leg) rather than in low-SI outperformance. (b) The information persists (an older file still predicts), i.e. it is a state, not a timing artefact. (c) The composite+SI book's net IR falls sharply when the highest-SI fifth of its shorts pays a multiple of the assumed borrow
 cost (x3 / x5 / x10). (d) Capping the short book at SI ratio <= 10% (a squeeze / borrow filter) keeps most of the gain. Any of these failing changes what we can claim. No adopt rule beyond the parent experiment's; this is a robustness study.
@@ -830,7 +830,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -849,7 +849,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -945,7 +945,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

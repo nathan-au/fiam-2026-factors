@@ -1,10 +1,10 @@
 """
 FIAM 2026 - Expectation calibration: live-IC haircut, fundamental-law realisation, power analysis and bootstrap uncertainty (expectation_calibration.py).
 
-Research origin: docs/REDDIT_RESEARCH.md sec 2.7 (r/quant 1q02d6g 'Decline in IC going into prod': ~40-50% of IC survives at multi-strats, 20-40% haircut as a general range; Azevedo-Hoegner-Velikov: 57% cumulative reduction for ML strategies from costs,
-post-publication decay and liquidity), sec 2.13 (power analysis before backtesting, r/quant 1r6rc2d) and docs/NEW.md sec 5 (fundamental-law expectations 'IC 0.03 -> IR 0.5-0.7').
+Research origin: docs/RESEARCH.md Part II sec 2.7 (r/quant 1q02d6g 'Decline in IC going into prod': ~40-50% of IC survives at multi-strats, 20-40% haircut as a general range; Azevedo-Hoegner-Velikov: 57% cumulative reduction for ML strategies from costs,
+post-publication decay and liquidity), sec 2.13 (power analysis before backtesting, r/quant 1r6rc2d) and docs/RESEARCH.md Part I sec 5 (fundamental-law expectations 'IC 0.03 -> IR 0.5-0.7').
 
-HYPOTHESIS. (a) NEW.md's fundamental-law expectation is optimistic: with monthly bets and an LP that is beta/sector/turnover constrained, the realised gross IR is a fraction (transfer coefficient) of IC*sqrt(breadth). (b) After a 40-50% live haircut the composite's
+HYPOTHESIS. (a) docs/RESEARCH.md's Part I fundamental-law expectation is optimistic: with monthly bets and an LP that is beta/sector/turnover constrained, the realised gross IR is a fraction (transfer coefficient) of IC*sqrt(breadth). (b) After a 40-50% live haircut the composite's
 IR is ~0.3 gross and lower net. (c) 68 months cannot distinguish the composite's IC from zero at 80% power, and the bootstrap standard error of the IR is close to the theoretical ~0.45. This is a calibration (no adopt/kill rule): the outputs set how the headline numbers
 should be quoted.
 
@@ -830,7 +830,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -849,7 +849,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -945,7 +945,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)
@@ -1216,10 +1216,10 @@ def main():
     law = float(ic.mean() * np.sqrt(n_eff * 12))
     tc = row["ir_gross"] / law
     out["fundamental_law"] = {"effective_names_in_book": float(n_eff), "law_ir_annual_at_tc1": law, "realised_gross_ir": row["ir_gross"], "implied_transfer_coefficient": float(tc),
-                              "note": "docs/NEW.md sec 5 applies IR ~ IC*sqrt(breadth) without the sqrt(12) for monthly bets and without a transfer coefficient; the constrained LP realises about this share of the unconstrained law"}
+                              "note": "docs/RESEARCH.md Part I sec 5 applies IR ~ IC*sqrt(breadth) without the sqrt(12) for monthly bets and without a transfer coefficient; the constrained LP realises about this share of the unconstrained law"}
     print(f"fundamental law: IC {ic.mean():.4f}, N_eff {n_eff:.0f}, unconstrained IR {law:.2f}, realised gross IR {row['ir_gross']:.2f} -> transfer coefficient {tc:.2f}", flush=True)
 
-    # (2) Haircut table (docs/REDDIT_RESEARCH.md sec 2.7: 20-50% live IC haircut; Azevedo-Hoegner-Velikov 57% cumulative reduction for ML strategies)
+    # (2) Haircut table (docs/RESEARCH.md Part II sec 2.7: 20-50% live IC haircut; Azevedo-Hoegner-Velikov 57% cumulative reduction for ML strategies)
     hurdle = 0.04 / 12
     tab = []
     for h in (0.0, 0.2, 0.4, 0.5, 0.57):

@@ -1,13 +1,13 @@
 """
 FIAM 2026 - Rank / Gaussian-rank training targets on the large-cap harness (target_rank.py).
 
-Research origin: docs/NEW.md sec 3.1a (Cakici & Zaremba, "Getting the Target Right in Return Prediction": rank targets
+Research origin: docs/RESEARCH.md Part I sec 3.1a (Cakici & Zaremba, "Getting the Target Right in Return Prediction": rank targets
 roughly doubled return/Sharpe in LARGE-cap universes; magnitude-preserving targets are dominated by tails).
 
 HYPOTHESIS. Training on a within-month rank (uniform in [-1,1]) or Gaussianised rank of next-month excess return, instead of the
 harness's 1/99-winsorised raw return, raises the universe rank IC of the same model on the same 18 factors, because the raw
 target's variance is dominated by a few extreme names whose behaviour does not generalise (docs/NEGATIVE_RESULT.md).
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model
 families, or IC >= the composite's 0.037 with t >= 2. Otherwise the idea fails.
 
 DESIGN. Universe/factors/folds/model-selection/portfolio LP are the frozen experiments/largecap harness (copied in below).

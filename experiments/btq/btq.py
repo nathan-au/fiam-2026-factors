@@ -4,7 +4,7 @@ FIAM 2026 - Quantity-conditioned prediction model (operationalizes
 2609.05162, Sep 2026).
 
 The paper's actual concept, per its verbatim abstract (read directly -- see
-docs/PAPERS.md sec 1): "quantity" (q) is a FACTOR-level construct -- "the
+docs/RESEARCH.md Part III sec 1): "quantity" (q) is a FACTOR-level construct -- "the
 factor's quantity fluctuations ... induced by trading flows" -- how much
 noise-trading flow a given factor's exposure has absorbed. "Sophisticated
 investors should demand a higher factor premium when they have absorbed
@@ -117,7 +117,7 @@ def cross_sectional_rank_transform(df: pd.DataFrame, stock_vars: list[str]) -> p
 
 
 def add_btq_interactions(df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
-    """Factor-level quantity per docs/PAPERS.md's verbatim-abstract
+    """Factor-level quantity per docs/RESEARCH.md's Part III verbatim-abstract
     correction: one quantity_F value per factor per MONTH (loading-weighted
     average trading intensity across stocks exposed to F), not a per-stock
     proxy. Computed via groupby-apply, once, before the walk-forward split

@@ -1,13 +1,13 @@
 """
 FIAM 2026 - Era Splitting (invariance-seeking tree splits) and size-environment eras on the large-cap harness (era_split.py).
 
-Research origin: docs/REDDIT_RESEARCH.md sec 2.3 (Era Splitting: Invariant Learning for Decision Trees, arXiv 2309.14496 - evaluate each split's gain within each era and require it to hold in all of them; 'superior performance on the
-Numerai dataset') and my own extension H1 (eras = month x size tercile, so a split only survives if it also helps large caps - an invariance constraint that encodes 'our edge is small-cap'). Also docs/REDDIT_RESEARCH.md H8 depends on this.
+Research origin: docs/RESEARCH.md Part II sec 2.3 (Era Splitting: Invariant Learning for Decision Trees, arXiv 2309.14496 - evaluate each split's gain within each era and require it to hold in all of them; 'superior performance on the
+Numerai dataset') and my own extension H1 (eras = month x size tercile, so a split only survives if it also helps large caps - an invariance constraint that encodes 'our edge is small-cap'). Also docs/RESEARCH.md Part II H8 depends on this.
 
 HYPOTHESIS. The diagnosed failure of fitted trees is splits whose gain is concentrated in some periods / size buckets (small-cap, ivol, lottery structure that does not persist). Era-wise criteria that reward only splits consistent across eras
 should raise the universe rank IC of a boosted-tree model over the same trees with the standard pooled criterion, and the composite-initialised versions should be able to add to (not lose to) the composite. Era criteria may underfit and simply reproduce the
 composite - an acceptable outcome that says the invariant signal is the simple one.
-PRE-REGISTERED KILL RULE (docs/REDDIT_RESEARCH.md sec 2.3): kill if the paired monthly IC t < 1 vs the vanilla-criterion control (`orig`) or IC < the composite's 0.037.
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part II sec 2.3): kill if the paired monthly IC t < 1 vs the vanilla-criterion control (`orig`) or IC < the composite's 0.037.
 
 DESIGN. Frozen experiments/largecap harness (copied in below): universe, 18 factors, walk-forward folds, validation-IC selection of the number of trees (0 trees allowed for composite-initialised arms), LP `lc_t10`. The model is a small numpy histogram GBDT written for this
 experiment (20 bins, depth 3, 250 rounds at learning rate 0.03, min leaf 300 rows, lambda 100, 50% row / 50% column subsampling; target = month-demeaned winsorised next-month return). The criteria are re-implementations from the paper's description: see the header of the
@@ -832,7 +832,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -851,7 +851,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -947,7 +947,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

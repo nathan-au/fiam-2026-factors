@@ -9,7 +9,7 @@ Toy test of conformal selection (Jin-Candes style: conformal p-values against a 
 Selecting names whose composite score has a small conformal p-value against past "non-winner" names, with BH at level q, yields a set whose false-discovery share (picks not in the winning 30% of next-month returns) is at or below q, and that beats a same-size top-k by score. Kill: realised FDR > q in the test window (exchangeability broken by regime change), or no return advantage over same-size top-k.
 
 ## Research origin
-docs/REDDIT_RESEARCH.md H5 (own hypothesis: model-agnostic conformal selection as a calibrated "abstain"; needs a calibration set of past months; the note itself calls for a toy test first). Adjacent literature: conformal selection framework; Conformal Predictive Portfolio Selection (arXiv 2410.16333) is portfolio-level, not name-level.
+docs/RESEARCH.md Part II H5 (own hypothesis: model-agnostic conformal selection as a calibrated "abstain"; needs a calibration set of past months; the note itself calls for a toy test first). Adjacent literature: conformal selection framework; Conformal Predictive Portfolio Selection (arXiv 2410.16333) is portfolio-level, not name-level.
 
 ## Implementation
 The composite needs no fitting, so all universe months before the test year (72 months before 2021) are calibration data. win = next-month excess return in the top 30% of the universe cross-section (long); lose = bottom 30% (short, score sign flipped). Calibration null = past units that are not winners (resp. losers). p_i = (1 + #{null scores >= s_i}) / (n_null + 1); BH at q in {0.60, 0.65, 0.70} per test month. The base win rate is 30%, so informative q are close to 1 - 0.30 = 0.70. Compared with the top-k of the same size k.

@@ -1,12 +1,12 @@
 """
 FIAM 2026 - Neutralisation depth as a dial, judged in the crowded-unwind windows (neutral_dial.py).
 
-Research origin: docs/NEW.md sec 2 #6 and sec 3.9 items 1-2 (neutralise beyond beta: log size, momentum, volatility, quality; sector-neutral ranking instead of sector caps) versus docs/REDDIT_RESEARCH.md
+Research origin: docs/RESEARCH.md Part I sec 2 #6 and sec 3.9 items 1-2 (neutralise beyond beta: log size, momentum, volatility, quality; sector-neutral ranking instead of sector caps) versus docs/RESEARCH.md Part II
 sec 2.4 / H3 (a 2026 multi-manager practitioner: tightly factor-neutral books did WORST; hard-neutralising to a common risk model converges to the same 'shared core' positions).
 The two documents contradict each other; this experiment measures the curve instead of choosing.
 
-HYPOTHESIS (two-sided, stated in advance). If NEW.md is right, deeper neutralisation lowers rolling beta and the loss in the Jun-Jul-2025 / Jan-2026 / Jul-2026 unwind months without costing IR. If REDDIT is
-right, deeper neutralisation does not help (or hurts) the stress-window P&L and costs IR. Decision rule (docs/REDDIT_RESEARCH.md H3): weigh stress-window return at least as much as full-sample IR; note N = 4 stress
+HYPOTHESIS (two-sided, stated in advance). If docs/RESEARCH.md Part I is right, deeper neutralisation lowers rolling beta and the loss in the Jun-Jul-2025 / Jan-2026 / Jul-2026 unwind months without costing IR. If REDDIT is
+right, deeper neutralisation does not help (or hurts) the stress-window P&L and costs IR. Decision rule (docs/RESEARCH.md Part II H3): weigh stress-window return at least as much as full-sample IR; note N = 4 stress
 months (+ Jan-2021), so only the SHAPE of the curve is informative.
 
 DESIGN. Frozen experiments/largecap harness (copied in below), frozen composite signal, LP `lc_t10` (10% one-way cap). Dial steps: D0 beta-only (no sector limits) / D1 +sector (the current book) / D2 +log size / D3 +12-1 momentum /
@@ -833,7 +833,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -852,7 +852,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -948,7 +948,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)
@@ -1209,7 +1209,7 @@ def project_out(ctx, score, cols):
 
 
 def sector_rank(ctx, score):
-    """Score re-ranked WITHIN GICS sector each month over universe rows -> [-1, 1] (sector-neutral ranking, docs/NEW.md sec 3.9 #2)."""
+    """Score re-ranked WITHIN GICS sector each month over universe rows -> [-1, 1] (sector-neutral ranking, docs/RESEARCH.md Part I sec 3.9 #2)."""
     return urank(score, ctx, key=ctx.meta["sector"].to_numpy(), min_group=5)
 
 

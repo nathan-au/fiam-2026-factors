@@ -3,14 +3,14 @@ FIAM 2026 - End-to-end weight learning (operationalizes "AlphaZeroBeta: Deep
 Reinforcement Learning for Market-Neutral Portfolios", arXiv 2607.18001,
 Jul 2026).
 
-The paper's idea (per docs/PAPERS.md §2): instead of the two-stage pipeline
+The paper's idea (per docs/RESEARCH.md Part III §2): instead of the two-stage pipeline
 `ols.py`/`xgb.py`/`rf.py`/`sparse.py`/`joint.py` all use -- fit a model to
 minimize pointwise return error, THEN separately re-solve a fresh LP for
 weights each month -- train the characteristics-to-weights mapping directly
 against a portfolio-level objective (Sharpe), end to end.
 
 The paper's actual system (per its verbatim abstract, read directly -- see
-docs/PAPERS.md sec 2): a CNN-GRU policy trained end-to-end via Recurrent PPO
+docs/RESEARCH.md Part III sec 2): a CNN-GRU policy trained end-to-end via Recurrent PPO
 (a specific policy-gradient RL algorithm), evaluated across seven equity
 indices 2014-2024. NO CNN, GRU, PPO, or RL of any kind is built here (this
 project has no RL/deep-learning infrastructure) -- theta is a plain linear
@@ -188,7 +188,7 @@ def composite_objective(
     lambda_tc: float = TRANSACTION_COST_LAMBDA,
     lambda_corr: float = BENCHMARK_CORR_LAMBDA,
 ) -> float:
-    """The paper's actual reward per its verbatim abstract (docs/PAPERS.md
+    """The paper's actual reward per its verbatim abstract (docs/RESEARCH.md Part III
     sec 2): "a composite reward function that balances risk-adjusted excess
     return, benchmark correlation, and transaction costs." month_groups
     must be chronologically CONSECUTIVE (see month_groups_for_objective) so

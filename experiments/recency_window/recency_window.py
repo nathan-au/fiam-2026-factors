@@ -1,12 +1,12 @@
 """
 FIAM 2026 - Recency weighting, rolling windows and era-stacked models on the large-cap harness (recency_window.py).
 
-Research origin: docs/NEW.md sec 3.2 (Delphic Alpha: a 6-month rolling window beat 12 and 18 months; arXiv 2512.23596: model complexity and training-window length must be chosen JOINTLY, +14% OOS R2 over fixed-window, strongest in recessions; 'our expanding window never varies the
+Research origin: docs/RESEARCH.md Part I sec 3.2 (Delphic Alpha: a 6-month rolling window beat 12 and 18 months; arXiv 2512.23596: model complexity and training-window length must be chosen JOINTLY, +14% OOS R2 over fixed-window, strongest in recessions; 'our expanding window never varies the
 window - add an exponential half-life {24, 48, 96 months} to the validation grid') and Numerai 'deep incremental learning' (arXiv 2303.07925: stack models trained on different eras; a two-layer stack beat single models under distribution shift).
 
 HYPOTHESIS. The characteristic-return relation is non-stationary (the composite's IC fell from 0.054 in 2021-23 to 0.018 in 2024-26); down-weighting or dropping old training months (half-lives 24/48/96, windows 24/48 months) or averaging models trained on different eras should raise universe rank IC over the
 expanding-window control.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model families, or IC >= 0.037 with t >= 2.
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model families, or IC >= 0.037 with t >= 2.
 
 DESIGN. Frozen experiments/largecap harness (copied in below): universe, 18 factors, walk-forward folds (expanding), validation-IC selection on the raw return, LP portfolios. Recency weights w = 0.5^(age/half_life), age measured from the row's target month to the start of the validation window (weights
 normalised to mean 1); windows keep the last N months before the validation window; era-stack = the same Extra-Trees fitted on 3 contiguous month blocks of the training window (optionally + the full-window model) and averaged. Families: Extra-Trees, forest-style LightGBM (era-stack: ET only).
@@ -903,7 +903,7 @@ def score_arm(ctx, pred_vec, arm_key, variants, out_dir, extra_ic=None):
 # ---------------------------------------------------------------------------
 # Arm machinery for training-side ideas: universe / weights / windows / era-stacks
 # ---------------------------------------------------------------------------
-MCAP_CAP = 50_000.0  # $M cap for size weights (docs/NEW.md sec 3.2: w = min(mcap, cap)^0.5)
+MCAP_CAP = 50_000.0  # $M cap for size weights (docs/RESEARCH.md Part I sec 3.2: w = min(mcap, cap)^0.5)
 
 
 def val_start_month_index(fold):

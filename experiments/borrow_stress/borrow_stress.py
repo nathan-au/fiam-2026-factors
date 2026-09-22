@@ -1,7 +1,7 @@
 """
 FIAM 2026 - State-dependent borrow-cost stress and forced-cover shocks on the composite book (borrow_stress.py).
 
-Research origin: docs/REDDIT_RESEARCH.md sec 2.10 (r/algotrading 1w9yp8g, r/quant 1lpzdwr: 'the reason you want to short is correlated with the borrow becoming expensive or unavailable'; a backtest using median borrow
+Research origin: docs/RESEARCH.md Part II sec 2.10 (r/algotrading 1w9yp8g, r/quant 1lpzdwr: 'the reason you want to short is correlated with the borrow becoming expensive or unavailable'; a backtest using median borrow
 'systematically understates cost in the exact states where the edge is largest'; stress borrow at 2x/5x/10x, add a locate-reject / forced-cover state, screen shorts by price and ADV). The panel has no borrow data, so this
 stresses assumptions instead of measuring them.
 
@@ -831,7 +831,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -850,7 +850,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -946,7 +946,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

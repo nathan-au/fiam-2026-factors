@@ -2,14 +2,14 @@
 
 Implementation: `rankglu.py` (run with `.venv/bin/python experiments/rankglu/rankglu.py`).
 Operationalizes *RankGLU: Residual Gated Score Formation for Cross-Sectional
-Stock Prediction* (arXiv 2606.08930, Jun 2026 — `docs/PAPERS.md` §1): a
+Stock Prediction* (arXiv 2606.08930, Jun 2026 — `docs/RESEARCH.md` Part III §1): a
 prediction-head architecture with a direct linear scoring pathway plus a
 bounded, gated nonlinear branch — validated in the paper only on Chinese
 equity indices (CSI300/CSI800), so transfer to this panel is explicitly
 untested going in.
 
 Architecture (this is the closest structural match to a source paper of
-any of the 8 scripts in this batch — see `docs/PAPERS.md`'s verbatim
+any of the 8 scripts in this batch — see `docs/RESEARCH.md`'s Part III verbatim
 abstract confirmation):
 
 ```
@@ -71,7 +71,7 @@ weakest among the models that don't outright fail neutrality.
 
 **Interpretation**: the previous catastrophic realized-beta result looks,
 in hindsight, like an undertrained-model artifact rather than a property of
-the architecture itself — a genuinely useful finding given `docs/PAPERS.md`
+the architecture itself — a genuinely useful finding given `docs/RESEARCH.md` Part III
 flagged this model's untested cross-market transfer as the main risk going
 in. The architecture transfers to this panel *far* better with adequate
 training than the first, deliberately-cheap run suggested.

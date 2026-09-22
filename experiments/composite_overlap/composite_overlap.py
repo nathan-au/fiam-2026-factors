@@ -1,8 +1,8 @@
 """
 FIAM 2026 - Shared-core overlap test, Shapley decomposition and the three definitions of IC for the composite (composite_overlap.py).
 
-Research origin: docs/REDDIT_RESEARCH.md sec 2.5 ('how much of this is just proxying the platform's existing shared core?'; orthogonalise a candidate to the risk model - if the residual still predicts, that is the alpha), sec 2.13
-(Shapley decomposition over the alpha set; report raw, sector-neutral and risk-model-residual IC; Toraniko-style Barra-lite exposures) and docs/NEW.md sec 3.3 item 8 (amihud/spread-adjusted 'tradeable' features: does the composite lean on the
+Research origin: docs/RESEARCH.md Part II sec 2.5 ('how much of this is just proxying the platform's existing shared core?'; orthogonalise a candidate to the risk model - if the residual still predicts, that is the alpha), sec 2.13
+(Shapley decomposition over the alpha set; report raw, sector-neutral and risk-model-residual IC; Toraniko-style Barra-lite exposures) and docs/RESEARCH.md Part I sec 3.3 item 8 (amihud/spread-adjusted 'tradeable' features: does the composite lean on the
 liquidity group?).
 
 HYPOTHESIS. The composite - an equal-weight blend of textbook value / profitability / investment / quality / surprise / volatility / liquidity groups - IS the commoditised core: (i) most of its cross-sectional variance is explained by a public style set
@@ -831,7 +831,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -850,7 +850,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -946,7 +946,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)
@@ -1245,7 +1245,7 @@ def main():
     print(f"Shapley IC by group (sum {sum(phi.values()):.4f} = full IC {full:.4f}): {json.dumps({k: round(v, 4) for k, v in phi.items()})}", flush=True)
     print(f"Leave-one-group-out IC: {json.dumps({k: round(v, 4) for k, v in loo.items()})}", flush=True)
 
-    # (2) Three definitions of IC (docs/REDDIT_RESEARCH.md sec 2.13): raw, sector-neutral, risk-model-residual
+    # (2) Three definitions of IC (docs/RESEARCH.md Part II sec 2.13): raw, sector-neutral, risk-model-residual
     def design(ii, with_styles=True):
         cols = [np.ones(len(ii))]
         if with_styles:

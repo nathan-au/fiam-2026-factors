@@ -4,12 +4,12 @@ error in high-dimensional factor models", Bernstein, Goldberg, Gunther,
 Kercheval, Lan, Lin & Yao, arXiv 2609.20550, Sep 2026).
 
 Unlike the other 7 scripts in this batch, this is NOT a return-prediction or
-portfolio-construction model -- per docs/PAPERS.md §3, the paper itself is a
+portfolio-construction model -- per docs/RESEARCH.md Part III §3, the paper itself is a
 diagnostic tool, not a strategy: it decomposes PCA-based factor-estimation
 error into an "out-of-subspace" component (how far an estimated principal
 subspace is from the true one) and an "in-subspace" component (finite-sample
 noise within the right subspace). It only matters here if a PCA/shrinkage
--based prediction model (e.g. Kozak-Nagel-Santosh, docs/PAPERS.md §1) is
+-based prediction model (e.g. Kozak-Nagel-Santosh, docs/RESEARCH.md Part III §1) is
 built on top of the 147 characteristics -- this script answers the
 prerequisite question: **are the principal components of this panel stable
 enough to trust a shrinkage prior built on them?**

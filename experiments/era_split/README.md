@@ -7,10 +7,10 @@ Test Era Splitting (per-era split criteria that reward only splits that help in 
 
 ## Hypothesis
 Fitted trees learn structure whose gain is concentrated in some periods / size buckets (small-cap, ivol, lottery) and does not persist. Era-wise criteria should raise the universe rank IC over the same trees with the standard pooled criterion, and the composite-initialised versions should add to (not lose to) the composite. The criteria may underfit and reproduce the composite: an acceptable, informative outcome.
-Pre-registered kill rule (docs/REDDIT_RESEARCH.md sec 2.3): paired monthly IC t < 1 vs the vanilla-criterion control (`orig`), or IC < the composite's 0.037.
+Pre-registered kill rule (docs/RESEARCH.md Part II sec 2.3): paired monthly IC t < 1 vs the vanilla-criterion control (`orig`), or IC < the composite's 0.037.
 
 ## Research origin
-docs/REDDIT_RESEARCH.md sec 2.3 (Era Splitting, arXiv 2309.14496: two new tree criteria; Numerai dataset; grade Reported, only the abstract and the fork README were read) and H1 (size-environment invariance, "speculative"); H8 (two-stage buffered composite + era-split) was conditional on this and on the buffer experiment both passing, and neither did (see the final report).
+docs/RESEARCH.md Part II sec 2.3 (Era Splitting, arXiv 2309.14496: two new tree criteria; Numerai dataset; grade Reported, only the abstract and the fork README were read) and H1 (size-environment invariance, "speculative"); H8 (two-stage buffered composite + era-split) was conditional on this and on the buffer experiment both passing, and neither did (see the final report).
 
 ## Implementation
 The upstream `scikit-learn-erasplit` fork needs a source build of a patched scikit-learn and was **not used**. `era_split.py` implements a small numpy histogram GBDT (20 bins on the rank-transformed features, depth 3, 250 rounds at lr 0.03, min leaf 300 rows, lambda 100, 50% row / 50% column subsampling, target = month-demeaned winsorised return) with pluggable split criteria computed from era-wise gradient/count histograms: `orig` (pooled second-order gain: the control, same code path), `era_avg` (sum of each era's own gain), `era_softmin` (Boltzmann soft-minimum over eras of the per-row gain, so a split must help in *every* era), `era_dir` (directional: an era's gain counts positively if its left-vs-right direction agrees with the pooled direction and negatively otherwise) and `era_dir_size` (eras = month x size tercile). `*_init` arms boost from `init_score = a*composite` (a = fitted slope floored at +0.005, see the bug note). The number of trees (0 allowed for `*_init`) is chosen on validation IC. These are re-implementations from the paper's description, so a negative result is about the idea as implemented here, not about the fork.
@@ -23,7 +23,7 @@ All four target experiments use the same frozen harness (a verbatim copy of the 
 - **Walk-forward**: for test year Y = 2021..2026, train on target months before Jan Y-2, validate on Y-2..Y-1, refit annually; candidate hyper-parameters are chosen on **validation rank IC against the raw next-month excess return** (for every arm, whatever the fit target), never on test data.
 - **Models**: Extra-Trees (largecap grid, 300 trees) and forest-style LightGBM (num_leaves 7, min_child_samples {500, 2000}, extra_trees, lambda 100, checkpoints at 100/200/300 trees). Seed 42 unless stated.
 - **Scoring**: universe rank IC of the OOS prediction vs the raw next-month return (68 months, 2021-01..2026-08), decile spread, and the frozen LP portfolios `lc_t10` (10% one-way turnover cap, headline) and `lc_free`, gross and net of the assumed tiered costs.
-- **Pre-registered rule** (docs/NEW.md sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
+- **Pre-registered rule** (docs/RESEARCH.md Part I sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
 - **Sanity check that the harness is faithful**: the control arm `et__control` reproduces `experiments/largecap` `et` exactly: IC 0.0164 (published 0.016), lc_t10 gross IR -0.22 (published -0.22).
 
 ## Baseline

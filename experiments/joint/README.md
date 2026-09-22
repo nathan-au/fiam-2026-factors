@@ -2,7 +2,7 @@
 
 Implementation: `joint.py` (run with `.venv/bin/python experiments/joint/joint.py`).
 Operationalizes *Machine Learning Meets Markowitz* (NBER WP 34861, Feb 2026,
-Wang/Gao/Harvey/Liu/Tao — `docs/PAPERS.md` §2): the paper argues the
+Wang/Gao/Harvey/Liu/Tao — `docs/RESEARCH.md` Part III §2): the paper argues the
 standard two-stage pipeline is "deeply problematic" because it treats every
 observation's prediction error as equally important, when the optimizer
 only cares about error in the stocks that end up mattering to the final

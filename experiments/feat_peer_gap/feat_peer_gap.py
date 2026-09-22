@@ -1,15 +1,15 @@
 """
 FIAM 2026 - Correlation-peer return gap / peer index signals on the large-cap composite (feat_peer_gap.py).
 
-Research origin: docs/NEW.md sec 3.6 item 1 (Peer Return Gap 1.26%/mo t 3.81 in China; Avramov-Ge 'Dual peer effects' JFE 2026: a Peer Index predicts returns without reversal and ML on own characteristics does not subsume it).
+Research origin: docs/RESEARCH.md Part I sec 3.6 item 1 (Peer Return Gap 1.26%/mo t 3.81 in China; Avramov-Ge 'Dual peer effects' JFE 2026: a Peer Index predicts returns without reversal and ML on own characteristics does not subsume it).
 
 HYPOTHESIS. Cross-stock information (peers' recent returns) is absent from a stock's own characteristics; peers' month-t return (lead-lag) or the own-minus-peer gap adds IC to the composite in the >= $2B universe, beyond plain industry returns (control).
 DESIGN. Frozen experiments/largecap harness (copied in below); universe = price >= $5, mcap >= $2B, $10M dollar volume, both betas observed. No model is fitted: the
 composite is the unchanged 7-group equal-weight rule and each block is tested as one more equal-weight group (signs fixed before any result). Diagnostics per block: IC alone; paired monthly
-IC gain vs the composite; residual IC after orthogonalising the block to the composite (shared-core check, docs/REDDIT_RESEARCH.md sec 2.5); gain by size tercile; within-(month, sector)
-permutation null (200 shuffles, docs/REDDIT_RESEARCH.md H4) with Bonferroni over the blocks in this file; LP portfolio `lc_t10` (gross/net IR). A truncation-invariance test (rebuild the
-features from rows <= t only and require identical values at t; docs/REDDIT_RESEARCH.md sec 2.9) is run on the feature builder.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 2 / sec 4): kill if the paired IC gain has t < 1, or the gain is confined to the smallest size tercile. PASS requires paired t >= 2,
+IC gain vs the composite; residual IC after orthogonalising the block to the composite (shared-core check, docs/RESEARCH.md Part II sec 2.5); gain by size tercile; within-(month, sector)
+permutation null (200 shuffles, docs/RESEARCH.md Part II H4) with Bonferroni over the blocks in this file; LP portfolio `lc_t10` (gross/net IR). A truncation-invariance test (rebuild the
+features from rows <= t only and require identical values at t; docs/RESEARCH.md Part II sec 2.9) is run on the feature builder.
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 2 / sec 4): kill if the paired IC gain has t < 1, or the gain is confined to the smallest size tercile. PASS requires paired t >= 2,
 Bonferroni-adjusted permutation p <= 0.05, and not small-tercile-only.
 
 Run:  .venv/bin/python experiments/feat_peer_gap/feat_peer_gap.py [--nperm 200] [--smoke]
@@ -831,7 +831,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -850,7 +850,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -946,7 +946,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

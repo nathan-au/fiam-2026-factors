@@ -1,13 +1,13 @@
 """
 FIAM 2026 - Follow-up: is the 8-K item 5.02 (officer/director change) intensity signal robust? (feat_8k_502_followup.py).
 
-Research origin: my own follow-up to experiments/feat_8k_meta (docs/NEW.md sec 3.4 item 3: 5.02 among the event flags). In that run, 1 of 10 pre-registered 8-K metadata blocks - `mgmt_5_02_decayed_hl6` (sign -: more officer/director changes -> lower next-month return) - had a
+Research origin: my own follow-up to experiments/feat_8k_meta (docs/RESEARCH.md Part I sec 3.4 item 3: 5.02 among the event flags). In that run, 1 of 10 pre-registered 8-K metadata blocks - `mgmt_5_02_decayed_hl6` (sign -: more officer/director changes -> lower next-month return) - had a
 standalone universe IC of +0.0125 (t 2.87, within-(month, sector) permutation p 0.010) but added only +0.0010 (paired t 0.48) to the composite at a 1/8 weight. It failed the pre-registered rule, but a t-stat that large from one of ten tests is exactly the case for a targeted robustness check
 rather than either dismissing or celebrating it. Item 5.02 is a structured item code, not text: NO filing text and no LLM is used (those ideas are out of scope).
 
 HYPOTHESIS. If the signal is real it should (a) survive across decay half-lives (3/6/12 months) and a plain count, (b) survive orthogonalising to size / liquidity / firm age (else it is a proxy for large, frequently-filing firms), (c) be present in both halves of the sample and in the mid/large size terciles,
 and (d) raise the composite's IC when given a larger weight. If it fails (b) or (c) it is noise or a proxy. Family-wise: the original test was 1 of 10, so the Bonferroni-adjusted permutation p must stay <= 0.05; these variants are NOT independent tests of a new idea (they share one signal), and are counted as such.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 2 / sec 4): as for every block - kill if the paired IC gain has t < 1 or is confined to the smallest tercile; PASS needs paired t >= 2 with Bonferroni permutation p <= 0.05 (Bonferroni factor 10 = the original family, not this file's 7 variants).
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 2 / sec 4): as for every block - kill if the paired IC gain has t < 1 or is confined to the smallest tercile; PASS needs paired t >= 2 with Bonferroni permutation p <= 0.05 (Bonferroni factor 10 = the original family, not this file's 7 variants).
 
 DESIGN. Frozen experiments/largecap harness (copied in below); frozen composite; each variant is tested additively as an 8th equal-weight group (paired monthly IC gain, standalone IC by year and size tercile, residual IC, permutation null, LP `lc_t10`), and the hl6 signal is also added at weight 1x/2x/4x as replacement composites
 (compared with the frozen composite by paired IC and LP). A truncation-invariance test is run on the builder.
@@ -831,7 +831,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -850,7 +850,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -946,7 +946,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

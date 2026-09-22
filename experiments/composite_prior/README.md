@@ -7,10 +7,10 @@ Test whether a model that starts from the frozen composite and may move away fro
 
 ## Hypothesis
 Every fitted model on these 18 factors lost to the no-fit composite (ET IC 0.016 vs 0.037). If the factors hold any structure beyond the composite's linear-in-rank form, a model anchored to the composite should beat it; if not, validation should pick "no ML". Reddit H2: ML trained on `y - a*composite` and orthogonalised to the composite can only produce what the shared core does not.
-Pre-registered kill rules: ML-on-top adds < +0.005 paired IC (docs/NEW.md sec 2 #2); orthogonal-residual IC < 0.01 (docs/REDDIT_RESEARCH.md H2).
+Pre-registered kill rules: ML-on-top adds < +0.005 paired IC (docs/RESEARCH.md Part I sec 2 #2); orthogonal-residual IC < 0.01 (docs/RESEARCH.md Part II H2).
 
 ## Research origin
-docs/NEW.md sec 2 #2 and sec 3.5 (composite-as-prior: LightGBM `init_score`, <= 50 shallow trees, or ridge toward composite group weights); docs/REDDIT_RESEARCH.md sec 2.12 (r/quant top advice "encode your heuristic as a feature", 60 upvotes) and H2.
+docs/RESEARCH.md Part I sec 2 #2 and sec 3.5 (composite-as-prior: LightGBM `init_score`, <= 50 shallow trees, or ridge toward composite group weights); docs/RESEARCH.md Part II sec 2.12 (r/quant top advice "encode your heuristic as a feature", 60 upvotes) and H2.
 
 ## Implementation
 Per fold (train < Jan Y-2, validate Y-2..Y-1, test Y), on universe rows: `a` = slope of the month-demeaned winsorised return on the composite score, **floored at +0.005** (see the bug note below). Arms: `lgbm_init` (LGBM regression on the demeaned return with `init_score = a*composite`, num_leaves 4 or 7, up to 50 rounds at lr 0.05; candidates are 0, 10, 25 or 50 trees, chosen on validation rank IC; 0 trees = the composite); `et_resid` (prediction = a*composite + s*ExtraTrees(residual y - a*composite), s in {0, 0.25, 0.5, 1}, grid chosen on validation IC); `ridge_prior` (ridge on the composite's own 18 universe-ranked inputs shrunk toward the composite's weights, lambda in {1e2..1e5, inf}); `orth_alone` and `comp_plus_orth` (H2: the ET-on-residual output with the composite direction removed each month, alone and added 1:1 in z-units to the composite). `*_forced*` arms take the ML candidate regardless of validation.
@@ -23,7 +23,7 @@ All four target experiments use the same frozen harness (a verbatim copy of the 
 - **Walk-forward**: for test year Y = 2021..2026, train on target months before Jan Y-2, validate on Y-2..Y-1, refit annually; candidate hyper-parameters are chosen on **validation rank IC against the raw next-month excess return** (for every arm, whatever the fit target), never on test data.
 - **Models**: Extra-Trees (largecap grid, 300 trees) and forest-style LightGBM (num_leaves 7, min_child_samples {500, 2000}, extra_trees, lambda 100, checkpoints at 100/200/300 trees). Seed 42 unless stated.
 - **Scoring**: universe rank IC of the OOS prediction vs the raw next-month return (68 months, 2021-01..2026-08), decile spread, and the frozen LP portfolios `lc_t10` (10% one-way turnover cap, headline) and `lc_free`, gross and net of the assumed tiered costs.
-- **Pre-registered rule** (docs/NEW.md sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
+- **Pre-registered rule** (docs/RESEARCH.md Part I sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
 - **Sanity check that the harness is faithful**: the control arm `et__control` reproduces `experiments/largecap` `et` exactly: IC 0.0164 (published 0.016), lc_t10 gross IR -0.22 (published -0.22).
 
 ## Baseline

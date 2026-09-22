@@ -1,11 +1,11 @@
 """
 FIAM 2026 - Crowding-state / confidence gates and volatility scaling on the composite book (crowding_gate.py).
 
-Research origin: docs/NEW.md sec 3.9 items 5-6 and sec 3.3 item 7 (When Alpha Breaks / Confidence Gate Theorem: a strategy-level gate that decides whether to trade at all; dispersion and VIX as scaling inputs; Moreira-Muir volatility
-management; the FIAM brief allows varying gross if the switch is predictable in advance) and docs/REDDIT_RESEARCH.md sec 2.6 (crowding is a VARIANCE shift, not an IC decay, so an IC-based gate will not fire before the unwinds; gates calibrated
+Research origin: docs/RESEARCH.md Part I sec 3.9 items 5-6 and sec 3.3 item 7 (When Alpha Breaks / Confidence Gate Theorem: a strategy-level gate that decides whether to trade at all; dispersion and VIX as scaling inputs; Moreira-Muir volatility
+management; the FIAM brief allows varying gross if the switch is predictable in advance) and docs/RESEARCH.md Part II sec 2.6 (crowding is a VARIANCE shift, not an IC decay, so an IC-based gate will not fire before the unwinds; gates calibrated
 on one validation slice inherit that slice's regime - r/algotrading 1sjicuf).
 
-HYPOTHESIS. (a) A gate on the composite's trailing-12m IC (NEW.md) will NOT fire before the Jun-Jul-2025 / Jan-2026 / Jul-2026 unwinds, because crowding leaves IC intact while impairing P&L. (b) Gates on crowding-state variables that
+HYPOTHESIS. (a) A gate on the composite's trailing-12m IC (docs/RESEARCH.md Part I) will NOT fire before the Jun-Jul-2025 / Jan-2026 / Jul-2026 unwinds, because crowding leaves IC intact while impairing P&L. (b) Gates on crowding-state variables that
 capture variance (recent size of factor-sleeve moves, the composite's own last-month D10-D1, S&P realised volatility) might. (c) A cutoff tuned on a 2017-2020 validation slice will not transfer. All thresholds are fixed in advance
 (z > 1 vs expanding history from 2015, gross x0.5 when a gate fires) and are NOT tuned, except the deliberately tuned G1cal arm. Success = lower drawdown / better unwind-window P&L at little IR cost; with 3-4 unwind months any positive result is
 weak evidence and is reported as such.
@@ -833,7 +833,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -852,7 +852,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -948,7 +948,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

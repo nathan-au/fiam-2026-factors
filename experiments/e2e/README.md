@@ -2,7 +2,7 @@
 
 Implementation: `e2e.py` (run with `.venv/bin/python experiments/e2e/e2e.py`). Operationalizes
 *AlphaZeroBeta: Deep Reinforcement Learning for Market-Neutral Portfolios*
-(arXiv 2607.18001, Jul 2026 — `docs/PAPERS.md` §2).
+(arXiv 2607.18001, Jul 2026 — `docs/RESEARCH.md` Part III §2).
 
 ## Fidelity to the source paper
 

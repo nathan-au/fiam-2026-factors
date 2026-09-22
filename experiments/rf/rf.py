@@ -30,7 +30,7 @@ Random Forest is fit on each arm independently, walk-forward, validation
 -tuned, same beta-neutral LP construction as every other script in this
 batch. This project's own xgb.py already underperformed the OLS floor
 (experiments/xgb/README.md sec 4); Random Forest was the cheapest next thing to try per
-docs/PAPERS.md's ranking (#1 by relevance).
+docs/RESEARCH.md's Part III ranking (#1 by relevance).
 
 Self-contained: data loading, rank transform, walk-forward schedule,
 investability screen, beta-neutral LP, and evaluation code are ported from
@@ -503,7 +503,7 @@ if __name__ == "__main__":
     with open(OUTPUT / "rf_results.json", "w") as f:
         json.dump(all_results, f, indent=2)
 
-    print(f"\n{'='*70}\nCross-arm comparison (per docs/PAPERS.md's Quant Convergence finding)\n{'='*70}")
+    print(f"\n{'='*70}\nCross-arm comparison (per docs/RESEARCH.md's Part III Quant Convergence finding)\n{'='*70}")
     for arm_name in ("graham", "modern", "combined"):
         b = all_results[arm_name]["beta_neutral"]
         print(

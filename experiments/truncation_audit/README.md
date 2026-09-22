@@ -9,7 +9,7 @@ Verify that no return-derived characteristic in the panel uses information from 
 (i) Every return characteristic (`ret_1_0`, `ret_3_1`, `ret_6_1`, `ret_9_1`, `ret_12_1`, `ret_12_7`, `ret_60_12`) can be rebuilt exactly from the monthly `ret` column using rows <= t only. (ii) A deliberately leaky feature is flagged by the same test. (iii) `ret_exc_lead1m(t) == ret_exc(t+1)`. (iv) No characteristic has |IC| > 0.10 in the tradeable universe. Any failure is a finding.
 
 ## Research origin
-docs/REDDIT_RESEARCH.md sec 2.9 (AQuA, arXiv 2608.12841 and r/LocalLLaMA 1vxajio: an LLM wrote a feature dividing "volume so far" by the day's FINAL total, a second LLM approved it as causal, and only a clean re-split caught it; the fix is to make leakage inexpressible and to test that a feature built from rows <= t equals the full-panel value). The "typed causal-operator registry" half of the idea is for AI-written feature-mining loops and is **not implemented** (no such loop is in scope; NOT_ACTIONABLE); instead every new feature builder in this round (`feat_*`) carries its own truncation test.
+docs/RESEARCH.md Part II sec 2.9 (AQuA, arXiv 2608.12841 and r/LocalLLaMA 1vxajio: an LLM wrote a feature dividing "volume so far" by the day's FINAL total, a second LLM approved it as causal, and only a clean re-split caught it; the fix is to make leakage inexpressible and to test that a feature built from rows <= t equals the full-panel value). The "typed causal-operator registry" half of the idea is for AI-written feature-mining loops and is **not implemented** (no such loop is in scope; NOT_ACTIONABLE); instead every new feature builder in this round (`feat_*`) carries its own truncation test.
 
 ## Implementation
 `truncation_test(builder, panel, dates)` (embedded): for 3 random test dates t it rebuilds every feature from `panel[eom <= t]` and requires the value at t to equal the full-panel value for every stock. `ret_char_builder` rebuilds each characteristic as the compounded monthly return over the lags each name implies (lags 0, 1-2, 1-5, 1-8, 1-11, 7-11, 12-59). `leaky_builder` is the negative control (next month's return as a "feature"). The label check compares `ret_exc_lead1m` with the calendar-shifted `ret_exc`. The IC scan computes, for all 147 characteristics, the mean monthly rank IC with next-month excess return over all stocks and over the >= $2B universe.
@@ -70,7 +70,7 @@ All seven return characteristics are exactly reproducible from returns up to the
 
 ## Limitations
 - Only the 7 return-derived characteristics can be rebuilt from the panel; the remaining 140 need raw daily or accounting data that is not in the panel, so they are screened (IC scan) rather than proven point-in-time. A large IC is only a necessary-not-sufficient leakage flag; the accounting characteristics' report-date lags are those of the data provider and cannot be verified here.
-- The test covers time leakage, not survivorship or universe-membership leakage (docs/NEW.md sec 3.9 item 9).
+- The test covers time leakage, not survivorship or universe-membership leakage (docs/RESEARCH.md Part I sec 3.9 item 9).
 - 3 random dates: an exhaustive test over all dates was not run.
 
 ## Follow-up

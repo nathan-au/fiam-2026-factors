@@ -1,13 +1,13 @@
 """
 FIAM 2026 - Composite-as-prior: let ML add only what survives validation (composite_prior.py).
 
-Research origin: docs/NEW.md sec 2 #2 and sec 3.5 ('the one thing that worked - the no-fit composite - should be the prior; use LightGBM init_score with <= 50 shallow trees, or a ridge pulled toward composite group weights'),
-docs/REDDIT_RESEARCH.md sec 2.12 (top-voted r/quant advice: 'encode your heuristic as a feature') and H2 (orthogonal-residual training: train ML on y - beta*composite and require zero rank correlation with the composite at prediction time,
+Research origin: docs/RESEARCH.md Part I sec 2 #2 and sec 3.5 ('the one thing that worked - the no-fit composite - should be the prior; use LightGBM init_score with <= 50 shallow trees, or a ridge pulled toward composite group weights'),
+docs/RESEARCH.md Part II sec 2.12 (top-voted r/quant advice: 'encode your heuristic as a feature') and H2 (orthogonal-residual training: train ML on y - beta*composite and require zero rank correlation with the composite at prediction time,
 so ML can only produce what the shared core does not).
 
 HYPOTHESIS. Every fitted model on these 18 factors lost to the no-fit composite (ET IC 0.016 vs 0.037). If the 18 factors hold ANY structure beyond the composite's linear-in-rank form, a model that starts from the composite and may
 only move away from it when validation IC says so should beat it; otherwise validation should choose 'no ML' and the arm collapses to the composite (which is a fine, informative outcome).
-PRE-REGISTERED KILL RULES (docs/NEW.md sec 2 #2; docs/REDDIT_RESEARCH.md H2): kill ML-on-top if the paired IC gain vs the composite is < +0.005; kill the orthogonal-residual idea if the residual IC (after removing the composite direction) is < 0.01.
+PRE-REGISTERED KILL RULES (docs/RESEARCH.md Part I sec 2 #2; docs/RESEARCH.md Part II H2): kill ML-on-top if the paired IC gain vs the composite is < +0.005; kill the orthogonal-residual idea if the residual IC (after removing the composite direction) is < 0.01.
 
 DESIGN. Frozen experiments/largecap harness (copied in below): universe, 18 factors, walk-forward folds (expanding train, 2-year validation, annual refit), LP `lc_t10`. Per fold: slope a of the month-demeaned winsorised return on the composite, floored at +0.005 so the prior can never flip sign (a first run without the floor was invalid: see README); arms
   lgbm_init       LightGBM, init_score = a*composite, 50 shallow trees max; candidates include 0 trees; chosen on validation rank IC (lgbm_init_forced50 = the 50-tree candidate regardless of validation)
@@ -835,7 +835,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -854,7 +854,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -950,7 +950,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

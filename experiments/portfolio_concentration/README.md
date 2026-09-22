@@ -9,7 +9,7 @@ Test whether raising the LP's per-name cap (0.5% / 1% / 1.5% / 2% / 3%, with and
 If the extremes carry the alpha (bucket returns steepest in the outer buckets), concentration raises IR; otherwise it only adds idiosyncratic risk. Pre-registered adoption: net IR >= the 1% control + 0.10, paired monthly net-return t >= 1, and >= 100 positions every month (FIAM position-count rule).
 
 ## Research origin
-docs/NEW.md sec 3.9 item 7 (Quantitativo LTR: 30 quantiles beat 10/20/40, i.e. the top ~3%; the Russell-1000 agent's edge is concentrated in its top 20; "only pursue it if the decile table shows the extremes carry the alpha").
+docs/RESEARCH.md Part I sec 3.9 item 7 (Quantitativo LTR: 30 quantiles beat 10/20/40, i.e. the top ~3%; the Russell-1000 agent's edge is concentrated in its top 20; "only pursue it if the decile table shows the extremes carry the alpha").
 
 ## Implementation
 `quantile_table` (mean next-month excess return by within-month composite bucket, 30 buckets, universe rows, equal month weight) and the frozen LP with `max_weight` in {0.005, 0.01, 0.015, 0.02, 0.03}, each with `turnover = 10%` (`t10_*`) and without (`free_*`). Note the LP requires 1/max_weight names per side, so 3% gives about 33 per side.
@@ -49,7 +49,7 @@ The spread top bucket minus bottom bucket is +0.76%/month, but the gradient is n
 | free_w030 | 0.030 | 0.866 | 0.752 | +0.319 | +2.02 | 18.7 | -41 | -0.254 | -0.130 | 71 | 69 | 0.150 | -0.257 | -1.092 | 0.211 | False |
 
 ## Interpretation
-Higher caps raise net IR (1.5%: 0.70, 2%: 0.72, 3%: 0.75 vs 0.54; paired t 1.8-2.1) but at a large cost in risk: max drawdown -23% / -32% / -33% vs -19% (and -41% for `free_w030`), 2025 return -12% to -21%, top-10 names' gross share 7.5-15% vs 5%, and the 3% cap gives only ~70-90 positions (violates the 100-position rule). Sub-1% caps (0.5%) lower IR (0.50) and drawdown (-15%). The rule is formally met for 1.5% and 2% (net IR +0.16 / +0.18, t 2.08 / 1.85, >= 100 positions), but (a) the 30-bucket table does not show the top extremes carrying the alpha, (b) 8 non-control variants were tested so a t of ~2 is unremarkable (Bonferroni-adjusted p about 0.3), (c) the improvement in IR comes with a worse worst-month and drawdown profile, i.e. it concentrates factor risk as NEW.md warned. **Status: IMPLEMENTED_BUT_INCONCLUSIVE: a modest, unconfirmed IR gain with materially higher drawdown; not adopted.**
+Higher caps raise net IR (1.5%: 0.70, 2%: 0.72, 3%: 0.75 vs 0.54; paired t 1.8-2.1) but at a large cost in risk: max drawdown -23% / -32% / -33% vs -19% (and -41% for `free_w030`), 2025 return -12% to -21%, top-10 names' gross share 7.5-15% vs 5%, and the 3% cap gives only ~70-90 positions (violates the 100-position rule). Sub-1% caps (0.5%) lower IR (0.50) and drawdown (-15%). The rule is formally met for 1.5% and 2% (net IR +0.16 / +0.18, t 2.08 / 1.85, >= 100 positions), but (a) the 30-bucket table does not show the top extremes carrying the alpha, (b) 8 non-control variants were tested so a t of ~2 is unremarkable (Bonferroni-adjusted p about 0.3), (c) the improvement in IR comes with a worse worst-month and drawdown profile, i.e. it concentrates factor risk as docs/RESEARCH.md Part I warned. **Status: IMPLEMENTED_BUT_INCONCLUSIVE: a modest, unconfirmed IR gain with materially higher drawdown; not adopted.**
 
 ## Limitations
 - Single path; the paired t of ~2 is one of many looks.

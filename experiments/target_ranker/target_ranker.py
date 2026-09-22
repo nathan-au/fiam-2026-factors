@@ -1,12 +1,12 @@
 """
 FIAM 2026 - Learning-to-rank objectives (XGBRanker / LightGBM lambdarank / rank-IC pairwise) on the large-cap harness (target_ranker.py).
 
-Research origin: docs/NEW.md sec 3.1f (Quantitativo LambdaMART on the Russell 3000, Sharpe 1.62; LambdaRankIC arXiv 2605.00501 optimises
+Research origin: docs/RESEARCH.md Part I sec 3.1f (Quantitativo LambdaMART on the Russell 3000, Sharpe 1.62; LambdaRankIC arXiv 2605.00501 optimises
 Rank IC directly with a custom XGBoost objective and is best under low SNR and heavy tails).
 
 HYPOTHESIS. Ranking losses over monthly query groups fit the cross-sectional ordering directly and ignore return magnitudes, so at
 IC ~ 0.03 (low SNR) they should beat squared-error regression of the raw return on universe rank IC.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 4): adopt only if paired monthly universe-IC t >= 2 vs the regression control on TWO
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 4): adopt only if paired monthly universe-IC t >= 2 vs the regression control on TWO
 model families, or IC >= 0.037 with t >= 2.
 
 DESIGN. Frozen experiments/largecap harness (copied in below). Families: `xgb` (control XGBRegressor with the same booster

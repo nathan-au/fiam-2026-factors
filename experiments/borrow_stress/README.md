@@ -9,7 +9,7 @@ Stress the composite book's assumed short-side costs: uniform borrow multipliers
 The composite's net IR (0.54 at the assumed 30 / 75 / 200 bp borrow tiers) survives a 2-5x borrow multiplier and a forced cover of a few percent of the short book, because its shorts are large caps (median $7B), i.e. the short leg is not where its edge (or fragility) lives; it should NOT survive if the expensive-borrow state coincides with the strongest short theses. No adopt rule: robustness study; a book whose net IR turns negative under a plausible stress is flagged.
 
 ## Research origin
-docs/REDDIT_RESEARCH.md sec 2.10 (r/algotrading 1w9yp8g, r/quant 1lpzdwr: borrow cost is adversely selected; stress at 2x/5x/10x; add locate-reject / forced-cover states; screen shorts by price and ADV).
+docs/RESEARCH.md Part II sec 2.10 (r/algotrading 1w9yp8g, r/quant 1lpzdwr: borrow cost is adversely selected; stress at 2x/5x/10x; add locate-reject / forced-cover states; screen shorts by price and ADV).
 
 ## Implementation
 The frozen composite LP book `lc_t10`; costs decomposed from the harness's own return file (`port_excess_ret`, `trade_cost`, `borrow_cost`; asserted to sum to the harness net return). (1) borrow x 1/2/5/10/20 on all shorts; (2) the shorts in the lowest-score quartile of the held shorts each month (strongest thesis) pay x 2/5/10; (3) LP re-solved with no shorts priced below $10 / $20 (`short_min_price`), with base and x5 borrow; (4) forced cover: each month 4% of the short *names* (random) are covered at a +15% / +30% adverse move on their position, 500 Monte-Carlo draws; (5) the Jan-2021 squeeze month reported explicitly.

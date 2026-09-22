@@ -1,16 +1,16 @@
 """
 FIAM 2026 - Size-/industry-demeaned and factor-residual training targets on the large-cap harness (target_neutral.py).
 
-Research origin: docs/NEW.md sec 3.1c (Howard, "Less is More?": target regularisation - removing the size-group median from
+Research origin: docs/RESEARCH.md Part I sec 3.1c (Howard, "Less is More?": target regularisation - removing the size-group median from
 the target - drives most of the gain of size-bucketed models) and sec 3.1d (Numerai Signals: score against a target neutral
-to country/sector/beta/momentum/size). docs/REDDIT_RESEARCH.md sec 2.5 (train on what the shared core does not already explain).
+to country/sector/beta/momentum/size). docs/RESEARCH.md Part II sec 2.5 (train on what the shared core does not already explain).
 
 HYPOTHESIS. Our fitted models learned ivol / lottery / size / sector structure (importance tables in experiments/et,
 rf_3, lgbm) that does not persist in the tradeable universe. Training on next-month return with the size-tercile median,
 the GICS-sector median, both, or a factor-residual (log size, betabab, ivol, 12-1 momentum, sector dummies) removed forces
 the model to look for cross-sectional information the LP does not already neutralise, and should raise the universe rank IC
 measured against the RAW return.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model
 families, or IC >= 0.037 with t >= 2.
 
 DESIGN. Frozen experiments/largecap harness (copied in below). Control = winsorised raw target. Size bucket = tercile of market

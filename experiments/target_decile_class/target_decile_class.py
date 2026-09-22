@@ -1,14 +1,14 @@
 """
 FIAM 2026 - Decile classification instead of return regression on the large-cap harness (target_decile_class.py).
 
-Research origin: docs/NEW.md sec 3.1b (Bai & Pukthuanthong, arXiv 2108.02283: matched models, classification value-weighted
+Research origin: docs/RESEARCH.md Part I sec 3.1b (Bai & Pukthuanthong, arXiv 2108.02283: matched models, classification value-weighted
 Sharpe 2.08 vs 1.39 for regression; Quantitativo "probabilistic momentum": score = probability-weighted expected decile, not argmax).
 
 HYPOTHESIS. Predicting which within-month decile of next-month excess return a stock falls in (10 classes) and ranking by the
 probability-weighted expected decile is more robust to return outliers than regressing the raw return, and gives a higher universe
 rank IC on the same 18 factors. Ablations: P(top decile) - P(bottom decile) as the score, and argmax class (which the source says
 should be worse).
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 4): adopt only if paired monthly universe-IC t >= 2 vs the regression control on TWO
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 4): adopt only if paired monthly universe-IC t >= 2 vs the regression control on TWO
 model families, or IC >= 0.037 with t >= 2.
 
 DESIGN. Frozen experiments/largecap harness (copied in below): same universe, 18 factors, walk-forward folds, validation-IC selection

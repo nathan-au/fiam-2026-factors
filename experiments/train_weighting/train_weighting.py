@@ -1,12 +1,12 @@
 """
 FIAM 2026 - Value-/size-weighted training loss and 'train on all stocks, weight by size' on the large-cap harness (train_weighting.py).
 
-Research origin: docs/NEW.md sec 3.2 (Gu-Kelly-Xiu weight the loss by market value because the smallest 20% of stocks are ~3% of cap; Numerai ships a liquidity / residual-vol sample-weight vector; 'our _trad arms RESTRICTED the universe;
+Research origin: docs/RESEARCH.md Part I sec 3.2 (Gu-Kelly-Xiu weight the loss by market value because the smallest 20% of stocks are ~3% of cap; Numerai ships a liquidity / residual-vol sample-weight vector; 'our _trad arms RESTRICTED the universe;
 WEIGHTING (e.g. sqrt(mcap) or dollar-volume weights) is a softer variant not yet tested. Own: try w = min(mcap, cap)^0.5').
 
 HYPOTHESIS. Restricting training to >= $2B stocks throws away ~70% of the rows and did not help (largecap: et vs et_allrows both ~0). Training on ALL stocks with weights that emphasise the tradeable end (sqrt(market cap), market cap, sqrt(dollar volume))
 should keep the information in the small caps while pointing the loss at the names we can hold, and so raise the universe rank IC above the universe-only unweighted control.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model families, or IC >= 0.037 with t >= 2.
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model families, or IC >= 0.037 with t >= 2.
 
 DESIGN. Frozen experiments/largecap harness (copied in below): universe, 18 factors, walk-forward folds, validation-IC selection (always on universe rows against the raw return), LP portfolios. Families: Extra-Trees, forest-style LightGBM. Arms: control; w_* = universe rows
 with sample weights; all_unweighted (the largecap `et_allrows` diagnostic); all_w_* = all stocks with weights. Weights: sqrt(min(mcap, $50B)), min(mcap, $50B), sqrt(dollar volume), normalised to mean 1 within the training set.
@@ -903,7 +903,7 @@ def score_arm(ctx, pred_vec, arm_key, variants, out_dir, extra_ic=None):
 # ---------------------------------------------------------------------------
 # Arm machinery for training-side ideas: universe / weights / windows / era-stacks
 # ---------------------------------------------------------------------------
-MCAP_CAP = 50_000.0  # $M cap for size weights (docs/NEW.md sec 3.2: w = min(mcap, cap)^0.5)
+MCAP_CAP = 50_000.0  # $M cap for size weights (docs/RESEARCH.md Part I sec 3.2: w = min(mcap, cap)^0.5)
 
 
 def val_start_month_index(fold):
@@ -1036,7 +1036,7 @@ def main():
 
 
 # Arms. `control` = the frozen harness's `et` arm (universe rows, unweighted). Weighted arms train on universe rows with sample weights; `all_*` arms
-# train on ALL stocks (weighted) and still select/score on universe rows -- the soft alternative to restricting the training universe (docs/NEW.md sec 3.2).
+# train on ALL stocks (weighted) and still select/score on universe rows -- the soft alternative to restricting the training universe (docs/RESEARCH.md Part I sec 3.2).
 ARMS = {
     "control": {},
     "w_sqrt_mcap": {"weight": "sqrt_mcap"},

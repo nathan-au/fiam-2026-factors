@@ -270,7 +270,7 @@ hasn't been disentangled here.
 This script's job was to test whether nonlinear structure in the 147
 characteristics beats the linear floor — for direct next-month return
 prediction, under this grid and this construction, it does not. The next
-candidates worth trying are the ones in `docs/PAPERS.md` that target the
+candidates worth trying are the ones in `docs/RESEARCH.md` Part III that target the
 documented weaknesses more directly: Kozak-Nagel-Santosh shrinkage or
 Freyberger-Neuhierl-Weber selection for the prediction step (both aimed at
 the multicollinearity/redundancy problem neither OLS nor XGBoost's

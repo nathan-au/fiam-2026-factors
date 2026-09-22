@@ -3,7 +3,7 @@ FIAM 2026 - Gated score-formation model (operationalizes "RankGLU: Residual
 Gated Score Formation for Cross-Sectional Stock Prediction", arXiv
 2606.08930, Jun 2026).
 
-The paper's idea (per docs/PAPERS.md §1): a prediction-head architecture with
+The paper's idea (per docs/RESEARCH.md Part III §1): a prediction-head architecture with
 a direct linear scoring pathway PLUS a bounded, gated nonlinear branch,
 designed to capture some nonlinear interaction without overfitting unstable
 return magnitudes -- validated in the paper only on Chinese equity indices

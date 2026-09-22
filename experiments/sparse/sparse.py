@@ -3,7 +3,7 @@ FIAM 2026 - Sparse-in-expanded-space prediction model (operationalizes "The
 Virtue of Sparsity in Complexity", arXiv 2604.17166, Apr 2026).
 
 The paper's actual method, per its verbatim abstract (read directly -- see
-docs/PAPERS.md sec 1): NONLINEAR FEATURE EXPANSIONS combined with BASIS
+docs/RESEARCH.md Part III sec 1): NONLINEAR FEATURE EXPANSIONS combined with BASIS
 PURSUIT, benchmarked against "ridgeless" (near-zero-regularization)
 high-dimensional ridge -- their claim is that sparsity EMERGES FROM
 expanding the feature space first, not from penalizing the original small

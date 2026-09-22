@@ -6,10 +6,10 @@ Implementation: `portfolio_buffer.py` (run: `.venv/bin/python experiments/portfo
 Test whether spending the turnover budget through an entry/hold rank buffer ("buy 10 / hold 50"), an L1 trade penalty, partial rebalancing, or an EMA-smoothed / Garleanu-Pedersen-lite aim signal raises the composite's net IR at equal or lower turnover, compared with the hard 10% one-way turnover cap used today.
 
 ## Hypothesis
-A hard cap keeps stale names by LP feasibility rather than by design; spending the same turnover on the names whose rank change is most informative should raise net IR. Pre-registered rule (docs/REDDIT_RESEARCH.md sec 2.1): adopt a variant if net IR >= control + 0.10 at equal or lower turnover **and** the paired monthly net-return difference vs the control has t >= 1.
+A hard cap keeps stale names by LP feasibility rather than by design; spending the same turnover on the names whose rank change is most informative should raise net IR. Pre-registered rule (docs/RESEARCH.md Part II sec 2.1): adopt a variant if net IR >= control + 0.10 at equal or lower turnover **and** the paired monthly net-return difference vs the control has t >= 1.
 
 ## Research origin
-docs/REDDIT_RESEARCH.md sec 2.1 (Blitz et al., FAJ 2023: on MSCI World constituents "buy 10 / hold 50" keeps net alpha above 6% while "buy 20 / hold 20" loses two-thirds to costs; r/quant threads 1rh2h0p / 1693f4p on no-trade bands and rank buffering; Garleanu-Pedersen 2013 "aim in front of the target") and docs/NEW.md sec 3.9 items 3-4 (cost-aware objective, signal smoothing).
+docs/RESEARCH.md Part II sec 2.1 (Blitz et al., FAJ 2023: on MSCI World constituents "buy 10 / hold 50" keeps net alpha above 6% while "buy 20 / hold 20" loses two-thirds to costs; r/quant threads 1rh2h0p / 1693f4p on no-trade bands and rank buffering; Garleanu-Pedersen 2013 "aim in front of the target") and docs/RESEARCH.md Part I sec 3.9 items 3-4 (cost-aware objective, signal smoothing).
 
 ## Implementation
 `lp2.py`-style redefinition of the LP with cfg keys `enter`/`hold` (a name may be long only if its score percentile is in the top `enter`, or it is already held long and still in the top `hold`; mirror for shorts; if the LP is infeasible the buffer is widened stepwise and this is logged as `buffer_months_widened`), `l1_lambda` (objective term lambda * sum|w - w_prev_drifted| replacing / complementing the hard cap), `trade_frac` (w = f * w_LP + (1 - f) * w_prev, gross renormalised to 2; leaves a small formation-beta residual, reported), and `ema_scores` (per-stock EMA of the composite over months with half-life 1/2/3 months, warm-started from 2015). Variants are listed in `V` inside `main()`. The `*_w2` variants use a 2% per-name cap because at the 1% cap a 10% entry zone (about 120 names) is barely feasible (the buffer had to widen in 37-62 of 68 months for the 10/x variants).
@@ -67,7 +67,7 @@ The only row that meets the pre-registered rule is `ctrl_t10_w2` (+0.18 net IR, 
 
 ## Limitations
 - One 68-month path and IR s.e. ~0.46; a +0.1 IR threshold is below the noise floor, so this experiment can only reject large effects.
-- Blitz's signals turn over ~1,800% a year; the composite turns over far less, so the buffer's cost saving is small by construction (docs/REDDIT_RESEARCH.md sec 2.1 anticipated this).
+- Blitz's signals turn over ~1,800% a year; the composite turns over far less, so the buffer's cost saving is small by construction (docs/RESEARCH.md Part II sec 2.1 anticipated this).
 - The Garleanu-Pedersen-lite arm uses EMA of the *same* composite as its aim, not separate 1/3/6-month horizon models, so it is a proxy.
 - Costs are assumed tiers, not measured.
 

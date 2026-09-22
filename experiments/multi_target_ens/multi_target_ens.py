@@ -1,12 +1,12 @@
 """
 FIAM 2026 - Multi-target, multi-horizon ensemble with a ridge meta-model (multi_target_ens.py).
 
-Research origin: docs/NEW.md sec 2 #9 and sec 3.1e (Numerai LightGBM ensemble: one model per target - 20d and 60d horizons, different neutralisations - 3 seeds each, ridge meta-model on validation eras, then partial feature neutralisation; feature
+Research origin: docs/RESEARCH.md Part I sec 2 #9 and sec 3.1e (Numerai LightGBM ensemble: one model per target - 20d and 60d horizons, different neutralisations - 3 seeds each, ridge meta-model on validation eras, then partial feature neutralisation; feature
 exposure 0.25 -> 0.17 and max drawdown halved; longer-horizon (3-6 month) targets are the standard route to lower turnover).
 
 HYPOTHESIS. Averaging models trained on different targets (1-month raw, Gaussian-rank, sector-demeaned, 3-month, 6-month excess return) diversifies target-specific noise, so a ridge meta-model over their validation predictions (and its partially
 feature-neutralised version) should beat the single winsorised 1-month target on universe rank IC, and the longer-horizon members should give a slower, lower-turnover signal.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 2 #9): no paired-IC gain vs the single-target control (paired monthly t < 1) -> kill.
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 2 #9): no paired-IC gain vs the single-target control (paired monthly t < 1) -> kill.
 
 DESIGN. Frozen experiments/largecap harness (copied in below): universe, 18 factors, walk-forward folds, LP `lc_t10`. Extra-Trees (largecap grid) per target, the chosen configuration averaged over 3 seeds; candidate selection on validation rank IC against the RAW
 1-month return for every target. Multi-month targets are compounded excess returns over t+1..t+h and are LEAKAGE-GUARDED: a training row is used only if its whole h-month forward window ends before the validation window starts. Ensembles: equal-weight of

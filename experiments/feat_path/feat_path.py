@@ -1,19 +1,19 @@
 """
 FIAM 2026 - Price-path-shape features from monthly returns, tested additively on the large-cap composite (feat_path.py).
 
-Research origin: docs/NEW.md sec 3.3 items 1-2 (Da, Gurun & Warachka "Frog in the Pan": momentum is 5.94% for continuous-information vs
--2.07% for discrete-information stocks; Quantitativo slope/smoothness replication: 7.9% alpha, Sharpe 1.12) and docs/NEW.md Round B.
+Research origin: docs/RESEARCH.md Part I sec 3.3 items 1-2 (Da, Gurun & Warachka "Frog in the Pan": momentum is 5.94% for continuous-information vs
+-2.07% for discrete-information stocks; Quantitativo slope/smoothness replication: 7.9% alpha, Sharpe 1.12) and docs/RESEARCH.md Part I Round B.
 
 HYPOTHESIS. The 147 characteristics are levels; the SHAPE of the last 11 monthly returns (continuity, smoothness, drawdown) carries retail-behaviour
 information that survives in large caps. Adding each shape block as an 8th equal-weight group to the frozen composite should raise the universe
 rank IC. Blocks (signs fixed in advance): mom_x_continuity(+), trend_strength(+), up_minus_down_frac(+), path_maxdd(+), and the control
 mom_12_1_plain(+) that answers whether the shape adds anything beyond momentum itself (the composite has no momentum).
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 2 #3): kill if the paired IC gain has t < 1, or the gain is confined to the smallest size tercile. PASS requires
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 2 #3): kill if the paired IC gain has t < 1, or the gain is confined to the smallest size tercile. PASS requires
 paired t >= 2, Bonferroni-adjusted permutation p <= 0.05 (200 within-(month, sector) shuffles), and not small-tercile-only.
 
 DESIGN. Frozen experiments/largecap harness (copied in below); universe = price >= $5, mcap >= $2B, $10M dollar volume, both betas. No model is fitted: the
 composite is the unchanged 7-group equal-weight rule, the block is one more group. Diagnostics: block IC alone; paired monthly IC gain;
-residual IC after orthogonalising the block to the composite (shared-core check, docs/REDDIT_RESEARCH.md sec 2.5); gain by size tercile; LP portfolio
+residual IC after orthogonalising the block to the composite (shared-core check, docs/RESEARCH.md Part II sec 2.5); gain by size tercile; LP portfolio
 `lc_t10`. A truncation-invariance test (rebuild features from rows <= t only) is run on the builder.
 
 Run:  .venv/bin/python experiments/feat_path/feat_path.py [--nperm 200] [--smoke]
@@ -834,7 +834,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -853,7 +853,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -949,7 +949,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

@@ -9,7 +9,7 @@ Test whether predicting the within-month decile of next-month excess return (10 
 Classification is robust to return outliers and optimises what a long/short book needs (ordering), so its universe rank IC exceeds the regression control in at least two families. Ablations: P(top decile) - P(bottom decile) as the score, and the hard argmax class (which the source says should be worse).
 
 ## Research origin
-docs/NEW.md sec 3.1b (Bai & Pukthuanthong, arXiv 2108.02283: matched models, classification value-weighted Sharpe 2.08 vs 1.39; Quantitativo "probabilistic momentum": expected value over class probabilities, not argmax).
+docs/RESEARCH.md Part I sec 3.1b (Bai & Pukthuanthong, arXiv 2108.02283: matched models, classification value-weighted Sharpe 2.08 vs 1.39; Quantitativo "probabilistic momentum": expected value over class probabilities, not argmax).
 
 ## Implementation
 Labels: within-month decile 0..9 on universe rows. `make_fit_et_clf` (ExtraTreesClassifier, same grid) and `make_fit_lgbm_clf` (multiclass LGBMClassifier, same settings, 300 rounds) return `predict_proba`, converted by `_score_from_proba` to `expdec` (P @ class index), `top_minus_bottom` or `argmax` (+ tiny tie-break). Candidate selection: validation rank IC of the resulting score against the raw return.
@@ -22,7 +22,7 @@ All four target experiments use the same frozen harness (a verbatim copy of the 
 - **Walk-forward**: for test year Y = 2021..2026, train on target months before Jan Y-2, validate on Y-2..Y-1, refit annually; candidate hyper-parameters are chosen on **validation rank IC against the raw next-month excess return** (for every arm, whatever the fit target), never on test data.
 - **Models**: Extra-Trees (largecap grid, 300 trees) and forest-style LightGBM (num_leaves 7, min_child_samples {500, 2000}, extra_trees, lambda 100, checkpoints at 100/200/300 trees). Seed 42 unless stated.
 - **Scoring**: universe rank IC of the OOS prediction vs the raw next-month return (68 months, 2021-01..2026-08), decile spread, and the frozen LP portfolios `lc_t10` (10% one-way turnover cap, headline) and `lc_free`, gross and net of the assumed tiered costs.
-- **Pre-registered rule** (docs/NEW.md sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
+- **Pre-registered rule** (docs/RESEARCH.md Part I sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
 - **Sanity check that the harness is faithful**: the control arm `et__control` reproduces `experiments/largecap` `et` exactly: IC 0.0164 (published 0.016), lc_t10 gross IR -0.22 (published -0.22).
 
 ## Baseline

@@ -1,7 +1,7 @@
 # Random Forest — 3-Arm Feature Curation (Methodology and Results)
 
 Implementation: `rf.py` (run with `.venv/bin/python experiments/rf/rf.py`). Operationalizes
-*Quant Convergence* (arXiv 2606.24575, Jun 2026 — `docs/PAPERS.md` §1).
+*Quant Convergence* (arXiv 2606.24575, Jun 2026 — `docs/RESEARCH.md` Part III §1).
 
 ## Fidelity to the source paper
 

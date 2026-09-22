@@ -9,7 +9,7 @@ Test whether ranking losses over monthly query groups (XGBRanker `rank:ndcg` / `
 At IC ~0.03 (low signal-to-noise), fitting the cross-sectional ordering directly and ignoring return magnitudes generalises better than regression of the raw return.
 
 ## Research origin
-docs/NEW.md sec 3.1f (Quantitativo LambdaMART on the Russell 3000, Sharpe 1.62; LambdaRankIC, arXiv 2605.00501: a custom XGBoost objective optimising Rank IC, best under low SNR and heavy tails).
+docs/RESEARCH.md Part I sec 3.1f (Quantitativo LambdaMART on the Russell 3000, Sharpe 1.62; LambdaRankIC, arXiv 2605.00501: a custom XGBoost objective optimising Rank IC, best under low SNR and heavy tails).
 
 ## Implementation
 `make_fit_xgb_rank(objective)` (xgboost.XGBRanker, monthly query groups, decile labels 0..9, linear NDCG gain), `make_fit_lgbm_lambdarank` (LGBMRanker), and `make_fit_xgb_rankic`, **my re-implementation** of a rank-IC-weighted pairwise objective as a custom XGBoost objective (only the LambdaRankIC abstract was read, so this tests the idea, not the paper's exact gradients): for a pair (i, j) with target rank r_i > r_j the change in Spearman IC from putting i above j is proportional to |r_i - r_j| * |rank(p_i) - rank(p_j)|, and the lambda is that weight times the logistic mis-order probability; 12 random partners per row per round. The xgb family's regression control (`fit_xgb_reg`) uses the same booster settings with squared error.
@@ -22,7 +22,7 @@ All four target experiments use the same frozen harness (a verbatim copy of the 
 - **Walk-forward**: for test year Y = 2021..2026, train on target months before Jan Y-2, validate on Y-2..Y-1, refit annually; candidate hyper-parameters are chosen on **validation rank IC against the raw next-month excess return** (for every arm, whatever the fit target), never on test data.
 - **Models**: Extra-Trees (largecap grid, 300 trees) and forest-style LightGBM (num_leaves 7, min_child_samples {500, 2000}, extra_trees, lambda 100, checkpoints at 100/200/300 trees). Seed 42 unless stated.
 - **Scoring**: universe rank IC of the OOS prediction vs the raw next-month return (68 months, 2021-01..2026-08), decile spread, and the frozen LP portfolios `lc_t10` (10% one-way turnover cap, headline) and `lc_free`, gross and net of the assumed tiered costs.
-- **Pre-registered rule** (docs/NEW.md sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
+- **Pre-registered rule** (docs/RESEARCH.md Part I sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
 - **Sanity check that the harness is faithful**: the control arm `et__control` reproduces `experiments/largecap` `et` exactly: IC 0.0164 (published 0.016), lc_t10 gross IR -0.22 (published -0.22).
 
 Families here are `xgb` (control: XGBRegressor, depth {2, 4}, 400 rounds at lr 0.05 with checkpoints 100/200/400, subsample 0.5, colsample 0.5, lambda 100) and `lgbm` (control: forest-style LGBMRegressor).

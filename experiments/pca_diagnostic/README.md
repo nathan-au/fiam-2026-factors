@@ -3,17 +3,17 @@
 Implementation: `pca_diagnostic.py` (run with
 `.venv/bin/python experiments/pca_diagnostic/pca_diagnostic.py`). Operationalizes *Principal component
 error in high-dimensional factor models* (Bernstein, Goldberg, Gunther,
-Kercheval, Lan, Lin & Yao, arXiv 2609.20550, Sep 2026 — `docs/PAPERS.md`
+Kercheval, Lan, Lin & Yao, arXiv 2609.20550, Sep 2026 — `docs/RESEARCH.md` Part III
 §3).
 
 **This is not a return-prediction or portfolio-construction script**, unlike
 the other 7 in this batch (`rf.py`, `sparse.py`, `joint.py`, `e2e.py`,
-`btq.py`, `rankglu.py`, `poly.py`). Per `docs/PAPERS.md`, the source paper
+`btq.py`, `rankglu.py`, `poly.py`). Per `docs/RESEARCH.md` Part III, the source paper
 itself is a diagnostic tool, not a strategy — it decomposes PCA-based
 factor-estimation error into an "out-of-subspace" component (how far an
 estimated principal subspace is from the true one) and an "in-subspace"
 component (finite-sample noise). It only matters if a PCA/shrinkage-based
-prediction model (e.g. Kozak-Nagel-Santosh, `docs/PAPERS.md` §1, still
+prediction model (e.g. Kozak-Nagel-Santosh, `docs/RESEARCH.md` Part III §1, still
 unbuilt) is pursued — this script answers the prerequisite question: **are
 the principal components of this 147-characteristic panel stable enough to
 trust a shrinkage prior built on them?**
@@ -98,5 +98,5 @@ capture materially more than 50%.
    untested, and could differ if instability is concentrated in a specific
    sub-period (e.g. 2022's volatility regime) rather than spread evenly.
 3. **This diagnostic was not used to actually build a shrinkage model** —
-   it answers the prerequisite question `docs/PAPERS.md` flagged, but the
+   it answers the prerequisite question `docs/RESEARCH.md` Part III flagged, but the
    Kozak-Nagel-Santosh model itself remains unbuilt.

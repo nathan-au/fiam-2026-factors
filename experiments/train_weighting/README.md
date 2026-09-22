@@ -9,7 +9,7 @@ Test whether weighting the training loss toward the tradeable end (sqrt of marke
 Restricting training to >= $2B stocks throws away ~70% of the rows and did not help (`experiments/largecap`: `et` vs `et_allrows` both about zero). Training on all stocks with weights that emphasise large names keeps the small-cap information and points the loss at the names the LP can hold, so universe IC rises over the universe-only unweighted control in at least two families.
 
 ## Research origin
-docs/NEW.md sec 3.2 (Gu-Kelly-Xiu weight the loss by market value; Numerai ships a liquidity/residual-vol sample-weight vector; "weighting is a softer variant not yet tested. Own: try w = min(mcap, cap)^0.5").
+docs/RESEARCH.md Part I sec 3.2 (Gu-Kelly-Xiu weight the loss by market value; Numerai ships a liquidity/residual-vol sample-weight vector; "weighting is a softer variant not yet tested. Own: try w = min(mcap, cap)^0.5").
 
 ## Implementation
 `main_train.py`-derived driver (`make_weights`, `run_wf`): `weight` in {`sqrt_mcap` = sqrt(min(mcap, $50B)), `mcap` = min(mcap, $50B), `sqrt_dolvol`}, normalised to mean 1 in each training set; `train: all` uses every stock-month with a return as training rows while candidate selection and scoring stay on universe rows against the raw return. Weights enter `ExtraTreesRegressor.fit(sample_weight=)` and `LGBMRegressor.fit(sample_weight=)`.
@@ -22,7 +22,7 @@ All four target experiments use the same frozen harness (a verbatim copy of the 
 - **Walk-forward**: for test year Y = 2021..2026, train on target months before Jan Y-2, validate on Y-2..Y-1, refit annually; candidate hyper-parameters are chosen on **validation rank IC against the raw next-month excess return** (for every arm, whatever the fit target), never on test data.
 - **Models**: Extra-Trees (largecap grid, 300 trees) and forest-style LightGBM (num_leaves 7, min_child_samples {500, 2000}, extra_trees, lambda 100, checkpoints at 100/200/300 trees). Seed 42 unless stated.
 - **Scoring**: universe rank IC of the OOS prediction vs the raw next-month return (68 months, 2021-01..2026-08), decile spread, and the frozen LP portfolios `lc_t10` (10% one-way turnover cap, headline) and `lc_free`, gross and net of the assumed tiered costs.
-- **Pre-registered rule** (docs/NEW.md sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
+- **Pre-registered rule** (docs/RESEARCH.md Part I sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
 - **Sanity check that the harness is faithful**: the control arm `et__control` reproduces `experiments/largecap` `et` exactly: IC 0.0164 (published 0.016), lc_t10 gross IR -0.22 (published -0.22).
 
 Arms: `control` (universe rows, unweighted), `w_*` (universe rows, weighted), `all_unweighted` (= the largecap `et_allrows` diagnostic; IC 0.0197 here vs 0.020 published), `all_w_sqrt_mcap`, `all_w_mcap`. The hyper-parameter grids are unchanged, which matters for the all-stock arms (`min_samples_leaf` 100-1000 is proportionally smaller on 400k rows).

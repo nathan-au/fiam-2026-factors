@@ -3,7 +3,7 @@
 Implementation: `poly.py` (run with `.venv/bin/python experiments/poly/poly.py`).
 Loosely inspired by *AlphaPortfolio: Goal-Oriented Investment Management
 Through Deep Reinforcement Learning* (NBER WP 35195, May 2026, Cong-Tang-Wang
-— `docs/PAPERS.md` §2).
+— `docs/RESEARCH.md` Part III §2).
 
 ## ⚠ A citation-accuracy error was caught and corrected during review
 
@@ -35,7 +35,7 @@ Interpretable AI") — the PDF's own acknowledgments section confirms NBER WP
 35195 only "includes partial results" from that earlier paper, under a
 different title. Citing that older paper's architecture as if it described
 this 2026 paper directly contradicted this project's own explicit
-2026-only filter (`docs/PAPERS.md`'s stated scope).
+2026-only filter (`docs/RESEARCH.md`'s Part III stated scope).
 
 **What `poly.py` implements now, in two separate parts:**
 

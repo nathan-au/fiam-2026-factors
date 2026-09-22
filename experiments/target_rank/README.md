@@ -9,7 +9,7 @@ Test whether training on a within-month rank of next-month excess return (instea
 Cross-sectional rank targets remove the influence of extreme returns, so the fitted model generalises better and its universe rank IC rises above the raw-target control in at least two model families. Mechanism: the raw target's variance is dominated by a few extreme names whose behaviour does not persist (docs/NEGATIVE_RESULT.md).
 
 ## Research origin
-docs/NEW.md sec 3.1a and shortlist #1 (Cakici & Zaremba, *Getting the Target Right in Return Prediction*: rank targets "roughly doubled returns and Sharpe in large-cap universes"; the repo rank-transforms features but not the target). Reddit support is thin (docs/REDDIT_RESEARCH.md sec 5 item 10: r/quant 1c6t9b0 is the only on-topic thread).
+docs/RESEARCH.md Part I sec 3.1a and shortlist #1 (Cakici & Zaremba, *Getting the Target Right in Return Prediction*: rank targets "roughly doubled returns and Sharpe in large-cap universes"; the repo rank-transforms features but not the target). Reddit support is thin (docs/RESEARCH.md Part II sec 5 item 10: r/quant 1c6t9b0 is the only on-topic thread).
 
 ## Implementation
 `build_targets` computes, on universe rows and within each month, (a) the uniform rank mapped to [-1, 1] and (b) the Gaussianised rank `norm.ppf((rank - 0.5)/n)`. `run_wf` is the frozen walk-forward with two changes: the fit target is the transformed target (not winsorised, ranks have no outliers) and validation-IC candidate selection is always against the raw return. The control fits the harness's winsorised raw return.
@@ -22,7 +22,7 @@ All four target experiments use the same frozen harness (a verbatim copy of the 
 - **Walk-forward**: for test year Y = 2021..2026, train on target months before Jan Y-2, validate on Y-2..Y-1, refit annually; candidate hyper-parameters are chosen on **validation rank IC against the raw next-month excess return** (for every arm, whatever the fit target), never on test data.
 - **Models**: Extra-Trees (largecap grid, 300 trees) and forest-style LightGBM (num_leaves 7, min_child_samples {500, 2000}, extra_trees, lambda 100, checkpoints at 100/200/300 trees). Seed 42 unless stated.
 - **Scoring**: universe rank IC of the OOS prediction vs the raw next-month return (68 months, 2021-01..2026-08), decile spread, and the frozen LP portfolios `lc_t10` (10% one-way turnover cap, headline) and `lc_free`, gross and net of the assumed tiered costs.
-- **Pre-registered rule** (docs/NEW.md sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
+- **Pre-registered rule** (docs/RESEARCH.md Part I sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
 - **Sanity check that the harness is faithful**: the control arm `et__control` reproduces `experiments/largecap` `et` exactly: IC 0.0164 (published 0.016), lc_t10 gross IR -0.22 (published -0.22).
 
 Arms: `control` (winsorised raw target), `rank_uniform`, `rank_gauss`, for Extra-Trees and LightGBM. Seeds 43 and 44 were added for `control` and `rank_uniform` because the seed-42 result was ambiguous.

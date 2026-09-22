@@ -9,7 +9,7 @@ Test whether training on next-month return with the size-tercile median, the GIC
 Fitted models learned size / ivol / sector / momentum structure that does not persist in the tradeable universe. Removing that structure from the target forces the model to look for other cross-sectional information and raises the raw-return universe IC (Howard's "target regularisation"; Numerai's factor-neutral target).
 
 ## Research origin
-docs/NEW.md sec 3.1c (Howard, *Less is More?*: subtracting the size-group median from the target gives most of the size-bucketed ensemble's gain) and sec 3.1d (Numerai Signals target neutral to country / sector / beta / momentum / size); consistent with docs/REDDIT_RESEARCH.md sec 2.5.
+docs/RESEARCH.md Part I sec 3.1c (Howard, *Less is More?*: subtracting the size-group median from the target gives most of the size-bucketed ensemble's gain) and sec 3.1d (Numerai Signals target neutral to country / sector / beta / momentum / size); consistent with docs/RESEARCH.md Part II sec 2.5.
 
 ## Implementation
 `build_targets`, all within month on universe rows: `demean_size` = y minus the median of y within the market-cap tercile; `demean_sector` = y minus the 2-digit GICS sector median; `demean_size_sector` = y minus the (size x sector) median (falls back to the sector median for cells with < 5 stocks); `resid_factor` = OLS residual of y on log market cap, betabab, ivol, 12-1 momentum rank and sector dummies, fitted cross-sectionally each month with exposures at the characteristic month. Fit targets are winsorised 1/99 at the training fold; candidate selection and scoring use the raw return. IC against the residual return and the sector-demeaned return is also reported (`ic_vs_*`, scoring only).
@@ -22,7 +22,7 @@ All four target experiments use the same frozen harness (a verbatim copy of the 
 - **Walk-forward**: for test year Y = 2021..2026, train on target months before Jan Y-2, validate on Y-2..Y-1, refit annually; candidate hyper-parameters are chosen on **validation rank IC against the raw next-month excess return** (for every arm, whatever the fit target), never on test data.
 - **Models**: Extra-Trees (largecap grid, 300 trees) and forest-style LightGBM (num_leaves 7, min_child_samples {500, 2000}, extra_trees, lambda 100, checkpoints at 100/200/300 trees). Seed 42 unless stated.
 - **Scoring**: universe rank IC of the OOS prediction vs the raw next-month return (68 months, 2021-01..2026-08), decile spread, and the frozen LP portfolios `lc_t10` (10% one-way turnover cap, headline) and `lc_free`, gross and net of the assumed tiered costs.
-- **Pre-registered rule** (docs/NEW.md sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
+- **Pre-registered rule** (docs/RESEARCH.md Part I sec 4): adopt an alternative target only if paired monthly universe-IC t >= 2 vs the control on **two** model families (rule A), or IC >= the composite's 0.037 with t >= 2 (rule B).
 - **Sanity check that the harness is faithful**: the control arm `et__control` reproduces `experiments/largecap` `et` exactly: IC 0.0164 (published 0.016), lc_t10 gross IR -0.22 (published -0.22).
 
 ## Baseline

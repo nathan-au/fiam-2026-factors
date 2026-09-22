@@ -1,14 +1,14 @@
 """
 FIAM 2026 - Asymmetric rank buffer, L1 turnover penalty, partial rebalance and EMA-smoothed signals on the frozen composite (portfolio_buffer.py).
 
-Research origin: docs/REDDIT_RESEARCH.md sec 2.1 (Blitz et al., FAJ 2023: 'buy 10 / hold 50' keeps a composite's net alpha above 6% where 'buy 20 / hold 20' loses two-thirds to
-costs; r/quant threads on no-trade bands, rank buffering and partial rebalancing; Garleanu-Pedersen 2013 'aim in front of the target') and docs/NEW.md sec 3.9 items 3-4
+Research origin: docs/RESEARCH.md Part II sec 2.1 (Blitz et al., FAJ 2023: 'buy 10 / hold 50' keeps a composite's net alpha above 6% where 'buy 20 / hold 20' loses two-thirds to
+costs; r/quant threads on no-trade bands, rank buffering and partial rebalancing; Garleanu-Pedersen 2013 'aim in front of the target') and docs/RESEARCH.md Part I sec 3.9 items 3-4
 (cost-aware objective; signal smoothing / decay-aware blending).
 
 HYPOTHESIS. The frozen composite (a slow signal, rank autocorrelation 0.92) is held today through a HARD 10% one-way turnover cap, which keeps stale names by LP feasibility rather than by design.
 Spending turnover through (a) an entry/hold rank buffer, (b) an L1 trade penalty in the LP objective, (c) partial rebalancing, or (d) an EMA-smoothed / Garleanu-Pedersen-lite aim signal should
 raise net IR at equal or lower turnover, because the traded names are then the ones whose rank change is informative.
-PRE-REGISTERED RULE (docs/REDDIT_RESEARCH.md sec 2.1): adopt a variant if net IR >= control + 0.10 at equal or lower turnover AND the paired monthly net-return difference vs the control has t >= 1
+PRE-REGISTERED RULE (docs/RESEARCH.md Part II sec 2.1): adopt a variant if net IR >= control + 0.10 at equal or lower turnover AND the paired monthly net-return difference vs the control has t >= 1
 (single-path IR s.e. is ~0.46, so IR alone is not evidence).
 
 DESIGN. Frozen experiments/largecap harness (copied in below). The signal is the unchanged 7-group composite (no fitting). `_solve_lp` / `build_portfolio` are redefined with optional extra behaviours and
@@ -834,7 +834,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -853,7 +853,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -949,7 +949,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

@@ -1,11 +1,11 @@
 """
 FIAM 2026 - Macro-state conditioning of the tree models: yield-curve slope, credit spread, VIX (macro_condition.py).
 
-Research origin: docs/NEW.md sec 3.3 item 7 (firm features x macro state is standard Gu-Kelly-Xiu; a 2026 GNN paper reports VIX / credit-spread conditioning helps; "only 68 test months; treat as low priority, high overfit risk") and docs/REDDIT_RESEARCH.md sec 2.13 (r/algotrading 1rwp4z8: the only feature that moved a 1,400-stock GBT+MLP long-horizon ensemble after 45 rounds of price/volume feature engineering was yield-curve slope; a commenter flags the 45 rounds themselves as an overfitting mechanism).
+Research origin: docs/RESEARCH.md Part I sec 3.3 item 7 (firm features x macro state is standard Gu-Kelly-Xiu; a 2026 GNN paper reports VIX / credit-spread conditioning helps; "only 68 test months; treat as low priority, high overfit risk") and docs/RESEARCH.md Part II sec 2.13 (r/algotrading 1rwp4z8: the only feature that moved a 1,400-stock GBT+MLP long-horizon ensemble after 45 rounds of price/volume feature engineering was yield-curve slope; a commenter flags the 45 rounds themselves as an overfitting mechanism).
 
 HYPOTHESIS. Adding month-level macro variables (10y-2y slope, Baa-10y credit spread, VIX) lets trees condition factor relations on the macro state and raises the universe rank IC over the same trees on the 18 factors alone.
 Expected failure mode stated in advance: a macro variable takes one value per month, so a training set of 47-132 months contains only that many distinct values; trees can only use it to memorise the regime of each training month.
-PRE-REGISTERED KILL RULE (docs/NEW.md sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model families, or IC >= 0.037 with t >= 2.
+PRE-REGISTERED KILL RULE (docs/RESEARCH.md Part I sec 4): adopt only if paired monthly universe-IC t >= 2 vs the control on TWO model families, or IC >= 0.037 with t >= 2.
 
 DESIGN. Frozen experiments/largecap harness (copied in below): universe, 18 factors, walk-forward folds, validation-IC selection on the raw return, LP `lc_t10` / `lc_free`. EXTERNAL DATA: FRED T10Y2Y, BAA10Y and VIXCLS (downloaded on first run to cache/T10Y2Y.csv, cache/BAA10Y.csv and cache/VIXCLS.csv, the project's convention for FRED series). The value for characteristic month t is the last observation on or before month-end t. Families: Extra-Trees and forest-style LightGBM; arms: control, +slope, +credit, +vix, +all three, and three PLACEBO arms (the slope with its values permuted across months: same distribution, no macro information; added after the first run showed a large gain from the slope, see the README).
 

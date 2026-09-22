@@ -2,7 +2,7 @@
 FIAM 2026 - Portfolio-aware weighted regression (operationalizes "Machine
 Learning Meets Markowitz", NBER WP 34861, Feb 2026).
 
-The paper's argument (per docs/PAPERS.md §2): the standard two-stage
+The paper's argument (per docs/RESEARCH.md Part III §2): the standard two-stage
 pipeline -- forecast returns with uniform weight on every observation's
 error, THEN separately solve a portfolio optimizer -- is "deeply
 problematic" because the optimizer only cares about prediction error in the

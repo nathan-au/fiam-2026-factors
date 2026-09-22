@@ -1,7 +1,7 @@
 """
 FIAM 2026 - Concentration / conviction: fewer, larger positions on the frozen composite (portfolio_concentration.py).
 
-Research origin: docs/NEW.md sec 3.9 item 7 (Quantitativo's LTR: 30 quantile buckets beat 10/20/40+, i.e. the top ~3% of names; the Russell-1000 agent's edge is concentrated in the top-20). The LP's 1% per-name cap gives ~200-230 names;
+Research origin: docs/RESEARCH.md Part I sec 3.9 item 7 (Quantitativo's LTR: 30 quantile buckets beat 10/20/40+, i.e. the top ~3% of names; the Russell-1000 agent's edge is concentrated in the top-20). The LP's 1% per-name cap gives ~200-230 names;
 'a more concentrated conviction book still fits the 100-500 position rule but concentrates factor risk; only pursue it if the decile table shows the extremes carry the alpha.'
 
 HYPOTHESIS. If the composite's extremes carry the alpha (30-bucket table monotone and steepest in the outer buckets), raising the per-name cap (0.5% / 1% / 1.5% / 2% / 3%) concentrates the book into those names
@@ -830,7 +830,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -849,7 +849,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -945,7 +945,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

@@ -1,7 +1,7 @@
 """
 FIAM 2026 - Truncation-invariance audit of the panel's return-derived characteristics, label alignment and a suspicious-IC scan (truncation_audit.py).
 
-Research origin: docs/REDDIT_RESEARCH.md sec 2.9 (AQuA / r/LocalLLaMA 1vxajio: an LLM wrote a feature dividing 'volume so far' by the day's FINAL total; a second LLM reviewed it as causal; only a clean re-split caught it. The fix: make leakage
+Research origin: docs/RESEARCH.md Part II sec 2.9 (AQuA / r/LocalLLaMA 1vxajio: an LLM wrote a feature dividing 'volume so far' by the day's FINAL total; a second LLM reviewed it as causal; only a clean re-split caught it. The fix: make leakage
 inexpressible, and test that a feature computed from rows <= t equals the one computed from the full panel). Also the brief's leakage scrutiny. The 'typed causal-operator registry' half of the idea is for AI-written feature-mining loops and is NOT
 implemented (no such loop is in scope); every new feature builder in this round instead carries its own truncation test (feat_*.py).
 
@@ -830,7 +830,7 @@ class Base:
 
 def resid_ic(base, b):
     """Rank IC (raw next-month return) of the part of block b that is orthogonal to the composite, month by month
-    (OLS of b on comp within the universe; the shared-core diagnostic of docs/REDDIT_RESEARCH.md sec 2.5)."""
+    (OLS of b on comp within the universe; the shared-core diagnostic of docs/RESEARCH.md Part II sec 2.5)."""
     um = base.ctx.um
     d = pd.DataFrame({"m": base.months[um], "b": np.asarray(b)[um], "c": base.comp[um], "y": base.y[um]})
     out, corr = {}, {}
@@ -849,7 +849,7 @@ def resid_ic(base, b):
 def perm_null(base, b, n_perm=N_PERM, seed=0):
     """Within-(month, sector) shuffled null for the additive gain in mean IC when block b (already signed, in [-1,1]) is added to the
     composite as an 8th equal-weight group. Shuffling keeps each block's cross-sectional distribution and industry composition but
-    breaks its link to the stock (the knockoff-style null of docs/REDDIT_RESEARCH.md H4)."""
+    breaks its link to the stock (the knockoff-style null of docs/RESEARCH.md Part II H4)."""
     ctx = base.ctx
     U = np.flatnonzero(ctx.um)
     base7 = base.G7.sum(axis=1)[U]
@@ -945,7 +945,7 @@ def rank_corr_by_month(base, a, b):
 
 
 def truncation_test(builder, panel, n_dates=3, seed=0, tol=1e-9):
-    """Truncation-invariance (docs/REDDIT_RESEARCH.md sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
+    """Truncation-invariance (docs/RESEARCH.md Part II sec 2.9): rebuild every feature from ONLY rows with eom <= t and require the
     value at t to equal the value built from the full panel, for every stock, at randomly drawn test-period dates t."""
     full = builder(panel)
     rng = np.random.default_rng(seed)

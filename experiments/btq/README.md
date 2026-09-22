@@ -2,7 +2,7 @@
 
 Implementation: `btq.py` (run with `.venv/bin/python experiments/btq/btq.py`). Operationalizes
 *Quantity, Risk, and Return* — the Beta-Times-Quantity (BTQ) model (arXiv
-2609.05162, Sep 2026 — `docs/PAPERS.md` §1).
+2609.05162, Sep 2026 — `docs/RESEARCH.md` Part III §1).
 
 ## Fidelity to the source paper
 
