@@ -4,139 +4,162 @@ Every box ends in a number, not an opinion. All comparisons are paired IC (t-sta
 
 ---
 
-## 0. Rejected
-
-```mermaid
-flowchart LR
-    A["Named-investor personas<br/>(Buffett agent, etc.)"] -->|"recalls real 2021-2025<br/>outcomes = look-ahead"| X["❌ not used"]
-    B["50 agents, majority vote"] -->|"shared training data →<br/>ρ high → effective n ≈ 1-2"| X
-```
-Evidence: FIAM §10 look-ahead rule; docs N31/tree-ensemble equal-weight never beat best member.
-
----
-
-## 1. Information-partitioned desks + rule-based CIO
+## Famous Investor Agents
 
 ```mermaid
 flowchart TD
-    subgraph Desks["Desks — disjoint information, same model"]
-        D1["Chars-only desk"]
-        D2["Text/8-K desk"]
-        D3["Peer/industry desk"]
-    end
-    D1 & D2 & D3 --> AGG["CIO (deterministic)<br/>weight = validation IC<br/>shrink toward 0.5x if desks disagree"]
-    AGG --> QP["Portfolio QP"]
+    F["Filings + factors"]
+    F --> G["Graham"]
+    F --> L["Lynch"]
+    F --> B["Buffett"]
+    F --> J["Bogle"]
+    F --> M["Burry"]
+    G & L & B & J & M --> P["Portfolio"]
 ```
-Evidence: N31 diverse-feature ensembles = best member, not better; disagreement→sizing is untested, cheap.
+- Graham: deep value, margin of safety
+- Lynch: growth at reasonable price
+- Buffett: quality moat, owner earnings
+- Bogle: low-cost, broad diversification
+- Burry: contrarian, balance-sheet stress
 
----
-
-## 2. Prosecutor / defense / referee (short veto)
-
-```mermaid
-sequenceDiagram
-    participant P as Prosecutor<br/>(thesis: why short)
-    participant D as Defense<br/>(devil's advocate)
-    participant R as Referee (rule, not LLM)
-    P->>R: signed thesis
-    D->>R: disconfirming filings, crowding, factor exposure
-    R->>R: veto if days-to-cover > X<br/>or residual IC < 0
-    R-->>QP: pass / veto
-```
-Evidence: FIAM §9 devil's-advocate role; days-to-cover the one block that passed (t 2.67, SI>10% filter halved max DD).
-
----
-
-## 3. Memorisation-probe gate
-
-```mermaid
-flowchart LR
-    F["Masked filing<br/>(names/dates/$ → placeholders)"] --> M["Same LLM:<br/>guess company + date"]
-    M -->|"guesses right"| DROP["drop / down-weight<br/>(= recall)"]
-    M -->|"can't guess"| USE["usable for forecast"]
-    SH["Shuffled-date placebo"] -.check.-> M
-```
-Evidence: FIAM §10 — "teams that cannot explain how they ruled out model-side look-ahead will be treated as having used it."
-
----
-
-## 4. Cost-aware triage cascade
-
-```mermaid
-flowchart LR
-    A["373k filings"] --> R["Regex rules<br/>(item code, keyword)"]
-    R -->|"clear"| OUT1["scored, cheap"]
-    R -->|"ambiguous"| S["Small local model"]
-    S -->|"clear"| OUT2["scored"]
-    S -->|"still ambiguous<br/>~top few %"| L["Large model"]
-    L --> OUT3["scored, ~25 GPU-h"]
-```
-Evidence: full-corpus LLM ≈ 620-930 GPU-h vs D72's 25 GPU-h partial block.
-
----
-
-## 5. Auditor guild (signal discovery, policed)
+## N Agents
 
 ```mermaid
 flowchart TD
-    SD["Signal-discovery agent<br/>proposes feature code"] --> REG{"Typed causal<br/>operator registry"}
-    REG -->|"only ≤t operators allowed"| LH["Leakage-hunter agent<br/>writes truncation test"]
-    LH -->|"pass"| LEDGER["Hypothesis ledger<br/>(Bonferroni budget)"]
-    LH -->|"fail"| KILL["❌ killed"]
-    LEDGER -->|"budget spent"| STOP["no more tests"]
+    F["Filings + factors"] --> A1["Agent 1"]
+    F --> A2["Agent 2"]
+    F --> A3["Agent 3"]
+    F --> A4["..."]
+    F --> A10["Agent 10"]
+    A1 & A2 & A3 & A4 & A10 --> P["Portfolio"]
 ```
-Evidence: IDEA_STATUS.md §3 — ≈185 variants tested project-wide; days-to-cover's p rises 0.015→0.23 after correction.
+- Agents can either all use the same model or each use a different one
 
----
-
-## 6. Explainer-only (math decides, LLM narrates)
-
-```mermaid
-flowchart LR
-    SCORE["Model score"] --> QP["QP sets weight<br/>(no LLM in this path)"]
-    QP --> TRADE["trade + facts:<br/>score, sector, β, events"]
-    TRADE --> EXP["LLM writes rationale<br/>(cannot change weight)"]
-```
-Evidence: FIAM §9 — "explainability is a deliverable"; keeps LLM off the number that's graded.
-
----
-
-## 7. FACTORS.md-sectioned desks + Delphi collaboration
+## Information-partitioned desks + deterministic PM
 
 ```mermaid
 flowchart TD
-    V["Value/Size desk<br/>(§1,2)"] & Q["Quality desk<br/>(§7,10-13)"] & G["Growth/Invest desk<br/>(§3,8,9)"] & RL["Risk/Liquidity desk<br/>(§14-16)"] --> BLIND["Round 1: blind scores"]
-    BLIND --> SHOW["each desk sees others' scores"]
-    SHOW --> REV["Round 2: one revision"]
-    REV --> CONF{"Conflict?<br/>e.g. cheap + deteriorating quality"}
-    CONF -->|"yes"| VETO["downweight / short veto"]
-    CONF -->|"no"| EQ["equal-weight = composite baseline"]
+    D1["Factors"]
+    D2["Text/8-K"]
+    D1 & D2 --> PM["Portfolio manager"]
 ```
-Evidence: composite_overlap Shapley — value ≈54% of composite IC, liquidity/surprise ≈0; ridge meta-model over desks overfit (IC −0.0025); IC-weighted groups worse (−0.0126).
+- Portfolio manager is deterministic
+- Disagreement between desks can be used as a sizing dial
 
----
-
-## Recommended near-term stack
+## Prosecutor / defense / judge (short trial)
 
 ```mermaid
 flowchart TD
-    F["Filing"] --> P3["#3 Memorisation probe"]
-    P3 -->|clears| P2["#2 Prosecutor/Defense/Referee"]
-    P2 --> QP["Portfolio QP"]
-    QP --> P6["#6 Explainer"]
-    P6 --> DECK["Deck"]
+    P1["Prosecutor"] --> D1["Defense"]
+    D1 --> P2["Prosecutor"]
+    P2 --> D2["Defense"]
+    D2 --> J["Judge"]
+    J -->|"guilty"| PORT["Portfolio"]
+    J -->|"not guilty"| DROP["No trade"]
 ```
-Fits the 28 Sept freeze: touches only ~150 candidate names/month, reuses the existing masked extractor, each arm gets a pre-registered ΔIC/t-stat before it's trusted.
+- Round 1: Prosecutor accuses (why this stock fails), Defense defends (the stock's well-being)
+- Round 2: Prosecutor and Defense each rebut once more
+- Judge is deterministic: guilty if days-to-cover > X or residual IC < 0
+- Guilty → short enters the Portfolio ("prison"); not guilty → acquitted, no trade
 
----
-
-## Test protocol (applies to every architecture above)
+## Memorisation-probe gate
 
 ```mermaid
-flowchart LR
-    A["Pre-register expected ΔIC"] --> B["Run on tradeable universe,<br/>identical rows/folds/seeds"]
-    B --> C["Paired t-stat"]
-    C --> D{"survives Bonferroni<br/>within-file?"}
-    D -->|no| E["report as negative result"]
-    D -->|yes| F["adds to model/portfolio"]
+flowchart TD
+    F["Masked filing"] --> M["LLM guesses"]
+    M -->|"right"| DROP["Drop"]
+    M -->|"wrong"| USE["Usable"]
 ```
+- LLM tries to guess the company + date from the masked filing
+- Guesses right → drop / down-weight (recall, not forecasting)
+- Can't guess → usable for forecast
+
+## Cost-aware triage cascade
+
+```mermaid
+flowchart TD
+    A["Filings"] --> R["Regex rules"]
+    R -->|"clear"| OUT1["Scored"]
+    R -->|"ambiguous"| S["Small model"]
+    S -->|"clear"| OUT2["Scored"]
+    S -->|"still ambiguous"| L["Large model"]
+    L --> OUT3["Scored"]
+```
+- 373k filings enter through regex rules (item code, keyword match)
+- Clear cases scored cheaply and directly
+- Ambiguous cases go to a small local model, then a large model only for the remaining top few %
+
+## FACTORS.md-sectioned desks
+
+```mermaid
+flowchart TD
+    V["Value/Size"] & Q["Quality"] & G["Growth/Invest"] & RL["Risk/Liquidity"] --> PM["Portfolio manager"]
+```
+- Value/Size desk: FACTORS.md §1,2
+- Quality desk: §7,10-13
+- Growth/Invest desk: §3,8,9
+- Risk/Liquidity desk: §14-16
+
+## Material triage then cost triage
+
+```mermaid
+flowchart TD
+    A["Filings"] --> IT["Classifier"]
+    IT -->|"routine"| SKIP["Skip"]
+    IT -->|"material"| R["Cost triage"]
+```
+- Classifier: item-code / materiality regex (e.g. dividend decl. = routine, auditor resignation / 5.02 = material)
+- Routine → scored 0, no LLM call
+- Material → scored by the cost-aware triage cascade
+
+## Single-agent collapse test
+
+```mermaid
+flowchart TD
+    F["Filing"] --> ONE["Single agent"]
+    ONE --> R["Referee"]
+    R -->|"pass"| QP["Portfolio"]
+    R -->|"veto"| DROP["Dropped"]
+```
+- Single agent: one prompt, one call — thesis → self-critique → verdict
+- Referee is a deterministic rule, not an LLM
+
+## Analyst-agent score as a 19th factor
+
+```mermaid
+flowchart TD
+    F["Filing + chars"] --> A["Analyst agent"]
+    A --> SCORE["Score"]
+    SCORE --> ORTH["Orthogonalize"]
+    ORTH --> RESID["Significant?"]
+    RESID -->|"no"| KILL["Killed"]
+    RESID -->|"yes"| ADD["Add factor"]
+```
+- Analyst agent: FIAM §9 use case, outputs a signed conviction score
+- Orthogonalize the score vs. the 18-factor composite
+- No significant residual IC → killed (same bar as any feat_* block)
+- Significant residual IC → add as 19th factor, judged like composite_overlap
+
+## FIAM's own reference architecture
+
+```mermaid
+flowchart TD
+    F["8-K filing"] --> ET["Event triage"]
+    ET -->|"material"| AN["Analyst agent"]
+    ET -->|"routine"| SKIP["Skip"]
+    AN --> FACTOR["Factor"]
+    SD["Signal discovery"] --> FACTOR
+    FACTOR --> DA["Devil's advocate"]
+    DA --> PC["Portfolio construction"]
+    PC --> WHY["Rationale"]
+    WHY --> REPRO["Reproducibility"]
+    REPRO -->|"clean"| SUBMIT["Submit"]
+    REPRO -->|"flags issue"| FIX["Back to pipeline"]
+```
+- Event-triage agent: routine (e.g. dividend decl.) vs. material (e.g. auditor resignation) — only material filings reach the analyst
+- Analyst agent: ticker + 8-Ks + char history → structured verdict (what happened, expected?, signed conviction)
+- Signal-discovery agent proposes/codes/backtests 147-characteristic combos; multiple-testing discipline is the team's responsibility
+- Devil's-advocate agent attacks the thesis: disconfirming filings, crowding, factor exposures that explain the alpha away
+- Portfolio-construction agent: forecasts → positions (100-500 names, 200% gross, ±50% net, turnover budget, sector limits)
+- Rationale: writes down why each trade was made (explainability is a deliverable)
+- Reproducibility agent re-runs the pipeline hunting for look-ahead bias, survivorship, leakage — clean → submission, flags issue → back into pipeline
