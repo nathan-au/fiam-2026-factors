@@ -1,0 +1,56 @@
+grp:value                    -0.0155 -0.0212 -0.0171 -0.0049 -0.0076 -0.0014 | cum3 -0.0362 (t -1.97) slow=False
+grp:profitability            +0.0202 +0.0171 +0.0150 +0.0169 +0.0233 +0.0255 | cum3 +0.0241 (t +1.78) slow=True
+grp:investment_issuance_accruals -0.0124 -0.0133 -0.0074 +0.0043 +0.0018 +0.0006 | cum3 -0.0157 (t -1.66) slow=False
+grp:quality                  +0.0070 +0.0028 -0.0004 -0.0019 +0.0084 +0.0110 | cum3 +0.0019 (t +0.14) slow=False
+grp:surprise                 +0.0121 +0.0044 -0.0010 -0.0091 -0.0093 -0.0107 | cum3 +0.0072 (t +0.62) slow=False
+grp:volatility_beta          +0.0092 +0.0005 -0.0053 -0.0104 -0.0074 +0.0028 | cum3 +0.0090 (t +0.36) slow=False
+grp:liquidity                +0.0092 +0.0085 +0.0088 +0.0056 +0.0004 +0.0024 | cum3 +0.0158 (t +1.55) slow=True
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+grp:dtc                      -0.0040 -0.0014 -0.0067 +0.0143 +0.0220 +0.0180 | cum3 -0.0102 (t -1.07) slow=False
+B1                           +0.0131 +0.0021 -0.0011 -0.0003 +0.0033 +0.0091 | cum3 +0.0057 (t +0.33) slow=False
+jkp:Accruals                 +0.0070 +0.0060 +0.0061 +0.0069 +0.0025 -0.0037 | cum3 +0.0123 (t +1.39) slow=True
+jkp:Debt Issuance            -0.0068 -0.0121 -0.0110 -0.0065 -0.0068 -0.0014 | cum3 -0.0168 (t -2.80) slow=True
+jkp:Investment               -0.0185 -0.0189 -0.0099 +0.0028 -0.0108 -0.0129 | cum3 -0.0191 (t -1.49) slow=False
+jkp:Low Leverage             +0.0195 +0.0190 +0.0195 +0.0089 +0.0151 +0.0098 | cum3 +0.0327 (t +2.10) slow=False
+jkp:Low Risk                 +0.0098 +0.0053 +0.0039 +0.0022 +0.0000 +0.0038 | cum3 +0.0184 (t +0.73) slow=False
+jkp:Momentum                 +0.0036 +0.0042 +0.0005 -0.0136 -0.0110 +0.0084 | cum3 +0.0092 (t +0.52) slow=False
+jkp:Profit Growth            -0.0040 -0.0030 -0.0057 -0.0047 -0.0088 -0.0060 | cum3 -0.0125 (t -1.01) slow=True
+jkp:Profitability            +0.0146 +0.0094 +0.0060 +0.0117 +0.0147 +0.0186 | cum3 +0.0116 (t +0.98) slow=True
+jkp:Quality                  +0.0239 +0.0209 +0.0171 +0.0142 +0.0232 +0.0243 | cum3 +0.0322 (t +1.80) slow=True
+jkp:Seasonality              -0.0243 -0.0169 -0.0213 -0.0154 -0.0131 -0.0212 | cum3 -0.0356 (t -3.26) slow=True
+jkp:Short-Term Reversal      +0.0128 +0.0009 -0.0016 -0.0084 -0.0134 +0.0173 | cum3 +0.0066 (t +0.60) slow=False
+jkp:Size                     -0.0051 -0.0060 -0.0048 -0.0045 -0.0115 -0.0111 | cum3 -0.0118 (t -0.75) slow=True
+jkp:Value                    -0.0183 -0.0189 -0.0132 +0.0044 -0.0027 -0.0008 | cum3 -0.0336 (t -1.78) slow=False
+J13z                         +0.0062 +0.0006 +0.0014 +0.0002 -0.0055 +0.0134 | cum3 +0.0048 (t +0.34) slow=False
+text:novneg_max              +0.0071 -0.0041 +0.0055 -0.0021 +0.0012 +0.0076 | cum3 +0.0046 (t +1.15) slow=False
+  budget  ir_net  ir_gross  turnover  cost_bp  max_dd  paired_t  relaxed     decision
+0    to5 -0.7697   -0.6494    0.0536   6.4690 -0.1834    0.1819        3  no evidence
+1   to10 -0.6680   -0.5386    0.1014   8.4002 -0.2443       NaN        1    reference
+2   to20 -0.5894   -0.4187    0.2000  11.7126 -0.2805    0.2790        0  no evidence
+3   to40 -0.7307   -0.4815    0.3470  16.3852 -0.2681   -0.4451        0  no evidence
+19s

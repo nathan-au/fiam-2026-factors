@@ -1,0 +1,217 @@
+{
+  "rows": [
+    {
+      "variant": "base_a",
+      "ir_net": -0.6679869514202528,
+      "max_dd": -0.2443343244710915,
+      "ic": 0.013050048762613127,
+      "paired_t": null,
+      "d_h1": null,
+      "d_h2": null,
+      "decision": "reference"
+    },
+    {
+      "variant": "mom_drop_a",
+      "ir_net": -0.7853935300021436,
+      "max_dd": -0.21652279102380445,
+      "ic": 0.00876521531086794,
+      "paired_t": -0.3186525928489566,
+      "d_h1": -0.006072625628123644,
+      "d_h2": 0.002943445611925525,
+      "decision": "no evidence"
+    },
+    {
+      "variant": "mom_half_a",
+      "ir_net": -0.7978271514955809,
+      "max_dd": -0.2373795731138113,
+      "ic": 0.012025152093427248,
+      "paired_t": -1.0175128351193625,
+      "d_h1": -0.0027394548138227896,
+      "d_h2": 0.0005415572761536028,
+      "decision": "rejected"
+    },
+    {
+      "variant": "invvol_a",
+      "ir_net": -0.6018090356727527,
+      "max_dd": -0.19326669020742637,
+      "ic": 0.016482533332521816,
+      "paired_t": 0.9454928655900959,
+      "d_h1": 3.7711379912539284e-20,
+      "d_h2": 0.0013066122725826992,
+      "decision": "no evidence"
+    },
+    {
+      "variant": "disp_a",
+      "ir_net": -0.5996108846508142,
+      "max_dd": -0.16726542878776374,
+      "ic": 0.013050048762613127,
+      "paired_t": 1.267415376362131,
+      "d_h1": -0.0004154129075569865,
+      "d_h2": 0.002262185720176231,
+      "decision": "no evidence"
+    },
+    {
+      "variant": "base_b",
+      "ir_net": -0.38555708531636634,
+      "max_dd": -0.1387922221247061,
+      "ic": 0.006209901115754869,
+      "paired_t": null,
+      "d_h1": null,
+      "d_h2": null,
+      "decision": "reference"
+    },
+    {
+      "variant": "mom_drop_b",
+      "ir_net": -0.19878414177128287,
+      "max_dd": -0.10549417676272033,
+      "ic": 0.007207899468794763,
+      "paired_t": 0.3995783556759999,
+      "d_h1": -0.004224920539421831,
+      "d_h2": 0.004188991396235027,
+      "decision": "no evidence"
+    },
+    {
+      "variant": "mom_half_b",
+      "ir_net": -0.3043022109289994,
+      "max_dd": -0.12754715875019862,
+      "ic": 0.007173012484081383,
+      "paired_t": 0.2501881818998823,
+      "d_h1": -0.0014185080375543244,
+      "d_h2": 0.0014694275222769193,
+      "decision": "no evidence"
+    },
+    {
+      "variant": "invvol_b",
+      "ir_net": -0.30738609729454436,
+      "max_dd": -0.14310792208761436,
+      "ic": 0.011448105815967915,
+      "paired_t": 0.3220596494435148,
+      "d_h1": 0.00033821723011605455,
+      "d_h2": 0.0005124244009640382,
+      "decision": "no evidence"
+    },
+    {
+      "variant": "disp_b",
+      "ir_net": -0.48948420259369224,
+      "max_dd": -0.1184240607389917,
+      "ic": 0.006209901115754869,
+      "paired_t": -0.2979407580252721,
+      "d_h1": 6.864677412585731e-05,
+      "d_h2": -0.0004385028064737455,
+      "decision": "no evidence"
+    }
+  ],
+  "info": {
+    "mom_drop_a": {
+      "avg_weight": {
+        "value": 0.48,
+        "profitability": 0.83,
+        "investment_issuance_accruals": 0.54,
+        "quality": 0.68,
+        "surprise": 0.69,
+        "volatility_beta": 0.65,
+        "liquidity": 0.75,
+        "dtc": 0.35
+      }
+    },
+    "mom_half_a": {
+      "avg_weight": {
+        "value": 0.74,
+        "profitability": 0.92,
+        "investment_issuance_accruals": 0.77,
+        "quality": 0.84,
+        "surprise": 0.85,
+        "volatility_beta": 0.82,
+        "liquidity": 0.87,
+        "dtc": 0.68
+      }
+    },
+    "invvol_a": {
+      "avg_weight": {
+        "value": 0.8,
+        "profitability": 1.01,
+        "investment_issuance_accruals": 1.07,
+        "quality": 0.99,
+        "surprise": 1.17,
+        "volatility_beta": 0.59,
+        "liquidity": 1.17,
+        "dtc": 1.33
+      }
+    },
+    "mom_drop_b": {
+      "avg_weight": {
+        "Accruals": 0.8,
+        "Debt Issuance": 0.55,
+        "Investment": 0.44,
+        "Low Leverage": 0.72,
+        "Low Risk": 0.7,
+        "Momentum": 0.79,
+        "Profit Growth": 0.56,
+        "Profitability": 0.77,
+        "Quality": 0.85,
+        "Seasonality": 0.34,
+        "Short-Term Reversal": 0.96,
+        "Size": 0.46,
+        "Value": 0.45
+      }
+    },
+    "mom_half_b": {
+      "avg_weight": {
+        "Accruals": 0.9,
+        "Debt Issuance": 0.77,
+        "Investment": 0.72,
+        "Low Leverage": 0.86,
+        "Low Risk": 0.85,
+        "Momentum": 0.89,
+        "Profit Growth": 0.78,
+        "Profitability": 0.89,
+        "Quality": 0.92,
+        "Seasonality": 0.67,
+        "Short-Term Reversal": 0.98,
+        "Size": 0.73,
+        "Value": 0.73
+      }
+    },
+    "invvol_b": {
+      "avg_weight": {
+        "Accruals": 1.18,
+        "Debt Issuance": 1.79,
+        "Investment": 0.94,
+        "Low Leverage": 0.92,
+        "Low Risk": 0.61,
+        "Momentum": 0.66,
+        "Profit Growth": 0.91,
+        "Profitability": 1.13,
+        "Quality": 0.84,
+        "Seasonality": 1.04,
+        "Short-Term Reversal": 1.28,
+        "Size": 0.91,
+        "Value": 0.79
+      }
+    },
+    "dispersion_scaled_months_dev": [
+      "2017-10-31",
+      "2017-12-31",
+      "2018-06-30",
+      "2018-09-30",
+      "2018-12-31",
+      "2019-02-28",
+      "2019-03-31",
+      "2019-06-30",
+      "2019-09-30",
+      "2019-11-30",
+      "2020-01-31",
+      "2020-02-29",
+      "2020-03-31",
+      "2020-04-30",
+      "2020-05-31",
+      "2020-06-30",
+      "2020-07-31",
+      "2020-08-31",
+      "2020-09-30",
+      "2020-10-31",
+      "2020-11-30",
+      "2020-12-31"
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "rows": [
+    {
+      "model": "M0_J13z",
+      "ic_oos": 0.0021041772757111527,
+      "ic_t": 0.13507104795987648,
+      "paired_ic_vs_M0": 0.0,
+      "paired_ic_t": null,
+      "ir_net_oos": -0.5688840509916097,
+      "max_dd_oos": -0.141131615114517,
+      "paired_net_t": null,
+      "gain_17_18": 0.0,
+      "gain_19_20": 0.0,
+      "ic_2017": 0.023176085252506456,
+      "ic_2018": 0.05166376643782153,
+      "ic_2019": -0.03951941598424349,
+      "ic_2020": -0.026903726603239902,
+      "decision": "reference"
+    },
+    {
+      "model": "M1_B1",
+      "ic_oos": 0.0005749588423667728,
+      "ic_t": 0.03483648407882938,
+      "paired_ic_vs_M0": -0.0015292184333443825,
+      "paired_ic_t": -0.12799148285036852,
+      "ir_net_oos": -1.5133057365231546,
+      "max_dd_oos": -0.2492746013522381,
+      "paired_net_t": -1.887566348012159,
+      "gain_17_18": 0.006961102337630844,
+      "gain_19_20": -0.010019539204319609,
+      "ic_2017": 0.055528839770784884,
+      "ic_2018": 0.03323321659480479,
+      "ic_2019": -0.006519834092961748,
+      "ic_2020": -0.07994238690316086,
+      "decision": "reference"
+    },
+    {
+      "model": "M2_ridge146",
+      "ic_oos": 0.015390041037150462,
+      "ic_t": 0.6915772828537291,
+      "paired_ic_vs_M0": 0.013285863761439318,
+      "paired_ic_t": 0.8716421476574367,
+      "ir_net_oos": -0.037920901888831154,
+      "max_dd_oos": -0.14988778071879427,
+      "paired_net_t": 0.6117459705011916,
+      "gain_17_18": -0.004742095988287694,
+      "gain_19_20": 0.03131382351116633,
+      "ic_2017": 0.016485784321668345,
+      "ic_2018": 0.048869875392084254,
+      "ic_2019": -0.0011366444659652644,
+      "ic_2020": -0.0026588510991854435,
+      "decision": "no evidence"
+    },
+    {
+      "model": "M3_theme_ridge_prior",
+      "ic_oos": 0.0020383246661746525,
+      "ic_t": 0.13094456730184248,
+      "paired_ic_vs_M0": -6.585260953650118e-05,
+      "paired_ic_t": -1.653985856039467,
+      "ir_net_oos": -0.49694663095818437,
+      "max_dd_oos": -0.1385762231429769,
+      "paired_net_t": 1.4332671328262196,
+      "gain_17_18": -7.320886760258458e-05,
+      "gain_19_20": -5.849635147041777e-05,
+      "ic_2017": 0.023034352329871003,
+      "ic_2018": 0.05165908162525181,
+      "ic_2019": -0.03952468006063206,
+      "ic_2020": -0.02701545522979215,
+      "decision": "rejected"
+    },
+    {
+      "model": "M4_mono_gbm",
+      "ic_oos": 0.02262114681054467,
+      "ic_t": 1.4106525092891091,
+      "paired_ic_vs_M0": 0.020516969534833528,
+      "paired_ic_t": 1.3443095233169908,
+      "ir_net_oos": -0.16531620853920986,
+      "max_dd_oos": -0.10297897841092529,
+      "paired_net_t": 0.6558499520620045,
+      "gain_17_18": -0.001257247929122766,
+      "gain_19_20": 0.04229118699878981,
+      "ic_2017": 0.023874810154961335,
+      "ic_2018": 0.04845054567712112,
+      "ic_2019": 0.013246829161231701,
+      "ic_2020": 0.004912402248864547,
+      "decision": "no evidence"
+    }
+  ],
+  "info": {
+    "2017": {
+      "train_rows": 21068,
+      "theme_weights": {
+        "Accruals": 0.077,
+        "Debt Issuance": 0.077,
+        "Investment": 0.077,
+        "Low Leverage": 0.077,
+        "Low Risk": 0.077,
+        "Momentum": 0.076,
+        "Profit Growth": 0.077,
+        "Profitability": 0.077,
+        "Quality": 0.076,
+        "Seasonality": 0.077,
+        "Short-Term Reversal": 0.076,
+        "Size": 0.077,
+        "Value": 0.077
+      }
+    },
+    "2018": {
+      "train_rows": 33108,
+      "theme_weights": {
+        "Accruals": 0.077,
+        "Debt Issuance": 0.077,
+        "Investment": 0.076,
+        "Low Leverage": 0.077,
+        "Low Risk": 0.077,
+        "Momentum": 0.076,
+        "Profit Growth": 0.077,
+        "Profitability": 0.077,
+        "Quality": 0.076,
+        "Seasonality": 0.077,
+        "Short-Term Reversal": 0.076,
+        "Size": 0.077,
+        "Value": 0.077
+      }
+    },
+    "2019": {
+      "train_rows": 45904,
+      "theme_weights": {
+        "Accruals": 0.077,
+        "Debt Issuance": 0.077,
+        "Investment": 0.077,
+        "Low Leverage": 0.077,
+        "Low Risk": 0.077,
+        "Momentum": 0.076,
+        "Profit Growth": 0.077,
+        "Profitability": 0.077,
+        "Quality": 0.077,
+        "Seasonality": 0.077,
+        "Short-Term Reversal": 0.076,
+        "Size": 0.077,
+        "Value": 0.077
+      }
+    },
+    "2020": {
+      "train_rows": 58315,
+      "theme_weights": {
+        "Accruals": 0.077,
+        "Debt Issuance": 0.077,
+        "Investment": 0.077,
+        "Low Leverage": 0.077,
+        "Low Risk": 0.077,
+        "Momentum": 0.076,
+        "Profit Growth": 0.077,
+        "Profitability": 0.077,
+        "Quality": 0.077,
+        "Seasonality": 0.077,
+        "Short-Term Reversal": 0.076,
+        "Size": 0.077,
+        "Value": 0.077
+      }
+    }
+  }
+}

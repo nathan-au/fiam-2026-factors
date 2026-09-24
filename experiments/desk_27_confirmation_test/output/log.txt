@@ -1,0 +1,33 @@
+  gbm 2017: train rows 21068
+  gbm 2018: train rows 33108
+  gbm 2019: train rows 45904
+  gbm 2020: train rows 58315
+  gbm 2021: train rows 70461
+  gbm 2022: train rows 84798
+  gbm 2023: train rows 98754
+  gbm 2024: train rows 112444
+  gbm 2025: train rows 127029
+  gbm 2026: train rows 142125
+  ridge 2017: train rows 21068
+  ridge 2018: train rows 33108
+  ridge 2019: train rows 45904
+  ridge 2020: train rows 58315
+  ridge 2021: train rows 70461
+  ridge 2022: train rows 84798
+  ridge 2023: train rows 98754
+  ridge 2024: train rows 112444
+  ridge 2025: train rows 127029
+  ridge 2026: train rows 142125
+A0: IC +0.0454 (t +2.39) | TEST IR net +0.660 SR +0.99 DD -9.6% | paired t +nan | IR diff CI None | combined SR +0.511 vs A0 +0.511 (from 2015-01-31) | DSR 0.261 | reference {'a_paired_t_ge_1': None, 'b_ic_ok': True, 'c_dd_and_constraints': True, 'd_combined_sharpe_ge_A0': True}
+A1: IC +0.0454 (t +2.39) | TEST IR net +0.303 SR +0.74 DD -8.8% | paired t -2.00 | IR diff CI [-0.724720966753654, -0.04256202034795912] | combined SR +0.613 vs A0 +0.511 (from 2015-01-31) | DSR 0.081 | fail {'a_paired_t_ge_1': False, 'b_ic_ok': True, 'c_dd_and_constraints': True, 'd_combined_sharpe_ge_A0': True}
+A2: IC +0.0454 (t +2.39) | TEST IR net +0.643 SR +0.98 DD -10.2% | paired t -0.49 | IR diff CI [-0.10279345722614219, 0.06776032258923739] | combined SR +0.489 vs A0 +0.511 (from 2015-01-31) | DSR 0.250 | fail {'a_paired_t_ge_1': False, 'b_ic_ok': True, 'c_dd_and_constraints': True, 'd_combined_sharpe_ge_A0': False}
+A3: IC +0.0174 (t +1.12) | TEST IR net -0.233 SR +0.24 DD -14.2% | paired t -1.79 | IR diff CI [-1.8085247762857888, -0.03048595734921422] | combined SR +0.295 vs A0 +0.427 (from 2017-01-31) | DSR 0.006 | fail {'a_paired_t_ge_1': False, 'b_ic_ok': False, 'c_dd_and_constraints': True, 'd_combined_sharpe_ge_A0': False}
+A4: IC +0.0170 (t +0.89) | TEST IR net -0.644 SR -0.30 DD -24.9% | paired t -2.62 | IR diff CI [-2.171144773782496, -0.5033185939293915] | combined SR -0.051 vs A0 +0.427 (from 2017-01-31) | DSR 0.000 | fail {'a_paired_t_ge_1': False, 'b_ic_ok': False, 'c_dd_and_constraints': False, 'd_combined_sharpe_ge_A0': False}
+A5: IC +0.0251 (t +1.83) | TEST IR net +0.856 SR +1.29 DD -7.7% | paired t -0.03 | IR diff CI [-0.32191435387100337, 0.6930124885349818] | combined SR +0.804 vs A0 +0.511 (from 2015-01-31) | DSR 0.403 | fail {'a_paired_t_ge_1': False, 'b_ic_ok': False, 'c_dd_and_constraints': True, 'd_combined_sharpe_ge_A0': True}
+A6: IC +0.0174 (t +1.12) | TEST IR net -0.724 SR -0.26 DD -21.9% | paired t -2.23 | IR diff CI [-2.4821487597572, -0.40322490018561774] | combined SR +0.020 vs A0 +0.427 (from 2017-01-31) | DSR 0.000 | fail {'a_paired_t_ge_1': False, 'b_ic_ok': False, 'c_dd_and_constraints': False, 'd_combined_sharpe_ge_A0': False}
+S1_novneg_band_0.5_2B {'ic': 0.037788525436369604, 't': 2.890043231304627, 'n_months': 68, 'avg_names': 137.5, 'replicated': True}
+S2_novneg_large_tercile {'ic': 0.009319606692784596, 't': 1.5868462561982375, 'replicated': False}
+S3_novneg_risk_partial_ivol {'coef': 0.029110157967645805, 't': 4.706386428927431, 'replicated': True}
+S4_b1_ic_highSI_minus_lowSI {'ic_high': 0.0635954228539773, 'ic_low': 0.01352571657499981, 'diff': 0.0500697062789775, 't': 3.0262171340855946, 'replicated': False}
+S5_gbm_test_ic {'ic': 0.017420061910512003, 't': 1.115164673882712, 'by_year': {2021: 0.0023, 2022: 0.0141, 2023: 0.0188, 2024: 0.0495, 2025: -0.0084, 2026: 0.0336}, 'replicated': False}
+CANDIDATE: A0 (B1, no arm passed) | 94s

@@ -1,0 +1,35 @@
+experiment,variant,paired_net_t_vs_base,p,bh_q10,bh_q20,decision
+desk_19_signal_construction,V1_frozen7,0.3957,0.3461631777508012,False,False,no evidence
+desk_19_signal_construction,V2_jkp13_rank,0.6382,0.2616717486059895,False,False,no evidence
+desk_19_signal_construction,V3_jkp13_z,0.8516,0.1972180698049535,False,False,no evidence
+desk_19_signal_construction,V4_jkp13_dtc,0.252,0.4005205319006746,False,False,no evidence
+desk_19_signal_construction,V5_zoo146,0.1863,0.4261047537318339,False,False,rejected
+desk_20_portfolio_construction,V0_C1,-0.383,0.6491401179614518,False,False,no evidence
+desk_20_portfolio_construction,V0_C2,-0.0645,0.5257139464433775,False,False,no evidence
+desk_20_portfolio_construction,V0_C3,-1.1145,0.8674676277715119,False,False,no evidence
+desk_20_portfolio_construction,V0_C4,0.2245,0.41118413345739824,False,False,no evidence
+desk_20_portfolio_construction,V0_C5,3.1897,0.0007121027690112358,True,True,no evidence
+desk_20_portfolio_construction,V0_C6,-3.1197,0.9990948234250648,False,False,rejected
+desk_20_portfolio_construction,V3_C1,-0.0573,0.522846889822639,False,False,no evidence
+desk_20_portfolio_construction,V3_C2,-0.7129,0.7620461804121619,False,False,no evidence
+desk_20_portfolio_construction,V3_C3,-0.9603,0.8315478749643674,False,False,no evidence
+desk_20_portfolio_construction,V3_C4,-0.5111,0.695359482028905,False,False,no evidence
+desk_20_portfolio_construction,V3_C5,-0.2415,0.5954161917585795,False,False,no evidence
+desk_20_portfolio_construction,V3_C6,-1.9142,0.9722026971154358,False,False,rejected
+desk_21_regime_timing,mom_drop_a,-0.3187,0.6250229926740855,False,False,no evidence
+desk_21_regime_timing,mom_half_a,-1.0175,0.8455421838649433,False,False,rejected
+desk_21_regime_timing,invvol_a,0.9455,0.17220183540828082,False,False,no evidence
+desk_21_regime_timing,disp_a,1.2674,0.10250614990411511,False,False,no evidence
+desk_21_regime_timing,mom_drop_b,0.3996,0.34472557822714145,False,False,no evidence
+desk_21_regime_timing,mom_half_b,0.2502,0.4012163426275396,False,False,no evidence
+desk_21_regime_timing,invvol_b,0.3221,0.37368846914053966,False,False,no evidence
+desk_21_regime_timing,disp_b,-0.2979,0.6171102560244067,False,False,no evidence
+desk_22_signal_decay,to5,0.1819,0.42783060224872527,False,False,no evidence
+desk_22_signal_decay,to20,0.279,0.39012241238230216,False,False,no evidence
+desk_22_signal_decay,to40,-0.4451,0.6718762555878661,False,False,no evidence
+desk_23_text_reopened,C4_halfcap_top_decile_novneg,-0.9147,0.8198254278170528,False,False,no evidence
+desk_24_interactions,M1_qualvalue,-2.6871,0.9963962314469671,False,False,rejected
+desk_24_interactions,M2_profxvalue,-2.4936,0.9936772520715454,False,False,rejected
+desk_25_model_classes,M2_ridge146,0.6117,0.27036813094596834,False,False,no evidence
+desk_25_model_classes,M3_theme_ridge_prior,1.4333,0.07588606099753492,False,False,rejected
+desk_25_model_classes,M4_mono_gbm,0.6558,0.25597640821634293,False,False,no evidence

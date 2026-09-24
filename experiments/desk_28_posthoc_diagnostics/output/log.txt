@@ -1,0 +1,57 @@
+P1 {
+ "sr_A5": 0.804361276998033,
+ "sr_A0": 0.5112075501968929,
+ "diff": 0.29315372680114005,
+ "ci90": [
+  -0.14123691348700143,
+  0.7298329400016744
+ ],
+ "p_le_0": 0.1346,
+ "vol_A5": 0.0810842278050967,
+ "vol_A0": 0.10236463126953804,
+ "mean_A5": 0.065221013021707,
+ "mean_A0": 0.052329572378108806,
+ "corr": 0.6414641730937464,
+ "by_period": {
+  "dev": {
+   "sr_A5": 0.21243671231307107,
+   "sr_A0": -0.15396173147536674,
+   "vol_A5": 0.06689032588392668,
+   "vol_A0": 0.07781719349157397
+  },
+  "test": {
+   "sr_A5": 1.2929472976392213,
+   "sr_A0": 0.9918833796434828,
+   "vol_A5": 0.09163757326868846,
+   "vol_A0": 0.12045492690887646
+  }
+ }
+}
+P2 A0_dev {'holdings_style_exposure': {'size_small': -0.025, 'value': -0.09, 'momentum': 0.113, 'lowvol': 0.35, 'quality': 0.923, 'profitability': 0.468, 'investment_low': 0.313}, 'style_loadings': {'mkt': [0.051, 1.03], 'size_small': [0.141, 1.29], 'value': [0.337, 3.24], 'momentum': [0.044, 0.59], 'lowvol': [0.054, 0.45], 'quality': [0.679, 5.05], 'profitability': [-0.007, -0.08], 'investment_low': [0.428, 3.59]}, 'style_alpha_t': 1.2579973885867535, 'style_r2': 0.6590251528792459, 'long_leg_vol': 0.17062969980297865, 'short_leg_vol': 0.20002282725509382, 'legs_corr': -0.9239791813504221}
+P2 A0_test {'holdings_style_exposure': {'size_small': -0.095, 'value': 0.0, 'momentum': 0.156, 'lowvol': 0.321, 'quality': 0.937, 'profitability': 0.532, 'investment_low': 0.133}, 'style_loadings': {'mkt': [0.284, 4.01], 'size_small': [-0.161, -1.37], 'value': [0.582, 4.71], 'momentum': [0.294, 5.0], 'lowvol': [0.086, 1.02], 'quality': [0.552, 3.77], 'profitability': [0.316, 2.28], 'investment_low': [0.22, 1.37]}, 'style_alpha_t': 0.7990532136069253, 'style_r2': 0.7575374237862377, 'long_leg_vol': 0.17012893470399848, 'short_leg_vol': 0.1888170720418356, 'legs_corr': -0.7795312017672816}
+P2 A5_dev {'holdings_style_exposure': {'size_small': 0.06, 'value': -0.289, 'momentum': 0.36, 'lowvol': 0.095, 'quality': 0.727, 'profitability': 0.627, 'investment_low': 0.356}, 'style_loadings': {'mkt': [0.007, 0.15], 'size_small': [0.201, 2.02], 'value': [0.241, 2.56], 'momentum': [0.34, 5.1], 'lowvol': [-0.38, -3.52], 'quality': [0.67, 5.5], 'profitability': [0.084, 1.01], 'investment_low': [0.446, 4.13]}, 'style_alpha_t': 1.7468658718716374, 'style_r2': 0.620991561274264, 'long_leg_vol': 0.17444671392126151, 'short_leg_vol': 0.19491298267842255, 'legs_corr': -0.9406038150539612}
+P2 A5_test {'holdings_style_exposure': {'size_small': 0.1, 'value': -0.148, 'momentum': 0.361, 'lowvol': 0.051, 'quality': 0.714, 'profitability': 0.662, 'investment_low': 0.216}, 'style_loadings': {'mkt': [0.137, 1.71], 'size_small': [0.117, 0.88], 'value': [0.233, 1.67], 'momentum': [0.222, 3.35], 'lowvol': [-0.061, -0.64], 'quality': [0.651, 3.93], 'profitability': [0.108, 0.69], 'investment_low': [0.236, 1.31]}, 'style_alpha_t': 1.88660597420511, 'style_r2': 0.4670230341303495, 'long_leg_vol': 0.18055498194355551, 'short_leg_vol': 0.19292804913761766, 'legs_corr': -0.8812387352817497}
+Traceback (most recent call last):
+  File "/Users/nathanau/Developer/FIAM/fiam-2026-factors/.venv/lib/python3.14/site-packages/pandas/core/indexes/base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'sir'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/nathanau/Developer/FIAM/fiam-2026-factors/experiments/desk_28_posthoc_diagnostics/desk_28_posthoc_diagnostics.py", line 107, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathanau/Developer/FIAM/fiam-2026-factors/experiments/desk_28_posthoc_diagnostics/desk_28_posthoc_diagnostics.py", line 72, in main
+    band = sh[(sh["sir"] > 0.05) & (sh["sir"] <= 0.10)]
+               ~~^^^^^^^
+  File "/Users/nathanau/Developer/FIAM/fiam-2026-factors/.venv/lib/python3.14/site-packages/pandas/core/frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/nathanau/Developer/FIAM/fiam-2026-factors/.venv/lib/python3.14/site-packages/pandas/core/indexes/base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'sir'

@@ -18,3 +18,21 @@ utc,experiment,arm,config_hash,note
 2026-09-24T03:57:26+00:00,desk_11_devils_advocate,default system attack (descriptive),9dba7f93cf37,no selection
 2026-09-24T03:59:05+00:00,desk_11_devils_advocate,30 random-score placebos,2bf4546d0139,descriptive
 2026-09-24T04:00:13+00:00,desk_12_novneg_posthoc,F1_cap vs F1_cap+novneg (post-hoc),b7e06cfdd16b,"post-hoc, test already seen"
+2026-09-24T08:30:11+00:00,desk_13_baseline_freeze,baseline:B0_default,52ba3a9eefe1,descriptive baseline freeze; test already seen in desk_09/10
+2026-09-24T08:34:41+00:00,desk_15_data_audit,audit_delist:baseline_with_delist_rows,c76cf18db6bf,"audit correction of the baseline, no selection"
+2026-09-24T08:35:59+00:00,desk_17_regime_attribution,attribution:B1_test,44136fa355b3,"descriptive, no selection"
+2026-09-24T09:02:21+00:00,desk_27_confirmation_test,confirmation:A0,6ac993088517,single pre-registered TEST look
+2026-09-24T09:02:21+00:00,desk_27_confirmation_test,confirmation:A1,3aa550eab0da,single pre-registered TEST look
+2026-09-24T09:02:22+00:00,desk_27_confirmation_test,confirmation:A2,f59eae206409,single pre-registered TEST look
+2026-09-24T09:02:22+00:00,desk_27_confirmation_test,confirmation:A3,9a77a67c651a,single pre-registered TEST look
+2026-09-24T09:02:22+00:00,desk_27_confirmation_test,confirmation:A4,50334f2fb4df,single pre-registered TEST look
+2026-09-24T09:02:22+00:00,desk_27_confirmation_test,confirmation:A5,12e08925dd27,single pre-registered TEST look
+2026-09-24T09:02:23+00:00,desk_27_confirmation_test,confirmation:A6,3095d4edbab7,single pre-registered TEST look
+2026-09-24T09:02:23+00:00,desk_27_confirmation_test,confirmation_standalone:S1_novneg_band_0.5_2B,44136fa355b3,single pre-registered TEST look
+2026-09-24T09:02:23+00:00,desk_27_confirmation_test,confirmation_standalone:S2_novneg_large_tercile,44136fa355b3,single pre-registered TEST look
+2026-09-24T09:02:23+00:00,desk_27_confirmation_test,confirmation_standalone:S3_novneg_risk_partial_ivol,44136fa355b3,single pre-registered TEST look
+2026-09-24T09:02:23+00:00,desk_27_confirmation_test,confirmation_standalone:S4_b1_ic_highSI_minus_lowSI,44136fa355b3,single pre-registered TEST look
+2026-09-24T09:02:23+00:00,desk_27_confirmation_test,confirmation_standalone:S5_gbm_test_ic,44136fa355b3,single pre-registered TEST look
+2026-09-24T09:04:21+00:00,desk_28_posthoc_diagnostics,posthoc:diagnostics,44136fa355b3,post-hoc diagnostics of the single TEST look; no new arm
+2026-09-24T09:05:08+00:00,desk_29_final_candidate,final_outputs:B1,44136fa355b3,output generation of a desk_27 arm; no selection
+2026-09-24T09:05:14+00:00,desk_29_final_candidate,final_outputs:A5_jkp13z,44136fa355b3,output generation of a desk_27 arm; no selection

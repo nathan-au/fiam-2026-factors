@@ -1,0 +1,19 @@
+      variant  ir_net  max_dd      ic  paired_t    d_h1    d_h2     decision
+0      base_a -0.6680 -0.2443  0.0131       NaN     NaN     NaN    reference
+1  mom_drop_a -0.7854 -0.2165  0.0088   -0.3187 -0.0061  0.0029  no evidence
+2  mom_half_a -0.7978 -0.2374  0.0120   -1.0175 -0.0027  0.0005     rejected
+3    invvol_a -0.6018 -0.1933  0.0165    0.9455  0.0000  0.0013  no evidence
+4      disp_a -0.5996 -0.1673  0.0131    1.2674 -0.0004  0.0023  no evidence
+5      base_b -0.3856 -0.1388  0.0062       NaN     NaN     NaN    reference
+6  mom_drop_b -0.1988 -0.1055  0.0072    0.3996 -0.0042  0.0042  no evidence
+7  mom_half_b -0.3043 -0.1275  0.0072    0.2502 -0.0014  0.0015  no evidence
+8    invvol_b -0.3074 -0.1431  0.0114    0.3221  0.0003  0.0005  no evidence
+9      disp_b -0.4895 -0.1184  0.0062   -0.2979  0.0001 -0.0004  no evidence
+mom_drop_a {'avg_weight': {'value': 0.48, 'profitability': 0.83, 'investment_issuance_accruals': 0.54, 'quality': 0.68, 'surprise': 0.69, 'volatility_beta': 0.65, 'liquidity': 0.75, 'dtc': 0.35}}
+mom_half_a {'avg_weight': {'value': 0.74, 'profitability': 0.92, 'investment_issuance_accruals': 0.77, 'quality': 0.84, 'surprise': 0.85, 'volatility_beta': 0.82, 'liquidity': 0.87, 'dtc': 0.68}}
+invvol_a {'avg_weight': {'value': 0.8, 'profitability': 1.01, 'investment_issuance_accruals': 1.07, 'quality': 0.99, 'surprise': 1.17, 'volatility_beta': 0.59, 'liquidity': 1.17, 'dtc': 1.33}}
+mom_drop_b {'avg_weight': {'Accruals': 0.8, 'Debt Issuance': 0.55, 'Investment': 0.44, 'Low Leverage': 0.72, 'Low Risk': 0.7, 'Momentum': 0.79, 'Profit Growth': 0.56, 'Profitability': 0.77, 'Quality': 0.85, 'Seasonality': 0.34, 'Short-Term Reversal': 0.96, 'Size': 0.46, 'Value': 0.45}}
+mom_half_b {'avg_weight': {'Accruals': 0.9, 'Debt Issuance': 0.77, 'Investment': 0.72, 'Low Leverage': 0.86, 'Low Risk': 0.85, 'Momentum': 0.89, 'Profit Growth': 0.78, 'Profitability': 0.89, 'Quality': 0.92, 'Seasonality': 0.67, 'Short-Term Reversal': 0.98, 'Size': 0.73, 'Value': 0.73}}
+invvol_b {'avg_weight': {'Accruals': 1.18, 'Debt Issuance': 1.79, 'Investment': 0.94, 'Low Leverage': 0.92, 'Low Risk': 0.61, 'Momentum': 0.66, 'Profit Growth': 0.91, 'Profitability': 1.13, 'Quality': 0.84, 'Seasonality': 1.04, 'Short-Term Reversal': 1.28, 'Size': 0.91, 'Value': 0.79}}
+dispersion_scaled_months_dev ['2017-10-31', '2017-12-31', '2018-06-30', '2018-09-30', '2018-12-31', '2019-02-28', '2019-03-31', '2019-06-30', '2019-09-30', '2019-11-30', '2020-01-31', '2020-02-29', '2020-03-31', '2020-04-30', '2020-05-31', '2020-06-30', '2020-07-31', '2020-08-31', '2020-09-30', '2020-10-31', '2020-11-30', '2020-12-31']
+21s

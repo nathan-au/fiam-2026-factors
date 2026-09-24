@@ -1,0 +1,455 @@
+{
+  "B1": {
+    "metrics": {
+      "ir_gross": 0.7431197691860129,
+      "ir_net": 0.6598089595555467,
+      "sharpe_net": 0.9918833796434835,
+      "cagr_net": 0.11841608001889337,
+      "cagr_gross": 0.12960463576159253,
+      "alpha_t_net": 2.25963115765395,
+      "beta": 0.01822736105069054,
+      "beta_t": 0.18497855016101944,
+      "max_dd_net": -0.09600211734628072,
+      "max_dd_gross": -0.09364162961756672,
+      "one_way_turnover": 0.09999999999999996,
+      "min_positions": 204,
+      "max_positions": 248,
+      "avg_gross": 1.9970500558689666,
+      "max_gross": 1.9999999999999998,
+      "avg_net_exposure": 1.959217102279688e-17,
+      "min_net_exposure": -2.220446049250313e-16,
+      "max_net_exposure": 2.220446049250313e-16,
+      "months_turnover_relaxed": 0,
+      "long_leg_cagr": 0.1185445436634065,
+      "short_leg_cagr": -0.014818909256960389,
+      "n_months": 68,
+      "sharpe_gross": 1.0751460855365949,
+      "mean_net_monthly": 0.009956436666423776,
+      "avg_positions": 230.26470588235293,
+      "avg_n_long": 116.25,
+      "avg_n_short": 114.01470588235294,
+      "trade_cost_bp_month": 3.496516207358352,
+      "borrow_cost_bp_month": 4.876955445348562,
+      "long_contrib_ann": 0.1268120216885386,
+      "short_contrib_ann": 0.002713384291794971,
+      "calendar_year_net": {
+        "2021": 0.3098275202405447,
+        "2022": 0.18300837896117872,
+        "2023": 0.09070080260330982,
+        "2024": 0.1429960536045074,
+        "2025": -0.026702432842285684,
+        "2026": 0.0028162154280961804
+      },
+      "ir_net_by_year": {
+        "2021": 1.3445270440673303,
+        "2022": 0.9030099916641208,
+        "2023": 0.5393747080227128,
+        "2024": 1.3284552606794546,
+        "2025": -1.0985462287049952,
+        "2026": -0.3062459750083754
+      },
+      "beta_vw_mkt": -0.034437271968315704,
+      "beta_vw_mkt_t": -0.35572839177951926,
+      "ic": 0.0453750119983738,
+      "ic_t": 2.3941524966011243,
+      "ic_by_year": {
+        "2021": 0.0855,
+        "2022": 0.0831,
+        "2023": 0.01,
+        "2024": 0.0694,
+        "2025": -0.0007,
+        "2026": 0.0147
+      },
+      "style_attr": {
+        "alpha_ann": 0.023510295686802976,
+        "alpha_t": 0.7990532136069253,
+        "r2": 0.7575374237862377,
+        "loadings": {
+          "mkt": [
+            0.284,
+            4.01
+          ],
+          "size_small": [
+            -0.161,
+            -1.37
+          ],
+          "value": [
+            0.582,
+            4.71
+          ],
+          "momentum": [
+            0.294,
+            5.0
+          ],
+          "lowvol": [
+            0.086,
+            1.02
+          ],
+          "quality": [
+            0.552,
+            3.77
+          ],
+          "profitability": [
+            0.316,
+            2.28
+          ],
+          "investment_low": [
+            0.22,
+            1.37
+          ]
+        }
+      },
+      "holdings_style_exposure": {
+        "size_small": -0.09506444554504963,
+        "value": 0.0004063245495248872,
+        "momentum": 0.1560556197747107,
+        "lowvol": 0.32146638311419534,
+        "quality": 0.9368515909175791,
+        "profitability": 0.53248273187429,
+        "investment_low": 0.1326274917124275
+      },
+      "sector_contrib_ann": {
+        "10": -0.0055,
+        "55": -0.0024,
+        "60": -0.0004,
+        "NA": 0.0,
+        "50": 0.0002,
+        "40": 0.0098,
+        "35": 0.0112,
+        "30": 0.0113,
+        "15": 0.0129,
+        "20": 0.0261,
+        "25": 0.0307,
+        "45": 0.0355
+      },
+      "by_regime": {
+        "vix_tercile": {
+          "low": {
+            "mean_net": 0.01004398619746116,
+            "ir": 0.8966409952326363,
+            "n": 13
+          },
+          "mid": {
+            "mean_net": 0.009809603850145432,
+            "ir": 0.684647655834141,
+            "n": 29
+          },
+          "high": {
+            "mean_net": 0.010076436965215542,
+            "ir": 0.5640237235013422,
+            "n": 26
+          }
+        },
+        "mkt_contemp_up_down": {
+          "up": {
+            "mean_net": 0.008403718380016929,
+            "n": 41
+          },
+          "down": {
+            "mean_net": 0.012314268138374908,
+            "n": 27
+          }
+        },
+        "trailing12_mkt": {
+          "up": {
+            "mean_net": 0.010008820533753888,
+            "ir": 0.6924552076663191,
+            "n": 54
+          },
+          "down": {
+            "mean_net": 0.009754384606721915,
+            "ir": 0.5418976760073744,
+            "n": 14
+          }
+        }
+      },
+      "boot_ir_net": {
+        "ir": 0.6598089595555467,
+        "ci90": [
+          0.14205707109009183,
+          1.1957291186400705
+        ],
+        "p_le_0": 0.0162
+      }
+    },
+    "constraints": {
+      "positions_100_500": true,
+      "gross_le_200pct": true,
+      "net_within_pm50pct": true,
+      "dollar_neutral": true,
+      "beta_neutral_at_formation": true,
+      "sector_net_le_5pct": true,
+      "sector_gross_le_35pct": true
+    },
+    "determinism": true,
+    "monthly_extremes": {
+      "positions": [
+        204,
+        248
+      ],
+      "gross": [
+        1.9229288077246116,
+        1.9999999999999998
+      ],
+      "net_abs_max": 2.220446049250313e-16,
+      "beta_abs_max": 6.661338147750939e-16
+    },
+    "top10_long_avg": {
+      "('AAPL', 'APPLE INC')": 0.863,
+      "('ZTS', 'ZOETIS INC')": 0.848,
+      "('A', 'AGILENT TECHNOLOGIES INC')": 0.847,
+      "('MO', 'ALTRIA GROUP INC')": 0.823,
+      "('GOOGL', 'ALPHABET INC')": 0.793,
+      "('PRI', 'PRIMERICA INC')": 0.779,
+      "('DLB', 'DOLBY LABORATORIES INC')": 0.779,
+      "('OC', 'OWENS CORNING NEW')": 0.771,
+      "('ADBE', 'ADOBE INC')": 0.735,
+      "('MSFT', 'MICROSOFT CORP')": 0.694
+    },
+    "top10_short_avg": {
+      "('IONS', 'IONIS PHARMACEUTICALS INC')": -0.955,
+      "('RARE', 'ULTRAGENYX PHARMACEUTICALS INC')": -0.85,
+      "('ARMK', 'ARAMARK')": -0.784,
+      "('INSM', 'INSMED INC')": -0.759,
+      "('ITCI', 'INTRA CELLULAR THERAPIES INC')": -0.722,
+      "('AXON', 'AXON ENTERPRISE INC')": -0.693,
+      "('FIVN', 'FIVE 9 INC')": -0.682,
+      "('ARWR', 'ARROWHEAD PHARMACEUTICALS INC')": -0.675,
+      "('BL', 'BLACKLINE INC')": -0.669,
+      "('TTWO', 'TAKE TWO INTERACTIVE SOFTWR INC')": -0.657
+    }
+  },
+  "A5_jkp13z": {
+    "metrics": {
+      "ir_gross": 0.9552654413752543,
+      "ir_net": 0.856445123113965,
+      "sharpe_net": 1.2929472976392207,
+      "cagr_net": 0.12060731979075334,
+      "cagr_gross": 0.13086106831549427,
+      "alpha_t_net": 3.071266039659158,
+      "beta": -0.0282988631829103,
+      "beta_t": -0.37720123252334237,
+      "max_dd_net": -0.07686504793820126,
+      "max_dd_gross": -0.07074585754089824,
+      "one_way_turnover": 0.09999999999999996,
+      "min_positions": 201,
+      "max_positions": 253,
+      "avg_gross": 1.9997953473136196,
+      "max_gross": 2.0,
+      "avg_net_exposure": 7.039660929349998e-17,
+      "min_net_exposure": -2.5673907444456745e-16,
+      "max_net_exposure": 5.828670879282072e-16,
+      "months_turnover_relaxed": 0,
+      "long_leg_cagr": 0.1350845513097454,
+      "short_leg_cagr": -0.03356185081304308,
+      "n_months": 68,
+      "sharpe_gross": 1.391001979986912,
+      "mean_net_monthly": 0.009873546059997249,
+      "avg_positions": 233.86764705882354,
+      "avg_n_long": 116.23529411764706,
+      "avg_n_short": 117.63235294117646,
+      "trade_cost_bp_month": 3.5012385662163967,
+      "borrow_cost_bp_month": 4.1733182584777,
+      "long_contrib_ann": 0.1433760490545237,
+      "short_contrib_ann": -0.015684028144923774,
+      "calendar_year_net": {
+        "2021": 0.22725246757628548,
+        "2022": 0.15857934745008473,
+        "2023": 0.1537653150046725,
+        "2024": 0.1388665379823868,
+        "2025": 0.0019830393968636173,
+        "2026": 0.018417529969834145
+      },
+      "ir_net_by_year": {
+        "2021": 1.2878337343481008,
+        "2022": 1.2076985877990536,
+        "2023": 1.327924660443388,
+        "2024": 1.4805678259298836,
+        "2025": -0.5752393679093561,
+        "2026": -0.0738529399336362
+      },
+      "beta_vw_mkt": -0.03819122338945068,
+      "beta_vw_mkt_t": -0.5191265743342482,
+      "ic": 0.02511962630642684,
+      "ic_t": 1.826727154971843,
+      "ic_by_year": {
+        "2021": 0.0538,
+        "2022": 0.057,
+        "2023": 0.0028,
+        "2024": 0.059,
+        "2025": -0.0386,
+        "2026": 0.0125
+      },
+      "style_attr": {
+        "alpha_ann": 0.06261011015314193,
+        "alpha_t": 1.88660597420511,
+        "r2": 0.4670230341303495,
+        "loadings": {
+          "mkt": [
+            0.137,
+            1.71
+          ],
+          "size_small": [
+            0.117,
+            0.88
+          ],
+          "value": [
+            0.233,
+            1.67
+          ],
+          "momentum": [
+            0.222,
+            3.35
+          ],
+          "lowvol": [
+            -0.061,
+            -0.64
+          ],
+          "quality": [
+            0.651,
+            3.93
+          ],
+          "profitability": [
+            0.108,
+            0.69
+          ],
+          "investment_low": [
+            0.236,
+            1.31
+          ]
+        }
+      },
+      "holdings_style_exposure": {
+        "size_small": 0.0997849613683754,
+        "value": -0.14822334329733844,
+        "momentum": 0.36131317058566437,
+        "lowvol": 0.051365210952045263,
+        "quality": 0.7140368616572785,
+        "profitability": 0.6618355073493827,
+        "investment_low": 0.21613847447610868
+      },
+      "sector_contrib_ann": {
+        "40": -0.006,
+        "60": -0.0038,
+        "NA": 0.0,
+        "55": 0.0008,
+        "10": 0.0011,
+        "50": 0.002,
+        "15": 0.0088,
+        "30": 0.0092,
+        "45": 0.0225,
+        "35": 0.0265,
+        "20": 0.0288,
+        "25": 0.0377
+      },
+      "by_regime": {
+        "vix_tercile": {
+          "low": {
+            "mean_net": 0.008878928792673754,
+            "ir": 0.7879616229853313,
+            "n": 13
+          },
+          "mid": {
+            "mean_net": 0.00741239276360966,
+            "ir": 0.5422133741164645,
+            "n": 29
+          },
+          "high": {
+            "mean_net": 0.013115987216552844,
+            "ir": 1.1899647235516662,
+            "n": 26
+          }
+        },
+        "mkt_contemp_up_down": {
+          "up": {
+            "mean_net": 0.006830931390660768,
+            "n": 41
+          },
+          "down": {
+            "mean_net": 0.014493812780100798,
+            "n": 27
+          }
+        },
+        "trailing12_mkt": {
+          "up": {
+            "mean_net": 0.009852655763899697,
+            "ir": 0.8456762833303343,
+            "n": 54
+          },
+          "down": {
+            "mean_net": 0.009954122916373525,
+            "ir": 0.8673924837082159,
+            "n": 14
+          }
+        }
+      },
+      "boot_ir_net": {
+        "ir": 0.856445123113965,
+        "ci90": [
+          0.3173439347776724,
+          1.4069705486444437
+        ],
+        "p_le_0": 0.0048
+      }
+    },
+    "constraints": {
+      "positions_100_500": true,
+      "gross_le_200pct": true,
+      "net_within_pm50pct": true,
+      "dollar_neutral": true,
+      "beta_neutral_at_formation": true,
+      "sector_net_le_5pct": true,
+      "sector_gross_le_35pct": true
+    },
+    "determinism": true,
+    "monthly_extremes": {
+      "positions": [
+        201,
+        253
+      ],
+      "gross": [
+        1.9860836173261809,
+        2.0
+      ],
+      "net_abs_max": 5.828670879282072e-16,
+      "beta_abs_max": 7.216449660063518e-16
+    },
+    "top10_long_avg": {
+      "('MANH', 'MANHATTAN ASSOCIATES INC')": 0.921,
+      "('INCY', 'INCYTE CORP')": 0.822,
+      "('MTD', 'METTLER TOLEDO INTERNATIONAL INC')": 0.811,
+      "('LSTR', 'LANDSTAR SYSTEM INC')": 0.804,
+      "('DDS', 'DILLARDS INC')": 0.796,
+      "('WSM', 'WILLIAMS SONOMA INC')": 0.766,
+      "('HRB', 'BLOCK H & R INC')": 0.766,
+      "('DBX', 'DROPBOX INC')": 0.763,
+      "('EVR', 'EVERCORE INC')": 0.762,
+      "('CORT', 'CORCEPT THERAPEUTICS INC')": 0.751
+    },
+    "top10_short_avg": {
+      "('ROP', 'ROPER TECHNOLOGIES INC')": -0.891,
+      "('MS', 'MORGAN STANLEY DEAN WITTER & CO')": -0.845,
+      "('PCG', 'P G & E CORP')": -0.824,
+      "('INSM', 'INSMED INC')": -0.772,
+      "('C', 'CITIGROUP INC')": -0.77,
+      "('MGM', 'M G M RESORTS INTERNATIONAL')": -0.761,
+      "('LBRDK', 'LIBERTY BROADBAND CORP')": -0.739,
+      "('TDY', 'TELEDYNE TECHNOLOGIES')": -0.733,
+      "('BA', 'BOEING CO')": -0.705,
+      "('RARE', 'ULTRAGENYX PHARMACEUTICALS INC')": -0.661
+    }
+  },
+  "truncation_invariance_themes": {
+    "dates": [
+      "2017-10-31",
+      "2018-09-30",
+      "2024-08-31"
+    ],
+    "max_abs_diff": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passed": true
+  }
+}

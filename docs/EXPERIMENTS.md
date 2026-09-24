@@ -153,6 +153,30 @@ Built on the DEV window 2015-02..2020-12 (decisions) and confirmed once on 2021-
 | [`desk_11_devils_advocate`](../experiments/desk_11_devils_advocate/README.md) | Deterministic attacks on the default system | Alpha t 1.07 after style proxies (R2 0.75); IR 0.98 -> 0.21 between halves; text modes indistinguishable (bootstrap CIs include 0) | Diagnostic (2 of 4 criteria fail) | Yes: disclose |
 | [`desk_12_novneg_posthoc`](../experiments/desk_12_novneg_posthoc/README.md) | POST-HOC: novelty x negative as an 8th group, both periods | Same-sign alone (pooled IC +0.0087, t 3.06) but dilutes the test base (paired IC t -2.09) | Post-hoc, not adopted | Only with new data |
 
+## 7. Research run 2026-09-24 (`fiam_research/`, see `docs/RESEARCH_RUN_2026-09-24.md`)
+
+Decisions on DEV; one pre-registered TEST confirmation (desk_27). Every variant is in `experiments/desk_research_ledger.csv`.
+
+| Experiment | Objective | Key result | Verdict | Pursue further? |
+| --- | --- | --- | --- | --- |
+| [`desk_13_baseline_freeze`](../experiments/desk_13_baseline_freeze/README.md) | Freeze B0 with the full metric suite | DEV IR −0.757 / TEST +0.637; holdings quality +0.95, low-vol +0.35; DEV beta −0.17 | Reference | – |
+| [`desk_14_si_history_extension`](../experiments/desk_14_si_history_extension/README.md) | FINRA SI 2018-01..2020-05 (new data); fresh test of dtc and SI cap | dtc IC −0.001 (not replicated); SI cap paired t +2.12 | Data adopted; cap confirmed; dtc unconfirmed | – |
+| [`desk_15_data_audit`](../experiments/desk_15_data_audit/README.md) | Data / implementation audit | Delisting rows dropped before universe formation (look-ahead); fix moves DEV IR −0.10 | **Correction adopted (B1)** | – |
+| [`desk_16_literature`](../experiments/desk_16_literature/README.md) | Literature review + plan | 18 sources → hypotheses | – | – |
+| [`desk_17_regime_attribution`](../experiments/desk_17_regime_attribution/README.md) | Why DEV loses | Value crash + low-vol / investment losses; dispersion predicts IC (t −5.4 / −3.1) | Diagnostic | – |
+| [`desk_18_noise_floor`](../experiments/desk_18_noise_floor/README.md) | LP path noise | Jitter sd 0.03 IR; random −1.36 | Diagnostic | – |
+| [`desk_19_signal_construction`](../experiments/desk_19_signal_construction/README.md) | JKP 13 literature-signed themes | Steadier book, lower IC; no DEV evidence | No evidence | Carried → A5 |
+| [`desk_20_portfolio_construction`](../experiments/desk_20_portfolio_construction/README.md) | Vol caps, 0.5% cap, risk QP, tracking, SI-cap level | LP not the bottleneck; SI cap 5% t +3.19 | QP rejected; cap 5% carried | No |
+| [`desk_21_regime_timing`](../experiments/desk_21_regime_timing/README.md) | Factor momentum, inverse-vol, dispersion scaling | Nothing passes | No evidence | No |
+| [`desk_22_signal_decay`](../experiments/desk_22_signal_decay/README.md) | Horizons 1–12m, turnover budget | Profitability / quality slow; budget irrelevant | Diagnostic | No |
+| [`desk_23_text_reopened`](../experiments/desk_23_text_reopened/README.md) | Text roles | No return signal; **text predicts idio risk (t 4.65)** | Risk info only | Maybe (risk model) |
+| [`desk_24_interactions`](../experiments/desk_24_interactions/README.md) | Conditional ICs, multiplicative signals | None; high-SI IC −0.05 on DEV | Rejected | No |
+| [`desk_25_model_classes`](../experiments/desk_25_model_classes/README.md) | Ridge / monotone GBM walk-forward | GBM IC +0.023 OOS 2017–20 | No evidence | Carried → A3 |
+| [`desk_26_multiple_testing`](../experiments/desk_26_multiple_testing/README.md) | PBO / DSR / FDR | PBO 0.49; 1 BH survivor | Diagnostic | – |
+| [`desk_27_confirmation_test`](../experiments/desk_27_confirmation_test/README.md) | One pre-registered TEST look | No arm passes; cap 5% reverses (t −2.0); GBM IC 0.017; JKP13z Sharpe 1.29 vs 0.99 | **B1 stays** | – |
+| [`desk_28_posthoc_diagnostics`](../experiments/desk_28_posthoc_diagnostics/README.md) | Why (post-hoc) | Flips = growth-vs-value cycle; JKP13z Sharpe diff +0.29 [−0.14, 0.73] | Descriptive | – |
+| [`desk_29_final_candidate`](../experiments/desk_29_final_candidate/README.md) | FIAM outputs B1 + A5 | Constraints / determinism / truncation pass | Output | Forward-test A5 |
+
 ---
 
 ### Legend

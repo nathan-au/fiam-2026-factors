@@ -1,0 +1,4 @@
+B1 IC +0.0454 (t +2.39) | IR net +0.660 gross +0.743 | SR +0.99 | DD -9.6% | beta -0.03 | TO 10.0% | pos 204-248 | cost 8.4bp/m | constraints True | deterministic True
+A5_jkp13z IC +0.0251 (t +1.83) | IR net +0.856 gross +0.955 | SR +1.29 | DD -7.7% | beta -0.04 | TO 10.0% | pos 201-253 | cost 7.7bp/m | constraints True | deterministic True
+truncation {'dates': ['2017-10-31', '2018-09-30', '2024-08-31'], 'max_abs_diff': [0.0, 0.0, 0.0], 'passed': True}
+31s

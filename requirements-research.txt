@@ -1,0 +1,3 @@
+# Extra packages used by fiam_research/ and experiments/desk_13+ (installed with `.venv/bin/python -m pip install -r requirements-research.txt`)
+cvxpy==1.9.3
+openpyxl

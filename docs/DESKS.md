@@ -62,6 +62,8 @@ Factors desk: frozen 18-factor composite + days-to-cover 8th group. PM: `lc_t10`
 5. The default was decided by the pre-registered rule, not by the best-looking TEST row (veto_long has the highest net IR 0.728 but is not adopted).
 
 ## 8. Limitations / next steps
+**Superseded in part by the 2026-09-24 research run (`docs/RESEARCH_RUN_2026-09-24.md`, desk_13..desk_29):** delisting look-ahead fixed (B1), dtc not replicated on 2018-20 data, no confirmed improvement; JKP 13-theme composite is the documented promising alternative.
+
 - The system is a regime-dependent style portfolio; the honest deck statement is "IR 0.64 (CI 0.14-1.16) on 2021-26, -0.76 on 2015-20, alpha t 1.07 after style proxies".
 - `txt_v2` rule regexes and the Loughran-McDonald tone are the teammate's code (on branch `text-agents`), verified structurally only.
 - Costs and borrow are assumptions; no borrow-availability data.

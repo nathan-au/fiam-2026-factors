@@ -1,0 +1,88 @@
+{
+  "commit": "6e145be0bad7abc1ce349ec64f6e8bd02a2d08f2",
+  "system_default": {
+    "factors": "composite+dtc",
+    "si_cap": true,
+    "text_mode": "advisory",
+    "text_params": {},
+    "lp": "lc_t10"
+  },
+  "lp_base": {
+    "min_dolvol": 10000000.0,
+    "min_price": 5.0,
+    "min_mcap": 2000.0,
+    "beta_cols": [
+      "raw_beta_60m",
+      "raw_betabab_1260d"
+    ],
+    "max_weight": 0.01,
+    "sector_net": 0.05,
+    "sector_gross": 0.7,
+    "turnover": 0.1
+  },
+  "si_cap": 0.1,
+  "factor_groups": {
+    "value": {
+      "be_me": 1,
+      "ni_me": 1,
+      "fcf_me": 1
+    },
+    "profitability": {
+      "gp_at": 1,
+      "ni_be": 1,
+      "ebit_sale": 1
+    },
+    "investment_issuance_accruals": {
+      "at_gr1": -1,
+      "chcsho_12m": -1,
+      "oaccruals_at": -1
+    },
+    "quality": {
+      "qmj": 1,
+      "f_score": 1
+    },
+    "surprise": {
+      "niq_su": 1,
+      "saleq_su": 1
+    },
+    "volatility_beta": {
+      "ivol_capm_21d": -1,
+      "rmax5_21d": -1,
+      "betabab_1260d": -1
+    },
+    "liquidity": {
+      "ami_126d": 1,
+      "turnover_126d": -1
+    }
+  },
+  "universe": {
+    "floor_mcap_musd": 2000.0,
+    "min_price": 5.0,
+    "min_dolvol": 10000000.0
+  },
+  "periods": {
+    "dev": [
+      "2015-02-28",
+      "2020-12-31"
+    ],
+    "test": [
+      "2021-01-31",
+      "2026-08-31"
+    ]
+  },
+  "fiam_desks_sha256": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "audit.py": "33778c8c08389e30fe167c333686d1deb32592a13a69a676d30c0e7cabc5123f",
+    "config.py": "43b107d19db2e39790e32e74b07ec20e4cb2dc5fa0332c84315c2f859e150142",
+    "evaluate.py": "89ba5ef9e3161eaa9eded96a10f6660179f8c16b145ee2dfb8484c8ff644dff1",
+    "factors_desk.py": "f8b5c3521a2a6ce33414e64ff6e1e0186b0bdb9558c8e84d3a01d29ddf05e454",
+    "ledger.py": "440325eb1575c7954ee55a7c3c8a6f74e00b3d8f35719846c70cc80d8187ea8d",
+    "lp.py": "ae0b4818b6a36cc6a4c3e130c32b3d72259c99af0687a1cc24456f67bf6bde91",
+    "panel.py": "91f5354192d7f8b4ba84eaad8ff9b45eab560676398edad808546868c45ebc09",
+    "pm.py": "a60e478f30b60b0eaeb16f4258ab120bd13b2608555cd14bb65b55ffb98962df",
+    "si.py": "76513e2bed6c08d5689b94dc1f2655ad824581ba63b4e944cda13b6a3d9173a1",
+    "system.py": "bbdcf99baaa109f39fe17569c0aa3205dac64d051f976d45bf51c07b6e6e53f1",
+    "text_desk.py": "97a8cebd907252ca8618a5680841f25bb88b133a76ac9239aa6644b4a24df76a"
+  },
+  "short_interest_months": "2020-06 onward (fiam_desks/si.py)"
+}
