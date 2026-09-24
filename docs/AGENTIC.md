@@ -45,6 +45,7 @@ flowchart TD
 ```
 - Portfolio manager is deterministic
 - Disagreement between desks can be used as a sizing dial
+- **Implemented** (`fiam_desks/`, `docs/DESKS.md`, `experiments/desk_00..12`): factors desk (composite + days-to-cover) and text desk (txt_v1/v2.1) feed a deterministic PM (`pm.py`) and the `lc_t10` LP. Evidence line: no text PM mode beat the un-augmented desk (paired net-return t < 1 on dev; on test `tilt` lowered IC, paired t -2.5; bootstrap CIs of all IR differences include 0), so the text desk is **advisory**; the disagreement dial was the worst mode (net IR -0.15 on test). Other architectures on this page that need an LLM were not built (masked-LLM extractor: 77% verifiable quotes, rules agree 93%).
 
 ## Prosecutor / defense / judge (short trial)
 

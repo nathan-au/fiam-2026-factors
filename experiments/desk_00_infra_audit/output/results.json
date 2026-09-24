@@ -1,0 +1,120 @@
+{
+  "config": {
+    "published": {
+      "comp_universe_ic": 0.0366,
+      "comp_ic_t": 1.91,
+      "lc_t10_ir_gross": 0.615,
+      "lc_t10_ir_net": 0.541
+    },
+    "dev": [
+      "2015-02-28",
+      "2020-12-31"
+    ],
+    "test": [
+      "2021-01-31",
+      "2026-08-31"
+    ],
+    "floor": 2000.0
+  },
+  "reproduce_frozen": {
+    "universe_ic": 0.03664503081739846,
+    "universe_ic_t": 1.914576303308223,
+    "ir_gross": 0.6147635084091442,
+    "ir_net": 0.5411376375598286,
+    "constraints": {
+      "positions_100_500": true,
+      "gross_le_200pct": true,
+      "net_within_pm50pct": true,
+      "dollar_neutral": true,
+      "beta_neutral_at_formation": true,
+      "sector_net_le_5pct": true,
+      "sector_gross_le_35pct": true
+    },
+    "passed": true
+  },
+  "target_alignment": {
+    "pairs_checked": 522431,
+    "mismatches": 0,
+    "passed": true
+  },
+  "text_hashes_verified": true,
+  "text_v1_vs_raw": {
+    "rows_v1": 391700,
+    "rows_raw_permno_months": 241058,
+    "raw_months_missing_from_v1": 0,
+    "cell_mismatches_by_column": {
+      "txt_n_filings": 0,
+      "txt_n_amendments": 0,
+      "txt_item_1_01": 0,
+      "txt_item_1_02": 0,
+      "txt_item_2_01": 0,
+      "txt_item_2_02": 0,
+      "txt_item_2_05": 0,
+      "txt_item_2_06": 0,
+      "txt_item_4_01": 0,
+      "txt_item_4_02": 0,
+      "txt_item_5_02": 0,
+      "txt_item_7_01": 0,
+      "txt_item_8_01": 0
+    },
+    "passed": true
+  },
+  "text_v2_consistency": {
+    "checks": {
+      "same_row_set": true,
+      "novelty_defined_only_with_filing": true,
+      "n_with_novelty_le_filings": true,
+      "txt_v2_n_502_abrupt_exit_le_filings": true,
+      "txt_v2_n_502_hard_abrupt_le_filings": true,
+      "txt_v2_n_502_routine_only_le_filings": true,
+      "txt_v2_n_801_distress_le_filings": true,
+      "txt_v2_n_801_litigation_le_filings": true,
+      "txt_v2_n_101_financing_le_filings": true,
+      "txt_v2_n_101_merger_le_filings": true,
+      "unique_key": true,
+      "eom_is_month_end": true,
+      "novelty_in_0_1": true
+    },
+    "passed": true
+  },
+  "novelty_recompute": {
+    "past_only": {
+      "n_permno_months": 4257,
+      "spearman_vs_table": 0.9508505544483693,
+      "median_abs_diff": 0.03200493366160295,
+      "share_within_0.05": 0.5900869156683111
+    },
+    "future_inclusive": {
+      "n_permno_months": 4257,
+      "spearman_vs_table": 0.8491048789273227,
+      "median_abs_diff": 0.059818432322539694,
+      "share_within_0.05": 0.44467935165609584
+    },
+    "table_matches_past_only_better": true,
+    "passed": true,
+    "sample_permnos": 60
+  },
+  "desk_truncation": {
+    "dates": [
+      "2022-05-31",
+      "2023-05-31",
+      "2025-02-28"
+    ],
+    "n_values_compared": 10587,
+    "max_abs_diff": {
+      "factors_composite": 0.0,
+      "text_novelty_two_sided": 0.0,
+      "text_novneg_flags_decay6": 0.0
+    },
+    "passed": true
+  },
+  "determinism": {
+    "hashes": [
+      "3afe42c5a27328e1",
+      "3afe42c5a27328e1"
+    ],
+    "passed": true
+  },
+  "all_passed": true,
+  "runtime_min": 0.3025721510251363
+}

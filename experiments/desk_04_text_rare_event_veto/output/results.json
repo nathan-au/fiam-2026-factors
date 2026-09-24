@@ -1,0 +1,68 @@
+[
+  {
+    "set": "severe_t | universe",
+    "months_ok": 66,
+    "flagged_per_month": 6.636363636363637,
+    "tail_flagged": 0.03578042328042328,
+    "tail_unflagged": 0.043584159871306996,
+    "tail_diff": -0.007803736590883711,
+    "tail_diff_t": -0.7646547325395312,
+    "mean_diff_pct": 0.5124799479514563,
+    "mean_diff_t": 1.0270265987938356
+  },
+  {
+    "set": "severe_t | composite top quintile (long candidates)",
+    "months_ok": 4,
+    "flagged_per_month": 3.5,
+    "tail_flagged": 0.0,
+    "tail_unflagged": 0.0089611744541322,
+    "tail_diff": -0.0089611744541322,
+    "tail_diff_t": -1.4367429601078892,
+    "mean_diff_pct": 0.20609053427776647,
+    "mean_diff_t": 0.25470535627321617
+  },
+  {
+    "set": "severe_t | composite bottom quintile (short candidates)",
+    "months_ok": 18,
+    "flagged_per_month": 3.5,
+    "tail_flagged": 0.037037037037037035,
+    "tail_unflagged": 0.06406918484581112,
+    "tail_diff": -0.027032147808774096,
+    "tail_diff_t": -1.3355585873600897,
+    "mean_diff_pct": 0.5191388433734305,
+    "mean_diff_t": 0.330973651341103
+  },
+  {
+    "set": "severe_3m | universe",
+    "months_ok": 71,
+    "flagged_per_month": 18.12676056338028,
+    "tail_flagged": 0.042891438602531785,
+    "tail_unflagged": 0.044620949586989,
+    "tail_diff": -0.0017295109844572226,
+    "tail_diff_t": -0.41530389695607495,
+    "mean_diff_pct": 0.44998017886794145,
+    "mean_diff_t": 1.583471850972133
+  },
+  {
+    "set": "severe_3m | composite top quintile (long candidates)",
+    "months_ok": 37,
+    "flagged_per_month": 3.864864864864865,
+    "tail_flagged": 0.04909909909909909,
+    "tail_unflagged": 0.024966291394050988,
+    "tail_diff": 0.024132807705048116,
+    "tail_diff_t": 1.3417725924977997,
+    "mean_diff_pct": -0.22724779259962066,
+    "mean_diff_t": -0.346826032967217
+  },
+  {
+    "set": "severe_3m | composite bottom quintile (short candidates)",
+    "months_ok": 64,
+    "flagged_per_month": 5.4375,
+    "tail_flagged": 0.06059027777777778,
+    "tail_unflagged": 0.0839742318793425,
+    "tail_diff": -0.02338395410156472,
+    "tail_diff_t": -2.0634740461405316,
+    "mean_diff_pct": 0.2932631657094698,
+    "mean_diff_t": 0.42547724285982197
+  }
+]

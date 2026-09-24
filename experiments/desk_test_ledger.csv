@@ -1,0 +1,20 @@
+utc,experiment,arm,config_hash,note
+2026-09-24T03:53:20+00:00,desk_09_confirmation_test,F0_composite,b753920caf8f,
+2026-09-24T03:53:23+00:00,desk_09_confirmation_test,F0_cap,c0dcf58d79ba,
+2026-09-24T03:53:25+00:00,desk_09_confirmation_test,F1_dtc,6430b11a6dcd,
+2026-09-24T03:53:28+00:00,desk_09_confirmation_test,F1_cap (DEFAULT base),fcb6d58cfaaf,
+2026-09-24T03:53:30+00:00,desk_09_confirmation_test,F1_cap + text:blend,13e311490b41,
+2026-09-24T03:53:34+00:00,desk_09_confirmation_test,F1_cap + text:veto_long,e331fb9ed61a,
+2026-09-24T03:53:37+00:00,desk_09_confirmation_test,F1_cap + text:tilt,56884a8a75f9,
+2026-09-24T03:53:40+00:00,desk_09_confirmation_test,F1_cap + text:dial,769524ce4cf5,
+2026-09-24T03:53:52+00:00,desk_09_confirmation_test,F1_cap + text:judge,f8aa818f1d67,
+2026-09-24T03:53:55+00:00,desk_09_confirmation_test,F0_cap + text:tilt,21db093f8545,
+2026-09-24T03:54:04+00:00,desk_09_confirmation_test,F0_cap + text:judge,744d0563e564,
+2026-09-24T03:54:07+00:00,desk_09_confirmation_test,F1_cap + rev_1m,c9d653096de7,
+2026-09-24T03:54:07+00:00,desk_09_confirmation_test,standalone:novelty_max,b4bd7e1b499e,
+2026-09-24T03:54:07+00:00,desk_09_confirmation_test,standalone:novneg_max,d391df8ee34f,
+2026-09-24T03:54:07+00:00,desk_09_confirmation_test,standalone:abrupt_exit,f1745a64b4a0,
+2026-09-24T03:54:07+00:00,desk_09_confirmation_test,standalone:T_A,31e413be42c3,
+2026-09-24T03:57:26+00:00,desk_11_devils_advocate,default system attack (descriptive),9dba7f93cf37,no selection
+2026-09-24T03:59:05+00:00,desk_11_devils_advocate,30 random-score placebos,2bf4546d0139,descriptive
+2026-09-24T04:00:13+00:00,desk_12_novneg_posthoc,F1_cap vs F1_cap+novneg (post-hoc),b7e06cfdd16b,"post-hoc, test already seen"

@@ -1,0 +1,350 @@
+{
+  "books": [
+    {
+      "arm": "F0_composite",
+      "ic_pm_score": 0.03664503081739846,
+      "ic_t": 1.914576303308223,
+      "ir_gross": 0.6147635084091442,
+      "ir_net": 0.5411376375598286,
+      "sharpe_net": 0.8353848965391535,
+      "cagr_net_pct": 10.969168323496081,
+      "beta": -0.061288239172709764,
+      "roll_beta_min": -0.5982261019833335,
+      "roll_beta_max": 0.32219454209980153,
+      "max_dd_net_pct": -18.946959826899914,
+      "net_2025": -0.12397491004326688,
+      "turnover": 0.09999999999999998,
+      "min_pos": 202,
+      "max_pos": 244,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F0_cap",
+      "ic_pm_score": 0.03664503081739846,
+      "ic_t": 1.914576303308223,
+      "ir_gross": 0.589814359801155,
+      "ir_net": 0.5076097555489262,
+      "sharpe_net": 0.8516168562058516,
+      "cagr_net_pct": 9.64526441823892,
+      "beta": 0.0018668839205973828,
+      "roll_beta_min": -0.3768379284491811,
+      "roll_beta_max": 0.3685188090973834,
+      "max_dd_net_pct": -9.790677033932049,
+      "net_2025": -0.06618734168653317,
+      "turnover": 0.10074626865671639,
+      "min_pos": 202,
+      "max_pos": 251,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_dtc",
+      "ic_pm_score": 0.04554097341009569,
+      "ic_t": 2.3871221661840245,
+      "ir_gross": 0.6588022258020696,
+      "ir_net": 0.5841674088765368,
+      "sharpe_net": 0.8703353817776454,
+      "cagr_net_pct": 11.812915206772189,
+      "beta": -0.022387451683340005,
+      "roll_beta_min": -0.3891665722566235,
+      "roll_beta_max": 0.4059194356781729,
+      "max_dd_net_pct": -20.287546820102754,
+      "net_2025": -0.12841412562508858,
+      "turnover": 0.09999999999999996,
+      "min_pos": 202,
+      "max_pos": 242,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_cap (DEFAULT base)",
+      "ic_pm_score": 0.04554097341009569,
+      "ic_t": 2.3871221661840245,
+      "ir_gross": 0.7208798626154279,
+      "ir_net": 0.6365978623768135,
+      "sharpe_net": 0.9702444395110017,
+      "cagr_net_pct": 11.49839506591892,
+      "beta": 0.023015162695799105,
+      "roll_beta_min": -0.33118274302913886,
+      "roll_beta_max": 0.3440964559167062,
+      "max_dd_net_pct": -9.79480726412919,
+      "net_2025": -0.010362701398116791,
+      "turnover": 0.10149253731343282,
+      "min_pos": 203,
+      "max_pos": 248,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_cap + text:blend",
+      "ic_pm_score": 0.046015078496205244,
+      "ic_t": 2.458874949352965,
+      "ir_gross": 0.7544644617284275,
+      "ir_net": 0.667857912304076,
+      "sharpe_net": 1.0135990084524977,
+      "cagr_net_pct": 11.657999821151988,
+      "beta": 0.03158161017011224,
+      "roll_beta_min": -0.33887021365893455,
+      "roll_beta_max": 0.3171157862053891,
+      "max_dd_net_pct": -10.52955116025701,
+      "net_2025": -0.023299100136926487,
+      "turnover": 0.10074626891693385,
+      "min_pos": 202,
+      "max_pos": 251,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_cap + text:veto_long",
+      "ic_pm_score": 0.04554097341009569,
+      "ic_t": 2.3871221661840245,
+      "ir_gross": 0.8161864217063589,
+      "ir_net": 0.7277519465115829,
+      "sharpe_net": 1.089050543007809,
+      "cagr_net_pct": 12.08446016526048,
+      "beta": 0.0058207137976102954,
+      "roll_beta_min": -0.305425198019927,
+      "roll_beta_max": 0.29648779242755946,
+      "max_dd_net_pct": -9.46833714388109,
+      "net_2025": 0.001982519421625417,
+      "turnover": 0.09999999999999996,
+      "min_pos": 202,
+      "max_pos": 248,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_cap + text:tilt",
+      "ic_pm_score": 0.04261107235116589,
+      "ic_t": 2.2955156261113374,
+      "ir_gross": 0.7226359513004523,
+      "ir_net": 0.6295645431177684,
+      "sharpe_net": 1.0096813249667682,
+      "cagr_net_pct": 10.564821165900895,
+      "beta": 0.026243774364640517,
+      "roll_beta_min": -0.3755037374215498,
+      "roll_beta_max": 0.3233966601506325,
+      "max_dd_net_pct": -9.882264165676368,
+      "net_2025": -0.03874199894003749,
+      "turnover": 0.09999999999999996,
+      "min_pos": 202,
+      "max_pos": 255,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_cap + text:dial",
+      "ic_pm_score": 0.04554097341009569,
+      "ic_t": 2.3871221661840245,
+      "ir_gross": 0.5913532759207648,
+      "ir_net": 0.4830887317651729,
+      "sharpe_net": 0.9369565596019857,
+      "cagr_net_pct": 8.17055182052011,
+      "beta": 0.04572516680062651,
+      "roll_beta_min": -0.24522127214358277,
+      "roll_beta_max": 0.2768444934874524,
+      "max_dd_net_pct": -8.56439159231991,
+      "net_2025": -0.05262206809963543,
+      "turnover": 0.10223880597014925,
+      "min_pos": 195,
+      "max_pos": 398,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_cap + text:judge",
+      "ic_pm_score": 0.04554097341009569,
+      "ic_t": 2.3871221661840245,
+      "ir_gross": 0.7548758546593219,
+      "ir_net": 0.6581010760953322,
+      "sharpe_net": 1.0238319590353426,
+      "cagr_net_pct": 11.151552204306503,
+      "beta": 0.06978380173504962,
+      "roll_beta_min": -0.2586266672412243,
+      "roll_beta_max": 0.3064588928607959,
+      "max_dd_net_pct": -8.427337906858401,
+      "net_2025": 0.019926546734148287,
+      "turnover": 0.11940298507462685,
+      "min_pos": 203,
+      "max_pos": 245,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F0_cap + text:tilt",
+      "ic_pm_score": 0.03424346628154824,
+      "ic_t": 1.8383527896783536,
+      "ir_gross": 0.6879003334033758,
+      "ir_net": 0.5982713421334479,
+      "sharpe_net": 0.9806757568839212,
+      "cagr_net_pct": 10.16877264981817,
+      "beta": 0.001071918954570282,
+      "roll_beta_min": -0.5614450068503355,
+      "roll_beta_max": 0.32618642653129265,
+      "max_dd_net_pct": -10.751480334195962,
+      "net_2025": -0.0591877235379743,
+      "turnover": 0.09999999999999996,
+      "min_pos": 203,
+      "max_pos": 254,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F0_cap + text:judge",
+      "ic_pm_score": 0.03664503081739846,
+      "ic_t": 1.914576303308223,
+      "ir_gross": 0.7419393042050146,
+      "ir_net": 0.6516921118592737,
+      "sharpe_net": 1.016503338176887,
+      "cagr_net_pct": 11.088652978728074,
+      "beta": 0.02511773723156946,
+      "roll_beta_min": -0.42068455727770515,
+      "roll_beta_max": 0.3025785333282176,
+      "max_dd_net_pct": -7.318466193718153,
+      "net_2025": -0.006411250910218991,
+      "turnover": 0.1126865671641791,
+      "min_pos": 203,
+      "max_pos": 246,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    },
+    {
+      "arm": "F1_cap + rev_1m",
+      "ic_pm_score": 0.03934515853517022,
+      "ic_t": 2.0906214027919643,
+      "ir_gross": 0.7418943529578276,
+      "ir_net": 0.6567198584159054,
+      "sharpe_net": 0.9982710708847091,
+      "cagr_net_pct": 11.600605487521086,
+      "beta": 0.022024126197094505,
+      "roll_beta_min": -0.3771112254172675,
+      "roll_beta_max": 0.3515270801379251,
+      "max_dd_net_pct": -9.280181963802647,
+      "net_2025": -0.011957040269977237,
+      "turnover": 0.10149253731343282,
+      "min_pos": 203,
+      "max_pos": 255,
+      "months_veto_dropped": 0,
+      "constraints_ok": true
+    }
+  ],
+  "reproduction": {
+    "F0_composite": {
+      "published_gross_net": [
+        0.615,
+        0.541
+      ],
+      "got": [
+        0.6147635084091442,
+        0.5411376375598286
+      ],
+      "ok": true
+    },
+    "F0_cap": {
+      "published_gross_net": [
+        0.59,
+        0.508
+      ],
+      "got": [
+        0.589814359801155,
+        0.5076097555489262
+      ],
+      "ok": true
+    },
+    "F1_dtc": {
+      "published_gross_net": [
+        0.659,
+        0.584
+      ],
+      "got": [
+        0.6588022258020696,
+        0.5841674088765368
+      ],
+      "ok": true
+    },
+    "F1_cap (DEFAULT base)": {
+      "published_gross_net": [
+        0.721,
+        0.637
+      ],
+      "got": [
+        0.7208798626154279,
+        0.6365978623768135
+      ],
+      "ok": true
+    }
+  },
+  "standalone_text": [
+    {
+      "signal": "novelty_max",
+      "ic": 0.00527426412415802,
+      "t": 1.225341376697733,
+      "replicated": false,
+      "ic_by_year": {
+        "2021": 0.0125,
+        "2022": 0.0076,
+        "2023": 0.0136,
+        "2024": 0.0016,
+        "2025": -0.0069,
+        "2026": 0.0023
+      }
+    },
+    {
+      "signal": "novneg_max",
+      "ic": 0.010258246789099102,
+      "t": 2.870631236666549,
+      "replicated": true,
+      "ic_by_year": {
+        "2021": 0.0074,
+        "2022": 0.0073,
+        "2023": 0.0186,
+        "2024": 0.0187,
+        "2025": 0.002,
+        "2026": 0.0062
+      }
+    },
+    {
+      "signal": "abrupt_exit",
+      "ic": -5.569619935095345e-05,
+      "t": -0.014518062662351644,
+      "replicated": false,
+      "ic_by_year": {
+        "2021": 0.0168,
+        "2022": -0.003,
+        "2023": 0.0031,
+        "2024": 0.0025,
+        "2025": -0.0206,
+        "2026": 0.0013
+      }
+    },
+    {
+      "signal": "T_A (3-signal desk)",
+      "ic": 0.0070086356631110305,
+      "t": 1.8078894598412116,
+      "replicated": false,
+      "ic_by_year": {
+        "2021": 0.0109,
+        "2022": 0.0044,
+        "2023": 0.0163,
+        "2024": 0.0107,
+        "2025": -0.0057,
+        "2026": 0.0047
+      }
+    }
+  ],
+  "decisions": {
+    "F0_composite": "",
+    "F0_cap": "",
+    "F1_dtc": "",
+    "F1_cap (DEFAULT base)": "",
+    "F1_cap + text:blend": "a(dev)=n b(test)=n c(risk)=Y -> advisory",
+    "F1_cap + text:veto_long": "a(dev)=n b(test)=n c(risk)=Y -> advisory",
+    "F1_cap + text:tilt": "a(dev)=Y b(test)=n c(risk)=Y -> advisory",
+    "F1_cap + text:dial": "a(dev)=n b(test)=n c(risk)=Y -> advisory",
+    "F1_cap + text:judge": "a(dev)=n b(test)=n c(risk)=Y -> advisory",
+    "F0_cap + text:tilt": "",
+    "F0_cap + text:judge": "",
+    "F1_cap + rev_1m": ""
+  }
+}

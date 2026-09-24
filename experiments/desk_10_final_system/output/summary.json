@@ -1,0 +1,133 @@
+{
+  "config": {
+    "factors": "composite+dtc",
+    "si_cap": true,
+    "text_mode": "advisory",
+    "text_params": {},
+    "lp": "lc_t10"
+  },
+  "test": {
+    "ir_gross": 0.7208798626154279,
+    "ir_net": 0.6365978623768135,
+    "sharpe_net": 0.9702444395110017,
+    "cagr_net": 0.1149839506591892,
+    "cagr_gross": 0.12620511091048114,
+    "alpha_t_net": 2.1999723337382657,
+    "beta": 0.023015162695799105,
+    "beta_t": 0.23474657444570063,
+    "roll_beta_min": -0.33118274302913886,
+    "roll_beta_max": 0.3440964559167062,
+    "max_dd_net": -0.0979480726412919,
+    "max_dd_gross": -0.095579935185516,
+    "n_months": 68,
+    "avg_gross": 1.99870838139242,
+    "max_gross": 1.9999999999999998,
+    "avg_net_exposure": -5.714383214982423e-18,
+    "min_net_exposure": -2.220446049250313e-16,
+    "max_net_exposure": 2.7755575615628914e-16,
+    "min_positions": 203,
+    "max_positions": 248,
+    "one_way_turnover": 0.10149253731343282,
+    "max_abs_beta_at_formation": 4.718447854656915e-16,
+    "max_abs_betabab_at_formation": 8.049116928532385e-16,
+    "max_abs_sector_net": 0.05000000000000005,
+    "max_sector_gross_share": 0.28453632903608556,
+    "months_turnover_relaxed": 2,
+    "veto_dropped_months": 0,
+    "calendar_year_net": {
+      "2021": 0.302809488735567,
+      "2022": 0.16977048380432058,
+      "2023": 0.08093248491385219,
+      "2024": 0.13928652386427998,
+      "2025": -0.010362701398116791,
+      "2026": -0.002377271079271992
+    },
+    "cost_bp_per_month": 8.419492484042687,
+    "long_leg_cagr": 0.11906377724630746,
+    "short_leg_cagr": -0.018626517810811816,
+    "constraints": {
+      "positions_100_500": true,
+      "gross_le_200pct": true,
+      "net_within_pm50pct": true,
+      "dollar_neutral": true,
+      "beta_neutral_at_formation": true,
+      "sector_net_le_5pct": true,
+      "sector_gross_le_35pct": true
+    },
+    "reproduces_published_F1_cap": true
+  },
+  "monthly_constraint_extremes": {
+    "positions": [
+      203,
+      248
+    ],
+    "gross": [
+      1.949114744712915,
+      1.9999999999999998
+    ],
+    "net_abs_max": 2.7755575615628914e-16,
+    "beta_abs_max": 4.718447854656915e-16,
+    "betabab_abs_max": 8.049116928532385e-16
+  },
+  "determinism": {
+    "hashes": [
+      "f10149d39832ca37",
+      "f10149d39832ca37"
+    ],
+    "passed": true
+  },
+  "truncation": {
+    "dates": [
+      "2021-12-31",
+      "2022-05-31",
+      "2024-06-30"
+    ],
+    "n_values_compared": 10725,
+    "max_abs_diff": {
+      "factors_composite+dtc": 0.0,
+      "short_interest_ratio": 0.0,
+      "text_desk_score": 0.0
+    },
+    "passed": true
+  },
+  "dev_disclosure": {
+    "ir_gross": -0.6422182143044459,
+    "ir_net": -0.7574256549359519,
+    "sharpe_net": -0.3032579691184959,
+    "cagr_net": -0.03011292330625448,
+    "cagr_gross": -0.0202041489776128,
+    "alpha_t_net": -0.8500236336060623,
+    "beta": -0.1349327418664074,
+    "beta_t": -1.7229607539119092,
+    "roll_beta_min": -0.2675811100855501,
+    "roll_beta_max": 0.6987268964718156,
+    "max_dd_net": -0.29988821231998175,
+    "max_dd_gross": -0.2789186765090861,
+    "n_months": 71,
+    "avg_gross": 1.9941495074970255,
+    "max_gross": 1.9999999999999996,
+    "avg_net_exposure": 1.1972035256741344e-18,
+    "min_net_exposure": -2.220446049250313e-16,
+    "max_net_exposure": 1.942890293094024e-16,
+    "min_positions": 202,
+    "max_positions": 243,
+    "one_way_turnover": 0.10142857154863757,
+    "max_abs_beta_at_formation": 7.216449660063518e-16,
+    "max_abs_betabab_at_formation": 8.881784197001252e-16,
+    "max_abs_sector_net": 0.05000000000000003,
+    "max_sector_gross_share": 0.29215102239815816,
+    "months_turnover_relaxed": 1,
+    "veto_dropped_months": 0,
+    "calendar_year_net": {
+      "2015": 0.025822085708640863,
+      "2016": 0.13842875648101427,
+      "2017": 0.0074249030737734145,
+      "2018": -0.006616940750033384,
+      "2019": -0.08208862972308595,
+      "2020": -0.22209686664306116
+    },
+    "cost_bp_per_month": 8.450604096242195,
+    "long_leg_cagr": 0.10841772084338896,
+    "short_leg_cagr": -0.14629369612295995
+  }
+}
