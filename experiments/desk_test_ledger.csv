@@ -36,3 +36,10 @@ utc,experiment,arm,config_hash,note
 2026-09-24T09:04:21+00:00,desk_28_posthoc_diagnostics,posthoc:diagnostics,44136fa355b3,post-hoc diagnostics of the single TEST look; no new arm
 2026-09-24T09:05:08+00:00,desk_29_final_candidate,final_outputs:B1,44136fa355b3,output generation of a desk_27 arm; no selection
 2026-09-24T09:05:14+00:00,desk_29_final_candidate,final_outputs:A5_jkp13z,44136fa355b3,output generation of a desk_27 arm; no selection
+2026-09-24T18:34:56+00:00,desk_32_text_confirmation,second_look:A0,6ac993088517,second pre-registered TEST look (Bonferroni x2)
+2026-09-24T18:34:56+00:00,desk_32_text_confirmation,second_look:Y1,1fd02ab9db5a,second pre-registered TEST look (Bonferroni x2)
+2026-09-24T18:34:57+00:00,desk_32_text_confirmation,second_look:Y2,bf112daefa22,second pre-registered TEST look (Bonferroni x2)
+2026-09-24T18:34:57+00:00,desk_32_text_confirmation,second_look_replication:R1_fresh_minus_stale_surprise_ic,44136fa355b3,second pre-registered TEST look
+2026-09-24T18:34:57+00:00,desk_32_text_confirmation,second_look_replication:R2_nonmerger_minus_merger_b1_ic,44136fa355b3,second pre-registered TEST look
+2026-09-24T18:34:57+00:00,desk_32_text_confirmation,second_look_replication:R3_book_text_risk,44136fa355b3,second pre-registered TEST look
+2026-09-24T22:57:33+00:00,desk_33_agents_on_pipeline,agents:explainer+devil,8b65eb053e2e,agents read formation-month fields / result JSON only; no selection

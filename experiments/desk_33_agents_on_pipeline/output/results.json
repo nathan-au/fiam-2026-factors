@@ -1,0 +1,49 @@
+{
+  "E_n": 60,
+  "E_verified_share": 0.8666666666666667,
+  "E_unsupported_number_share": 0.0,
+  "E_foreign_ticker_share": 0.016666666666666666,
+  "E_forward_language_share": 0.0,
+  "E_semantic_error_share": 0.11666666666666667,
+  "E_median_seconds": 9.322708354,
+  "D_n_attacks": 5,
+  "D_traceable_share": 0.8,
+  "D_attacks": [
+    {
+      "claim": "The strategy's predictive power is unstable and likely spurious given the highly variable performance across different arms in the confirmation desk.",
+      "path": "confirmation_desk27/arms/1/test_ic",
+      "value": 0.0453750119983738,
+      "ok": true,
+      "why": ""
+    },
+    {
+      "claim": "The strategy fails to maintain profitability over the combined window, indicating a lack of robust edge.",
+      "path": "confirmation_desk27/arms/1/combined_sharpe",
+      "value": 0.6126172655047336,
+      "ok": true,
+      "why": ""
+    },
+    {
+      "claim": "The strategy exhibits significant drawdown risk that undermines its reliability as an exploitable edge.",
+      "path": "confirmation_desk27/arms/1/test_max_dd",
+      "value": -0.09600211734628072,
+      "ok": false,
+      "why": "value at path is -0.08823901787747002, attack cites -0.09600211734628072"
+    },
+    {
+      "claim": "The strategy's performance is not statistically significant in the standalone replication tests, casting doubt on its generalizability.",
+      "path": "confirmation_desk27/standalone/S2_novneg_large_tercile/t",
+      "value": 1.5868462561982375,
+      "ok": true,
+      "why": ""
+    },
+    {
+      "claim": "The strategy's edge is not robust to time, as evidenced by the declining and negative IC in later years.",
+      "path": "confirmation_desk27/standalone/S5_gbm_test_ic/by_year/2026",
+      "value": 0.0336,
+      "ok": true,
+      "why": ""
+    }
+  ],
+  "D_note": "first attempt truncated at 200 output tokens (harness limit) and returned a different schema; re-run once with num_predict 1200 (cache kind devil2)"
+}

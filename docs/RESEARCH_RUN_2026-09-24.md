@@ -112,3 +112,18 @@ Rejected before testing: value-spread timing, book-level vol targeting, LLM text
 - All looks are in `experiments/desk_test_ledger.csv` and `experiments/desk_research_ledger.csv`.
 - desk_17's TEST column of IC-vs-regime slopes was seen before desk_27, so no regime rule was put to the confirmation.
 - DEV decisions: about 60 variants. PBO 0.49 shows that DEV selection alone carried no information here, which is why the TEST confirmation was decisive.
+
+---
+
+## 10. Round 2 (same day): the handoff text tables and LLM / agentic use (desk_30–33)
+- **Handoff tables** (`handoff_text_lane_2026-09-21/data/processed/`) are byte-identical to the copy used since desk_01. Round 2 tested only uses no earlier experiment had tried.
+- **Text: conditional information yes, performance no.**
+  - On DEV, item-2.02 timing tells when the surprise factor works (IC 0.026 fresh vs 0.002 stale, t 2.63). Merger-agreement language marks names where the factor view is wrong (IC −0.039, t 2.89). Both survive FDR.
+  - Used as *weights* (Y2) they improved DEV (Sharpe −0.15 → +0.11, paired t 2.30).
+  - On a second pre-registered TEST look: Sharpe 1.10 vs 0.99, max DD −8.5% vs −9.6%, combined 0.67 vs 0.51, but paired mean-return t 0.12. The mechanisms replicate in sign at half strength (t 1.8 / 0.8). **Not adopted; B1 stays.**
+- **Methodological correction to §3–8.** IR vs T-bill+4% penalises lower-volatility variants whenever returns are below the hurdle, so the DEV rules were biased against risk-reducing designs (JKP13z, X3b). Sharpe and paired returns are now reported alongside.
+- **LLM as analyst (desk_31):** no information (see `docs/AGENTIC_WORKFLOW.md`); masking leaves 22% of filers identifiable.
+- **LLM agents on top (desk_33):** explanations 10–20% wrong in meaning; the devil's advocate cites numbers that contradict its own claims. The deterministic versions stay.
+- **Updated final picture:**
+  - Validated: B1.
+  - Promising, not validated: A5 (JKP13z, combined Sharpe 0.80) and Y2 (text-conditional, 0.67). Both improve Sharpe in *both* regimes; neither improves mean return significantly. A pre-registered forward test on post-2026-08 months is the only clean next step. A5+Y2 combined has not been tested and should be pre-registered, not tried on TEST.

@@ -177,6 +177,11 @@ Decisions on DEV; one pre-registered TEST confirmation (desk_27). Every variant 
 | [`desk_28_posthoc_diagnostics`](../experiments/desk_28_posthoc_diagnostics/README.md) | Why (post-hoc) | Flips = growth-vs-value cycle; JKP13z Sharpe diff +0.29 [−0.14, 0.73] | Descriptive | – |
 | [`desk_29_final_candidate`](../experiments/desk_29_final_candidate/README.md) | FIAM outputs B1 + A5 | Constraints / determinism / truncation pass | Output | Forward-test A5 |
 
+| [`desk_30_text_untested_uses`](../experiments/desk_30_text_untested_uses/README.md) | Untested uses of the handoff text tables | 2.02-freshness (t 2.63) and merger-pinning (t 2.89) conditional ICs survive FDR on DEV; vetoes fail; Y2 conditional weighting paired t +2.30 (second stage) | Conditional info real on DEV | → desk_32 |
+| [`desk_31_llm_filing_reader`](../experiments/desk_31_llm_filing_reader/README.md) | Local LLM reading 1,775 masked 8-Ks (DEV) | Comprehension t 1.35, next-month t −1.85 (wrong sign), risk t 0.45; 22% of filers re-identified | **Rejected** (not taken to TEST) | No |
+| [`desk_32_text_confirmation`](../experiments/desk_32_text_confirmation/README.md) | Second pre-registered TEST look (Bonferroni ×2) | Y2 TEST Sharpe 1.10 vs 0.99, combined 0.67 vs 0.51, paired t 0.12; mechanisms same sign, half strength | Not adopted (useful but insufficient) | Forward-test |
+| [`desk_33_agents_on_pipeline`](../experiments/desk_33_agents_on_pipeline/README.md) | LLM explainer + devil's advocate with verifiers | Explainer 87% verified, ~10–20% wrong in meaning; devil 4/5 traceable, ~1/5 supported | Process / appendix | No |
+
 ---
 
 ### Legend
